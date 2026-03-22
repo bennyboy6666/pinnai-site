@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinnAI — Your shop floor, finally smart.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0b0f;
+            --bg-surface: #12141c;
+            --bg-card: #1a1d28;
+            --accent-cyan: #22d3ee;
+            --accent-green: #4ade80;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-glow: rgba(34,211,238,0.2);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+        .nav.scrolled { background: rgba(18,20,28,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo .ai { color: var(--accent-cyan); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .btn { padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; display: inline-block; }
+        .btn-primary { background: var(--accent-cyan); color: var(--bg-primary); }
+        .btn-primary:hover { box-shadow: 0 0 20px rgba(34,211,238,0.3); }
+        .btn-outline { border: 1px solid var(--border-subtle); color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent-cyan); background: rgba(34,211,238,0.1); }
+        .mobile-nav { display: none; }
+
+        /* LAYOUT */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 5rem 0; }
+
+        /* HERO */
+        .hero { padding: 8rem 0 6rem; background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(18,20,28,0.8) 100%); text-align: center; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.15; }
+        .hero .tagline { font-size: 1.4rem; color: var(--accent-cyan); font-weight: 500; margin-bottom: 1.5rem; font-style: italic; }
+        .hero .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 3rem; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .hero-ctas { display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .stat-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: transform 0.2s, box-shadow 0.2s; }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .stat-number { font-size: 1.25rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.5rem; }
+        .stat-label { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* SECTION HEADERS */
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .section-header .subtitle { font-size: 1.2rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto; }
+
+        /* PROBLEM SECTION */
+        .problem-section { background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+        .problem-section h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 2.5rem; text-align: center; }
+        .problem-bullets { list-style: none; max-width: 720px; margin: 0 auto 2.5rem; }
+        .problem-bullets li { padding: 1.25rem 1.5rem; border-left: 3px solid var(--accent-cyan); background: var(--bg-card); border-radius: 0 8px 8px 0; margin-bottom: 1rem; color: var(--text-secondary); }
+        .problem-bullets li strong { color: var(--text-primary); display: block; margin-bottom: 0.25rem; font-size: 1.05rem; }
+        .problem-conclusion { text-align: center; font-size: 1.15rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
+        .problem-conclusion strong { color: var(--accent-cyan); }
+
+        /* SERVICES */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+        .service-pillar { background: var(--bg-card); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle); transition: transform 0.2s, box-shadow 0.2s; }
+        .service-pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+        .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .service-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+        .service-description { color: var(--text-secondary); margin-bottom: 2rem; }
+        .service-features { list-style: none; gap: 0.5rem; display: grid; }
+        .service-features li { color: var(--text-secondary); position: relative; padding-left: 1rem; }
+        .service-features li:before { content: "·"; color: var(--accent-cyan); position: absolute; left: 0; }
+        .services-cta-row { text-align: center; margin-top: 3rem; }
+        .services-cta-row a { color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 1.1rem; border: 1px solid var(--border-glow); padding: 0.75rem 2rem; border-radius: 8px; transition: all 0.2s; display: inline-block; }
+        .services-cta-row a:hover { background: rgba(34,211,238,0.08); border-color: var(--accent-cyan); }
+
+        /* CARDS */
+        .feature-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .feature-card:hover { border-color: var(--border-glow); box-shadow: 0 0 20px rgba(34,211,238,0.1); }
+        .feature-card h4 { margin-bottom: 0.5rem; color: var(--accent-cyan); }
+        .callout-box { background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%); padding: 3rem; border-radius: 16px; border: 1px solid var(--accent-cyan); box-shadow: 0 0 30px rgba(34,211,238,0.1); }
+        .callout-box h4 { color: var(--accent-cyan); margin-bottom: 1rem; }
+
+        /* AI FEATURES */
+        .ai-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .ai-card { background: var(--bg-card); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .ai-card:hover { transform: translateY(-2px); border-color: var(--border-glow); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .ai-card h4 { color: var(--accent-cyan); margin-bottom: 1rem; }
+
+        /* PRODUCT TEASER */
+        .product-teaser { background: linear-gradient(135deg, var(--accent-cyan) 0%, #0891b2 100%); color: var(--bg-primary); padding: 3rem; border-radius: 16px; text-align: center; margin-top: 3rem; }
+        .product-teaser h3 { margin-bottom: 1rem; }
+        .product-teaser .btn { margin-top: 1.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; }
+        .product-teaser .btn:hover { background: rgba(255,255,255,0.2); }
+
+        /* PROCESS */
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; }
+        .process-step { text-align: center; }
+        .step-number { background: var(--accent-cyan); color: var(--bg-primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; margin: 0 auto 2rem; }
+        .step-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .step-duration { color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; }
+        .step-description { color: var(--text-secondary); }
+
+        /* INDUSTRIES */
+        .industries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+
+        /* TRUST */
+        .trust-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem; }
+        .trust-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center; }
+        .trust-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .trust-card h4 { margin-bottom: 0.5rem; color: var(--accent-cyan); }
+
+        /* TEAM */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+        .team-card { background: var(--bg-card); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle); text-align: center; }
+        .team-card h4 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-cyan); }
+        .team-role { color: var(--text-secondary); margin-bottom: 1.25rem; font-style: italic; }
+        .team-bio { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.75; margin-bottom: 0.5rem; }
+        .team-tagline { text-align: center; margin-top: 3rem; color: var(--text-secondary); font-style: italic; font-size: 1.1rem; }
+        .team-tagline strong { color: var(--text-primary); }
+
+        /* FINAL CTA */
+        .final-cta { background: linear-gradient(135deg, var(--bg-surface) 0%, #1e293b 100%); text-align: center; padding: 6rem 0; }
+        .final-cta h2 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .final-cta .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .cta-founders { font-size: 1.05rem; color: var(--accent-cyan); margin-bottom: 2.5rem; }
+        .cta-contact { display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .contact-email { color: var(--accent-cyan); text-decoration: none; font-weight: 500; }
+        .contact-phone { color: var(--text-secondary); font-weight: 500; }
+
+        /* FOOTER */
+        .footer { background: var(--bg-surface); padding: 4rem 0 2rem; border-top: 1px solid var(--border-subtle); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent-cyan); }
+        .footer-bottom { border-top: 1px solid var(--border-subtle); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* LANG */
+        .lang-toggle { display: flex; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+        .lang-btn { padding: 0.35rem 0.75rem; background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .lang-btn.active { background: var(--accent-cyan); color: var(--bg-primary); }
+        .lang-fr { display: none; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3rem; }
+            .section-header h2 { font-size: 2rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-nav { display: flex; gap: 1rem; align-items: center; }
+            .container { padding: 0 1rem; }
+            .hero { padding: 6rem 0 4rem; }
+            .hero h1 { font-size: 2.1rem; }
+            .hero-ctas { flex-direction: column; align-items: center; }
+            .stats-grid, .services-grid, .ai-features, .industries-grid, .process-steps, .trust-cards, .team-grid { grid-template-columns: 1fr; }
+            .cta-contact { flex-direction: column; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+    <div class="nav-container">
+        <div class="logo">pinn<span class="ai">AI</span></div>
+        <ul class="nav-links">
+            <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
+            <li><a href="#process" data-en="How it works" data-fr="Comment ça marche">How it works</a></li>
+            <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+            <li class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </li>
+            <li><a href="#contact" class="btn btn-primary" data-en="Book a call →" data-fr="Réserver un appel →">Book a call →</a></li>
+        </ul>
+        <div class="mobile-nav">
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </div>
+            <a href="#contact" class="btn btn-primary" data-en="Book a call" data-fr="Réserver un appel">Book a call</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <div class="container">
+        <h1 data-en="Custom software, powered by AI." data-fr="Software sur mesure, propulsé par l'IA.">Custom software, powered by AI.</h1>
+        <p class="tagline" data-en="If you can imagine it, we can build it." data-fr="Si vous pouvez l'imaginer, on peut le bâtir.">If you can imagine it, we can build it.</p>
+        <p class="subtitle lang-en">We build 3–5x faster than before. Projects that were once out of reach are now accessible at reasonable prices. And it's not just speed — AI lets us embed real intelligence into your software, taking your solutions to levels never reached before.</p>
+        <p class="subtitle lang-fr">On construit 3 à 5 fois plus vite qu'avant. Les projets qui étaient inaccessibles deviennent accessibles à des prix raisonnables. Et c'est pas juste une question de vitesse — l'IA nous permet d'intégrer de la vraie intelligence dans vos logiciels, amenant vos solutions à des niveaux jamais atteints.</p>
+        <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
+            <a href="#services" class="btn btn-outline" data-en="See what we build" data-fr="Voir ce qu'on bâtit">See what we build</a>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-en="Deployed in weeks, not months" data-fr="Déployé en semaines, pas en mois">Deployed in weeks, not months</div>
+                <div class="stat-label" data-en="From first call to live software" data-fr="Du premier appel au logiciel en production">From first call to live software</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-en="3–5x faster than traditional dev" data-fr="3-5x plus rapide que le dev traditionnel">3–5x faster than traditional dev</div>
+                <div class="stat-label" data-en="AI-assisted development, real results" data-fr="Développement assisté par IA, résultats réels">AI-assisted development, real results</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-en="Data hosted in Canada" data-fr="Données hébergées au Canada">Data hosted in Canada</div>
+                <div class="stat-label" data-en="Azure Canada · Loi 25 compliant" data-fr="Azure Canada · Conforme Loi 25">Azure Canada · Loi 25 compliant</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ LE PROBLÈME ═══ -->
+<section class="problem-section section">
+    <div class="container">
+        <h2 data-en="The software you need has never existed — until now." data-fr="Le logiciel dont vous avez besoin n'a jamais existé — jusqu'à maintenant.">The software you need has never existed — until now.</h2>
+        <ul class="problem-bullets">
+            <li>
+                <strong data-en="Custom software used to be for the big guys." data-fr="Le software sur mesure, c'était pour les gros.">Custom software used to be for the big guys.</strong>
+                <span data-en="$500K budgets, 18-month timelines, teams of 20 developers. Not anymore. AI changed the math — completely." data-fr="Des budgets de 500K$, des timelines de 18 mois, des équipes de 20 développeurs. C'est fini. L'IA a changé l'équation — complètement.">$500K budgets, 18-month timelines, teams of 20 developers. Not anymore. AI changed the math — completely.</span>
+            </li>
+            <li>
+                <strong data-en="Off-the-shelf tools don't fit your reality." data-fr="Les outils sur tablette ne fittent pas votre réalité.">Off-the-shelf tools don't fit your reality.</strong>
+                <span data-en="You've tried SaaS products. You've bent your processes to fit their boxes. You've paid for features you don't use and miss the ones you need." data-fr="Vous avez essayé des produits SaaS. Vous avez tordu vos processus pour rentrer dans leurs boîtes. Vous payez pour des features inutiles et il vous manque celles que vous avez besoin.">You've tried SaaS products. You've bent your processes to fit their boxes. You've paid for features you don't use and miss the ones you need.</span>
+            </li>
+            <li>
+                <strong data-en="Software was never smart — now it can be." data-fr="Le software n'a jamais été intelligent — maintenant il peut l'être.">Software was never smart — now it can be.</strong>
+                <span data-en="Before, software followed rules. Now it understands context, predicts problems, and makes decisions. That's not a feature — it's a new era." data-fr="Avant, le software suivait des règles. Maintenant il comprend le contexte, prédit les problèmes et prend des décisions. C'est pas une feature — c'est une nouvelle ère.">Before, software followed rules. Now it understands context, predicts problems, and makes decisions. That's not a feature — it's a new era.</span>
+            </li>
+        </ul>
+        <p class="problem-conclusion">
+            <span class="lang-en">The question isn't <em>if</em> you need custom software. <strong>It's why you haven't been able to get it until now.</strong></span>
+            <span class="lang-fr">La question c'est pas <em>si</em> vous avez besoin de software sur mesure. <strong>C'est pourquoi vous avez jamais été capable de l'avoir — jusqu'à maintenant.</strong></span>
+        </p>
+    </div>
+</section>
+
+<!-- ═══ SERVICES — 3 PILLARS ═══ -->
+<section id="services" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="What we build" data-fr="Ce qu'on bâtit">What we build</h2>
+            <p class="subtitle" data-en="Three pillars. One mission: build the software you've always needed but could never afford." data-fr="Trois piliers. Une mission : bâtir le software dont vous avez toujours eu besoin mais que vous pouviez jamais vous permettre.">Three pillars. One mission: build the software you've always needed but could never afford.</p>
+        </div>
+        <div class="services-grid">
+            <!-- PILLAR 1: Manufacturing -->
+            <div class="service-pillar">
+                <div class="service-icon">🏭</div>
+                <h3 class="service-title" data-en="Manufacturing Software" data-fr="Software manufacturier">Manufacturing Software</h3>
+                <p class="service-description lang-en">Purpose-built applications for your production floor. No generic tools — your workflows, your rules.</p>
+                <p class="service-description lang-fr">Applications conçues pour votre plancher de production. Pas d'outils génériques — vos workflows, vos règles.</p>
+                <ul class="service-features">
+                    <li data-en="Production tracking — real-time OEE, downtime, cycle times" data-fr="Suivi de production — OEE, arrêts, temps de cycle en temps réel">Production tracking — real-time OEE, downtime, cycle times</li>
+                    <li data-en="Smart CMMS — preventive & predictive maintenance" data-fr="GMAO intelligente — maintenance préventive et prédictive">Smart CMMS — preventive &amp; predictive maintenance</li>
+                    <li data-en="Digital quality control — inspections, SPC, non-conformances" data-fr="Contrôle qualité numérique — inspections, SPC, non-conformités">Digital quality control — inspections, SPC, non-conformances</li>
+                    <li data-en="Production planning — visual scheduling, capacity, delivery dates you can trust" data-fr="Planification de production — cédule visuelle, capacité, dates de livraison fiables">Production planning — visual scheduling, capacity, delivery dates you can trust</li>
+                </ul>
+            </div>
+            <!-- PILLAR 2: AI -->
+            <div class="service-pillar">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</h3>
+                <p class="service-description lang-en">Artificial intelligence that solves real problems — not demos that never make it to production.</p>
+                <p class="service-description lang-fr">De l'intelligence artificielle qui résout de vrais problèmes — pas des démos qui n'arrivent jamais en production.</p>
+                <ul class="service-features">
+                    <li data-en="AI assistants trained on YOUR data — manuals, drawings, history" data-fr="Assistants IA entraînés sur VOS données — manuels, dessins, historique">AI assistants trained on YOUR data — manuals, drawings, history</li>
+                    <li data-en="Voice-to-data — field techs talk, the form fills itself" data-fr="Voix-vers-données — le technicien parle, le formulaire se remplit tout seul">Voice-to-data — field techs talk, the form fills itself</li>
+                    <li data-en="Predictive maintenance — know before it breaks" data-fr="Maintenance prédictive — savoir avant que ça brise">Predictive maintenance — know before it breaks</li>
+                    <li data-en="Document intelligence — 10 years of engineering docs, finally searchable" data-fr="Intelligence documentaire — 10 ans de docs d'ingénierie, enfin cherchables">Document intelligence — 10 years of engineering docs, finally searchable</li>
+                </ul>
+            </div>
+            <!-- PILLAR 3: Integration / Get Started -->
+            <div class="service-pillar">
+                <div class="service-icon">🔗</div>
+                <h3 class="service-title" data-en="AI Sprints &amp; Integration" data-fr="Sprints IA et Intégration">AI Sprints &amp; Integration</h3>
+                <p class="service-description lang-en">Not sure where to start? From "I think we need AI" to a working prototype in weeks. Plus deep ERP and cloud expertise.</p>
+                <p class="service-description lang-fr">Pas sûr par où commencer? De "je pense qu'on a besoin d'IA" à un prototype fonctionnel en quelques semaines. Plus une expertise ERP et cloud.</p>
+                <ul class="service-features">
+                    <li data-en="AI Readiness Audit — find your highest-ROI opportunity" data-fr="Audit IA — trouvez l'opportunité au ROI le plus élevé">AI Readiness Audit — find your highest-ROI opportunity</li>
+                    <li data-en="AI Sprint — working prototype in 2–4 weeks" data-fr="Sprint IA — prototype fonctionnel en 2-4 semaines">AI Sprint — working prototype in 2–4 weeks</li>
+                    <li data-en="ERP Odoo — enterprise power at SME price" data-fr="ERP Odoo — puissance entreprise au prix PME">ERP Odoo — enterprise power at SME price</li>
+                    <li data-en="Cloud Azure Canada — your data stays in Canada" data-fr="Cloud Azure Canada — vos données restent au Canada">Cloud Azure Canada — your data stays in Canada</li>
+                </ul>
+            </div>
+        </div>
+        <div class="services-cta-row">
+            <a href="use-cases.html" data-en="See all our use cases →" data-fr="Voir tous nos cas d'usage →">See all our use cases →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ WHY CUSTOM SOFTWARE IS FINALLY AFFORDABLE (keep as-is) ═══ -->
+<section id="pricing" class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Why custom software is finally affordable" data-fr="Pourquoi le software sur mesure est enfin abordable">Why custom software is finally affordable</h2>
+            <p class="subtitle" data-en="AI has fundamentally changed how software is built. Here's what that means for you." data-fr="L'IA a fondamentalement changé la façon dont le logiciel est construit. Voici ce que ça veut dire pour vous.">AI has fundamentally changed how software is built. Here's what that means for you.</p>
+        </div>
+        <div class="ai-features">
+            <div class="ai-card">
+                <h4 data-en="Development speed" data-fr="Vitesse de développement">Development speed</h4>
+                <p class="lang-en"><strong>Before:</strong> Custom software projects used to take 6–12 months and required large teams.</p>
+                <p class="lang-fr"><strong>Avant :</strong> Les projets de logiciel sur mesure prenaient 6-12 mois et nécessitaient de grandes équipes.</p>
+                <p class="lang-en"><strong>Now:</strong> AI-assisted development cuts timelines by 3–5x. What took months now takes weeks.</p>
+                <p class="lang-fr"><strong>Maintenant :</strong> Le développement assisté par IA réduit les délais de 3-5x. Ce qui prenait des mois prend maintenant des semaines.</p>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Cost barrier" data-fr="Barrière de coût">Cost barrier</h4>
+                <p class="lang-en"><strong>Before:</strong> Custom solutions were reserved for enterprises with $500K+ budgets.</p>
+                <p class="lang-fr"><strong>Avant :</strong> Les solutions sur mesure étaient réservées aux entreprises avec des budgets de 500K$+.</p>
+                <p class="lang-en"><strong>Now:</strong> AI tools dramatically reduce development costs, making custom software accessible to SMEs.</p>
+                <p class="lang-fr"><strong>Maintenant :</strong> Les outils IA réduisent drastiquement les coûts de développement, rendant le logiciel sur mesure accessible aux PME.</p>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Understanding your needs" data-fr="Comprendre vos besoins">Understanding your needs</h4>
+                <p class="lang-en"><strong>Before:</strong> Weeks of requirements gathering, endless meetings, lost-in-translation specs.</p>
+                <p class="lang-fr"><strong>Avant :</strong> Des semaines de collecte de requis, des meetings sans fin, des specs perdues dans la traduction.</p>
+                <p class="lang-en"><strong>Now:</strong> AI-powered context engines understand your processes faster. We capture your reality, not just your requirements.</p>
+                <p class="lang-fr"><strong>Maintenant :</strong> Les moteurs de contexte IA comprennent vos processus plus rapidement. On capture votre réalité, pas juste vos requis.</p>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Maintenance &amp; evolution" data-fr="Maintenance et évolution">Maintenance &amp; evolution</h4>
+                <p class="lang-en"><strong>Before:</strong> Every change required expensive developer time and long release cycles.</p>
+                <p class="lang-fr"><strong>Avant :</strong> Chaque changement nécessitait du temps de développeur coûteux et de longs cycles de release.</p>
+                <p class="lang-en"><strong>Now:</strong> AI-assisted maintenance means your software evolves with your business, continuously and affordably.</p>
+                <p class="lang-fr"><strong>Maintenant :</strong> La maintenance assistée par IA fait que votre logiciel évolue avec votre business, en continu et à moindre coût.</p>
+            </div>
+        </div>
+        <div class="callout-box">
+            <h4 data-en="This is why PinnAI exists." data-fr="C'est pour ça que PinnAI existe.">This is why PinnAI exists.</h4>
+            <p class="lang-en">We combine deep industrial expertise with AI-powered development to deliver custom solutions that were simply not possible — or affordable — two years ago.</p>
+            <p class="lang-fr">On combine une expertise industrielle profonde avec le développement propulsé par l'IA pour livrer des solutions sur mesure qui étaient tout simplement impossibles — ou inabordables — il y a deux ans.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section id="process" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="From idea to impact in weeks, not months." data-fr="De l'idée à l'impact en semaines, pas en mois.">From idea to impact in weeks, not months.</h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h4 class="step-title" data-en="Discover" data-fr="Découverte">Discover</h4>
+                <p class="step-duration" data-en="1–2 weeks" data-fr="1-2 semaines">1–2 weeks</p>
+                <p class="step-description" data-en="We meet your team, analyze your processes, identify opportunities." data-fr="On rencontre votre équipe, on analyse vos processus, on identifie les opportunités.">We meet your team, analyze your processes, identify opportunities.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h4 class="step-title" data-en="Design" data-fr="Conception">Design</h4>
+                <p class="step-duration" data-en="2–3 weeks" data-fr="2-3 semaines">2–3 weeks</p>
+                <p class="step-description" data-en="Architecture, prototypes, and a clear development plan." data-fr="Architecture, prototypes et un plan de développement clair.">Architecture, prototypes, and a clear development plan.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h4 class="step-title" data-en="Build" data-fr="Développement">Build</h4>
+                <p class="step-duration" data-en="4–12 weeks" data-fr="4-12 semaines">4–12 weeks</p>
+                <p class="step-description" data-en="Agile sprints, bi-weekly demos, continuous adjustments." data-fr="Sprints agiles, démos aux 2 semaines, ajustements continus.">Agile sprints, bi-weekly demos, continuous adjustments.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h4 class="step-title" data-en="Launch" data-fr="Livraison">Launch</h4>
+                <p class="step-duration" data-en="1–2 weeks" data-fr="1-2 semaines">1–2 weeks</p>
+                <p class="step-description" data-en="Deployment, team training, and post-launch support." data-fr="Déploiement, formation de vos équipes et support post-lancement.">Deployment, team training, and post-launch support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ INDUSTRIES (2 only) ═══ -->
+<section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Where we go deep" data-fr="Là où on va en profondeur">Where we go deep</h2>
+            <p class="subtitle" data-en="We've chosen to be genuinely great in two industries rather than mediocre in five." data-fr="On a choisi d'être vraiment excellents dans deux industries plutôt que médiocres dans cinq.">We've chosen to be genuinely great in two industries rather than mediocre in five.</p>
+        </div>
+        <div class="industries-grid">
+            <div class="ai-card">
+                <h4 data-en="🔩 Metal Fabrication / Machining" data-fr="🔩 Fabrication métallique / Usinage">🔩 Metal Fabrication / Machining</h4>
+                <p class="lang-en"><strong>You quote jobs in hours, track them in spreadsheets, and hope the delivery date holds.</strong></p>
+                <p class="lang-fr"><strong>Vous soumissionnez en heures, trackez dans des spreadsheets, et espérez que la date de livraison tienne.</strong></p>
+                <p class="lang-en" style="color:var(--accent-cyan);margin-top:0.75rem;">We build systems that track every job from quote to ship. Real-time machine utilization so you know which CNC is available. Tool life tracking that tells you when to change before the part is scrap. Quality inspection at each operation. Delivery date predictions your sales team can actually trust.</p>
+                <p class="lang-fr" style="color:var(--accent-cyan);margin-top:0.75rem;">On bâtit des systèmes qui suivent chaque job de la soumission au shipping. Utilisation machine en temps réel. Suivi de vie d'outil. Inspection qualité à chaque opération. Des prédictions de livraison que votre équipe de ventes peut vraiment utiliser.</p>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="🏗️ Construction / Engineering" data-fr="🏗️ Construction / Ingénierie">🏗️ Construction / Engineering</h4>
+                <p class="lang-en"><strong>Your project updates are a weekly email from the site foreman. Your clients want real-time visibility. Your PMs are drowning in admin.</strong></p>
+                <p class="lang-fr"><strong>Vos mises à jour de projets c'est un email hebdomadaire du contremaître. Vos clients veulent de la visibilité en temps réel. Vos chargés de projet sont noyés dans l'admin.</strong></p>
+                <p class="lang-en" style="color:var(--accent-cyan);margin-top:0.75rem;">Project progress visible to everyone who needs it — live. Field inspection apps that work offline. Resource planning that prevents double-booking. Subcontractor portals so they submit their own progress. Client reports that generate themselves.</p>
+                <p class="lang-fr" style="color:var(--accent-cyan);margin-top:0.75rem;">Progrès de projet visible pour tous ceux qui en ont besoin — en direct. Apps d'inspection terrain qui marchent hors ligne. Portails sous-traitants. Rapports clients qui se génèrent tout seuls.</p>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:0.95rem;">
+            <span class="lang-en">Also serving Food &amp; Beverage, Distribution, and Professional Services — <a href="use-cases.html" style="color:var(--accent-cyan);text-decoration:none;">see use cases →</a></span>
+            <span class="lang-fr">Également actifs en Alimentation, Distribution et Services professionnels — <a href="use-cases.html" style="color:var(--accent-cyan);text-decoration:none;">voir les cas d'usage →</a></span>
+        </p>
+    </div>
+</section>
+
+<!-- ═══ QUEBEC ═══ -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Proudly Quebec. Globally ready." data-fr="Fièrement québécois. Prêt pour le monde.">Proudly Quebec. Globally ready.</h2>
+        </div>
+        <div class="trust-cards">
+            <div class="trust-card">
+                <div class="trust-icon">🛡️</div>
+                <h4 data-en="Loi 25 Compliant" data-fr="Conforme Loi 25">Loi 25 Compliant</h4>
+                <p data-en="Full compliance with Quebec's data privacy law — built in from day one." data-fr="Conformité complète avec la Loi 25 — intégrée dès la conception.">Full compliance with Quebec's data privacy law — built in from day one.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">🇨🇦</div>
+                <h4 data-en="Azure Canada Hosted" data-fr="Hébergé Azure Canada">Azure Canada Hosted</h4>
+                <p data-en="Your data stays in Canada. Period." data-fr="Vos données restent au Canada. Point.">Your data stays in Canada. Period.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">🇫🇷</div>
+                <h4 data-en="Bilingual Service" data-fr="Service bilingue">Bilingual Service</h4>
+                <p data-en="We work in French and English." data-fr="On travaille en français et en anglais.">We work in French and English.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">💰</div>
+                <h4 data-en="Grant Guidance" data-fr="Accompagnement subventions">Grant Guidance</h4>
+                <p data-en="We help you access RS&amp;DE, NRC-IRAP, and CDAEIA credits." data-fr="On vous aide à accéder aux crédits RS&DE, PARI-CNRC et CDAEIA.">We help you access RS&amp;DE, NRC-IRAP, and CDAEIA credits.</p>
+            </div>
+        </div>
+
+        <!-- FR-ONLY expanded Quebec content -->
+        <div class="lang-fr" style="margin-top:3rem;">
+            <div class="callout-box" style="margin-bottom:2rem;">
+                <h4 style="color:var(--accent-cyan);margin-bottom:1rem;">🏛️ La Loi 25, on s'en occupe</h4>
+                <p style="color:var(--text-secondary);margin-bottom:1rem;">Depuis septembre 2023, la Loi 25 impose des obligations strictes aux entreprises québécoises en matière de protection des renseignements personnels. Ça inclut le consentement, la gestion des incidents, la nomination d'un responsable de la protection et la transparence avec vos clients.</p>
+                <p style="color:var(--text-secondary);margin-bottom:1rem;"><strong style="color:var(--text-primary);">Chez PinnAI, on intègre la conformité Loi 25 dès la conception de vos logiciels.</strong> Pas un ajout après coup — c'est dans l'ADN de chaque solution qu'on bâtit.</p>
+                <p style="color:var(--accent-cyan);">✅ Politiques de confidentialité · ✅ Gestion du consentement · ✅ Registre d'incidents · ✅ Hébergement Azure Canada · ✅ Formation de vos équipes</p>
+            </div>
+            <div class="callout-box" style="margin-bottom:2rem;border-color:var(--accent-green);">
+                <h4 style="color:var(--accent-green);margin-bottom:1rem;">💰 Subventions et crédits d'impôt — on vous guide</h4>
+                <p style="color:var(--text-secondary);margin-bottom:1rem;">Saviez-vous que vos projets de développement logiciel et d'intégration IA peuvent vous donner droit à des milliers de dollars en crédits d'impôt et subventions?</p>
+                <p style="color:var(--text-secondary);margin-bottom:0.5rem;">📌 <strong style="color:var(--text-primary);">RS&DE</strong> — Récupérez jusqu'à 50% de vos dépenses en R&D (crédits d'impôt remboursables)</p>
+                <p style="color:var(--text-secondary);margin-bottom:0.5rem;">📌 <strong style="color:var(--text-primary);">PARI-CNRC</strong> — Jusqu'à 75% de vos salaires R&D couverts</p>
+                <p style="color:var(--text-secondary);margin-bottom:0.5rem;">📌 <strong style="color:var(--text-primary);">CDAEIA</strong> — 30% de vos salaires de développement logiciel remboursés</p>
+                <p style="color:var(--text-secondary);margin-bottom:1rem;">📌 <strong style="color:var(--text-primary);">Scale AI</strong> — Subventions non remboursables pour projets IA</p>
+                <p style="color:var(--accent-green);">On vous accompagne dans l'identification des programmes et la préparation des demandes.</p>
+            </div>
+            <div class="callout-box">
+                <h4 style="color:var(--accent-cyan);margin-bottom:1rem;">🏠 Basés ici. Pour vous.</h4>
+                <p style="color:var(--text-secondary);">On est pas une firme de consulting de Toronto qui sous-traite en Inde. On est deux entrepreneurs québécois qui connaissent le marché manufacturier QC, qui parlent votre langue, qui comprennent vos réalités. Quand vous nous appelez, c'est nous qui répondons. Vos données restent au Québec. Et on peut se rencontrer autour d'un café pour parler de votre projet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TEAM ═══ -->
+<section id="about" class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="The team behind PinnAI" data-fr="L'équipe derrière PinnAI">The team behind Pinn<span style="color:var(--accent-cyan);">AI</span></h2>
+            <p class="subtitle" data-en="30+ combined years on factory floors — before we built software for them." data-fr="30+ années combinées sur des planchers d'usine — avant de bâtir des logiciels pour eux.">30+ combined years on factory floors — before we built software for them.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <h4>Benoit</h4>
+                <p class="team-role" data-en="Co-founder · AI &amp; Machine Safety" data-fr="Co-fondateur · IA et sécurité machine">Co-founder · AI &amp; Machine Safety</p>
+                <p class="team-bio lang-en">Machine safety engineer by trade. Built Feedivo — a field capture app used in real industrial environments. Co-founder of Contexo, an AI context engine. Spent years on factory floors understanding the gap between what workers know and what systems capture.</p>
+                <p class="team-bio lang-fr">Ingénieur en sécurité machine de formation. A bâti Feedivo — une app de capture terrain utilisée dans de vraies usines. Co-fondateur de Contexo, un moteur de contexte IA. A passé des années sur des planchers d'usine à comprendre l'écart entre ce que les travailleurs savent et ce que les systèmes capturent.</p>
+            </div>
+            <div class="team-card">
+                <h4>Jérémy</h4>
+                <p class="team-role" data-en="Co-founder · ERP &amp; Infrastructure" data-fr="Co-fondateur · ERP et infrastructure">Co-founder · ERP &amp; Infrastructure</p>
+                <p class="team-bio lang-en">Odoo ERP specialist with active manufacturing clients. Azure cloud architect. Has implemented systems integration for industrial companies across Quebec — he knows what breaks in production and how to build things that last.</p>
+                <p class="team-bio lang-fr">Spécialiste ERP Odoo avec des clients manufacturiers actifs. Architecte cloud Azure. A implémenté des intégrations de systèmes pour des entreprises industrielles à travers le Québec — il sait ce qui brise en production et comment bâtir des choses qui durent.</p>
+            </div>
+        </div>
+        <p class="team-tagline">
+            <span class="lang-en"><strong>"We worked in factories before we built software for factories."</strong></span>
+            <span class="lang-fr"><strong>« On a travaillé dans des usines avant de bâtir des logiciels pour des usines. »</strong></span>
+        </p>
+    </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section id="contact" class="final-cta">
+    <div class="container">
+        <h2 data-en="Book a free 1-hour discovery call" data-fr="Réservez un discovery call d'une heure — gratuit">Book a free 1-hour discovery call</h2>
+        <p class="subtitle lang-en">Tell us your challenge. We'll show you how to solve it.</p>
+        <p class="subtitle lang-fr">Parlez-nous de votre défi. On vous montre comment le résoudre.</p>
+        <p class="cta-founders lang-en">With Benoit and Jérémy — not a salesperson.</p>
+        <p class="cta-founders lang-fr">Avec Benoit et Jérémy — pas un vendeur.</p>
+        <p style="color:var(--text-secondary);margin-bottom:2.5rem;font-size:0.95rem;" class="lang-en">No commitment. No slides. Just a real conversation about your operation.</p>
+        <p style="color:var(--text-secondary);margin-bottom:2.5rem;font-size:0.95rem;" class="lang-fr">Pas d'engagement. Pas de slides. Juste une vraie conversation sur votre opération.</p>
+        <div class="cta-contact">
+            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
+            <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
+            <span class="contact-phone">(450) XXX-XXXX</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="logo">pinn<span class="ai">AI</span></div>
+                <p class="lang-en" style="margin-top:1rem;color:var(--text-secondary);">Custom manufacturing software, powered by AI.</p>
+                <p class="lang-fr" style="margin-top:1rem;color:var(--text-secondary);">Software manufacturier sur mesure, propulsé par l'IA.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#services" data-en="Services" data-fr="Services">Services</a>
+                <a href="use-cases.html" data-en="Use Cases" data-fr="Cas d'usage">Use Cases</a>
+                <a href="#process" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+                <a href="#about" data-en="About" data-fr="À propos">About</a>
+                <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 PinnAI inc. — Quebec, Canada</p>
+            <div class="footer-links">
+                <a href="#" data-en="Loi 25 Compliant" data-fr="Conforme Loi 25">Loi 25 Compliant</a>
+                <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let currentLang = localStorage.getItem('pinnai-lang') || 'en';
+
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('pinnai-lang', lang);
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const text = el.getAttribute('data-' + lang);
+            if (text) el.textContent = text;
+        });
+        document.querySelectorAll('.lang-en').forEach(el => { el.style.display = lang === 'en' ? '' : 'none'; });
+        document.querySelectorAll('.lang-fr').forEach(el => { el.style.display = lang === 'fr' ? '' : 'none'; });
+        document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.toggle('active', btn.dataset.lang === lang); });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => { setLang(currentLang); });
+
+    window.addEventListener('scroll', function() {
+        const nav = document.getElementById('nav');
+        if (window.scrollY > 100) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+</script>
+</body>
+</html>
