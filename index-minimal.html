@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinnAI - Custom software, powered by AI.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+    const PASS = 'Pinnai2026!';
+    const AUTH_KEY = 'pinnai_auth';
+    if (localStorage.getItem(AUTH_KEY) !== 'true') {
+        const input = prompt('🔒 Password required:');
+        if (input !== PASS) {
+            document.documentElement.innerHTML = '<body style="background:#0a0b0f;color:#f87171;display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui;"><h1>⛔ Access denied</h1></body>';
+            throw new Error('unauthorized');
+        }
+        localStorage.setItem(AUTH_KEY, 'true');
+    }
+</script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0b0f; --bg-surface: #12141c; --bg-card: #1a1d28;
+            --accent-cyan: #22d3ee; --accent-green: #4ade80; --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7); --text-muted: rgba(255,255,255,0.5);
+            --border-subtle: rgba(255,255,255,0.06); --border-glow: rgba(34,211,238,0.2);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        .nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+        .nav.scrolled { background: rgba(18,20,28,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo .ai { color: var(--accent-cyan); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .btn { padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; display: inline-block; }
+        .btn-primary { background: var(--accent-cyan); color: var(--bg-primary); }
+        .btn-primary:hover { box-shadow: 0 0 20px rgba(34,211,238,0.3); }
+        .btn-outline { border: 1px solid var(--border-subtle); color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent-cyan); background: rgba(34,211,238,0.1); }
+        .mobile-nav { display: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 5rem 0; }
+        .hero { padding: 8rem 0 6rem; background: var(--bg-primary); text-align: center; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.15; }
+        .hero .tagline { font-size: 1.4rem; color: var(--accent-cyan); font-weight: 500; margin-bottom: 1.5rem; font-style: italic; }
+        .hero-punchy { max-width: 700px; margin: 0 auto 3rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .hero-punchy p { font-size: 1.15rem; color: var(--text-secondary); }
+        .hero-ctas { display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .stat-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: transform 0.2s, box-shadow 0.2s; }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .stat-number { font-size: 1.25rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.5rem; }
+        .stat-label { color: var(--text-secondary); font-size: 0.95rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .section-header .subtitle { font-size: 1.2rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto; }
+        .problem-section { background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+        .problem-section h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 2.5rem; text-align: center; }
+        .problem-bullets { list-style: none; max-width: 720px; margin: 0 auto 2.5rem; }
+        .problem-bullets li { padding: 1.25rem 1.5rem; border-left: 3px solid var(--accent-cyan); background: var(--bg-card); border-radius: 0 8px 8px 0; margin-bottom: 1rem; color: var(--text-secondary); }
+        .problem-bullets li strong { color: var(--text-primary); display: block; margin-bottom: 0.25rem; font-size: 1.05rem; }
+        .problem-conclusion { text-align: center; font-size: 1.15rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
+        .problem-conclusion strong { color: var(--accent-cyan); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+        .service-pillar { background: var(--bg-card); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle); transition: transform 0.2s, box-shadow 0.2s; }
+        .service-pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+        .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .service-icon img, .grant-card-icon img { width: 64px; height: 64px; object-fit: contain; border-radius: 12px; }
+        .service-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+        .service-description { color: var(--text-secondary); margin-bottom: 2rem; }
+        .service-features { list-style: none; gap: 0.5rem; display: grid; }
+        .service-features li { color: var(--text-secondary); position: relative; padding-left: 1rem; }
+        .service-features li:before { content: "\00B7"; color: var(--accent-cyan); position: absolute; left: 0; }
+        .services-cta-row { text-align: center; margin-top: 3rem; }
+        .services-cta-row a { background: var(--accent-cyan); color: var(--bg-primary); text-decoration: none; font-weight: 700; font-size: 1.15rem; padding: 1rem 2.5rem; border-radius: 10px; transition: all 0.2s; display: inline-block; box-shadow: 0 0 25px rgba(34,211,238,0.3); }
+        .services-cta-row a:hover { box-shadow: 0 0 40px rgba(34,211,238,0.5); transform: translateY(-2px); }
+        .callout-box { background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%); padding: 3rem; border-radius: 16px; border: 1px solid var(--accent-cyan); box-shadow: 0 0 30px rgba(34,211,238,0.1); }
+        .callout-box h4 { color: var(--accent-cyan); margin-bottom: 1rem; }
+        .ai-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .ai-card { background: var(--bg-card); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .ai-card:hover { transform: translateY(-2px); border-color: var(--border-glow); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .ai-card h4 { color: var(--accent-cyan); margin-bottom: 1rem; }
+        .grants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .grant-card { background: var(--bg-card); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .grant-card:hover { transform: translateY(-4px); border-color: var(--border-glow); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .grant-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .grant-card h4 { color: var(--accent-cyan); margin-bottom: 0.35rem; font-size: 1.15rem; font-weight: 600; }
+        .grant-badge { display: inline-block; background: rgba(74,222,128,0.15); color: var(--accent-green); font-size: 0.8rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid rgba(74,222,128,0.3); }
+        .grant-card p { color: var(--text-secondary); line-height: 1.75; }
+        .grants-callout { background: linear-gradient(135deg, rgba(34,211,238,0.07) 0%, rgba(74,222,128,0.04) 100%); padding: 2.5rem 3rem; border-radius: 16px; border: 2px solid var(--accent-cyan); box-shadow: 0 0 40px rgba(34,211,238,0.1); margin-top: 1rem; }
+        .grants-callout p { color: var(--text-secondary); line-height: 1.9; font-size: 1.05rem; }
+        .grants-callout strong { color: var(--text-primary); }
+        .grants-cta { text-align: center; margin-top: 2.5rem; }
+        .grants-cta a { color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 1.05rem; border: 1px solid var(--border-glow); padding: 0.75rem 2rem; border-radius: 8px; transition: all 0.2s; display: inline-block; }
+        .grants-cta a:hover { background: rgba(34,211,238,0.08); border-color: var(--accent-cyan); }
+        .product-teaser { background: linear-gradient(135deg, var(--accent-cyan) 0%, #0891b2 100%); color: var(--bg-primary); padding: 3rem; border-radius: 16px; text-align: center; margin-top: 3rem; }
+        .product-teaser h3 { margin-bottom: 1rem; }
+        .product-teaser .btn { margin-top: 1.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; }
+        .product-teaser .btn:hover { background: rgba(255,255,255,0.2); }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; }
+        .process-step { text-align: center; }
+        .step-number { background: var(--accent-cyan); color: var(--bg-primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; margin: 0 auto 2rem; }
+        .step-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .step-duration { color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; }
+        .step-description { color: var(--text-secondary); }
+        .trust-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem; }
+        .trust-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center; }
+        .trust-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .trust-card h4 { margin-bottom: 0.5rem; color: var(--accent-cyan); }
+        .integration-logos { display: flex; justify-content: center; align-items: center; gap: 3rem; margin: 3rem 0; flex-wrap: wrap; }
+        .logo-item { color: var(--text-secondary); font-weight: 500; font-size: 1.1rem; transition: color 0.2s; }
+        .logo-item:hover { color: var(--accent-cyan); }
+        .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .team-card { background: var(--bg-card); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-subtle); text-align: center; margin-bottom: 0; }
+        .team-card h4 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-cyan); }
+        .team-role { color: var(--text-secondary); margin-bottom: 1.25rem; font-style: italic; }
+        .team-bio { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.75; margin-bottom: 0.5rem; }
+        .team-tagline { text-align: center; margin-top: 3rem; color: var(--text-secondary); font-style: italic; font-size: 1.1rem; }
+        .team-tagline strong { color: var(--text-primary); }
+        .team-breadth { text-align: center; margin-top: 1.5rem; font-size: 1rem; color: var(--text-muted); font-style: italic; }
+        .team-breadth strong { color: var(--accent-cyan); }
+        .final-cta { background: linear-gradient(135deg, var(--bg-surface) 0%, #1e293b 100%); text-align: center; padding: 6rem 0; }
+        .final-cta h2 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .final-cta .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .cta-founders { font-size: 1.05rem; color: var(--accent-cyan); margin-bottom: 2.5rem; }
+        .cta-contact { display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .contact-email { color: var(--accent-cyan); text-decoration: none; font-weight: 500; }
+        .contact-phone { color: var(--text-secondary); font-weight: 500; }
+        .footer { background: var(--bg-surface); padding: 4rem 0 2rem; border-top: 1px solid var(--border-subtle); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent-cyan); }
+        .footer-bottom { border-top: 1px solid var(--border-subtle); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.9rem; }
+        .lang-toggle { display: flex; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+        .lang-btn { padding: 0.35rem 0.75rem; background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .lang-btn.active { background: var(--accent-cyan); color: var(--bg-primary); }
+        .lang-fr { display: none; }
+        /* === SCROLL-DRIVEN FRAME ANIMATIONS === */
+        #hero-scroll-wrapper, #chaos-scroll-wrapper {
+            background: #0a0b0f;
+            overflow: hidden;
+        }
+        #heroCanvas {
+            background: transparent;
+        }
+        #chaosCanvas {
+            background: #12141c;
+            max-width: 800px;
+            margin: 0 auto;
+            display: block;
+        }
+        .scroll-canvas-wrapper {
+            position: relative;
+        }
+        
+        /* === END SCROLL-DRIVEN FRAME ANIMATIONS === */
+
+        @media (max-width: 1024px) { .hero h1 { font-size: 3rem; } .section-header h2 { font-size: 2rem; } }
+        @media (max-width: 768px) {
+            .nav-links { display: none; } .mobile-nav { display: flex; gap: 1rem; align-items: center; }
+            .container { padding: 0 1rem; } .hero { padding: 6rem 0 4rem; } .hero h1 { font-size: 2.1rem; }
+            .hero-ctas { flex-direction: column; align-items: center; }
+            .stats-grid, .services-grid, .ai-features, .grants-grid, .process-steps, .trust-cards { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .cta-contact { flex-direction: column; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .grants-callout { padding: 2rem 1.5rem; }
+            .integration-logos { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-container">
+        <div class="logo">pinn<span class="ai">AI</span></div>
+        <ul class="nav-links">
+            <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
+            <li><a href="#process" data-en="How it works" data-fr="Comment ça marche">How it works</a></li>
+            <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+            <li class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </li>
+            <li><a href="#contact" class="btn btn-primary" data-en="Book a call &#8594;" data-fr="Réserver un appel &#8594;">Book a call &#8594;</a></li>
+        </ul>
+        <div class="mobile-nav">
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </div>
+            <a href="#contact" class="btn btn-primary" data-en="Book a call" data-fr="Réserver un appel">Book a call</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 1. HERO -->
+<section class="hero">
+    <div class="container">
+        <h1 data-en="Custom software, powered by AI." data-fr="Software sur mesure, propulsé par l'IA.">Custom software, powered by AI.</h1>
+        <p class="tagline" data-en="If you can imagine it, we can build it." data-fr="Si vous pouvez l'imaginer, on peut le bâtir.">If you can imagine it, we can build it.</p>
+        <div class="hero-punchy">
+            <p class="lang-en">AI builds software 3&#8211;5x faster &#8212; projects once out of reach are now accessible and truly intelligent.</p>
+            <p class="lang-fr">L'IA construit 3&#8211;5x plus vite &#8212; des projets jadis inaccessibles, maintenant possibles et vraiment intelligents.</p>
+        </div>
+        <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
+            <a href="#services" class="btn btn-outline" data-en="See what we build" data-fr="Voir ce qu'on bâtit">See what we build</a>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-en="Deployed in weeks, not months" data-fr="Déployé en semaines, pas en mois">Deployed in weeks, not months</div>
+                <div class="stat-label" data-en="From first call to live software" data-fr="Du premier appel au logiciel en production">From first call to live software</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-en="3-5x faster than traditional dev" data-fr="3-5x plus rapide que le dev traditionnel">3-5x faster than traditional dev</div>
+                <div class="stat-label" data-en="AI-assisted development, real results" data-fr="Développement assisté par IA, résultats réels">AI-assisted development, real results</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-en="Compliance-ready when you need it" data-fr="Conformité prête quand vous en avez besoin">Compliance-ready when you need it</div>
+                <div class="stat-label" data-en="Loi 25 &amp; Canadian hosting &#183; Canada" data-fr="Loi 25 et hébergement canadien &#183; Canada">Loi 25 &amp; Canadian hosting &#183; Canada</div>
+            </div>
+        </div>
+        <!-- HERO SCROLL ANIMATION -->
+        <div id="hero-scroll-wrapper" class="scroll-canvas-wrapper" style="position:relative;margin-top:1rem;margin-bottom:0.5rem;overflow:hidden;border:none;outline:none;background:transparent;">
+            <canvas id="heroCanvas" style="width:100%;height:35vh;display:block;"></canvas>
+            <noscript><img src="images/hero-frames/frame_0061.jpg" alt="PinnAI hero animation" style="width:100%;max-width:800px;margin:0 auto;display:block;"></noscript>
+        </div>
+    </div>
+</section>
+
+<!-- 2. LE PROBLEME -->
+<section class="problem-section section">
+    <div class="container">
+        <h2 data-en="The software you need has never existed &#8212; until now." data-fr="Le logiciel dont vous avez besoin n'a jamais existé &#8212; jusqu'à maintenant.">The software you need has never existed &#8212; until now.</h2>
+        <ul class="problem-bullets">
+            <li>
+                <strong data-en="Custom software used to be for the big guys." data-fr="Le software sur mesure, c'était pour les gros.">Custom software used to be for the big guys.</strong>
+                <span data-en="AI changed the math &#8212; completely." data-fr="L'IA a changé l'équation &#8212; complètement.">AI changed the math &#8212; completely.</span>
+            </li>
+            <li>
+                <strong data-en="Off-the-shelf tools don't fit your reality." data-fr="Les outils sur tablette ne fittent pas votre réalité.">Off-the-shelf tools don't fit your reality.</strong>
+                <span data-en="You've bent your processes to fit their boxes." data-fr="Vous avez tordu vos processus pour rentrer dans leurs boîtes.">You've bent your processes to fit their boxes.</span>
+            </li>
+            <li>
+                <strong data-en="Software was never smart &#8212; now it can be." data-fr="Le software n'a jamais été intelligent &#8212; maintenant il peut l'être.">Software was never smart &#8212; now it can be.</strong>
+                <span data-en="Understands context, predicts problems, makes decisions." data-fr="Comprend le contexte, prédit les problèmes, prend des décisions.">Understands context, predicts problems, makes decisions.</span>
+            </li>
+        </ul>
+        <p class="problem-conclusion">
+            <span class="lang-en"><strong>The question is why you couldn't get it &#8212; until now.</strong></span>
+            <span class="lang-fr"><strong>La question c'est pourquoi vous avez jamais pu l'avoir &#8212; jusqu'à maintenant.</strong></span>
+        </p>
+        <!-- CHAOS SCROLL ANIMATION -->
+        <div id="chaos-scroll-wrapper" class="scroll-canvas-wrapper" style="position:relative;margin-top:1rem;margin-bottom:0.5rem;background:#12141c;overflow:hidden;border:none;outline:none;">
+            <canvas id="chaosCanvas" style="width:100%;height:35vh;display:block;"></canvas>
+            <noscript><img src="images/chaos-frames/frame_0061.jpg" alt="PinnAI chaos animation" style="width:100%;max-width:800px;margin:0 auto;display:block;"></noscript>
+        </div>
+    </div>
+</section>
+
+<!-- 3. SERVICES -->
+<section id="services" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="What we build" data-fr="Ce qu'on bâtit">What we build</h2>
+            <p class="subtitle" data-en="Three pillars. One mission: the software you needed but couldn't afford." data-fr="Trois piliers. Une mission : le software dont vous aviez besoin mais pas les moyens.">Three pillars. One mission.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-pillar">
+                <div class="service-icon"><img src="images/icon-manufacturing.png" alt="Manufacturing Software"></div>
+                <h3 class="service-title" data-en="Manufacturing Software" data-fr="Software manufacturier">Manufacturing Software</h3>
+                
+                
+                <ul class="service-features">
+                    <li data-en="Replace spreadsheets with one dashboard" data-fr="Remplacez vos spreadsheets &#8212; un seul dashboard">Replace your spreadsheets &#8212; one app, one dashboard, real-time data</li>
+                    <li data-en="Real-time production tracking (OEE, downtime)" data-fr="Suivi de production temps réel (OEE, arrêts)">Production tracking &#8212; real-time OEE, downtime, cycle times</li>
+                    <li data-en="Smart maintenance (CMMS + AI)" data-fr="Maintenance intelligente (GMAO + IA)">Smart CMMS &#8212; preventive &amp; predictive maintenance</li>
+                    <li data-en="Digital quality control" data-fr="Contrôle qualité numérique">Digital quality control &#8212; inspections, SPC, non-conformances</li>
+                    <li data-en="Visual production planning" data-fr="Planification de production visuelle">Production planning &#8212; visual scheduling, capacity, delivery dates you can trust</li>
+                </ul>
+            </div>
+            <div class="service-pillar">
+                <div class="service-icon"><img src="images/icon-ai.png" alt="AI Solutions"></div>
+                <h3 class="service-title" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</h3>
+                
+                
+                <ul class="service-features">
+                    <li data-en="AI assistants trained on YOUR data" data-fr="Assistants IA entraînés sur VOS données">AI assistants trained on YOUR data &#8212; manuals, drawings, history</li>
+                    <li data-en="Voice-to-data &#8212; forms fill themselves" data-fr="Voix-vers-données &#8212; formulaires auto-remplis">Voice-to-data &#8212; field techs talk, the form fills itself</li>
+                    <li data-en="Predictive maintenance &#8212; know before it breaks" data-fr="Maintenance prédictive &#8212; savoir avant que ça brise">Predictive maintenance &#8212; know before it breaks</li>
+                    <li data-en="Document intelligence &#8212; 10 years of docs, searchable" data-fr="Intelligence documentaire &#8212; 10 ans de docs, cherchables">Document intelligence &#8212; 10 years of engineering docs, finally searchable</li>
+                </ul>
+            </div>
+            <div class="service-pillar">
+                <div class="service-icon"><img src="images/icon-integration.png" alt="AI Sprints & Integration"></div>
+                <h3 class="service-title" data-en="AI Sprints &amp; Integration" data-fr="Sprints IA et intégration">AI Sprints &amp; Integration</h3>
+                
+                
+                <ul class="service-features">
+                    <li data-en="AI Readiness Audit &#8212; find your best ROI" data-fr="Audit IA &#8212; meilleure opportunité ROI">AI Readiness Audit &#8212; find your highest-ROI opportunity</li>
+                    <li data-en="AI Sprint &#8212; working prototype in 2-4 weeks" data-fr="Sprint IA &#8212; prototype fonctionnel en 2-4 semaines">AI Sprint &#8212; working prototype in 2-4 weeks</li>
+                    <li data-en="ERP integration &#8212; Odoo, SAP, any system" data-fr="Intégration ERP &#8212; Odoo, SAP, tous vos systèmes">ERP integration &#8212; Odoo, SAP, and any system you already use</li>
+                    <li data-en="Cloud Canada &#8212; your stays in Canada" data-fr="Cloud Canada &#8212; vos reste au Canada">Cloud Canada &#8212; your stays in Canada</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align:center;color:var(--text-muted);margin-top:2.5rem;margin-bottom:1rem;font-size:0.95rem;">
+            <span class="lang-en">These are just the highlights. We do a lot more.</span>
+            <span class="lang-fr"> On fait beaucoup plus.</span>
+        </p>
+        <div class="services-cta-row" style="margin-top:0;">
+            <a href="use-cases.html" data-en="Explore what's possible &#8594;" data-fr="Explorez ce qui est possible →">Explore what's possible &#8594;</a>
+        </div>
+    </div>
+</section>
+
+<!-- 4. WHY AFFORDABLE -->
+<section id="pricing" class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Why custom software is finally affordable" data-fr="Pourquoi le software sur mesure est enfin abordable">Why custom software is finally affordable</h2>
+            <p class="subtitle" data-en="AI changed how software is built. Here's what that means for you." data-fr="L'IA a changé comment le logiciel est construit. Voici ce que ça veut dire pour vous.">AI has fundamentally changed how software is built. Here's what that means for you.</p>
+        </div>
+        <div class="ai-features">
+            <div class="ai-card">
+                <h4 data-en="Development speed" data-fr="Vitesse de développement">Development speed</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> 6–12 months, large teams</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> <strong>3–5x faster</strong> with AI</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> 6–12 mois, grandes équipes</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> <strong>3–5x plus rapide</strong> avec l'IA</li>
+                </ul>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Cost barrier" data-fr="Barrière de coût">Cost barrier</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> Reserved for <strong>$500K+</strong> enterprise budgets</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> AI tools dramatically reduce development costs</li>
+                    <li style="padding:0.2rem 0;">• Custom software is now <strong>accessible to SMEs</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> <strong>500K$+</strong> entreprises seulement</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> Accessible aux <strong>PME</strong></li>
+                </ul>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Understanding your needs" data-fr="Comprendre vos besoins">Understanding your needs</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> Weeks of meetings, specs lost in translation</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> We capture your <strong>reality</strong> fast</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> Des semaines de meetings, specs perdues</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> On capture votre <strong>réalité</strong> rapidement</li>
+                </ul>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Maintenance &amp; evolution" data-fr="Maintenance et évolution">Maintenance &amp; evolution</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> Every change = expensive dev cycles</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> <strong>Continuous, affordable</strong> evolution</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> Chaque changement = dev coûteux</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> Évolution <strong>continue et abordable</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="callout-box">
+            <h4 data-en="This is why PinnAI exists." data-fr="C'est pour ça que PinnAI existe.">This is why PinnAI exists.</h4>
+            <p class="lang-en">Deep industrial expertise + AI development = solutions impossible two years ago.</p>
+            <p class="lang-fr">Expertise industrielle + développement IA = solutions impossibles il y a deux ans.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 5. GRANTS / SUBVENTIONS -->
+<section id="grants" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="lang-en">It gets even better: grants can cut your bill in half</h2>
+            <h2 class="lang-fr">Ça devient encore mieux : les subventions peuvent couper votre facture en deux</h2>
+            <p class="subtitle lang-en">Government programs can cover 30&#8211;75% of your project costs.</p>
+            <p class="subtitle lang-fr">Des programmes gouvernementaux peuvent couvrir 30 à 75% des coûts de votre projet.</p>
+        </div>
+
+        <div style="max-width:600px;margin:0 auto 2rem;">
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-en"><strong style="color:var(--accent-cyan);">RS&amp;DE</strong> &#8212; R&amp;D tax credits, up to 50% back</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-en"><strong style="color:var(--accent-cyan);">NRC-IRAP</strong> &#8212; Innovation grants, up to 75% of R&amp;D salaries</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;" class="lang-en"><strong style="color:var(--accent-cyan);">Scale AI / CDAEIA / Invest AI</strong> &#8212; AI-specific funding programs</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-fr"><strong style="color:var(--accent-cyan);">RS&amp;DE</strong> &#8212; Crédits d'impôt R&amp;D, jusqu'à 50% remboursable</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-fr"><strong style="color:var(--accent-cyan);">PARI-CNRC</strong> &#8212; Subventions innovation, jusqu'à 75% des salaires R&amp;D</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;" class="lang-fr"><strong style="color:var(--accent-cyan);">Scale AI / CDAEIA / Invest AI</strong> &#8212; Programmes de financement spécifiques à l'IA</p>
+        </div>
+        <div class="grants-callout">
+            <p class="lang-en"><strong style="color:var(--accent-cyan);font-size:1.2em;">$400K &#8594; $25K out of pocket.*</strong></p>
+            <p class="lang-en" style="margin-top:0.75rem;">We help you find the right programs and prepare the applications.</p>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.75rem;font-style:italic;" class="lang-en">* Hypothetical. AI dev + RS&amp;DE + IRAP. Savings depend on your project.</p>
+            <p class="lang-fr"><strong style="color:var(--accent-cyan);font-size:1.2em;">400K$ &#8594; 25K$ de votre poche.*</strong></p>
+            <p class="lang-fr" style="margin-top:0.75rem;">On vous aide à trouver les bons programmes et préparer les demandes.</p>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.75rem;font-style:italic;" class="lang-fr">* Hypothétique. Dev IA + RS&amp;DE + PARI. Économies selon votre projet.</p>
+        </div>
+        <div class="grants-cta">
+            <a href="#contact" data-en="Ask us about funding options &#8594;" data-fr="Parlez-nous des options de financement →">Ask us about funding options &#8594;</a>
+        </div>
+    </div>
+</section>
+
+<!-- 6. HOW IT WORKS -->
+<section id="process" class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="From idea to impact in weeks, not months." data-fr="De l'idée à l'impact en semaines, pas en mois.">From idea to impact in weeks, not months.</h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h4 class="step-title" data-en="Discover" data-fr="Découverte">Discover</h4>
+                <p class="step-duration"><span class="lang-en"><span style="text-decoration:line-through;color:var(--text-muted);">1 month</span> → 1 week</span><span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-muted);">1 mois</span> → 1 semaine</span></p>
+                <p class="step-description" data-en="Meet, analyze, identify opportunities." data-fr="Rencontres, analyse, opportunités.">Meet, analyze, identify opportunities.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h4 class="step-title" data-en="Design" data-fr="Conception">Design</h4>
+                <p class="step-duration"><span class="lang-en"><span style="text-decoration:line-through;color:var(--text-muted);">2 months</span> → 2 weeks</span><span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-muted);">2 mois</span> → 2 semaines</span></p>
+                <p class="step-description" data-en="Architecture, prototypes, clear plan." data-fr="Architecture, prototypes, plan clair.">Architecture, prototypes, clear plan.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h4 class="step-title" data-en="Build" data-fr="Développement">Build</h4>
+                <p class="step-duration"><span class="lang-en"><span style="text-decoration:line-through;color:var(--text-muted);">6 months</span> → 6 weeks</span><span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-muted);">6 mois</span> → 6 semaines</span></p>
+                <p class="step-description" data-en="Agile sprints, bi-weekly demos." data-fr="Sprints agiles, démos aux 2 semaines.">Agile sprints, bi-weekly demos.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h4 class="step-title" data-en="Launch" data-fr="Livraison">Launch</h4>
+                <p class="step-duration"><span class="lang-en"><span style="text-decoration:line-through;color:var(--text-muted);">1 month</span> → days</span><span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-muted);">1 mois</span> → jours</span></p>
+                <p class="step-description" data-en="Deploy, train, support." data-fr="Déploiement, formation, support.">Deploy, train, support.</p>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:2.5rem;font-size:1.15rem;color:var(--text-secondary);">
+            <span class="lang-en">Total: <span style="text-decoration:line-through;color:var(--text-muted);">~10 months</span> &#8594; <strong style="color:var(--accent-cyan);font-size:1.2em;">~10 weeks</strong></span>
+            <span class="lang-fr">Total : <span style="text-decoration:line-through;color:var(--text-muted);">~10 mois</span> &#8594; <strong style="color:var(--accent-cyan);font-size:1.2em;">~10 semaines</strong></span>
+        </p>
+    </div>
+</section>
+
+<!-- 7. CONNECT EVERYTHING -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Connect everything" data-fr="Connecter tout">Connect everything</h2>
+            <p class="subtitle" data-en="We integrate with your existing systems &#8212; ERP, CRM, databases, APIs." data-fr="On s'intègre à vos systèmes existants &#8212; ERP, CRM, bases de données, APIs.">We plug into your existing systems &#8212; ERP, CRM, databases, APIs.</p>
+        </div>
+        <div class="integration-logos">
+            <div class="logo-item">Odoo</div>
+            <div class="logo-item">SAP</div>
+            <div class="logo-item">NetSuite</div>
+            <div class="logo-item">Azure</div>
+            <div class="logo-item">Salesforce</div>
+            <div class="logo-item">Custom APIs</div>
+        </div>
+        <div class="callout-box">
+            <h4 data-en="One source of truth." data-fr="Une seule source de vérité.">One source of truth.</h4>
+            <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                <li style="padding:0.2rem 0;">• Data flows automatically between your systems</li>
+                <li style="padding:0.2rem 0;">• <strong>No more copy-paste</strong> between tools</li>
+            </ul>
+            <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                <li style="padding:0.2rem 0;">• Les données circulent automatiquement entre vos systèmes</li>
+                <li style="padding:0.2rem 0;">• <strong>Plus de copy-paste</strong> entre les outils</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 8. BUILT FOR GLOBAL, READY FOR CANADA -->
+<section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Built for global. Ready for Canada." data-fr="Bâti pour le monde. Prêt pour le Canada.">Built for global. Ready for Canada.</h2>
+            <p class="subtitle" data-en="Global reach. Canadian capabilities when you need them." data-fr="Portée mondiale. Capacités canadiennes quand vous en avez besoin.">We work globally &#8212; and when you need Canadian-specific capabilities, we have them.</p>
+        </div>
+        <div class="trust-cards">
+            <div class="trust-card">
+                <div class="trust-icon">&#128737;</div>
+                <h4 class="lang-en">Need Quebec compliance?</h4>
+                <h4 class="lang-fr">Besoin de conformité Québec?</h4>
+                <p class="lang-en">Loi 25 built-in from day one. Not an afterthought.</p>
+                <p class="lang-fr">Conformité Loi 25 intégrée dès le départ. Pas un ajout après coup.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">&#127464;&#127462;</div>
+                <h4 class="lang-en">Need Canadian hosting?</h4>
+                <h4 class="lang-fr">Besoin d'hébergement canadien?</h4>
+                <p class="lang-en">Your data stays in Canada when it matters.</p>
+                <p class="lang-fr">Vos données restent au Canada quand c'est important.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">&#127467;&#127479;</div>
+                <h4 data-en="Bilingual Service" data-fr="Service bilingue">Bilingual Service</h4>
+                <p data-en="We work in French and English. Your software can too." data-fr="On travaille en français et en anglais. Votre logiciel aussi.">We work in French and English. Your software can too.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">&#128176;</div>
+                <h4 data-en="Grant Guidance" data-fr="Accompagnement subventions">Grant Guidance</h4>
+                <p data-en="We help you access RS&amp;DE, NRC-IRAP, and CDAEIA credits. See the grants section above." data-fr="On vous aide à accéder aux crédits RS&amp;DE, PARI-CNRC et CDAEIA. Voir la section subventions ci-haut.">We help you access RS&amp;DE, NRC-IRAP, and CDAEIA credits. See the grants section above.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. TEAM -->
+<section id="about" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="The founders of PinnAI" data-fr="Les fondateurs de PinnAI">The founders of Pinn<span style="color:var(--accent-cyan);">AI</span></h2>
+            <p class="subtitle" data-en="Three engineers. Real experience. No gaps." data-fr="Trois ingénieurs. Expérience réelle. Zéro lacune.">Three engineers who've spent their careers building real things. &#8212; </p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <h4>Benoit Gagné</h4>
+                <p class="team-role" data-en="Co-founder &#183; Engineering &amp; AI" data-fr="Co-fondateur &#183; Ingénierie et IA">Co-founder &#183; Engineering &amp; AI</p>
+                <p class="team-bio lang-en">16 years in manufacturing. Polytechnique Montréal. Ex-VP Engineering, DVolu.</p>
+                <p class="team-bio lang-fr">16 ans dans le manufacturier. Polytechnique Montréal. Ex-VP Ingénierie, DVolu.</p>
+            </div>
+            <div class="team-card">
+                <h4>Jeremy Marsolais</h4>
+                <p class="team-role" data-en="Co-founder &#183; Projects &amp; Robotics" data-fr="Co-fondateur &#183; Projets et robotique">Co-founder &#183; Projects &amp; Robotics</p>
+                <p class="team-bio lang-en">Mechatronics (ÉTS), M.Sc. Project Mgmt. CSA, SNC-Lavalin, Glencore. Ships on time.</p>
+                <p class="team-bio lang-fr">Mécatronique (ÉTS), M.Sc. gestion de projet. ASC, SNC-Lavalin, Glencore. Livre à temps.</p>
+            </div>
+            <div class="team-card">
+                <h4>Sébastien Gauthier</h4>
+                <p class="team-role" data-en="Co-founder &#183; Cloud &amp; Infrastructure" data-fr="Co-fondateur &#183; Cloud et infrastructure">Co-founder &#183; Cloud &amp; Infrastructure</p>
+                <p class="team-bio lang-en">17 years in cloud. Flinks, Badal, Deck. Google Cloud Architect certified. Your software runs 24/7.</p>
+                <p class="team-bio lang-fr">17 ans dans le cloud. Flinks, Badal, Deck. Certifié Google Cloud Architect. Votre software roule 24/7.</p>
+            </div>
+        </div>
+        <p class="team-tagline">
+            <span class="lang-en"><strong>From the factory floor to the cloud — engineering, software, infrastructure. No gaps.</strong></span>
+            <span class="lang-fr"><strong>Du plancher d'usine jusqu'au cloud — ingénierie, logiciel, infrastructure. Zéro trou.</strong></span>
+        </p>
+        <p class="team-breadth">
+            <span class="lang-en"><strong>Deep roots in manufacturing, but we build for any industry.</strong></span>
+            <span class="lang-fr"><strong>Des racines profondes dans le manufacturier, mais on bâtit pour toute industrie.</strong></span>
+        </p>
+    </div>
+</section>
+
+<!-- 10. CONTEXO TEASER -->
+<section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="product-teaser">
+            <h3 data-en="Contexo &#8212; Coming Soon" data-fr="Contexo &#8212; Bientôt disponible">Contexo &#8212; Coming Soon</h3>
+            <p class="lang-en">Our <strong>AI Context Engine</strong> &#8212; capture, structure, and distribute project knowledge for teams who move fast.</p>
+            <p class="lang-fr">Notre <strong>AI Context Engine</strong> &#8212; capturez, structurez et distribuez la connaissance projet pour les équipes rapides.</p>
+            <p style="margin-top:1rem;font-size:0.9rem;opacity:0.8;">&#128679; <span data-en="Currently in development. Get early access." data-fr="Présentement en développement. Obtenez un accès anticipé.">Currently in development. Get early access.</span></p>
+            <a href="#contact" class="btn" data-en="Get early access &#8594;" data-fr="Obtenir un accès anticipé →">Get early access &#8594;</a>
+        </div>
+    </div>
+</section>
+
+<!-- 11. FINAL CTA -->
+<section id="contact" class="final-cta">
+    <div class="container">
+        <h2 data-en="Book a free 1-hour discovery call" data-fr="Réservez un discovery call d'une heure &#8212; gratuit">Book a free 1-hour discovery call</h2>
+        <p class="subtitle lang-en">Your challenge. Our solution.</p>
+        <p class="subtitle lang-fr">Votre défi. Notre solution.</p>
+        <p class="cta-founders lang-en">With Benoit, Jeremy and Sébastien &#8212; not a salesperson.</p>
+        <p class="cta-founders lang-fr">Avec Benoit, Jeremy et Sébastien &#8212; pas un vendeur.</p>
+        
+        
+        <div class="cta-contact">
+            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
+            <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
+            <span class="contact-phone">(450) XXX-XXXX</span>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="logo">pinn<span class="ai">AI</span></div>
+                <p class="lang-en" style="margin-top:1rem;color:var(--text-secondary);">Custom software, powered by AI.</p>
+                <p class="lang-fr" style="margin-top:1rem;color:var(--text-secondary);">Software sur mesure, propulsé par l'IA.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#services" data-en="Services" data-fr="Services">Services</a>
+                <a href="use-cases.html" data-en="Use Cases" data-fr="Cas d'usage">Use Cases</a>
+                <a href="#process" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+                <a href="#about" data-en="About" data-fr="À propos">About</a>
+                <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PinnAI inc. &#8212; Quebec, Canada</p>
+            <div class="footer-links">
+                <a href="#" data-en="Loi 25 Ready" data-fr="Prêt Loi 25">Loi 25 Ready</a>
+                <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* === SCROLL-DRIVEN FRAME ANIMATIONS === */
+    (function() {
+        const FRAME_COUNT = 121;
+
+        function zeroPad(n) {
+            return String(n).padStart(4, '0');
+        }
+
+        function setupScrollAnimation(config) {
+            var canvas = document.getElementById(config.canvasId);
+            var wrapper = document.getElementById(config.wrapperId);
+            if (!canvas || !wrapper) return;
+
+            var ctx = canvas.getContext('2d');
+            var frames = new Array(FRAME_COUNT);
+            var loadedCount = 0;
+            var currentFrameIndex = 0;
+            var rafPending = false;
+
+            // Preload all frames
+            for (var i = 0; i < FRAME_COUNT; i++) {
+                (function(idx) {
+                    var img = new Image();
+                    img.src = config.basePath + 'frame_' + zeroPad(idx + 1) + '.jpg';
+                    img.onload = function() {
+                        frames[idx] = img;
+                        loadedCount++;
+                        // Draw first frame once it loads
+                        if (idx === 0) drawFrame(0);
+                    };
+                    frames[idx] = img;
+                })(i);
+            }
+
+            function drawFrame(idx) {
+                var img = frames[idx];
+                if (!img || !img.complete || !img.naturalWidth) return;
+
+                // Resize canvas to match display size
+                var w = canvas.clientWidth;
+                var h = canvas.clientHeight;
+                if (canvas.width !== w || canvas.height !== h) {
+                    canvas.width = w;
+                    canvas.height = h;
+                }
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Maintain aspect ratio (contain)
+                var imgRatio = img.naturalWidth / img.naturalHeight;
+                var canvasRatio = canvas.width / canvas.height;
+                var drawW, drawH, drawX, drawY;
+
+                if (imgRatio > canvasRatio) {
+                    drawW = canvas.width;
+                    drawH = canvas.width / imgRatio;
+                } else {
+                    drawH = canvas.height;
+                    drawW = canvas.height * imgRatio;
+                }
+                drawX = (canvas.width - drawW) / 2;
+                drawY = (canvas.height - drawH) / 2;
+
+                ctx.drawImage(img, drawX, drawY, drawW, drawH);
+            }
+
+            function onScroll() {
+                if (rafPending) return;
+                rafPending = true;
+                requestAnimationFrame(function() {
+                    rafPending = false;
+                    var rect = canvas.getBoundingClientRect();
+                    var viewH = window.innerHeight;
+
+                    // Progress: 0 when canvas top reaches bottom of viewport
+                    // Progress: 1 when canvas bottom reaches top of viewport
+                    // This means animation plays across ~2x viewport heights as you scroll past
+                    var totalTravel = viewH + rect.height;
+                    var scrolled = viewH - rect.top;
+                    
+                    // Animation starts at 30% of travel (canvas well visible) and completes at 70%
+                    var rawProgress = scrolled / totalTravel;
+                    var adjusted = (rawProgress - 0.2) / 0.4; // starts at 20%, ends at 60%
+                    var progress = Math.max(0, Math.min(1, adjusted));
+                    var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
+
+                    if (frameIdx !== currentFrameIndex) {
+                        currentFrameIndex = frameIdx;
+                        drawFrame(frameIdx);
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', function() {
+                canvas.width = 0; // force resize on next draw
+                drawFrame(currentFrameIndex);
+            });
+
+            // Initial draw attempt (frame 0)
+            drawFrame(0);
+        }
+
+        // Hero animation
+        setupScrollAnimation({
+            canvasId: 'heroCanvas',
+            wrapperId: 'hero-scroll-wrapper',
+            basePath: 'images/hero-frames/'
+        });
+
+        // Chaos animation
+        setupScrollAnimation({
+            canvasId: 'chaosCanvas',
+            wrapperId: 'chaos-scroll-wrapper',
+            basePath: 'images/chaos-frames/'
+        });
+    })();
+    /* === END SCROLL-DRIVEN FRAME ANIMATIONS === */
+</script>
+
+<script>
+    let currentLang = localStorage.getItem('pinnai-lang') || 'en';
+
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('pinnai-lang', lang);
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const text = el.getAttribute('data-' + lang);
+            if (text) el.textContent = text;
+        });
+        document.querySelectorAll('.lang-en').forEach(el => { var d = el.tagName === 'SPAN' ? 'inline' : 'block'; el.style.display = lang === 'en' ? d : 'none'; });
+        document.querySelectorAll('.lang-fr').forEach(el => { var d = el.tagName === 'SPAN' ? 'inline' : 'block'; el.style.display = lang === 'fr' ? d : 'none'; });
+        document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.toggle('active', btn.dataset.lang === lang); });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => { setLang(currentLang); });
+
+    window.addEventListener('scroll', function() {
+        const nav = document.getElementById('nav');
+        if (window.scrollY > 100) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+</script>
+</body>
+</html>
