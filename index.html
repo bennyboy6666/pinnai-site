@@ -671,7 +671,7 @@
                     
                     // Animation starts at 30% of travel (canvas well visible) and completes at 70%
                     var rawProgress = scrolled / totalTravel;
-                    var adjusted = (rawProgress - 0.3) / 0.3; // starts at 30%, ends at 60%
+                    var adjusted = (rawProgress - 0.2) / 0.4; // starts at 20%, ends at 60%
                     var progress = Math.max(0, Math.min(1, adjusted));
                     var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
 
