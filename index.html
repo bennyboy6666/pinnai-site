@@ -77,8 +77,8 @@
         .service-features li { color: var(--text-secondary); position: relative; padding-left: 1rem; }
         .service-features li:before { content: "\00B7"; color: var(--accent-cyan); position: absolute; left: 0; }
         .services-cta-row { text-align: center; margin-top: 3rem; }
-        .services-cta-row a { color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 1.1rem; border: 1px solid var(--border-glow); padding: 0.75rem 2rem; border-radius: 8px; transition: all 0.2s; display: inline-block; }
-        .services-cta-row a:hover { background: rgba(34,211,238,0.08); border-color: var(--accent-cyan); }
+        .services-cta-row a { background: var(--accent-cyan); color: var(--bg-primary); text-decoration: none; font-weight: 700; font-size: 1.15rem; padding: 1rem 2.5rem; border-radius: 10px; transition: all 0.2s; display: inline-block; box-shadow: 0 0 25px rgba(34,211,238,0.3); }
+        .services-cta-row a:hover { box-shadow: 0 0 40px rgba(34,211,238,0.5); transform: translateY(-2px); }
         .callout-box { background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%); padding: 3rem; border-radius: 16px; border: 1px solid var(--accent-cyan); box-shadow: 0 0 30px rgba(34,211,238,0.1); }
         .callout-box h4 { color: var(--accent-cyan); margin-bottom: 1rem; }
         .ai-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
@@ -312,7 +312,11 @@
                 </ul>
             </div>
         </div>
-        <div class="services-cta-row">
+        <p style="text-align:center;color:var(--text-muted);margin-top:2.5rem;margin-bottom:1rem;font-size:0.95rem;">
+            <span class="lang-en">These are just the highlights. We do a lot more.</span>
+            <span class="lang-fr">C'est juste un aperçu. On fait beaucoup plus.</span>
+        </p>
+        <div class="services-cta-row" style="margin-top:0;">
             <a href="use-cases.html" data-en="Explore what's possible &#8594;" data-fr="Explorez ce qui est possible →">Explore what's possible &#8594;</a>
         </div>
     </div>
