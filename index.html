@@ -163,13 +163,10 @@
 
         @media (max-width: 1024px) { .hero h1 { font-size: 3rem; } .section-header h2 { font-size: 2rem; } }
         @media (max-width: 768px) {
-
-            [style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
-
             .nav-links { display: none; } .mobile-nav { display: flex; gap: 1rem; align-items: center; }
             .container { padding: 0 1rem; } .hero { padding: 6rem 0 4rem; } .hero h1 { font-size: 2.1rem; }
             .hero-ctas { flex-direction: column; align-items: center; }
-            .stats-grid, .services-grid, .ai-features, .grants-grid, .process-steps, .trust-cards, .uc-grid { grid-template-columns: 1fr; }
+            .stats-grid, .services-grid, .ai-features, .grants-grid, .process-steps, .trust-cards { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .cta-contact { flex-direction: column; }
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
@@ -214,7 +211,7 @@
             <p class="lang-fr">L'IA construit 3&#8211;5x plus vite &#8212; des projets jadis inaccessibles, maintenant possibles et vraiment intelligents.</p>
         </div>
         <div class="hero-ctas">
-            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Jasez avec les fondateurs — c'est gratuit">Book a free discovery call</a>
+            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
             <a href="#services" class="btn btn-outline" data-en="See what we build" data-fr="Voir ce qu'on bâtit">See what we build</a>
         </div>
         <div class="stats-grid">
@@ -227,8 +224,8 @@
                 <div class="stat-label" data-en="AI-assisted development, real results" data-fr="Développement assisté par IA, résultats réels">AI-assisted development, real results</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" data-en="e.g. $400K → $25K*" data-fr="ex. 400K$ → 25K$*">e.g. $400K → $25K*</div>
-                <div class="stat-label" data-en="AI dev + grants · hypothetical example" data-fr="Dev IA + subventions · exemple hypothétique">AI dev + grants · hypothetical example</div>
+                <div class="stat-number" data-en="Compliance-ready when you need it" data-fr="Conformité prête quand vous en avez besoin">Compliance-ready when you need it</div>
+                <div class="stat-label" data-en="Loi 25 &amp; Canadian hosting &#183; Canada" data-fr="Loi 25 et hébergement canadien &#183; Canada">Loi 25 &amp; Canadian hosting &#183; Canada</div>
             </div>
         </div>
         <!-- HERO SCROLL ANIMATION -->
@@ -279,36 +276,31 @@
         <div class="services-grid">
             <div class="service-pillar">
                 <div class="service-icon"><img src="images/icon-manufacturing.png" alt="Manufacturing Software"></div>
-                <img src="images/uc-spreadsheet.png" alt="Manufacturing" style="width:100%;max-width:300px;border-radius:12px;margin-bottom:1rem;display:block;margin-left:auto;margin-right:auto;">
                 <h3 class="service-title" data-en="Manufacturing Software" data-fr="Software manufacturier">Manufacturing Software</h3>
                 
                 
                 <ul class="service-features">
                     <li data-en="Replace spreadsheets with one dashboard" data-fr="Remplacez vos spreadsheets &#8212; un seul dashboard">Replace your spreadsheets &#8212; one app, one dashboard, real-time data</li>
-                                        <li data-en="Real-time production tracking (OEE, downtime)" data-fr="Suivi de production temps réel (OEE, arrêts)">Production tracking &#8212; real-time OEE, downtime, cycle times</li>
-                                        <li data-en="Smart maintenance (CMMS + AI)" data-fr="Maintenance intelligente (GMAO + IA)">Smart CMMS &#8212; preventive &amp; predictive maintenance</li>
-                                        <li data-en="Digital quality control" data-fr="Contrôle qualité numérique">Digital quality control &#8212; inspections, SPC, non-conformances</li>
-                                        <li data-en="Visual production planning" data-fr="Planification de production visuelle">Production planning &#8212; visual scheduling, capacity, delivery dates you can trust</li>
+                    <li data-en="Real-time production tracking (OEE, downtime)" data-fr="Suivi de production temps réel (OEE, arrêts)">Production tracking &#8212; real-time OEE, downtime, cycle times</li>
+                    <li data-en="Smart maintenance (CMMS + AI)" data-fr="Maintenance intelligente (GMAO + IA)">Smart CMMS &#8212; preventive &amp; predictive maintenance</li>
+                    <li data-en="Digital quality control" data-fr="Contrôle qualité numérique">Digital quality control &#8212; inspections, SPC, non-conformances</li>
+                    <li data-en="Visual production planning" data-fr="Planification de production visuelle">Production planning &#8212; visual scheduling, capacity, delivery dates you can trust</li>
                 </ul>
-                
             </div>
             <div class="service-pillar">
                 <div class="service-icon"><img src="images/icon-ai.png" alt="AI Solutions"></div>
-                <img src="images/uc-assistant.png" alt="AI Solutions" style="width:100%;max-width:300px;border-radius:12px;margin-bottom:1rem;display:block;margin-left:auto;margin-right:auto;">
                 <h3 class="service-title" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</h3>
                 
                 
                 <ul class="service-features">
                     <li data-en="AI assistants trained on YOUR data" data-fr="Assistants IA entraînés sur VOS données">AI assistants trained on YOUR data &#8212; manuals, drawings, history</li>
-                                        <li data-en="Voice-to-data &#8212; forms fill themselves" data-fr="Voix-vers-données &#8212; formulaires auto-remplis">Voice-to-data &#8212; field techs talk, the form fills itself</li>
-                                        <li data-en="Predictive maintenance &#8212; know before it breaks" data-fr="Maintenance prédictive &#8212; savoir avant que ça brise">Predictive maintenance &#8212; know before it breaks</li>
-                                        <li data-en="Document intelligence &#8212; 10 years of docs, searchable" data-fr="Intelligence documentaire &#8212; 10 ans de docs, cherchables">Document intelligence &#8212; 10 years of engineering docs, finally searchable</li>
-                                    </ul>
-                
+                    <li data-en="Voice-to-data &#8212; forms fill themselves" data-fr="Voix-vers-données &#8212; formulaires auto-remplis">Voice-to-data &#8212; field techs talk, the form fills itself</li>
+                    <li data-en="Predictive maintenance &#8212; know before it breaks" data-fr="Maintenance prédictive &#8212; savoir avant que ça brise">Predictive maintenance &#8212; know before it breaks</li>
+                    <li data-en="Document intelligence &#8212; 10 years of docs, searchable" data-fr="Intelligence documentaire &#8212; 10 ans de docs, cherchables">Document intelligence &#8212; 10 years of engineering docs, finally searchable</li>
+                </ul>
             </div>
             <div class="service-pillar">
                 <div class="service-icon"><img src="images/icon-integration.png" alt="AI Sprints & Integration"></div>
-                <img src="images/uc-erp-agent.png" alt="AI Sprints" style="width:100%;max-width:300px;border-radius:12px;margin-bottom:1rem;display:block;margin-left:auto;margin-right:auto;">
                 <h3 class="service-title" data-en="AI Sprints &amp; Integration" data-fr="Sprints IA et intégration">AI Sprints &amp; Integration</h3>
                 
                 
@@ -316,10 +308,8 @@
                     <li data-en="AI Readiness Audit &#8212; find your best ROI" data-fr="Audit IA &#8212; meilleure opportunité ROI">AI Readiness Audit &#8212; find your highest-ROI opportunity</li>
                     <li data-en="AI Sprint &#8212; working prototype in 2-4 weeks" data-fr="Sprint IA &#8212; prototype fonctionnel en 2-4 semaines">AI Sprint &#8212; working prototype in 2-4 weeks</li>
                     <li data-en="ERP integration &#8212; Odoo, SAP, any system" data-fr="Intégration ERP &#8212; Odoo, SAP, tous vos systèmes">ERP integration &#8212; Odoo, SAP, and any system you already use</li>
-                    
                     <li data-en="Cloud Canada &#8212; your stays in Canada" data-fr="Cloud Canada &#8212; vos reste au Canada">Cloud Canada &#8212; your stays in Canada</li>
                 </ul>
-                
             </div>
         </div>
         <p style="text-align:center;color:var(--text-muted);margin-top:2.5rem;margin-bottom:1rem;font-size:0.95rem;">
@@ -332,14 +322,99 @@
     </div>
 </section>
 
-
-
-
 <!-- 4. WHY AFFORDABLE -->
-
+<section id="pricing" class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Why custom software is finally affordable" data-fr="Pourquoi le software sur mesure est enfin abordable">Why custom software is finally affordable</h2>
+            <p class="subtitle" data-en="AI changed how software is built. Here's what that means for you." data-fr="L'IA a changé comment le logiciel est construit. Voici ce que ça veut dire pour vous.">AI has fundamentally changed how software is built. Here's what that means for you.</p>
+        </div>
+        <div class="ai-features">
+            <div class="ai-card">
+                <h4 data-en="Development speed" data-fr="Vitesse de développement">Development speed</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> 6–12 months, large teams</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> <strong>3–5x faster</strong> with AI</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> 6–12 mois, grandes équipes</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> <strong>3–5x plus rapide</strong> avec l'IA</li>
+                </ul>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Cost barrier" data-fr="Barrière de coût">Cost barrier</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> Reserved for <strong>$500K+</strong> enterprise budgets</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> AI tools dramatically reduce development costs</li>
+                    <li style="padding:0.2rem 0;">• Custom software is now <strong>accessible to SMEs</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> <strong>500K$+</strong> entreprises seulement</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> Accessible aux <strong>PME</strong></li>
+                </ul>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Understanding your needs" data-fr="Comprendre vos besoins">Understanding your needs</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> Weeks of meetings, specs lost in translation</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> We capture your <strong>reality</strong> fast</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> Des semaines de meetings, specs perdues</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> On capture votre <strong>réalité</strong> rapidement</li>
+                </ul>
+            </div>
+            <div class="ai-card">
+                <h4 data-en="Maintenance &amp; evolution" data-fr="Maintenance et évolution">Maintenance &amp; evolution</h4>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Before:</strong> Every change = expensive dev cycles</li>
+                    <li style="padding:0.2rem 0;">• <strong>Now:</strong> <strong>Continuous, affordable</strong> evolution</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                    <li style="padding:0.2rem 0;">• <strong>Avant :</strong> Chaque changement = dev coûteux</li>
+                    <li style="padding:0.2rem 0;">• <strong>Maintenant :</strong> Évolution <strong>continue et abordable</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="callout-box">
+            <h4 data-en="This is why PinnAI exists." data-fr="C'est pour ça que PinnAI existe.">This is why PinnAI exists.</h4>
+            <p class="lang-en">Deep industrial expertise + AI development = solutions impossible two years ago.</p>
+            <p class="lang-fr">Expertise industrielle + développement IA = solutions impossibles il y a deux ans.</p>
+        </div>
+    </div>
+</section>
 
 <!-- 5. GRANTS / SUBVENTIONS -->
+<section id="grants" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="lang-en">It gets even better: grants can cut your bill in half</h2>
+            <h2 class="lang-fr">Ça devient encore mieux : les subventions peuvent couper votre facture en deux</h2>
+            <p class="subtitle lang-en">Government programs can cover 30&#8211;75% of your project costs.</p>
+            <p class="subtitle lang-fr">Des programmes gouvernementaux peuvent couvrir 30 à 75% des coûts de votre projet.</p>
+        </div>
 
+        <div style="max-width:600px;margin:0 auto 2rem;">
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-en"><strong style="color:var(--accent-cyan);">RS&amp;DE</strong> &#8212; R&amp;D tax credits, up to 50% back</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-en"><strong style="color:var(--accent-cyan);">NRC-IRAP</strong> &#8212; Innovation grants, up to 75% of R&amp;D salaries</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;" class="lang-en"><strong style="color:var(--accent-cyan);">Scale AI / CDAEIA / Invest AI</strong> &#8212; AI-specific funding programs</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-fr"><strong style="color:var(--accent-cyan);">RS&amp;DE</strong> &#8212; Crédits d'impôt R&amp;D, jusqu'à 50% remboursable</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);" class="lang-fr"><strong style="color:var(--accent-cyan);">PARI-CNRC</strong> &#8212; Subventions innovation, jusqu'à 75% des salaires R&amp;D</p>
+            <p style="color:var(--text-secondary);padding:0.5rem 0;" class="lang-fr"><strong style="color:var(--accent-cyan);">Scale AI / CDAEIA / Invest AI</strong> &#8212; Programmes de financement spécifiques à l'IA</p>
+        </div>
+        <div class="grants-callout">
+            <p class="lang-en"><strong style="color:var(--accent-cyan);font-size:1.2em;">$400K &#8594; $25K out of pocket.*</strong></p>
+            <p class="lang-en" style="margin-top:0.75rem;">We help you find the right programs and prepare the applications.</p>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.75rem;font-style:italic;" class="lang-en">* Hypothetical. AI dev + RS&amp;DE + IRAP. Savings depend on your project.</p>
+            <p class="lang-fr"><strong style="color:var(--accent-cyan);font-size:1.2em;">400K$ &#8594; 25K$ de votre poche.*</strong></p>
+            <p class="lang-fr" style="margin-top:0.75rem;">On vous aide à trouver les bons programmes et préparer les demandes.</p>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.75rem;font-style:italic;" class="lang-fr">* Hypothétique. Dev IA + RS&amp;DE + PARI. Économies selon votre projet.</p>
+        </div>
+        <div class="grants-cta">
+            <a href="#contact" data-en="Ask us about funding options &#8594;" data-fr="Parlez-nous des options de financement →">Ask us about funding options &#8594;</a>
+        </div>
+    </div>
+</section>
 
 <!-- 6. HOW IT WORKS -->
 <section id="process" class="section" style="background: var(--bg-surface);">
@@ -381,36 +456,77 @@
 </section>
 
 <!-- 7. CONNECT EVERYTHING -->
-
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Connect everything" data-fr="Connecter tout">Connect everything</h2>
+            <p class="subtitle" data-en="We integrate with your existing systems &#8212; ERP, CRM, databases, APIs." data-fr="On s'intègre à vos systèmes existants &#8212; ERP, CRM, bases de données, APIs.">Your new software doesn't live in a bubble. We integrate with your existing systems &#8212; ERP, CRM, databases, APIs.</p>
+        </div>
+        <div class="integration-logos">
+            <div class="logo-item">Odoo</div>
+            <div class="logo-item">SAP</div>
+            <div class="logo-item">NetSuite</div>
+            <div class="logo-item">Azure</div>
+            <div class="logo-item">Salesforce</div>
+            <div class="logo-item">Custom APIs</div>
+        </div>
+        <div class="callout-box">
+            <h4 data-en="One source of truth." data-fr="Une seule source de vérité.">One source of truth.</h4>
+            <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                <li style="padding:0.2rem 0;">• Data flows automatically between your systems</li>
+                <li style="padding:0.2rem 0;">• <strong>No more copy-paste</strong> between tools</li>
+            </ul>
+            <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;">
+                <li style="padding:0.2rem 0;">• Les données circulent automatiquement entre vos systèmes</li>
+                <li style="padding:0.2rem 0;">• <strong>Plus de copy-paste</strong> entre les outils</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
 <!-- 8. BUILT FOR GLOBAL, READY FOR CANADA -->
-
+<section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Built for global. Ready for Canada." data-fr="Bâti pour le monde. Prêt pour le Canada.">Built for global. Ready for Canada.</h2>
+            <p class="subtitle" data-en="Global reach. Canadian capabilities when you need them." data-fr="Portée mondiale. Capacités canadiennes quand vous en avez besoin.">We work globally &#8212; and when you need Canadian-specific capabilities, we have them.</p>
+        </div>
+        <div class="trust-cards">
+            <div class="trust-card">
+                <div class="trust-icon">&#128737;</div>
+                <h4 class="lang-en">Need Quebec compliance?</h4>
+                <h4 class="lang-fr">Besoin de conformité Québec?</h4>
+                <p class="lang-en">Loi 25 built-in from day one. Not an afterthought.</p>
+                <p class="lang-fr">Conformité Loi 25 intégrée dès le départ. Pas un ajout après coup.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">&#127464;&#127462;</div>
+                <h4 class="lang-en">Need Canadian hosting?</h4>
+                <h4 class="lang-fr">Besoin d'hébergement canadien?</h4>
+                <p class="lang-en">Your data stays in Canada when it matters.</p>
+                <p class="lang-fr">Vos données restent au Canada quand c'est important.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">&#127467;&#127479;</div>
+                <h4 data-en="Bilingual Service" data-fr="Service bilingue">Bilingual Service</h4>
+                <p data-en="We work in French and English. Your software can too." data-fr="On travaille en français et en anglais. Votre logiciel aussi.">We work in French and English. Your software can too.</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">&#128176;</div>
+                <h4 data-en="Grant Guidance" data-fr="Accompagnement subventions">Grant Guidance</h4>
+                <p data-en="We help you access RS&amp;DE, NRC-IRAP, and CDAEIA credits. See the grants section above." data-fr="On vous aide à accéder aux crédits RS&amp;DE, PARI-CNRC et CDAEIA. Voir la section subventions ci-haut.">We help you access RS&amp;DE, NRC-IRAP, and CDAEIA credits. See the grants section above.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- 9. TEAM -->
 <section id="about" class="section">
     <div class="container">
         <div class="section-header">
             <h2 data-en="The founders of PinnAI" data-fr="Les fondateurs de PinnAI">The founders of Pinn<span style="color:var(--accent-cyan);">AI</span></h2>
-            <p class="subtitle" data-en="Three engineers. Real experience. No gaps." data-fr="Trois ingénieurs. Expérience réelle. Zéro lacune.">Three founders. One vision. &#8212; </p>
+            <p class="subtitle" data-en="Three engineers. Real experience. No gaps." data-fr="Trois ingénieurs. Expérience réelle. Zéro lacune.">Three engineers who've spent their careers building real things. &#8212; </p>
         </div>
-        <div style="display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:2rem;">
-            <span style="color:var(--text-secondary);font-size:0.95rem;">🇨🇦 <span data-en="Hosted in Canada" data-fr="Hébergé au Canada">Hosted in Canada</span></span>
-            <span style="color:var(--text-secondary);font-size:0.95rem;">⚖️ <span data-en="Loi 25 compliant" data-fr="Conforme Loi 25">Loi 25 compliant</span></span>
-            <span style="color:var(--text-secondary);font-size:0.95rem;">🌐 <span data-en="Bilingual" data-fr="Bilingue">Bilingual</span></span>
-            <span style="color:var(--text-secondary);font-size:0.95rem;">💰 <span data-en="Grant guidance" data-fr="Aide subventions">Grant guidance</span></span>
-        </div>
-        <div style="display:flex;justify-content:center;gap:2.5rem;margin-bottom:1rem;flex-wrap:wrap;">
-            <span style="color:var(--text-muted);font-weight:500;">Odoo</span>
-            <span style="color:var(--text-muted);font-weight:500;">SAP</span>
-            <span style="color:var(--text-muted);font-weight:500;">Zoho</span>
-            <span style="color:var(--text-muted);font-weight:500;">Excel</span>
-            <span style="color:var(--text-muted);font-weight:500;">Custom APIs</span>
-        </div>
-        <p style="text-align:center;color:var(--text-muted);font-size:0.9rem;margin-bottom:3rem;">
-            <span class="lang-en">RS&amp;DE · IRAP · Scale AI — we help you find and apply</span>
-            <span class="lang-fr">RS&amp;DE · PARI · Scale AI — on vous aide à trouver et appliquer</span>
-        </p>
-
         <div class="team-grid">
             <div class="team-card">
                 <h4>Benoit Gagné</h4>
@@ -443,20 +559,30 @@
 </section>
 
 <!-- 10. CONTEXO TEASER -->
-
+<section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="product-teaser">
+            <h3 data-en="Contexo &#8212; Coming Soon" data-fr="Contexo &#8212; Bientôt disponible">Contexo &#8212; Coming Soon</h3>
+            <p class="lang-en">Our <strong>AI Context Engine</strong> &#8212; capture, structure, and distribute project knowledge for teams who move fast.</p>
+            <p class="lang-fr">Notre <strong>AI Context Engine</strong> &#8212; capturez, structurez et distribuez la connaissance projet pour les équipes rapides.</p>
+            <p style="margin-top:1rem;font-size:0.9rem;opacity:0.8;">&#128679; <span data-en="Currently in development. Get early access." data-fr="Présentement en développement. Obtenez un accès anticipé.">Currently in development. Get early access.</span></p>
+            <a href="#contact" class="btn" data-en="Get early access &#8594;" data-fr="Obtenir un accès anticipé →">Get early access &#8594;</a>
+        </div>
+    </div>
+</section>
 
 <!-- 11. FINAL CTA -->
 <section id="contact" class="final-cta">
     <div class="container">
         <h2 data-en="Book a free 1-hour discovery call" data-fr="Réservez un discovery call d'une heure &#8212; gratuit">Book a free 1-hour discovery call</h2>
         <p class="subtitle lang-en">Tell us your challenge. We'll show you how to solve it.</p>
-        <p class="subtitle lang-fr">Dites-nous c'est quoi votre problème. On revient avec un plan concret.</p>
+        <p class="subtitle lang-fr">Parlez-nous de votre défi. On vous montre comment le résoudre.</p>
         <p class="cta-founders lang-en">With Benoit, Jeremy and Sébastien &#8212; not a salesperson.</p>
         <p class="cta-founders lang-fr">Avec Benoit, Jeremy et Sébastien &#8212; pas un vendeur.</p>
         
         
         <div class="cta-contact">
-            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Jasez avec les fondateurs — c'est gratuit">Book a free discovery call</a>
+            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
             <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
             <span class="contact-phone">(450) XXX-XXXX</span>
         </div>
@@ -469,8 +595,8 @@
         <div class="footer-content">
             <div>
                 <div class="logo">pinn<span class="ai">AI</span></div>
-                
-                
+                <p class="lang-en" style="margin-top:1rem;color:var(--text-secondary);">Custom software, powered by AI.</p>
+                <p class="lang-fr" style="margin-top:1rem;color:var(--text-secondary);">Software sur mesure, propulsé par l'IA.</p>
             </div>
             <div class="footer-links">
                 <a href="#services" data-en="Services" data-fr="Services">Services</a>
