@@ -179,8 +179,8 @@
         <p class="subtitle lang-en">Every problem we solve. Every industry we serve. Every capability we bring. In full detail.</p>
         <p class="subtitle lang-fr">Chaque problème qu'on résout. Chaque industrie qu'on sert. Chaque capacité qu'on apporte. En détail complet.</p>
         <div style="max-width:700px;margin:2rem auto 0;padding:1.5rem 2rem;background:var(--bg-card);border-radius:12px;border-left:3px solid var(--accent-cyan);">
-            <p class="lang-en" style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;">Here are examples of what AI-powered custom software can do. These aren't case studies — they're possibilities. Every business is different, and we build solutions tailored to your specific reality.</p>
-            <p class="lang-fr" style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;">Voici des exemples de ce que le software sur mesure propulsé par l'IA peut accomplir. Ce ne sont pas des études de cas — ce sont des possibilités. Chaque entreprise est différente, et on bâtit des solutions adaptées à votre réalité spécifique.</p>
+            <p class="lang-en" style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;">Examples of what's possible. Every business is different — we build for yours.</p>
+            <p class="lang-fr" style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;">Exemples de ce qui est possible. Chaque entreprise est différente — on bâtit pour la vôtre.</p>
         </div>
     </div>
 </section>
@@ -200,8 +200,8 @@
             <div class="feature-card" style="border: 1px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(34,211,238,0.1);">
                 <img src="images/uc-spreadsheet.png" alt="Replace your spreadsheets" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
                 <h4 data-en="Replace your spreadsheets with a real application" data-fr="Remplacez vos spreadsheets par une vraie application">Replace your spreadsheets with a real application</h4>
-                <p class="lang-en"><strong>Your business runs on Excel files.</strong> Pricing in one spreadsheet. Inventory in another. Scheduling in a third. Client data in a fourth. Everyone has their own version. Nobody has the right number. And when someone's on vacation, the file is locked.</p>
-                <p class="lang-fr"><strong>Votre business roule sur des fichiers Excel.</strong> La tarification dans un spreadsheet. L'inventaire dans un autre. Le scheduling dans un troisième. Les données clients dans un quatrième. Tout le monde a sa propre version. Personne a le bon chiffre. Et quand quelqu'un est en vacances, le fichier est barré.</p>
+                <p class="lang-en"><strong>Your business runs on Excel files.</strong> Everyone has their own version. Nobody has the right number.</p>
+                <p class="lang-fr"><strong>Votre business roule sur des fichiers Excel.</strong> Tout le monde a sa propre version. Personne a le bon chiffre.</p>
                 <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
                     <li style="padding:0.2rem 0;">• <strong>One centralized app</strong> with a modern dashboard</li>
                     <li style="padding:0.2rem 0;">• <strong>Real-time data</strong>, accessible from anywhere by everyone</li>
@@ -234,8 +234,8 @@
             <div class="feature-card">
                 <img src="images/uc-maintenance.png" alt="Smart maintenance" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
                 <h4 data-en="Smart maintenance (CMMS + AI)" data-fr="Maintenance intelligente (GMAO + IA)">Smart maintenance (CMMS + AI)</h4>
-                <p class="lang-en"><strong>Your maintenance is reactive.</strong> Something breaks, you scramble. Techs waste time on paperwork. Parts are either overstocked or missing when you need them most.</p>
-                <p class="lang-fr"><strong>Votre maintenance est réactive.</strong> Quelque chose brise, vous courrez. Les techs perdent du temps sur la paperasse. Les pièces sont soit en trop, soit manquantes quand vous en avez besoin.</p>
+                <p class="lang-en"><strong>Your maintenance is reactive.</strong> Something breaks, you scramble.</p>
+                <p class="lang-fr"><strong>Votre maintenance est réactive.</strong> Quelque chose brise, vous courrez.</p>
                 <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
                     <li style="padding:0.2rem 0;">• <strong>Preventive maintenance schedules itself</strong> — work orders auto-routed</li>
                     <li style="padding:0.2rem 0;">• <strong>Parts inventory tracks itself</strong> automatically</li>
@@ -404,8 +404,8 @@
             <div class="ai-card">
                 <img src="images/uc-voice.png" alt="Voice-to-Data" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
                 <h4 data-en="Voice-to-Data" data-fr="Voix vers données">Voice-to-Data</h4>
-                <p class="lang-en"><strong>Your field tech finishes an inspection and now has to sit in the truck for 30 minutes filling out forms.</strong> Half the details get lost. Handwriting is illegible. The report arrives 3 days late.</p>
-                <p class="lang-fr"><strong>Votre technicien terrain finit une inspection et doit s'asseoir dans le truck 30 minutes pour remplir des formulaires.</strong> La moitié des détails se perdent.</p>
+                <p class="lang-en"><strong>Your field tech sits in the truck 30 min filling out forms.</strong> Details get lost. Report arrives late.</p>
+                <p class="lang-fr"><strong>Votre tech passe 30 min dans le truck à remplir des formulaires.</strong></p>
                 <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
                     <li style="padding:0.2rem 0;">• Tech talks into their phone for <strong>5 minutes</strong> — AI does the rest</li>
                     <li style="padding:0.2rem 0;">• Transcribes, fills the form, attaches photos, flags issues, <strong>sends the report</strong></li>
@@ -733,10 +733,13 @@
         document.querySelectorAll('[data-en]').forEach(el => {
             const text = el.getAttribute('data-' + lang);
             if (text) {
-                    // Preserve child <img> elements (3D icons in headers)
-                    var imgs = el.querySelectorAll('img');
-                    el.textContent = text;
-                    imgs.forEach(function(img) { el.prepend(img); });
+                    if (text.indexOf('<') !== -1) {
+                        el.innerHTML = text;
+                    } else {
+                        var imgs = el.querySelectorAll('img');
+                        el.textContent = text;
+                        imgs.forEach(function(img) { el.prepend(img); });
+                    }
                 }
         });
         document.querySelectorAll('.lang-en').forEach(el => { el.style.display = lang === 'en' ? '' : 'none'; });
