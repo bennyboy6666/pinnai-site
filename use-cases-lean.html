@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinnAI — All Use Cases</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+    const PASS = 'Pinnai2026!';
+    const AUTH_KEY = 'pinnai_auth';
+    if (localStorage.getItem(AUTH_KEY) !== 'true') {
+        const input = prompt('🔒 Password required:');
+        if (input !== PASS) {
+            document.documentElement.innerHTML = '<body style="background:#0a0b0f;color:#f87171;display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui;"><h1>⛔ Access denied</h1></body>';
+            throw new Error('unauthorized');
+        }
+        localStorage.setItem(AUTH_KEY, 'true');
+    }
+</script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0b0f;
+            --bg-surface: #12141c;
+            --bg-card: #1a1d28;
+            --accent-cyan: #22d3ee;
+            --accent-green: #4ade80;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-glow: rgba(34,211,238,0.2);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+        .nav.scrolled { background: rgba(18,20,28,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--text-primary); }
+        .logo .ai { color: var(--accent-cyan); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .btn { padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; display: inline-block; }
+        .btn-primary { background: var(--accent-cyan); color: var(--bg-primary); }
+        .btn-primary:hover { box-shadow: 0 0 20px rgba(34,211,238,0.3); }
+        .btn-outline { border: 1px solid var(--border-subtle); color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent-cyan); background: rgba(34,211,238,0.1); }
+        .mobile-nav { display: none; }
+
+        /* LAYOUT */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 5rem 0; }
+
+        /* PAGE HEADER */
+        .page-header { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(18,20,28,0.8) 100%); }
+        .page-header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+        .page-header .subtitle { font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
+        .back-link { color: var(--accent-cyan); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+        .back-link:hover { text-decoration: underline; }
+
+        /* SECTION HEADERS */
+        .section-header { margin-bottom: 3rem; }
+        .section-header h2 img { border-radius: 8px; }
+        .section-header h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .section-header .subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 620px; }
+
+        /* SECTION DIVIDER */
+        .section-divider { border: none; border-top: 1px solid var(--border-subtle); margin: 0; }
+
+        /* CARDS */
+        .feature-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .feature-card:hover { border-color: var(--border-glow); box-shadow: 0 0 20px rgba(34,211,238,0.1); }
+        .feature-card h4 { margin-bottom: 0.75rem; color: var(--accent-cyan); font-size: 1.1rem; }
+
+        .manufacturing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .ai-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .ai-card { background: var(--bg-card); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .ai-card:hover { transform: translateY(-2px); border-color: var(--border-glow); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .ai-card h4 { color: var(--accent-cyan); margin-bottom: 1rem; font-size: 1.1rem; }
+
+        /* PRODUCT TEASER */
+        .product-teaser { background: linear-gradient(135deg, var(--accent-cyan) 0%, #0891b2 100%); color: var(--bg-primary); padding: 3rem; border-radius: 16px; text-align: center; margin-top: 3rem; }
+        .product-teaser h3 { margin-bottom: 1rem; }
+        .product-teaser .btn { margin-top: 1.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; }
+        .product-teaser .btn:hover { background: rgba(255,255,255,0.2); }
+
+        /* CALLOUT */
+        .callout-box { background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%); padding: 3rem; border-radius: 16px; border: 1px solid var(--accent-cyan); box-shadow: 0 0 30px rgba(34,211,238,0.1); }
+        .callout-box h4 { color: var(--accent-cyan); margin-bottom: 1rem; }
+
+        /* INTEGRATION */
+        .integration-logos { display: flex; justify-content: center; align-items: center; gap: 3rem; margin: 3rem 0; flex-wrap: wrap; }
+        .logo-item { color: var(--text-secondary); font-weight: 500; font-size: 1.1rem; transition: color 0.2s; }
+        .logo-item:hover { color: var(--accent-cyan); }
+
+        /* SECTION ANCHORS */
+        .section-anchor { display: block; height: 80px; margin-top: -80px; visibility: hidden; }
+
+        /* FINAL CTA */
+        .final-cta { background: linear-gradient(135deg, var(--bg-surface) 0%, #1e293b 100%); text-align: center; padding: 5rem 0; }
+        .final-cta h2 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .final-cta .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .cta-founders { font-size: 1.05rem; color: var(--accent-cyan); margin-bottom: 2.5rem; }
+        .cta-contact { display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+        .contact-email { color: var(--accent-cyan); text-decoration: none; font-weight: 500; }
+        .contact-phone { color: var(--text-secondary); font-weight: 500; }
+
+        /* FOOTER */
+        .footer { background: var(--bg-surface); padding: 4rem 0 2rem; border-top: 1px solid var(--border-subtle); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent-cyan); }
+        .footer-bottom { border-top: 1px solid var(--border-subtle); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* LANG */
+        .lang-toggle { display: flex; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+        .lang-btn { padding: 0.35rem 0.75rem; background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .lang-btn.active { background: var(--accent-cyan); color: var(--bg-primary); }
+        .lang-fr { display: none; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .page-header h1 { font-size: 2.5rem; }
+            .section-header h2 img { border-radius: 8px; }
+        .section-header h2 { font-size: 1.9rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-nav { display: flex; gap: 1rem; align-items: center; }
+            .container { padding: 0 1rem; }
+            .page-header { padding: 6rem 0 3rem; }
+            .page-header h1 { font-size: 2rem; }
+            .manufacturing-cards, .ai-features { grid-template-columns: 1fr; }
+            .cta-contact { flex-direction: column; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .integration-logos { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+    <div class="nav-container">
+        <a href="index-v2.html" class="logo">pinn<span class="ai">AI</span></a>
+        <ul class="nav-links">
+            <li><a href="index-v2.html#services" data-en="Services" data-fr="Services">Services</a></li>
+            <li><a href="#manufacturing" data-en="Manufacturing" data-fr="Manufacturier">Manufacturing</a></li>
+            <li><a href="#ai" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</a></li>
+            <li><a href="#industries" data-en="Industries" data-fr="Industries">Industries</a></li>
+            <li><a href="#integration" data-en="Integration" data-fr="Intégration">Integration</a></li>
+            <li class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </li>
+            <li><a href="index-v2.html#contact" class="btn btn-primary" data-en="Book a call →" data-fr="Réserver un appel →">Book a call →</a></li>
+        </ul>
+        <div class="mobile-nav">
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </div>
+            <a href="index-v2.html#contact" class="btn btn-primary" data-en="Book a call" data-fr="Réserver un appel">Book a call</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<section class="page-header">
+    <div class="container">
+        <a href="index-v4.html" class="back-link" data-en="← Back to home" data-fr="← Retour à l'accueil">← Back to home</a>
+        <h1 style="margin-top:1.5rem;" data-en="Explore what's possible" data-fr="Explorez ce qui est possible">Explore what's possible</h1>
+        <p class="subtitle lang-en">Every problem we solve. Every industry we serve. Every capability we bring. In full detail.</p>
+        <p class="subtitle lang-fr">Chaque problème qu'on résout. Chaque industrie qu'on sert. Chaque capacité qu'on apporte. En détail complet.</p>
+        <div style="max-width:700px;margin:2rem auto 0;padding:1.5rem 2rem;background:var(--bg-card);border-radius:12px;border-left:3px solid var(--accent-cyan);">
+            <p class="lang-en" style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;">Examples of what's possible. Every business is different — we build for yours.</p>
+            <p class="lang-fr" style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;">Exemples de ce qui est possible. Chaque entreprise est différente — on bâtit pour la vôtre.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MANUFACTURING SOFTWARE — 7 FEATURE CARDS
+═══════════════════════════════════════════════ -->
+<span class="section-anchor" id="manufacturing"></span>
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Manufacturing Software" data-fr="Software manufacturier"><img src="images/icon-manufacturing.png" style="width:40px;height:40px;vertical-align:middle;margin-right:0.5rem;border-radius:8px;">Manufacturing Software</h2>
+            <p class="subtitle" data-en="93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing." data-fr="93% des 14 000+ manufacturiers du Québec sont des PME. On bâtit les outils qui leur manquent.">93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing.</p>
+        </div>
+        <div class="manufacturing-cards">
+
+            <div class="feature-card" style="border: 1px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(34,211,238,0.1);">
+                <img src="images/uc-spreadsheet.png" alt="Replace your spreadsheets" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="Replace your spreadsheets with a real application" data-fr="Remplacez vos spreadsheets par une vraie application">Replace your spreadsheets with a real application</h4>
+                <p class="lang-en"><strong>Your business runs on Excel files.</strong> Everyone has their own version. Nobody has the right number.</p>
+                <p class="lang-fr"><strong>Votre business roule sur des fichiers Excel.</strong> Tout le monde a sa propre version. Personne a le bon chiffre.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>One centralized app</strong> with a modern dashboard</li>
+                    <li style="padding:0.2rem 0;">• <strong>Real-time data</strong>, accessible from anywhere by everyone</li>
+                    <li style="padding:0.2rem 0;">• No more version conflicts, copy-paste errors, or "which Excel is the latest?"</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Une seule application centralisée</strong> avec un dashboard moderne</li>
+                    <li style="padding:0.2rem 0;">• <strong>Données en temps réel</strong>, accessibles de partout par tous</li>
+                    <li style="padding:0.2rem 0;">• Fini les conflits de versions, les erreurs de copy-paste et le "c'est quel Excel le dernier?"</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/uc-production.png" alt="Real-time production monitoring" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="Real-time production monitoring" data-fr="Suivi de production en temps réel">Real-time production monitoring</h4>
+                <p class="lang-en"><strong>You're making decisions based on yesterday's data.</strong> Your floor managers are walking around with clipboards. Meanwhile, a machine has been running at 60% efficiency for 3 hours and nobody noticed.</p>
+                <p class="lang-fr"><strong>Vous prenez des décisions basées sur les données d'hier.</strong> Vos contremaîtres se promènent avec des clipboards. Pendant ce temps, une machine roule à 60% depuis 3 heures et personne l'a remarqué.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Live OEE, cycle times, and downtime</strong> across every line</li>
+                    <li style="padding:0.2rem 0;">• On a screen, on your phone, <strong>everywhere</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>Alerts hit before the problem</strong> costs you money</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>OEE, temps de cycle et arrêts en direct</strong> sur chaque ligne</li>
+                    <li style="padding:0.2rem 0;">• Sur un écran, sur votre cell, <strong>partout</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>Les alertes arrivent avant</strong> que le problème vous coûte de l'argent</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/uc-maintenance.png" alt="Smart maintenance" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="Smart maintenance (CMMS + AI)" data-fr="Maintenance intelligente (GMAO + IA)">Smart maintenance (CMMS + AI)</h4>
+                <p class="lang-en"><strong>Your maintenance is reactive.</strong> Something breaks, you scramble.</p>
+                <p class="lang-fr"><strong>Votre maintenance est réactive.</strong> Quelque chose brise, vous courrez.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Preventive maintenance schedules itself</strong> — work orders auto-routed</li>
+                    <li style="padding:0.2rem 0;">• <strong>Parts inventory tracks itself</strong> automatically</li>
+                    <li style="padding:0.2rem 0;">• AI <strong>predicts failures weeks before</strong> they happen</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>La maintenance préventive se planifie toute seule</strong> — bons de travail auto-routés</li>
+                    <li style="padding:0.2rem 0;">• <strong>L'inventaire de pièces se gère lui-même</strong></li>
+                    <li style="padding:0.2rem 0;">• L'IA <strong>prédit les pannes des semaines à l'avance</strong></li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <img src="images/uc-quality.png" alt="Automated quality control" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="Automated quality control" data-fr="Contrôle qualité automatisé">Automated quality control</h4>
+                <p class="lang-en"><strong>Paper inspection forms are slowing you down.</strong> Data entry errors, lost reports, clients asking for documentation you can't find fast enough.</p>
+                <p class="lang-fr"><strong>Les formulaires d'inspection en papier vous ralentissent.</strong> Erreurs de saisie, rapports perdus, clients qui demandent de la documentation que vous trouvez pas assez vite.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Digital inspection</strong> with photo capture right on the floor</li>
+                    <li style="padding:0.2rem 0;">• <strong>SPC charts</strong> update in real time — non-conformances auto-trigger workflows</li>
+                    <li style="padding:0.2rem 0;">• <strong>Client quality reports generate themselves</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Inspection numérique</strong> avec capture photo sur le plancher</li>
+                    <li style="padding:0.2rem 0;">• <strong>Cartes SPC</strong> en temps réel — non-conformités déclenchent workflows auto</li>
+                    <li style="padding:0.2rem 0;">• <strong>Rapports qualité clients se génèrent tout seuls</strong></li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4 data-en="Intelligent inventory" data-fr="Inventaire intelligent">Intelligent inventory</h4>
+                <p class="lang-en"><strong>You've stopped production because a $12 part wasn't in stock.</strong> Or worse — you're sitting on $200K of inventory that won't move for 6 months.</p>
+                <p class="lang-fr"><strong>Vous avez déjà arrêté la production parce qu'une pièce de 12$ était pas en stock.</strong> Ou pire — vous avez 200K$ d'inventaire qui bougera pas pendant 6 mois.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Know <strong>exactly what you have, where it is, when to reorder</strong></li>
+                    <li style="padding:0.2rem 0;">• AI analyzes real consumption patterns and <strong>optimizes reorder points automatically</strong></li>
+                    <li style="padding:0.2rem 0;">• No more <strong>gut-feel purchasing</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Sachez <strong>exactement ce que vous avez, où c'est, quand recommander</strong></li>
+                    <li style="padding:0.2rem 0;">• L'IA analyse les vrais patterns et <strong>optimise les points de commande automatiquement</strong></li>
+                    <li style="padding:0.2rem 0;">• Fini les <strong>achats au feeling</strong></li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4 data-en="Production planning (MES)" data-fr="Planification de production (MES)">Production planning (MES)</h4>
+                <p class="lang-en"><strong>Your planner is a hero — and that's the problem.</strong> Everything lives in their head (or a spreadsheet). When they're sick, the floor grinds. When a rush order comes in, it's chaos.</p>
+                <p class="lang-fr"><strong>Votre planificateur est un héros — et c'est ça le problème.</strong> Tout vit dans sa tête (ou un Excel). Quand il est malade, le plancher bloque.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Visual scheduling</strong> anyone can read</li>
+                    <li style="padding:0.2rem 0;">• <strong>Capacity planning</strong> that accounts for reality</li>
+                    <li style="padding:0.2rem 0;">• <strong>Delivery dates you'll actually trust</strong> — from raw material to shipping</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Cédule visuelle</strong> que tout le monde peut lire</li>
+                    <li style="padding:0.2rem 0;">• <strong>Planification de capacité</strong> qui tient compte de la réalité</li>
+                    <li style="padding:0.2rem 0;">• <strong>Dates de livraison que vous pouvez vraiment utiliser</strong> — du matériel brut au shipping</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4 data-en="Traceability &amp; compliance" data-fr="Traçabilité et conformité">Traceability &amp; compliance</h4>
+                <p class="lang-en"><strong>An auditor shows up tomorrow. Are you ready?</strong> Can you trace lot #4582 back to every raw material, every machine, every operator that touched it? In under 5 minutes?</p>
+                <p class="lang-fr"><strong>Un auditeur arrive demain. Êtes-vous prêt?</strong> Pouvez-vous retracer le lot #4582 jusqu'à chaque matière première, chaque machine, chaque opérateur?</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Full lot-by-lot traceability</strong> from supplier to customer</li>
+                    <li style="padding:0.2rem 0;">• <strong>HACCP, ISO, industry compliance</strong> — handled automatically</li>
+                    <li style="padding:0.2rem 0;">• Audits go from <strong>stressful to routine</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Traçabilité lot par lot</strong> du fournisseur au client</li>
+                    <li style="padding:0.2rem 0;">• <strong>HACCP, ISO, conformité</strong> — géré automatiquement</li>
+                    <li style="padding:0.2rem 0;">• Les audits passent de <strong>stressants à routiniers</strong></li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4 data-en="Product Configurator &amp; E-commerce" data-fr="Configurateur de produits et e-commerce">Product Configurator &amp; E-commerce</h4>
+                <p class="lang-en"><strong>Your customers call your sales rep to ask about options. They email back and forth for a week.</strong> By the time the order is placed, everyone's frustrated and you've lost 3 other leads who didn't want to wait.</p>
+                <p class="lang-fr"><strong>Vos clients appellent votre représentant pour connaître les options. Ils s'échangent des emails pendant une semaine.</strong> Le temps que la commande soit placée, tout le monde est frustré et vous avez perdu 3 autres leads qui voulaient pas attendre.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Customers <strong>configure their product directly on your website</strong> — price updates in real time</li>
+                    <li style="padding:0.2rem 0;">• <strong>Order goes straight to production</strong> — no back-and-forth</li>
+                    <li style="padding:0.2rem 0;">• Works for: <strong>furniture, cabinetry, industrial equipment, custom packaging</strong>, and more</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Vos clients <strong>configurent leur produit directement sur votre site</strong> — le prix se met à jour en temps réel</li>
+                    <li style="padding:0.2rem 0;">• <strong>La commande part directement en production</strong> — pas d'allers-retours</li>
+                    <li style="padding:0.2rem 0;">• Pour : <strong>meubles, ébénisterie, équipements industriels, emballage sur mesure</strong>, et plus</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="callout-box">
+            <h4 data-en="The PinnAI advantage:" data-fr="L'avantage PinnAI :">The Pinn<span style="color:var(--accent-cyan);">AI</span> advantage:</h4>
+            <p class="lang-en">Unlike traditional firms, we integrate AI from day one. Predictive maintenance, automatic optimization, real-time insights — at no extra cost.</p>
+            <p class="lang-fr">Contrairement aux firmes traditionnelles, on intègre l'IA dès le départ. Maintenance prédictive, optimisation automatique, insights en temps réel — sans surcoût.</p>
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════════════════
+     AI SOLUTIONS — 6 CARDS
+═══════════════════════════════════════════════ -->
+<span class="section-anchor" id="ai"></span>
+<section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="AI Solutions" data-fr="Solutions IA"><img src="images/icon-ai.png" style="width:40px;height:40px;vertical-align:middle;margin-right:0.5rem;border-radius:8px;">AI Solutions</h2>
+            <p class="subtitle" data-en="Artificial intelligence isn't just for tech giants. We make it work for your reality." data-fr="L'intelligence artificielle n'est plus réservée aux géants tech. On la rend accessible à votre réalité.">Artificial intelligence isn't just for tech giants. We make it work for your reality.</p>
+        </div>
+        <div class="ai-features">
+
+            <div class="ai-card">
+                <img src="images/uc-assistant.png" alt="AI Assistants" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="AI Assistants" data-fr="Assistants IA">AI Assistants</h4>
+                <p class="lang-en"><strong>Your team spends 2 hours a day searching for information.</strong> Digging through shared drives, emailing colleagues, flipping through binders. The answer exists — they just can't find it fast enough.</p>
+                <p class="lang-fr"><strong>Votre équipe passe 2 heures par jour à chercher de l'information.</strong> Fouiller dans les drives partagés, envoyer des emails, feuilleter des cartables.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Chatbot trained on <strong>YOUR data</strong> — catalog, maintenance history, technical docs</li>
+                    <li style="padding:0.2rem 0;">• Team asks in <strong>plain language</strong>, gets the answer <strong>instantly</strong></li>
+                    <li style="padding:0.2rem 0;">• Accurate. Available <strong>24/7</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Chatbot entraîné sur <strong>VOS données</strong> — catalogue, historique, docs techniques</li>
+                    <li style="padding:0.2rem 0;">• Votre équipe pose en <strong>langage naturel</strong>, obtient la réponse <strong>instantanément</strong></li>
+                    <li style="padding:0.2rem 0;">• Précis. Disponible <strong>24/7</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="Process Automation" data-fr="Automatisation de processus">Process Automation</h4>
+                <p class="lang-en"><strong>Your AP team processes 50 invoices a day by hand.</strong> Copy-paste from emails to the ERP. Match POs. Chase approvals. It's tedious, error-prone, and costs you real money in labor.</p>
+                <p class="lang-fr"><strong>Votre équipe aux comptes payables traite 50 factures par jour à la main.</strong> Copy-paste des emails vers l'ERP. Matcher les bons de commande. Courir après les approbations.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• AI reads invoices, <strong>matches POs, routes approvals</strong>, enters everything automatically</li>
+                    <li style="padding:0.2rem 0;">• That <strong>2-hour grind takes 10 minutes</strong></li>
+                    <li style="padding:0.2rem 0;">• Works for: <strong>onboarding, expense reports, compliance checks</strong> — any repetitive process</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• L'IA lit les factures, <strong>matche les BdC, route les approbations</strong>, entre tout automatiquement</li>
+                    <li style="padding:0.2rem 0;">• Cette <strong>corvée de 2 heures prend 10 minutes</strong></li>
+                    <li style="padding:0.2rem 0;">• Pour : <strong>onboarding, notes de frais, vérifications de conformité</strong> — tout processus répétitif</li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="Document Intelligence" data-fr="Intelligence documentaire">Document Intelligence</h4>
+                <p class="lang-en"><strong>You have 10 years of engineering drawings sitting in a filing cabinet.</strong> Inspection reports in PDF. Safety docs in Word. Technical specs in Excel. All valuable. All unsearchable.</p>
+                <p class="lang-fr"><strong>Vous avez 10 ans de dessins d'ingénierie dans un classeur.</strong> Des rapports d'inspection en PDF. Des specs techniques en Excel. Tout précieux. Tout impossible à chercher.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• AI extracts and organizes data from <strong>every document</strong> — drawings, specs, contracts</li>
+                    <li style="padding:0.2rem 0;">• Find anything in <strong>3 seconds</strong></li>
+                    <li style="padding:0.2rem 0;">• That filing cabinet just became your <strong>most valuable database</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• L'IA extrait et organise les données de <strong>chaque document</strong> — dessins, specs, contrats</li>
+                    <li style="padding:0.2rem 0;">• Trouvez n'importe quoi en <strong>3 secondes</strong></li>
+                    <li style="padding:0.2rem 0;">• Ce classeur est devenu votre <strong>base de données la plus précieuse</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <img src="images/uc-voice.png" alt="Voice-to-Data" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="Voice-to-Data" data-fr="Voix vers données">Voice-to-Data</h4>
+                <p class="lang-en"><strong>Your field tech sits in the truck 30 min filling out forms.</strong> Details get lost. Report arrives late.</p>
+                <p class="lang-fr"><strong>Votre tech passe 30 min dans le truck à remplir des formulaires.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Tech talks into their phone for <strong>5 minutes</strong> — AI does the rest</li>
+                    <li style="padding:0.2rem 0;">• Transcribes, fills the form, attaches photos, flags issues, <strong>sends the report</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>Field work stays in the field. Paperwork does itself.</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Le tech parle dans son cell <strong>5 minutes</strong> — l'IA fait le reste</li>
+                    <li style="padding:0.2rem 0;">• Transcrit, remplit le formulaire, attache les photos, flag, <strong>envoie le rapport</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>Le travail terrain reste sur le terrain. La paperasse se fait toute seule.</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <img src="images/uc-predictive.png" alt="Predictive Maintenance" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="Predictive Maintenance" data-fr="Maintenance prédictive">Predictive Maintenance</h4>
+                <p class="lang-en"><strong>That CNC machine just went down unexpectedly. Again.</strong> The repair takes 6 hours. The parts are on backorder. You missed a delivery deadline. The cost? $15,000 in lost production — for a bearing that costs $200.</p>
+                <p class="lang-fr"><strong>Cette CNC vient de tomber en panne. Encore.</strong> La réparation prend 6 heures. Les pièces sont en commande spéciale. Coût? 15 000$ en production perdue — pour un bearing qui coûte 200$.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• AI predicts which machine needs attention <strong>BEFORE it breaks</strong></li>
+                    <li style="padding:0.2rem 0;">• Difference between a <strong>planned repair</strong> and a <strong>$15,000 emergency</strong></li>
+                    <li style="padding:0.2rem 0;">• Reduce unplanned downtime by <strong>30–50%</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• L'IA prédit quelle machine a besoin d'attention <strong>AVANT qu'elle brise</strong></li>
+                    <li style="padding:0.2rem 0;">• Différence entre une <strong>réparation planifiée</strong> et une <strong>urgence de 15 000$</strong></li>
+                    <li style="padding:0.2rem 0;">• Réduisez les arrêts non planifiés de <strong>30–50%</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="AI Agents" data-fr="Agents IA">AI Agents</h4>
+                <p class="lang-en"><strong>Your managers spend half their day on tasks a machine could do better.</strong> Compiling reports, monitoring KPIs, checking inventory levels, following up on overdue items.</p>
+                <p class="lang-fr"><strong>Vos gestionnaires passent la moitié de leur journée sur des tâches qu'une machine ferait mieux.</strong> Compiler des rapports, surveiller des KPIs, vérifier les niveaux d'inventaire.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• AI agents working <strong>24/7</strong>: monitoring, spotting anomalies, generating reports</li>
+                    <li style="padding:0.2rem 0;">• <strong>Alerts sent automatically</strong> when something needs attention</li>
+                    <li style="padding:0.2rem 0;">• Tireless digital teammates — <strong>never miss a detail, never forget to follow up</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Agents IA qui travaillent <strong>24/7</strong> : surveillance, détection d'anomalies, rapports quotidiens</li>
+                    <li style="padding:0.2rem 0;">• <strong>Alertes automatiques</strong> quand quelque chose demande attention</li>
+                    <li style="padding:0.2rem 0;">• Des coéquipiers numériques infatigables — <strong>jamais un détail manqué, jamais un suivi oublié</strong></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Contexo Coming Soon -->
+        <div class="product-teaser">
+            <h3 data-en="Contexo — Coming Soon" data-fr="Contexo — Bientôt disponible">Contexo — Coming Soon</h3>
+            <ul class="lang-en" style="list-style:none;padding:0;margin:0.75rem 0;text-align:left;display:inline-block;">
+                <li style="padding:0.2rem 0;">• Our <strong>AI Context Engine</strong> — capture project context like never before</li>
+                <li style="padding:0.2rem 0;">• <strong>Multiple capture methods</strong>, structured knowledge, universal distribution</li>
+                <li style="padding:0.2rem 0;">• Built for <strong>teams who move fast</strong></li>
+            </ul>
+            <ul class="lang-fr" style="list-style:none;padding:0;margin:0.75rem 0;text-align:left;display:inline-block;">
+                <li style="padding:0.2rem 0;">• Notre <strong>AI Context Engine</strong> — capturez le contexte comme jamais</li>
+                <li style="padding:0.2rem 0;">• <strong>Multiples méthodes de capture</strong>, connaissances structurées, distribution universelle</li>
+                <li style="padding:0.2rem 0;">• Conçu pour les <strong>équipes qui bougent vite</strong></li>
+            </ul>
+            <p style="margin-top:1rem;font-size:0.9rem;opacity:0.8;" data-en="🚧 Currently in development. Get early access." data-fr="🚧 Présentement en développement. Obtenez un accès anticipé.">🚧 Currently in development. Get early access.</p>
+            <a href="index-v2.html#contact" class="btn" data-en="Get early access →" data-fr="Obtenir un accès anticipé →">Get early access →</a>
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════════════════
+     INDUSTRIES — ALL 5
+═══════════════════════════════════════════════ -->
+<span class="section-anchor" id="industries"></span>
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Solutions by Industry" data-fr="Solutions par industrie">Solutions by Industry</h2>
+            <p class="subtitle" data-en="Every industry has unique challenges. Here's how PinnAI solves them." data-fr="Chaque industrie a ses défis uniques. Voici comment PinnAI les résout.">Every industry has unique challenges. Here's how PinnAI solves them.</p>
+        </div>
+        <div class="ai-features">
+
+            <div class="ai-card">
+                <h4 data-en="🔩 Metal Fabrication / Machining" data-fr="🔩 Fabrication métallique / Usinage">🔩 Metal Fabrication / Machining</h4>
+                <p class="lang-en"><strong>You quote jobs in hours, track them in spreadsheets, and hope the delivery date holds.</strong></p>
+                <p class="lang-fr"><strong>Vous soumissionnez en heures, trackez dans des spreadsheets, et espérez que la date de livraison tienne.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Track <strong>every job from quote to ship</strong> — real-time machine utilization</li>
+                    <li style="padding:0.2rem 0;">• <strong>Tool life tracking</strong> — change before the part is scrap</li>
+                    <li style="padding:0.2rem 0;">• <strong>Delivery predictions your sales team can actually trust</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Suivre <strong>chaque job de la soumission au shipping</strong> — utilisation machine en temps réel</li>
+                    <li style="padding:0.2rem 0;">• <strong>Suivi de vie d'outil</strong> — changer avant que la pièce soit rebut</li>
+                    <li style="padding:0.2rem 0;">• <strong>Prédictions de livraison que votre équipe de ventes peut vraiment utiliser</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="🍔 Food &amp; Beverage" data-fr="🍔 Alimentation et boissons">🍔 Food &amp; Beverage</h4>
+                <p class="lang-en"><strong>One recall can cost you your business. And your current traceability is a stack of paper logs.</strong></p>
+                <p class="lang-fr"><strong>Un rappel peut vous coûter votre entreprise. Et votre traçabilité actuelle c'est une pile de logs papier.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>HACCP compliance</strong> that runs itself — lot traceability from ingredient to finished product</li>
+                    <li style="padding:0.2rem 0;">• <strong>Temperature monitoring</strong> with alerts — recall management in <strong>minutes, not days</strong></li>
+                    <li style="padding:0.2rem 0;">• Catch supplier quality problems <strong>at receiving, not at the customer</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Conformité HACCP automatisée</strong> — traçabilité de chaque ingrédient au produit fini</li>
+                    <li style="padding:0.2rem 0;">• <strong>Monitoring de température</strong> avec alertes — gestion de rappels en <strong>minutes, pas jours</strong></li>
+                    <li style="padding:0.2rem 0;">• Captez les problèmes fournisseurs <strong>à la réception, pas chez le client</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="🏗️ Construction / Engineering" data-fr="🏗️ Construction / Ingénierie">🏗️ Construction / Engineering</h4>
+                <p class="lang-en"><strong>Your project updates are a weekly email from the site foreman. Your clients want real-time visibility. Your PMs are drowning in admin.</strong></p>
+                <p class="lang-fr"><strong>Vos mises à jour de projets c'est un email hebdomadaire du contremaître. Vos clients veulent de la visibilité en temps réel. Vos chargés de projet sont noyés dans l'admin.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Live project progress</strong> visible to everyone — field inspection apps work offline</li>
+                    <li style="padding:0.2rem 0;">• <strong>Subcontractor portals</strong> + client reports that <strong>generate themselves</strong></li>
+                    <li style="padding:0.2rem 0;">• All documents in <strong>one searchable place</strong></li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Progrès de projet en direct</strong> visible pour tous — apps terrain fonctionnent hors ligne</li>
+                    <li style="padding:0.2rem 0;">• <strong>Portails sous-traitants</strong> + rapports clients qui <strong>se génèrent tout seuls</strong></li>
+                    <li style="padding:0.2rem 0;">• Tous les documents dans <strong>un seul endroit cherchable</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="📦 Distribution / Logistics" data-fr="📦 Distribution / Logistique">📦 Distribution / Logistics</h4>
+                <p class="lang-en"><strong>You're shipping 500 orders a day and still using paper pick lists. Your warehouse team is fast — but they could be 3x faster with the right tools.</strong></p>
+                <p class="lang-fr"><strong>Vous shippez 500 commandes par jour avec des listes de cueillette en papier. Votre équipe d'entrepôt est rapide — mais pourrait être 3x plus rapide.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Warehouse management</strong> that optimizes pick routes automatically</li>
+                    <li style="padding:0.2rem 0;">• <strong>Inventory forecasting</strong> based on actual trends — order tracking customers can access</li>
+                    <li style="padding:0.2rem 0;">• <strong>Supplier scorecards</strong> — know who delivers on time and who doesn't</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Gestion d'entrepôt</strong> qui optimise les routes de cueillette automatiquement</li>
+                    <li style="padding:0.2rem 0;">• <strong>Prévision d'inventaire</strong> basée sur les vraies tendances — suivi accessible par vos clients</li>
+                    <li style="padding:0.2rem 0;">• <strong>Scorecards fournisseurs</strong> — sachez qui livre à temps et qui ne livre pas</li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="💼 Professional Services / Consulting" data-fr="💼 Services professionnels / Consultation">💼 Professional Services / Consulting</h4>
+                <p class="lang-en"><strong>Your consultants are billing $200/hour but spending 20% of their time on timesheets, reports, and admin. That's $40/hour of value walking out the door.</strong></p>
+                <p class="lang-fr"><strong>Vos consultants facturent 200$/heure mais passent 20% de leur temps sur les timesheets, rapports et admin. C'est 40$/heure de valeur qui sort par la porte.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Painless time tracking</strong> + project management tailored to <strong>how YOU work</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>Client portals</strong> — they see progress without calling you; reports write themselves</li>
+                    <li style="padding:0.2rem 0;">• <strong>Knowledge base</strong> that captures team expertise — so it doesn't leave when they do</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Suivi de temps indolore</strong> + gestion de projets adaptée à <strong>VOTRE façon de travailler</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>Portails clients</strong> — ils voient le progrès sans vous appeler; rapports s'écrivent tout seuls</li>
+                    <li style="padding:0.2rem 0;">• <strong>Base de connaissances</strong> qui capture l'expertise — elle reste quand l'employé part</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════════════════
+     ERP & INTEGRATION — DETAIL
+═══════════════════════════════════════════════ -->
+<span class="section-anchor" id="integration"></span>
+<section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="ERP &amp; Integration" data-fr="ERP et Intégration"><img src="images/icon-integration.png" style="width:40px;height:40px;vertical-align:middle;margin-right:0.5rem;border-radius:8px;">ERP &amp; Integration</h2>
+            <p class="subtitle" data-en="We integrate with your existing systems — ERP, CRM, databases, APIs." data-fr="On s'intègre à vos systèmes existants — ERP, CRM, bases de données, APIs.">We integrate with your existing systems — ERP, CRM, databases, APIs.</p>
+        </div>
+        <div class="integration-logos">
+            <div class="logo-item">Odoo</div>
+            <div class="logo-item">SAP</div>
+            <div class="logo-item">NetSuite</div>
+            <div class="logo-item">Azure</div>
+            <div class="logo-item">Salesforce</div>
+            <div class="logo-item">Custom APIs</div>
+        </div>
+        <div class="ai-features">
+
+            <div class="ai-card" style="border: 1px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(34,211,238,0.1);">
+                <img src="images/uc-erp-agent.png" alt="AI agents on top of your ERP" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
+                <h4 data-en="AI agents on top of your ERP" data-fr="Agents IA par-dessus votre ERP">AI agents on top of your ERP</h4>
+                <p class="lang-en"><strong>Your ERP can do everything — but nobody knows how.</strong> Complex operations require 15 clicks, 3 screens, and a training manual. Your team uses 20% of the features because the rest is too complicated.</p>
+                <p class="lang-fr"><strong>Votre ERP peut tout faire — mais personne sait comment.</strong> Les opérations complexes demandent 15 clics, 3 écrans et un manuel de formation. Votre équipe utilise 20% des fonctionnalités parce que le reste est trop compliqué.</p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• AI agent layer on top of your <strong>existing ERP</strong> — Odoo, SAP, NetSuite, whatever you use</li>
+                    <li style="padding:0.2rem 0;">• Team speaks in <strong>plain language</strong> — agent handles the complex workflows</li>
+                    <li style="padding:0.2rem 0;">• <strong>No retraining. No migration.</strong> Just your ERP, finally usable by everyone</li>
+                </ul>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Couche d'agents IA par-dessus votre <strong>ERP existant</strong> — Odoo, SAP, NetSuite, peu importe</li>
+                    <li style="padding:0.2rem 0;">• Votre équipe parle en <strong>langage naturel</strong> — l'agent gère les workflows complexes</li>
+                    <li style="padding:0.2rem 0;">• <strong>Pas de retraining. Pas de migration.</strong> Juste votre ERP, enfin utilisable par tout le monde</li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="ERP implementation (Odoo specialist)" data-fr="Implémentation ERP (spécialiste Odoo)">ERP implementation (Odoo specialist)</h4>
+                <p class="lang-en"><strong>You've outgrown QuickBooks but SAP would bankrupt you.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>Enterprise-grade ERP at SME prices</strong> — Odoo</li>
+                    <li style="padding:0.2rem 0;">• We deploy, customize to your workflows, and <strong>migrate your data</strong></li>
+                    <li style="padding:0.2rem 0;">• Not a generic install — <strong>your ERP, your way</strong></li>
+                </ul>
+                <p class="lang-fr"><strong>Vous avez dépassé QuickBooks mais SAP vous mettrait en faillite.</strong></p>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• <strong>ERP de calibre entreprise au prix PME</strong> — Odoo</li>
+                    <li style="padding:0.2rem 0;">• On déploie, personnalise à vos workflows et <strong>migre vos données</strong></li>
+                    <li style="padding:0.2rem 0;">• Pas une installation générique — <strong>votre ERP, à votre façon</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="Cloud migration (Azure Canada)" data-fr="Migration cloud (Azure Canada)">Cloud migration (Azure Canada)</h4>
+                <p class="lang-en"><strong>Your server is in a closet and your IT guy is worried.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Move to <strong>Azure Canada</strong> — secure, scalable, backed up, compliant</li>
+                    <li style="padding:0.2rem 0;">• <strong>Data stays in Canada</strong> — team accesses everything from anywhere</li>
+                    <li style="padding:0.2rem 0;">• <strong>Sleep better at night</strong></li>
+                </ul>
+                <p class="lang-fr"><strong>Votre serveur est dans un placard et votre gars de TI est inquiet.</strong></p>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• Déménagez sur <strong>Azure Canada</strong> — sécurisé, scalable, sauvegardé, conforme</li>
+                    <li style="padding:0.2rem 0;">• <strong>Données restent au Canada</strong> — équipe accède à tout de partout</li>
+                    <li style="padding:0.2rem 0;">• <strong>Dormez mieux la nuit</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="API development &amp; integration" data-fr="Développement et intégration d'APIs">API development &amp; integration</h4>
+                <p class="lang-en"><strong>Your ERP doesn't talk to your CRM. Your CRM doesn't talk to your website. Your team copy-pastes between 4 systems.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• We build the bridges — <strong>clean APIs that make your systems talk automatically</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>One source of truth</strong> instead of four</li>
+                    <li style="padding:0.2rem 0;">• No more copy-paste between systems — <strong>data flows on its own</strong></li>
+                </ul>
+                <p class="lang-fr"><strong>Votre ERP parle pas à votre CRM. Votre CRM parle pas à votre site web. Votre équipe fait du copy-paste entre 4 systèmes.</strong></p>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• On bâtit les ponts — <strong>des APIs propres qui font communiquer vos systèmes automatiquement</strong></li>
+                    <li style="padding:0.2rem 0;">• <strong>Une source de vérité</strong> au lieu de quatre</li>
+                    <li style="padding:0.2rem 0;">• Fini le copy-paste — <strong>les données circulent toutes seules</strong></li>
+                </ul>
+            </div>
+
+            <div class="ai-card">
+                <h4 data-en="Data pipelines &amp; engineering" data-fr="Pipelines de données et ingénierie">Data pipelines &amp; engineering</h4>
+                <p class="lang-en"><strong>You have data everywhere but insights nowhere.</strong></p>
+                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• We build the plumbing that <strong>collects, cleans, and organizes your data</strong></li>
+                    <li style="padding:0.2rem 0;">• From <strong>scattered spreadsheets to executive dashboards</strong></li>
+                    <li style="padding:0.2rem 0;">• The <strong>foundation everything else is built on</strong></li>
+                </ul>
+                <p class="lang-fr"><strong>Vous avez des données partout mais des insights nulle part.</strong></p>
+                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
+                    <li style="padding:0.2rem 0;">• On bâtit la plomberie qui <strong>collecte, nettoie et organise vos données</strong></li>
+                    <li style="padding:0.2rem 0;">• Des <strong>spreadsheets éparpillés aux dashboards exécutifs</strong></li>
+                    <li style="padding:0.2rem 0;">• La <strong>fondation sur laquelle tout le reste est bâti</strong></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section id="contact" class="final-cta">
+    <div class="container">
+        <h2 data-en="Book a free 1-hour discovery call" data-fr="Réservez un discovery call d'une heure — gratuit">Book a free 1-hour discovery call</h2>
+        <p class="subtitle lang-en">Tell us your challenge. We'll show you how to solve it.</p>
+        <p class="subtitle lang-fr">Parlez-nous de votre défi. On vous montre comment le résoudre.</p>
+        <p class="cta-founders lang-en">With Benoit and Jérémy — not a salesperson.</p>
+        <p class="cta-founders lang-fr">Avec Benoit et Jérémy — pas un vendeur.</p>
+        <p style="color:var(--text-secondary);margin-bottom:2.5rem;font-size:0.95rem;" class="lang-en">No commitment. No slides. Just a real conversation about your operation.</p>
+        <p style="color:var(--text-secondary);margin-bottom:2.5rem;font-size:0.95rem;" class="lang-fr">Pas d'engagement. Pas de slides. Juste une vraie conversation sur votre opération.</p>
+        <div class="cta-contact">
+            <a href="index-v2.html#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
+            <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
+            <span class="contact-phone">(450) XXX-XXXX</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <a href="index-v2.html" class="logo">pinn<span class="ai">AI</span></a>
+                <p class="lang-en" style="margin-top:1rem;color:var(--text-secondary);">Custom manufacturing software, powered by AI.</p>
+                <p class="lang-fr" style="margin-top:1rem;color:var(--text-secondary);">Software manufacturier sur mesure, propulsé par l'IA.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index-v2.html" data-en="Home" data-fr="Accueil">Home</a>
+                <a href="index-v2.html#services" data-en="Services" data-fr="Services">Services</a>
+                <a href="#manufacturing" data-en="Manufacturing" data-fr="Manufacturier">Manufacturing</a>
+                <a href="#ai" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</a>
+                <a href="#industries" data-en="Industries" data-fr="Industries">Industries</a>
+                <a href="index-v2.html#contact" data-en="Contact" data-fr="Contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 PinnAI inc. — Quebec, Canada</p>
+            <div class="footer-links">
+                <a href="#" data-en="Loi 25 Compliant" data-fr="Conforme Loi 25">Loi 25 Compliant</a>
+                <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let currentLang = localStorage.getItem('pinnai-lang') || 'en';
+
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('pinnai-lang', lang);
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const text = el.getAttribute('data-' + lang);
+            if (text) {
+                    // Preserve child <img> elements (3D icons in headers)
+                    var imgs = el.querySelectorAll('img');
+                    el.textContent = text;
+                    imgs.forEach(function(img) { el.prepend(img); });
+                }
+        });
+        document.querySelectorAll('.lang-en').forEach(el => { el.style.display = lang === 'en' ? '' : 'none'; });
+        document.querySelectorAll('.lang-fr').forEach(el => { el.style.display = lang === 'fr' ? '' : 'none'; });
+        document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.toggle('active', btn.dataset.lang === lang); });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => { setLang(currentLang); });
+
+    window.addEventListener('scroll', function() {
+        const nav = document.getElementById('nav');
+        if (window.scrollY > 100) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+</script>
+</body>
+</html>
