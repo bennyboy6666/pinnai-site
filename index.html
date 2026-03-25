@@ -4,21 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PinnAI - Custom software, powered by AI.</title>
+    <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-    const PASS = 'Pinnai2026!';
-    const AUTH_KEY = 'pinnai_auth';
-    if (localStorage.getItem(AUTH_KEY) !== 'true') {
-        const input = prompt('🔒 Password required:');
-        if (input !== PASS) {
-            document.documentElement.innerHTML = '<body style="background:#0a0b0f;color:#f87171;display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui;"><h1>⛔ Access denied</h1></body>';
-            throw new Error('unauthorized');
-        }
-        localStorage.setItem(AUTH_KEY, 'true');
-    }
-</script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -332,28 +321,23 @@
 
         </div>
         <div class="grants-callout">
-            <p class="lang-en" style="margin-bottom:0.5rem;"><strong>Here's what it could look like:</strong></p>
+            <p class="lang-en" style="margin-bottom:0.5rem;"><strong>How AI + grants change the math:</strong></p>
             <ul class="lang-en" style="list-style:none;padding:0;margin:0 0 1rem 0;color:var(--text-secondary);line-height:1.6;">
-                <li>• A project that cost <strong style="color:var(--accent-cyan);">$400K</strong> before</li>
-                <li>• AI-powered development brings it to <strong style="color:var(--text-primary);">~$100K</strong></li>
-                <li>• R&amp;D tax credits (RS&amp;DE) give back ~half → <strong style="color:var(--text-primary);">~$50K</strong></li>
-                <li>• Remaining grants (IRAP, Scale AI) cover more</li>
+                <li>• AI-powered development cuts costs by <strong style="color:var(--accent-cyan);">3-4x</strong> vs traditional firms</li>
+                <li>• R&amp;D tax credits (RS&amp;DE) can reimburse <strong style="color:var(--text-primary);">30-64%</strong> of eligible expenses</li>
+                <li>• Government grants (IRAP, Scale AI) can cover even more</li>
+                <li>• We handle the paperwork — you focus on your business</li>
             </ul>
-            <p class="lang-en" style="text-align:center;margin:0.5rem 0 0;"><strong style="color:var(--accent-cyan);font-size:1.15em;">~$25K out of pocket</strong></p>
-            </ul>
+            <p class="lang-en" style="text-align:center;margin:0.5rem 0 0;"><strong style="color:var(--accent-cyan);font-size:1.05em;">Result: projects that were out of reach become affordable</strong></p>
 
-            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.75rem;font-style:italic;" class="lang-en">* Hypothetical example. Actual savings depend on your project and eligibility.</p>
-            <p class="lang-fr" style="margin-bottom:0.5rem;"><strong>Voici à quoi ça pourrait ressembler :</strong></p>
+            <p class="lang-fr" style="margin-bottom:0.5rem;"><strong>Comment l'IA + les subventions changent l'équation :</strong></p>
             <ul class="lang-fr" style="list-style:none;padding:0;margin:0 0 1rem 0;color:var(--text-secondary);line-height:1.6;">
-                <li>• Un projet qui coûtait <strong style="color:var(--accent-cyan);">400K$</strong> avant</li>
-                <li>• Le développement propulsé par l'IA le ramène à <strong style="color:var(--text-primary);">~100K$</strong></li>
-                <li>• Les crédits R&amp;D (RS&amp;DE) remboursent ~la moitié → <strong style="color:var(--text-primary);">~50K$</strong></li>
-                <li>• Subventions restantes (PARI, Scale AI) couvrent encore</li>
+                <li>• Le développement propulsé par l'IA coûte <strong style="color:var(--accent-cyan);">3-4x moins cher</strong> que les firmes traditionnelles</li>
+                <li>• Les crédits R&amp;D (RS&amp;DE) peuvent rembourser <strong style="color:var(--text-primary);">30-64%</strong> des dépenses admissibles</li>
+                <li>• Les subventions gouvernementales (PARI, Scale AI) couvrent encore plus</li>
+                <li>• On s'occupe de la paperasse — vous focussez sur votre business</li>
             </ul>
-            <p class="lang-fr" style="text-align:center;margin:0.5rem 0 0;"><strong style="color:var(--accent-cyan);font-size:1.15em;">~25K$ de votre poche</strong></p>
-            </ul>
-
-            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.75rem;font-style:italic;" class="lang-fr">* Exemple hypothétique. Les économies réelles dépendent de votre projet et de votre admissibilité.</p>
+            <p class="lang-fr" style="text-align:center;margin:0.5rem 0 0;"><strong style="color:var(--accent-cyan);font-size:1.05em;">Résultat : des projets hors de portée deviennent abordables</strong></p>
         </div>
         <div class="grants-cta">
             <a href="#contact" data-en="Ask us about funding options &#8594;" data-fr="Parlez-nous des options de financement →">Ask us about funding options &#8594;</a>
@@ -491,9 +475,21 @@
         
         
         <div class="cta-contact">
-            <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
-            <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
-            <span class="contact-phone">(450) XXX-XXXX</span>
+            <!-- Contact Form -->
+            <form id="contactForm" style="display:flex;flex-direction:column;gap:0.75rem;max-width:400px;margin:1.5rem auto;text-align:left;" onsubmit="return submitForm(event)">
+                <input type="text" name="name" required placeholder="Votre nom / Your name" style="padding:0.75rem 1rem;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-card);color:#fff;font-family:inherit;font-size:0.95rem;">
+                <input type="email" name="email" required placeholder="Votre courriel / Your email" style="padding:0.75rem 1rem;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-card);color:#fff;font-family:inherit;font-size:0.95rem;">
+                <textarea name="message" rows="3" placeholder="Décrivez votre défi / Describe your challenge" style="padding:0.75rem 1rem;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-card);color:#fff;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:0.85rem;font-size:1rem;" data-en="Send — We'll get back within 24h" data-fr="Envoyer — On vous répond en 24h">Send — We'll get back within 24h</button>
+            </form>
+            <div id="formSuccess" style="display:none;padding:1.5rem;background:rgba(34,211,238,0.1);border:1px solid var(--accent-cyan);border-radius:12px;margin:1rem auto;max-width:400px;">
+                <p style="color:var(--accent-cyan);font-weight:600;">✅ <span data-en="Message sent! We'll contact you within 24 hours." data-fr="Message envoyé! On vous contacte dans les 24 heures.">Message sent! We'll contact you within 24 hours.</span></p>
+            </div>
+            <p style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
+                <a href="mailto:info@pinnai.com" style="color:var(--accent-cyan);text-decoration:none;">info@pinnai.com</a>
+                &nbsp;·&nbsp;
+                <a href="tel:+15142090384" style="color:var(--text-secondary);text-decoration:none;">(514) 209-0384</a>
+            </p>
         </div>
     </div>
 </section>
@@ -677,6 +673,22 @@
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
+
+    function submitForm(e) {
+        e.preventDefault();
+        const form = document.getElementById('contactForm');
+        const data = new FormData(form);
+        // For now, mailto fallback (can be replaced with backend endpoint later)
+        const name = data.get('name');
+        const email = data.get('email');
+        const message = data.get('message') || '';
+        const subject = encodeURIComponent('PinnAI — New inquiry from ' + name);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+        window.location.href = 'mailto:info@pinnai.com?subject=' + subject + '&body=' + body;
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+        return false;
+    }
 </script>
 </body>
 </html>
