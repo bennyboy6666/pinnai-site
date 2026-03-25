@@ -601,8 +601,8 @@
                     }
                 }
         });
-        document.querySelectorAll('.lang-en').forEach(el => { el.style.display = lang === 'en' ? '' : 'none'; });
-        document.querySelectorAll('.lang-fr').forEach(el => { el.style.display = lang === 'fr' ? '' : 'none'; });
+        document.querySelectorAll('.lang-en').forEach(el => { var d = el.tagName === 'SPAN' ? 'inline' : 'block'; el.style.display = lang === 'en' ? d : 'none'; });
+        document.querySelectorAll('.lang-fr').forEach(el => { var d = el.tagName === 'SPAN' ? 'inline' : 'block'; el.style.display = lang === 'fr' ? d : 'none'; });
         document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.toggle('active', btn.dataset.lang === lang); });
     }
 
