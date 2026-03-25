@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinnAI — Questionnaire de décisions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0b0f; color: #e0e0e0; padding: 1rem; line-height: 1.6; }
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 { color: #22d3ee; font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center; }
+        .subtitle { color: rgba(255,255,255,0.5); text-align: center; margin-bottom: 2rem; font-size: 0.9rem; }
+        .section-title { color: #22d3ee; font-size: 1.1rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(34,211,238,0.3); }
+        .question { background: #12141c; border: 1px solid #1e2030; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.25rem; }
+        .question h3 { color: #fff; font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .context { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-bottom: 0.75rem; font-style: italic; }
+        .priority { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.5rem; font-weight: 600; }
+        .p-critical { background: rgba(239,68,68,0.2); color: #f87171; }
+        .p-high { background: rgba(251,146,60,0.2); color: #fb923c; }
+        .p-medium { background: rgba(250,204,21,0.2); color: #facc15; }
+        .options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .option { display: flex; align-items: flex-start; gap: 0.5rem; }
+        .option input[type="radio"] { margin-top: 4px; accent-color: #22d3ee; flex-shrink: 0; }
+        .option label { font-size: 0.85rem; cursor: pointer; }
+        .custom-input { width: 100%; background: #1a1d28; border: 1px solid #2a2d3a; border-radius: 8px; padding: 0.5rem 0.75rem; color: #e0e0e0; font-size: 0.85rem; font-family: inherit; resize: vertical; min-height: 40px; }
+        .custom-input::placeholder { color: rgba(255,255,255,0.3); }
+        .custom-input:focus { outline: none; border-color: #22d3ee; }
+        .custom-label { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 0.3rem; }
+        .submit-section { text-align: center; margin: 2rem 0; }
+        .btn-submit { background: #22d3ee; color: #0a0b0f; border: none; padding: 0.75rem 2rem; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+        .btn-submit:hover { background: #06b6d4; }
+        .btn-copy { background: transparent; color: #22d3ee; border: 1px solid #22d3ee; padding: 0.5rem 1.5rem; border-radius: 8px; font-size: 0.9rem; cursor: pointer; margin-left: 0.5rem; font-family: inherit; }
+        .progress { position: sticky; top: 0; background: #0a0b0f; padding: 0.5rem 0; z-index: 10; border-bottom: 1px solid #1e2030; }
+        .progress-bar { height: 4px; background: #1e2030; border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #22d3ee; transition: width 0.3s; width: 0%; }
+        .progress-text { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-align: center; margin-top: 0.3rem; }
+        #output { display: none; background: #12141c; border: 1px solid #22d3ee; border-radius: 12px; padding: 1.25rem; margin: 1rem 0; white-space: pre-wrap; font-family: monospace; font-size: 0.8rem; max-height: 400px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎯 PinnAI — Décisions à prendre</h1>
+    <p class="subtitle">Basé sur les 3 audits (Marketing, PME Owner, UX Designer)<br>Coche ton choix + ajoute tes notes. Submit = fichier texte prêt à envoyer.</p>
+    
+    <div class="progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">0 / 20 répondu</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <div class="section-title">🔴 PRIORITÉ CRITIQUE — Conversion & Funnel</div>
+    <!-- ═══════════════════════════════════════ -->
+
+    <div class="question" data-q="1">
+        <span class="priority p-critical">CRITIQUE</span>
+        <h3>1. Le CTA "Book a call" mène nulle part (pas de formulaire/Calendly)</h3>
+        <p class="context">Les 3 audits sont unanimes : le bouton scrolle vers #contact qui n'a qu'un email et un numéro placeholder.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q1" id="q1a" value="Intégrer Calendly en embed dans la section contact"><label for="q1a">Intégrer <strong>Calendly</strong> en embed dans la section contact</label></div>
+            <div class="option"><input type="radio" name="q1" id="q1b" value="Mettre un vrai formulaire de contact (nom, email, message)"><label for="q1b">Mettre un <strong>vrai formulaire</strong> de contact (nom, email, message)</label></div>
+            <div class="option"><input type="radio" name="q1" id="q1c" value="Les deux : Calendly + formulaire en fallback"><label for="q1c">Les <strong>deux</strong> : Calendly + formulaire en fallback</label></div>
+            <div class="option"><input type="radio" name="q1" id="q1d" value="Lien externe vers Calendly (pas d'embed)"><label for="q1d">Lien externe vers Calendly (pas d'embed)</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q1_custom" placeholder="Ex: On utilise déjà Cal.com..."></textarea>
+    </div>
+
+    <div class="question" data-q="2">
+        <span class="priority p-critical">CRITIQUE</span>
+        <h3>2. Numéro de téléphone placeholder (450) XXX-XXXX</h3>
+        <p class="context">Détruit la crédibilité instantanément selon l'audit UX.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q2" id="q2a" value="Mettre le vrai numéro"><label for="q2a">Mettre le <strong>vrai numéro</strong></label></div>
+            <div class="option"><input type="radio" name="q2" id="q2b" value="Retirer le numéro complètement"><label for="q2b"><strong>Retirer</strong> le numéro complètement</label></div>
+            <div class="option"><input type="radio" name="q2" id="q2c" value="Garder juste l'email"><label for="q2c">Garder juste l'<strong>email</strong></label></div>
+            <div class="option"><input type="radio" name="q2" id="q2d" value="Pas prioritaire pour l'instant"><label for="q2d">Pas prioritaire pour l'instant</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q2_custom" placeholder="Le vrai numéro est..."></textarea>
+    </div>
+
+    <div class="question" data-q="3">
+        <span class="priority p-critical">CRITIQUE</span>
+        <h3>3. Mot de passe prompt() JavaScript à l'entrée du site</h3>
+        <p class="context">Le mot de passe est en clair dans le HTML source. Fait amateur selon les 3 audits.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q3" id="q3a" value="Retirer complètement — le site est prêt à être public"><label for="q3a"><strong>Retirer complètement</strong> — le site est prêt à être public</label></div>
+            <div class="option"><input type="radio" name="q3" id="q3b" value="Garder mais passer à Cloudflare Access ou .htaccess"><label for="q3b">Garder mais passer à <strong>Cloudflare Access</strong> ou .htaccess</label></div>
+            <div class="option"><input type="radio" name="q3" id="q3c" value="Garder le prompt() pour l'instant (c'est encore en dev)"><label for="q3c">Garder le prompt() pour l'instant (encore en dev)</label></div>
+            <div class="option"><input type="radio" name="q3" id="q3d" value="Rendre public mais cacher de Google (noindex)"><label for="q3d">Rendre public mais <strong>cacher de Google</strong> (noindex)</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q3_custom" placeholder=""></textarea>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <div class="section-title">🔴 PRIORITÉ HAUTE — Message & Positionnement</div>
+    <!-- ═══════════════════════════════════════ -->
+
+    <div class="question" data-q="4">
+        <span class="priority p-high">HAUTE</span>
+        <h3>4. Le Hero "If you can imagine it, we can build it" est trop vague</h3>
+        <p class="context">Unanime : ça ne dit pas pour QUI, ce qui vous rend DIFFÉRENT, ou pourquoi maintenant.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q4" id="q4a" value="Changer pour un message spécifique manufacturier"><label for="q4a">Changer pour un message <strong>spécifique manufacturier</strong> (ex: "Votre usine mérite du logiciel intelligent")</label></div>
+            <div class="option"><input type="radio" name="q4" id="q4b" value="Garder mais ajouter un sous-titre plus spécifique"><label for="q4b">Garder mais ajouter un <strong>sous-titre plus spécifique</strong></label></div>
+            <div class="option"><input type="radio" name="q4" id="q4c" value="Mettre le breakdown $400K→$25K directement dans le hero"><label for="q4c">Mettre le <strong>breakdown coûts $400K→$25K</strong> directement dans le hero</label></div>
+            <div class="option"><input type="radio" name="q4" id="q4d" value="J'aime le hero actuel, on le garde"><label for="q4d">J'aime le hero actuel, on le garde</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q4_custom" placeholder="Ex: Je préfère un angle comme..."></textarea>
+    </div>
+
+    <div class="question" data-q="5">
+        <span class="priority p-high">HAUTE</span>
+        <h3>5. Positionnement : manufacturier spécialisé ou généraliste?</h3>
+        <p class="context">"Deep roots in manufacturing, but we build for any industry" — les audits disent de choisir.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q5" id="q5a" value="100% manufacturier — c'est notre niche"><label for="q5a"><strong>100% manufacturier</strong> — c'est notre niche, on assume</label></div>
+            <div class="option"><input type="radio" name="q5" id="q5b" value="Manufacturier en avant, mais mentionner qu'on fait d'autres industries"><label for="q5b"><strong>Manufacturier en avant</strong>, mais mentionner les autres industries en secondaire</label></div>
+            <div class="option"><input type="radio" name="q5" id="q5c" value="Garder généraliste — on veut pas se limiter"><label for="q5c">Garder <strong>généraliste</strong> — on veut pas se limiter</label></div>
+            <div class="option"><input type="radio" name="q5" id="q5d" value="Faire 2 landing pages séparées (manuf + généraliste)"><label for="q5d"><strong>2 landing pages</strong> séparées (manuf + autre)</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q5_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="6">
+        <span class="priority p-high">HAUTE</span>
+        <h3>6. Trop de contenu — use-cases.html a 16+ cartes</h3>
+        <p class="context">"Un monstrueux catalogue. Personne ne lit ça." — Le marketing suggère max 6 services.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q6" id="q6a" value="Réduire à 6-8 cartes max, les plus fortes"><label for="q6a">Réduire à <strong>6-8 cartes max</strong>, garder les plus fortes</label></div>
+            <div class="option"><input type="radio" name="q6" id="q6b" value="Garder tout mais regrouper en 3-4 catégories avec accordéon"><label for="q6b">Garder tout mais <strong>regrouper en accordéons</strong> (click to expand)</label></div>
+            <div class="option"><input type="radio" name="q6" id="q6c" value="Garder tel quel — les clients détaillés aiment avoir tout"><label for="q6c">Garder tel quel — les clients détaillés aiment avoir tout</label></div>
+            <div class="option"><input type="radio" name="q6" id="q6d" value="Page séparée pour les détails, use-cases = résumé court"><label for="q6d">Page séparée pour les détails, use-cases = <strong>résumé court</strong></label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q6_custom" placeholder=""></textarea>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <div class="section-title">🔴 PRIORITÉ HAUTE — Preuve sociale & Crédibilité</div>
+    <!-- ═══════════════════════════════════════ -->
+
+    <div class="question" data-q="7">
+        <span class="priority p-high">HAUTE</span>
+        <h3>7. ZÉRO preuve sociale (témoignages, logos, études de cas)</h3>
+        <p class="context">Unanime. "Un site B2B sans preuve sociale c'est un site sans crédibilité."</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q7" id="q7a" value="Ajouter logos des entreprises passées des fondateurs (DVolu, SNC, Glencore)"><label for="q7a">Ajouter <strong>logos des entreprises passées</strong> des fondateurs (DVolu, SNC, Glencore...)</label></div>
+            <div class="option"><input type="radio" name="q7" id="q7b" value="Demander 1-2 témoignages à des contacts/projets pilotes"><label for="q7b">Demander <strong>1-2 témoignages</strong> à des contacts/projets pilotes</label></div>
+            <div class="option"><input type="radio" name="q7" id="q7c" value="Créer une étude de cas fictive mais réaliste (basée sur un vrai projet)"><label for="q7c">Créer une <strong>étude de cas</strong> basée sur un vrai projet</label></div>
+            <div class="option"><input type="radio" name="q7" id="q7d" value="Pas encore prêt — on attend d'avoir de vrais clients"><label for="q7d">Pas encore prêt — on attend d'avoir de vrais clients</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q7_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="8">
+        <span class="priority p-high">HAUTE</span>
+        <h3>8. Photos des fondateurs absentes</h3>
+        <p class="context">"Le B2B c'est du people business. Montrez vos faces." — Surtout au Québec.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q8" id="q8a" value="Ajouter des vraies photos pro (headshots)"><label for="q8a">Ajouter des <strong>vraies photos pro</strong> (headshots)</label></div>
+            <div class="option"><input type="radio" name="q8" id="q8b" value="Photos casual/naturelles (style startup)"><label for="q8b">Photos <strong>casual/naturelles</strong> (style startup)</label></div>
+            <div class="option"><input type="radio" name="q8" id="q8c" value="Générer des avatars stylisés (Nano-Banana)"><label for="q8c">Générer des <strong>avatars stylisés</strong></label></div>
+            <div class="option"><input type="radio" name="q8" id="q8d" value="Pas de photos — garder le texte seulement"><label for="q8d">Pas de photos — garder le texte seulement</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q8_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="9">
+        <span class="priority p-high">HAUTE</span>
+        <h3>9. Le breakdown $400K → $25K est enterré au milieu</h3>
+        <p class="context">"C'est votre killer argument. Mettez-le en avant." — Mais le PME Owner dit que ça sent le infomercial.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q9" id="q9a" value="Monter dans le hero ou juste après"><label for="q9a"><strong>Monter dans le hero</strong> ou juste après</label></div>
+            <div class="option"><input type="radio" name="q9" id="q9b" value="Garder mais reformuler de façon plus crédible (ranges réalistes)"><label for="q9b">Garder mais <strong>reformuler de façon plus crédible</strong> (ranges réalistes)</label></div>
+            <div class="option"><input type="radio" name="q9" id="q9c" value="Retirer — ça fait trop beau pour être vrai"><label for="q9c"><strong>Retirer</strong> — ça fait trop beau pour être vrai</label></div>
+            <div class="option"><input type="radio" name="q9" id="q9d" value="Garder à la même place, c'est bien comme ça"><label for="q9d">Garder à la même place, c'est bien comme ça</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q9_custom" placeholder=""></textarea>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <div class="section-title">🟡 PRIORITÉ MOYENNE — UX & Design</div>
+    <!-- ═══════════════════════════════════════ -->
+
+    <div class="question" data-q="10">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>10. Pas de menu hamburger sur mobile</h3>
+        <p class="context">Les liens Services, Process, About sont inaccessibles sur mobile.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q10" id="q10a" value="Ajouter un hamburger menu classique"><label for="q10a">Ajouter un <strong>hamburger menu</strong> classique</label></div>
+            <div class="option"><input type="radio" name="q10" id="q10b" value="Pas besoin — le scroll suffit sur mobile"><label for="q10b">Pas besoin — le <strong>scroll suffit</strong> sur mobile</label></div>
+            <div class="option"><input type="radio" name="q10" id="q10c" value="Bottom nav bar fixe (style app mobile)"><label for="q10c"><strong>Bottom nav bar fixe</strong> (style app mobile)</label></div>
+            <div class="option"><input type="radio" name="q10" id="q10d" value="CTA sticky flottant 'Book a call' en bas"><label for="q10d">CTA sticky flottant "Book a call" en bas</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q10_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="11">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>11. Animations scroll-canvas (120 frames × 2)</h3>
+        <p class="context">Impressionnantes mais lourdes. Catastrophe performance sur mobile 4G.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q11" id="q11a" value="Remplacer par image statique sur mobile, garder animation desktop"><label for="q11a"><strong>Image statique sur mobile</strong>, garder animation desktop</label></div>
+            <div class="option"><input type="radio" name="q11" id="q11b" value="Retirer les animations complètement"><label for="q11b"><strong>Retirer</strong> les animations complètement</label></div>
+            <div class="option"><input type="radio" name="q11" id="q11c" value="Garder — ça fait partie de l'identité du site"><label for="q11c">Garder — ça fait partie de l'identité</label></div>
+            <div class="option"><input type="radio" name="q11" id="q11d" value="Optimiser (lazy load, moins de frames, WebP)"><label for="q11d"><strong>Optimiser</strong> (lazy load, moins de frames, WebP)</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q11_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="12">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>12. Logos intégrations en texte au lieu de vrais logos</h3>
+        <p class="context">"Odoo, SAP, NetSuite" en texte. Ça fait pauvre.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q12" id="q12a" value="Remplacer par vrais logos SVG"><label for="q12a">Remplacer par <strong>vrais logos SVG</strong></label></div>
+            <div class="option"><input type="radio" name="q12" id="q12b" value="Garder en texte — c'est assez"><label for="q12b">Garder en texte — c'est assez</label></div>
+            <div class="option"><input type="radio" name="q12" id="q12c" value="Retirer la section intégrations"><label for="q12c">Retirer la section intégrations</label></div>
+            <div class="option"><input type="radio" name="q12" id="q12d" value="Logos + petit texte descriptif"><label for="q12d">Logos + petit texte descriptif</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q12_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="13">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>13. Images des use-cases : style cohérent?</h3>
+        <p class="context">Certaines réalistes, d'autres illustrées. Le UX dit d'uniformiser.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q13" id="q13a" value="Garder le style actuel (dark-tech avant/après) — j'aime ça"><label for="q13a">Garder le style actuel (dark-tech avant/après) — <strong>j'aime ça</strong></label></div>
+            <div class="option"><input type="radio" name="q13" id="q13b" value="Régénérer les anciennes pour matcher les nouvelles"><label for="q13b"><strong>Régénérer les anciennes</strong> pour matcher les nouvelles</label></div>
+            <div class="option"><input type="radio" name="q13" id="q13c" value="Remplacer tout par des screenshots de vrais dashboards"><label for="q13c">Remplacer par des <strong>screenshots de vrais dashboards</strong></label></div>
+            <div class="option"><input type="radio" name="q13" id="q13d" value="Retirer les images — garder juste texte"><label for="q13d">Retirer les images — garder juste texte</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q13_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="14">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>14. Optimisation des images (taille fichiers)</h3>
+        <p class="context">Certaines icônes de 40px pèsent 726KB. Les images UC font 1.2MB chacune.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q14" id="q14a" value="Convertir tout en WebP et optimiser"><label for="q14a"><strong>Convertir en WebP</strong> et optimiser (-80%)</label></div>
+            <div class="option"><input type="radio" name="q14" id="q14b" value="Pas prioritaire — le site charge assez vite"><label for="q14b">Pas prioritaire — charge assez vite</label></div>
+            <div class="option"><input type="radio" name="q14" id="q14c" value="Optimiser seulement les plus grosses"><label for="q14c">Optimiser seulement <strong>les plus grosses</strong></label></div>
+            <div class="option"><input type="radio" name="q14" id="q14d" value="Lazy loading + optimisation"><label for="q14d"><strong>Lazy loading</strong> + optimisation</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q14_custom" placeholder=""></textarea>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <div class="section-title">🟡 PRIORITÉ MOYENNE — Contenu & SEO</div>
+    <!-- ═══════════════════════════════════════ -->
+
+    <div class="question" data-q="15">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>15. Aucun contenu éducatif / blog</h3>
+        <p class="context">"Comment vont-ils vous trouver sur Google?" — Personne ne cherche "custom software AI Quebec".</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q15" id="q15a" value="Ajouter un blog avec 2-3 articles ciblés"><label for="q15a">Ajouter un <strong>blog avec 2-3 articles</strong> ciblés (SEO)</label></div>
+            <div class="option"><input type="radio" name="q15" id="q15b" value="Pas prioritaire — on focus sur le referral, pas le SEO"><label for="q15b">Pas prioritaire — on focus sur le <strong>referral</strong></label></div>
+            <div class="option"><input type="radio" name="q15" id="q15c" value="Créer un guide PDF téléchargeable (lead magnet)"><label for="q15c">Créer un <strong>guide PDF</strong> téléchargeable (lead magnet)</label></div>
+            <div class="option"><input type="radio" name="q15" id="q15d" value="Vidéo YouTube/LinkedIn plutôt que blog écrit"><label for="q15d"><strong>Vidéo</strong> YouTube/LinkedIn plutôt que blog écrit</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q15_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="16">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>16. Footer incomplet (pas d'adresse, LinkedIn, mentions légales)</h3>
+        <p class="context">Parle de Loi 25 mais pas de politique de confidentialité sur le site.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q16" id="q16a" value="Ajouter un footer complet (adresse, LinkedIn, légal, confidentialité)"><label for="q16a">Footer complet (adresse, LinkedIn, légal, confidentialité)</label></div>
+            <div class="option"><input type="radio" name="q16" id="q16b" value="Juste LinkedIn + email pour l'instant"><label for="q16b">Juste <strong>LinkedIn + email</strong> pour l'instant</label></div>
+            <div class="option"><input type="radio" name="q16" id="q16c" value="Pas prioritaire"><label for="q16c">Pas prioritaire</label></div>
+            <div class="option"><input type="radio" name="q16" id="q16d" value="Footer minimal + page légale séparée"><label for="q16d">Footer minimal + <strong>page légale séparée</strong></label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q16_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="17">
+        <span class="priority p-medium">MOYENNE</span>
+        <h3>17. Logo PinnAI — juste du texte, pas de symbole</h3>
+        <div class="options">
+            <div class="option"><input type="radio" name="q17" id="q17a" value="Créer un vrai logo SVG professionnel"><label for="q17a">Créer un <strong>vrai logo SVG</strong> professionnel</label></div>
+            <div class="option"><input type="radio" name="q17" id="q17b" value="Le texte pinnAI est suffisant pour l'instant"><label for="q17b">Le texte pinnAI est <strong>suffisant</strong> pour l'instant</label></div>
+            <div class="option"><input type="radio" name="q17" id="q17c" value="Générer un logo avec IA (Nano-Banana)"><label for="q17c">Générer un logo avec <strong>IA</strong></label></div>
+            <div class="option"><input type="radio" name="q17" id="q17d" value="Engager un designer pour le logo"><label for="q17d">Engager un <strong>designer</strong></label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q17_custom" placeholder=""></textarea>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <div class="section-title">💡 QUESTIONS STRATÉGIQUES</div>
+    <!-- ═══════════════════════════════════════ -->
+
+    <div class="question" data-q="18">
+        <span class="priority p-medium">STRATÉGIQUE</span>
+        <h3>18. Vidéo explainer des fondateurs?</h3>
+        <p class="context">"Un explainer de 60 sec avec les fondateurs dans un atelier vaudrait plus que toute la page use-cases."</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q18" id="q18a" value="Oui — on filme ça bientôt"><label for="q18a"><strong>Oui</strong> — on filme ça bientôt</label></div>
+            <div class="option"><input type="radio" name="q18" id="q18b" value="Pas pour l'instant, mais c'est dans le plan"><label for="q18b">Pas pour l'instant, mais c'est dans le plan</label></div>
+            <div class="option"><input type="radio" name="q18" id="q18c" value="On peut faire un screencast/démo plutôt"><label for="q18c">On peut faire un <strong>screencast/démo</strong> plutôt</label></div>
+            <div class="option"><input type="radio" name="q18" id="q18d" value="Pas intéressé"><label for="q18d">Pas intéressé</label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q18_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="19">
+        <span class="priority p-medium">STRATÉGIQUE</span>
+        <h3>19. CTA secondaire pour visiteurs pas encore prêts à appeler?</h3>
+        <p class="context">"Book a call" ou rien = vous perdez 80% des visiteurs en phase de recherche.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q19" id="q19a" value="Ajouter un email opt-in (newsletter/guide)"><label for="q19a">Ajouter un <strong>email opt-in</strong> (newsletter/guide)</label></div>
+            <div class="option"><input type="radio" name="q19" id="q19b" value="Bouton 'Voir nos études de cas' ou 'En savoir plus'"><label for="q19b">Bouton "<strong>Voir nos études de cas</strong>"</label></div>
+            <div class="option"><input type="radio" name="q19" id="q19c" value="Chat widget (Intercom/Crisp)"><label for="q19c"><strong>Chat widget</strong> (Intercom/Crisp)</label></div>
+            <div class="option"><input type="radio" name="q19" id="q19d" value="Un seul CTA suffit — keep it simple"><label for="q19d">Un seul CTA suffit — <strong>keep it simple</strong></label></div>
+        </div>
+        <p class="custom-label">💬 Ton choix / notes :</p>
+        <textarea class="custom-input" name="q19_custom" placeholder=""></textarea>
+    </div>
+
+    <div class="question" data-q="20">
+        <span class="priority p-medium">STRATÉGIQUE</span>
+        <h3>20. Autre chose à changer / ajouter / retirer?</h3>
+        <p class="context">Espace libre pour tout ce qui n'a pas été couvert.</p>
+        <div class="options">
+            <div class="option"><input type="radio" name="q20" id="q20a" value="Oui — voir mes notes"><label for="q20a">Oui — voir mes notes ci-dessous</label></div>
+            <div class="option"><input type="radio" name="q20" id="q20b" value="Non — les 19 questions couvrent tout"><label for="q20b">Non — les 19 questions couvrent tout</label></div>
+        </div>
+        <p class="custom-label">💬 Tes notes libres :</p>
+        <textarea class="custom-input" name="q20_custom" placeholder="Tout ce que tu veux ajouter..." style="min-height: 80px;"></textarea>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <div class="submit-section">
+        <button class="btn-submit" onclick="generateOutput()">📋 Générer le résumé</button>
+    </div>
+    
+    <div id="output"></div>
+    <div id="actions" style="display:none; text-align:center; margin-bottom:2rem;">
+        <button class="btn-submit" onclick="copyToClipboard()">📋 Copier dans le presse-papier</button>
+        <button class="btn-copy" onclick="downloadFile()">💾 Télécharger .txt</button>
+    </div>
+
+</div>
+
+<script>
+// Progress tracking
+function updateProgress() {
+    const total = 20;
+    let answered = 0;
+    for (let i = 1; i <= total; i++) {
+        const radios = document.querySelectorAll(`input[name="q${i}"]`);
+        const custom = document.querySelector(`textarea[name="q${i}_custom"]`);
+        const hasRadio = Array.from(radios).some(r => r.checked);
+        const hasCustom = custom && custom.value.trim().length > 0;
+        if (hasRadio || hasCustom) answered++;
+    }
+    document.getElementById('progressFill').style.width = (answered / total * 100) + '%';
+    document.getElementById('progressText').textContent = `${answered} / ${total} répondu`;
+}
+
+document.querySelectorAll('input[type="radio"], textarea').forEach(el => {
+    el.addEventListener('change', updateProgress);
+    el.addEventListener('input', updateProgress);
+});
+
+function generateOutput() {
+    let output = "═══════════════════════════════════════\n";
+    output += "  PINNAI — DÉCISIONS DE BENOIT\n";
+    output += "  " + new Date().toLocaleString('fr-CA') + "\n";
+    output += "═══════════════════════════════════════\n\n";
+
+    const questions = document.querySelectorAll('.question');
+    questions.forEach(q => {
+        const num = q.dataset.q;
+        const title = q.querySelector('h3').textContent;
+        const radios = q.querySelectorAll('input[type="radio"]');
+        const custom = q.querySelector('textarea');
+        
+        let selected = "—";
+        radios.forEach(r => { if (r.checked) selected = r.value; });
+        
+        output += `Q${num}. ${title}\n`;
+        output += `   → ${selected}\n`;
+        if (custom && custom.value.trim()) {
+            output += `   💬 ${custom.value.trim()}\n`;
+        }
+        output += "\n";
+    });
+
+    output += "═══════════════════════════════════════\n";
+    output += "Envoie ce fichier à Botby sur Discord!\n";
+    
+    const el = document.getElementById('output');
+    el.style.display = 'block';
+    el.textContent = output;
+    document.getElementById('actions').style.display = 'block';
+    el.scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyToClipboard() {
+    const text = document.getElementById('output').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        alert('✅ Copié dans le presse-papier!');
+    });
+}
+
+function downloadFile() {
+    const text = document.getElementById('output').textContent;
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pinnai-decisions-' + new Date().toISOString().slice(0,10) + '.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
