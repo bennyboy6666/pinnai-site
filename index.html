@@ -129,7 +129,7 @@
         .lang-toggle { display: flex; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
         .lang-btn { padding: 0.35rem 0.75rem; background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
         .lang-btn.active { background: var(--accent-cyan); color: var(--bg-primary); }
-        .lang-fr { display: none; }
+        .lang-en { display: none; }
         /* === SCROLL-DRIVEN FRAME ANIMATIONS === */
         #hero-scroll-wrapper, #chaos-scroll-wrapper {
             background: #0a0b0f;
@@ -175,15 +175,15 @@
             <li><a href="#process" data-en="How it works" data-fr="Comment ça marche">How it works</a></li>
             <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
             <li class="lang-toggle">
-                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
             </li>
             <li><a href="#contact" class="btn btn-primary" data-en="Book a call &#8594;" data-fr="Réserver un appel &#8594;">Book a call &#8594;</a></li>
         </ul>
         <div class="mobile-nav">
             <div class="lang-toggle">
-                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
             </div>
             <a href="#contact" class="btn btn-primary" data-en="Book a call" data-fr="Réserver un appel">Book a call</a>
         </div>
@@ -335,6 +335,10 @@
             </ul>
             <p class="lang-fr" style="text-align:center;margin:0.5rem 0 0;"><strong style="color:var(--accent-cyan);font-size:1.05em;">Résultat : des projets hors de portée deviennent abordables</strong></p>
         </div>
+        <p style="text-align:center;color:var(--text-muted);font-size:0.9rem;margin-top:1rem;">
+            <span class="lang-en">Typical projects: <strong style="color:var(--text-secondary);">$15K – $75K</strong> before grants and credits.</span>
+            <span class="lang-fr">Projets typiques : <strong style="color:var(--text-secondary);">15K$ – 75K$</strong> avant subventions et crédits.</span>
+        </p>
         <div class="grants-cta">
             <a href="#contact" data-en="Ask us about funding options &#8594;" data-fr="Parlez-nous des options de financement →">Ask us about funding options &#8594;</a>
         </div>
@@ -455,7 +459,24 @@
             <span class="lang-en"><strong>From the factory floor to the cloud — engineering, software, infrastructure. No gaps.</strong></span>
             <span class="lang-fr"><strong>Du plancher d'usine jusqu'au cloud — ingénierie, logiciel, infrastructure. Zéro trou.</strong></span>
         </p>
-        <p class="team-breadth">
+
+        <!-- Social proof / credibility -->
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2.5rem;padding:1.5rem;background:rgba(34,211,238,0.03);border:1px solid var(--border-subtle);border-radius:12px;">
+            <div style="text-align:center;">
+                <div style="font-size:1.8rem;font-weight:700;color:var(--accent-cyan);">50+</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);" data-en="years combined experience" data-fr="années d'expérience combinées">years combined experience</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:1.8rem;font-weight:700;color:var(--accent-cyan);">🇨🇦</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);" data-en="100% Canadian team & hosting" data-fr="Équipe et hébergement 100% canadien">100% Canadian team & hosting</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:1.8rem;font-weight:700;color:var(--accent-cyan);">3</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);" data-en="engineers, not salespeople" data-fr="ingénieurs, pas des vendeurs">engineers, not salespeople</div>
+            </div>
+        </div>
+
+        <p class="team-breadth" style="margin-top:1.5rem;">
             <span class="lang-en"><strong>Deep roots in manufacturing, but we build for any industry.</strong></span>
             <span class="lang-fr"><strong>Des racines profondes dans le manufacturier, mais on bâtit pour toute industrie.</strong></span>
         </p>
@@ -651,7 +672,7 @@
 </script>
 
 <script>
-    let currentLang = localStorage.getItem('pinnai-lang') || 'en';
+    let currentLang = localStorage.getItem('pinnai-lang') || 'fr';
 
     function setLang(lang) {
         currentLang = lang;

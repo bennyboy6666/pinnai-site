@@ -126,7 +126,7 @@
         .lang-toggle { display: flex; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
         .lang-btn { padding: 0.35rem 0.75rem; background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
         .lang-btn.active { background: var(--accent-cyan); color: var(--bg-primary); }
-        .lang-fr { display: none; }
+        .lang-en { display: none; }
 
         /* RESPONSIVE */
         @media (max-width: 1024px) {
@@ -160,15 +160,15 @@
             <li><a href="#industries" data-en="Industries" data-fr="Industries">Industries</a></li>
             <li><a href="#integration" data-en="Integration" data-fr="Intégration">Integration</a></li>
             <li class="lang-toggle">
-                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
             </li>
             <li><a href="index.html#contact" class="btn btn-primary" data-en="Book a call →" data-fr="Réserver un appel →">Book a call →</a></li>
         </ul>
         <div class="mobile-nav">
             <div class="lang-toggle">
-                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
             </div>
             <a href="index.html#contact" class="btn btn-primary" data-en="Book a call" data-fr="Réserver un appel">Book a call</a>
         </div>
@@ -567,7 +567,7 @@
         <div class="cta-contact">
             <a href="index.html#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
             <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
-            <span class="contact-phone">(450) XXX-XXXX</span>
+            <a href="tel:+15142090384" style="color:var(--text-secondary);text-decoration:none;">(514) 209-0384</a>
         </div>
     </div>
 </section>
@@ -609,7 +609,7 @@
 </footer>
 
 <script>
-    let currentLang = localStorage.getItem('pinnai-lang') || 'en';
+    let currentLang = localStorage.getItem('pinnai-lang') || 'fr';
 
     function setLang(lang) {
         currentLang = lang;
