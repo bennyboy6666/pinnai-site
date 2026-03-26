@@ -88,6 +88,20 @@
         .logo-item { color: var(--text-secondary); font-weight: 500; font-size: 1.1rem; transition: color 0.2s; }
         .logo-item:hover { color: var(--accent-cyan); }
 
+        /* ACCORDIONS */
+        details.accordion-section { border: 1px solid var(--border-subtle); border-radius: 16px; overflow: hidden; margin-bottom: 2rem; background: var(--bg-surface); }
+        details.accordion-section > summary { cursor: pointer; padding: 1.5rem 2rem; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; transition: background 0.2s; }
+        details.accordion-section > summary::-webkit-details-marker { display: none; }
+        details.accordion-section > summary::marker { display: none; content: ''; }
+        details.accordion-section > summary:hover { background: rgba(34,211,238,0.05); }
+        details.accordion-section > summary h2 { font-size: 1.8rem; font-weight: 700; margin: 0; }
+        details.accordion-section > summary h2 img { width: 40px; height: 40px; vertical-align: middle; margin-right: 0.5rem; border-radius: 8px; }
+        details.accordion-section > summary .accordion-arrow { font-size: 1.5rem; color: var(--accent-cyan); transition: transform 0.3s ease; flex-shrink: 0; margin-left: 1rem; }
+        details.accordion-section[open] > summary .accordion-arrow { transform: rotate(180deg); }
+        details.accordion-section > summary + .accordion-body { padding: 0 2rem 2rem; }
+        .accordion-body { padding: 0 2rem 2rem; }
+        details.accordion-section[open] { border-color: var(--border-glow); box-shadow: 0 0 20px rgba(34,211,238,0.05); }
+
         /* SECTION ANCHORS */
         .section-anchor { display: block; height: 80px; margin-top: -80px; visibility: hidden; }
 
@@ -178,10 +192,13 @@
 <span class="section-anchor" id="manufacturing"></span>
 <section class="section">
     <div class="container">
-        <div class="section-header">
-            <h2 data-en="Manufacturing Software" data-fr="Software manufacturier"><img src="images/icon-manufacturing.png" style="width:40px;height:40px;vertical-align:middle;margin-right:0.5rem;border-radius:8px;">Manufacturing Software</h2>
-            <p class="subtitle" data-en="93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing." data-fr="93% des 14 000+ manufacturiers du Québec sont des PME. On bâtit les outils qui leur manquent.">93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing.</p>
-        </div>
+        <details class="accordion-section" open>
+            <summary>
+                <h2 data-en="Manufacturing Software" data-fr="Software manufacturier"><img src="images/icon-manufacturing.png">Manufacturing Software</h2>
+                <span class="accordion-arrow">▼</span>
+            </summary>
+            <div class="accordion-body">
+            <p class="subtitle" style="margin-bottom:2rem;" data-en="93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing." data-fr="93% des 14 000+ manufacturiers du Québec sont des PME. On bâtit les outils qui leur manquent.">93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing.</p>
         <div class="manufacturing-cards">
 
             <div class="feature-card" style="border: 1px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(34,211,238,0.1);">
@@ -322,6 +339,8 @@
             <p class="lang-en">Unlike traditional firms, we integrate AI from day one. Predictive maintenance, automatic optimization, real-time insights — at no extra cost.</p>
             <p class="lang-fr">Contrairement aux firmes traditionnelles, on intègre l'IA dès le départ. Maintenance prédictive, optimisation automatique, insights en temps réel — sans surcoût.</p>
         </div>
+            </div><!-- /.accordion-body -->
+        </details>
     </div>
 </section>
 
@@ -333,10 +352,13 @@
 <span class="section-anchor" id="ai"></span>
 <section class="section" style="background: var(--bg-surface);">
     <div class="container">
-        <div class="section-header">
-            <h2 data-en="AI Solutions" data-fr="Solutions IA"><img src="images/icon-ai.png" style="width:40px;height:40px;vertical-align:middle;margin-right:0.5rem;border-radius:8px;">AI Solutions</h2>
-            <p class="subtitle" data-en="Artificial intelligence isn't just for tech giants. We make it work for your reality." data-fr="L'intelligence artificielle n'est plus réservée aux géants tech. On la rend accessible à votre réalité.">Artificial intelligence isn't just for tech giants. We make it work for your reality.</p>
-        </div>
+        <details class="accordion-section">
+            <summary>
+                <h2 data-en="AI Solutions" data-fr="Solutions IA"><img src="images/icon-ai.png">AI Solutions</h2>
+                <span class="accordion-arrow">▼</span>
+            </summary>
+            <div class="accordion-body">
+            <p class="subtitle" style="margin-bottom:2rem;" data-en="Artificial intelligence isn't just for tech giants. We make it work for your reality." data-fr="L'intelligence artificielle n'est plus réservée aux géants tech. On la rend accessible à votre réalité.">Artificial intelligence isn't just for tech giants. We make it work for your reality.</p>
         <div class="ai-features">
 
             <div class="ai-card">
@@ -432,6 +454,8 @@
         </div>
 
         <!-- Context Engine section removed -->
+            </div><!-- /.accordion-body -->
+        </details>
     </div>
 </section>
 
@@ -445,10 +469,13 @@
 <span class="section-anchor" id="integration"></span>
 <section class="section" style="background: var(--bg-surface);">
     <div class="container">
-        <div class="section-header">
-            <h2 data-en="ERP &amp; Integration" data-fr="ERP et Intégration"><img src="images/icon-integration.png" style="width:40px;height:40px;vertical-align:middle;margin-right:0.5rem;border-radius:8px;">ERP &amp; Integration</h2>
-            <p class="subtitle" data-en="We integrate with your existing systems — ERP, CRM, databases, APIs." data-fr="On s'intègre à vos systèmes existants — ERP, CRM, bases de données, APIs.">We integrate with your existing systems — ERP, CRM, databases, APIs.</p>
-        </div>
+        <details class="accordion-section">
+            <summary>
+                <h2 data-en="ERP &amp; Integration" data-fr="ERP et Intégration"><img src="images/icon-integration.png">ERP &amp; Integration</h2>
+                <span class="accordion-arrow">▼</span>
+            </summary>
+            <div class="accordion-body">
+            <p class="subtitle" style="margin-bottom:2rem;" data-en="We integrate with your existing systems — ERP, CRM, databases, APIs." data-fr="On s'intègre à vos systèmes existants — ERP, CRM, bases de données, APIs.">We integrate with your existing systems — ERP, CRM, databases, APIs.</p>
         <div class="integration-logos">
             <div class="logo-item">Odoo</div>
             <div class="logo-item">SAP</div>
@@ -522,6 +549,8 @@
             </div>
 
         </div>
+            </div><!-- /.accordion-body -->
+        </details>
     </div>
 </section>
 
@@ -549,23 +578,31 @@
         <div class="footer-content">
             <div>
                 <a href="index.html" class="logo">pinn<span class="ai">AI</span></a>
-                <p class="lang-en" style="margin-top:1rem;color:var(--text-secondary);">Custom manufacturing software, powered by AI.</p>
-                <p class="lang-fr" style="margin-top:1rem;color:var(--text-secondary);">Software manufacturier sur mesure, propulsé par l'IA.</p>
+                <p style="margin-top:0.75rem;color:var(--text-secondary);font-size:0.9rem;">Beloeil, QC, Canada</p>
+                <p style="margin-top:0.5rem;color:var(--text-secondary);font-size:0.9rem;">
+                    <a href="mailto:info@pinnai.com" style="color:var(--accent-cyan);text-decoration:none;">info@pinnai.com</a>
+                </p>
+                <p style="margin-top:0.25rem;color:var(--text-secondary);font-size:0.9rem;">
+                    <a href="tel:+15142090384" style="color:var(--text-secondary);text-decoration:none;">(514) 209-0384</a>
+                </p>
+                <p style="margin-top:0.5rem;">
+                    <a href="https://linkedin.com/company/pinnai" target="_blank" rel="noopener" style="color:var(--accent-cyan);text-decoration:none;font-size:0.9rem;">LinkedIn ↗</a>
+                </p>
             </div>
-            <div class="footer-links">
+            <div class="footer-links" style="align-items:flex-start;flex-direction:column;gap:0.75rem;">
                 <a href="index.html" data-en="Home" data-fr="Accueil">Home</a>
                 <a href="index.html#services" data-en="Services" data-fr="Services">Services</a>
                 <a href="#manufacturing" data-en="Manufacturing" data-fr="Manufacturier">Manufacturing</a>
                 <a href="#ai" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</a>
-                <a href="#industries" data-en="Industries" data-fr="Industries">Industries</a>
+                <a href="#integration" data-en="Integration" data-fr="Intégration">Integration</a>
                 <a href="index.html#contact" data-en="Contact" data-fr="Contact">Contact</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 PinnAI inc. — Quebec, Canada</p>
+            <p>&copy; 2026 PinnAI. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#" data-en="Loi 25 Compliant" data-fr="Conforme Loi 25">Loi 25 Compliant</a>
                 <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+                <a href="#" data-en="Terms" data-fr="Conditions">Terms</a>
             </div>
         </div>
     </div>
