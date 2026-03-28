@@ -1,512 +1,793 @@
-# 🔍 Audit d'Intelligence Compétitive — PinnAI
+# Audit Intelligence Compétitif — PinnAI
+**Date:** Mars 2026  
+**Préparé par:** Analyse marketing & UX B2B Tech Québec  
+**Audience:** Co-fondateurs PinnAI (Benoit, Jeremy, Sébastien)
 
-**Date:** 28 mars 2026
-**Préparé pour:** Benoit Gagné, Co-fondateur PinnAI
-**Méthodologie:** Analyse comparative site web, messaging, SEO, UX, trust signals
-**Compétiteurs analysés:** Osedea, Chrono Innovation, Mapletech Labs
-**Note:** Vellgus (initialement identifié comme compétiteur) est une entreprise de **luminothérapie/red light therapy** — PAS un compétiteur AI/software. Exclu de l'analyse compétitive directe.
+> **Note préliminaire:** Le fichier `vellgus.com.md` correspond à une compagnie de thérapie à lumière rouge (produit wellness consommateur) — il n'est pas un compétiteur logiciel. Ce compétiteur a été exclu de l'analyse comparative directe, mais ses pratiques marketing B2C ont été notées là où elles peuvent inspirer PinnAI. L'analyse s'appuie donc principalement sur Osedea, Chrono Innovation et Mapletech Labs.
 
 ---
 
-## 1. Audit PinnAI — Forces et Faiblesses
+## §1 — Audit PinnAI : Forces et Faiblesses
 
-### 1.1 Messaging & Positionnement
+### 1.1 Messaging / Value Proposition
 
 #### ✅ Forces
-- **Positionnement PME clair:** "Le logiciel que vous avez toujours eu besoin. Enfin à votre portée." Parle directement aux PME qui pensaient que le custom software était hors budget.
-- **Angle IA + accessibilité:** Le message "L'IA a changé l'équation" est puissant et actuel. Ça démystifie l'IA pour les non-technos.
-- **Pricing transparent:** $15K–$75K affiché clairement. Très rare dans l'industrie. C'est un avantage différentiateur massif.
-- **Trois piliers clairs:** Software manufacturier, Solutions IA, Sprints IA — la segmentation des services est intuitive.
-- **Angle subventions/crédits R&D:** Mentionner RS&DE (30-64% remboursement) et PARI/Scale AI est stratégiquement brillant. Ça réduit la friction d'achat.
-- **Promesse de vitesse:** "~10 mois → ~10 semaines" — chiffre concret et crédible.
 
-#### ❌ Faiblesses
-- **Mélange FR/EN chaotique:** Le site est censé être bilingue, mais des phrases anglaises traînent partout dans la version française. Exemples: "Custom software used to be for the big guys", "How AI + grants change the math", "1 month → 1 week". C'est du **franglais amateur** qui tue la crédibilité.
-- **Hero headline trop générique:** "Le logiciel que vous avez toujours eu besoin" — c'est mieux que "Custom software powered by AI" mais ça ne dit pas POUR QUI ni QUEL problème. Un VP Opérations dans une usine devrait se reconnaître EN 3 SECONDES.
-- **Pas de tagline mémorable:** "pinnAI" est un bon nom, mais il manque un tagline court et punchant. Osedea a "innovative solutions", Chrono a "One home for everything you build". PinnAI n'a rien d'accroché au logo.
-- **Trop de promesses vagues:** "Comprend le contexte, prédit les problèmes, prend des décisions" — sans un seul exemple concret, ça sonne comme du bullshit marketing.
-- **Pas d'industrie nommée dans le hero:** Le manufacturing est la cible #1, mais il faut scroller pour le découvrir. Un prospect manufacturier qui arrive sur la landing page ne sait pas immédiatement que c'est pour lui.
+**La promesse centrale est forte et différenciante.**  
+"Le logiciel que vous avez toujours eu besoin. Enfin à votre portée." — c'est une accroche émotionnelle efficace qui cible exactement le sentiment de frustration des PME face aux solutions génériques. Elle positionne PinnAI comme un déblocage, pas juste un fournisseur.
 
-### 1.2 SEO (Meta, Structure, Keywords)
+**L'angle Loi 25 + hébergement canadien est un avantage rare et tangible.**  
+Dans le contexte québécois, c'est une vraie différenciation que les compétiteurs montréalais (Osedea, Chrono) n'exploitent pas aussi frontalement. Pour une PME manufacturière québécoise, c'est un argument de conformité réglementaire qui réduit le risque perçu.
+
+**La combinaison subventions + dev IA est une excellente tactique d'accessibilité.**  
+Mentionner RS&DE (30-64%), PARI et Scale AI directement dans le site est audacieux et efficace — ça transforme le coût perçu en investissement net. Aucun compétiteur analysé ne fait ça aussi explicitement.
+
+**Le focus manufacturier est précis et crédible.**  
+OEE, GMAO, contrôle qualité SPC, planification de production — ce lexique spécialisé prouve que PinnAI parle vraiment le langage de l'industrie. Les 16 ans de Benoit sur le plancher d'usine sont un actif rare.
+
+**La visualisation du gain de temps est impactante.**  
+"~10 mois → ~10 semaines" raconté phase par phase est une démonstration claire du ROI de vitesse. Simple, mémorable, comparatif.
+
+#### ⚠️ Faiblesses
+
+**La headline principale manque de spécificité sur la cible.**  
+"Le logiciel que vous avez toujours eu besoin" est généraliste. Un manufacturier qui arrive sur le site ne sait pas immédiatement que c'est pour lui. Comparer: Osedea dit "we empower manufacturing" dès le hero, Mapletech cible clairement les industries dans sa nav.
+
+**Le sous-titre hero mélange le FR et l'EN de façon maladroite.**  
+Voir la section 1.6 pour l'analyse bilingue détaillée.
+
+**Le mot "PinnAI" n'est pas expliqué.**  
+Le nom n'est jamais défini (Precision? Planning?). Pour une audience PME non-techno, c'est une occasion manquée d'ancrer le brand.
+
+**Absence totale de social proof.**  
+Zéro témoignage, zéro logo client, zéro chiffre de projets livrés. Pour une audience B2B qui engage $15K-$75K, c'est le gap le plus critique. Les compétiteurs affichent tous des preuves sociales en haut de page.
+
+**La section "Solutions IA" est trop technique.**  
+"Voix vers données", "Intelligence documentaire" — ces formulations ont du sens pour un ingénieur mais pas pour un directeur d'usine. Besoin de traductions en bénéfices business concrets.
+
+**Pas de page Blog/Ressources/Insights.**  
+Aucun contenu éducatif visible. Or les PME manufacturières québécoises qui cherchent "logiciel GMAO PME québec" ou "conformité Loi 25 logiciel" ne trouveront pas PinnAI via SEO sans contenu.
+
+**Aucune FAQ visible.**  
+Les questions naturelles (Suis-je trop petit? Combien de temps? Est-ce compatible avec mon ERP actuel?) sont sans réponse sur le site.
+
+---
+
+### 1.2 SEO — Meta, Titres, Structure
+
+#### ⚠️ Faiblesses critiques
+
+**Domaine temporaire GitHub Pages (bennyboy6666.github.io).**  
+Zéro autorité de domaine. Aucun backlink organique possible. Impossible de ranker sur quoi que ce soit tant que le vrai domaine pinnai.com n'est pas actif. *(Note: la consigne est de ne pas insister dessus — action déjà prévue.)*
+
+**Balises meta inconnues.**  
+Le fichier scrape ne contient aucune balise `<title>`, `<meta description>` ou balises Open Graph. Sur un site GitHub Pages, il est probable que ces éléments soient absents ou génériques.
+
+**Structure H1/H2 correcte mais non optimisée pour les mots-clés.**  
+- H1: "Le logiciel que vous avez toujours eu besoin. Enfin à votre portée." → Aucun mot-clé cible (logiciel manufacturier, développement logiciel sur mesure Québec, etc.)
+- H2 présents et bien structurés mais axés sur le storytelling plutôt que la recherche organique
+
+**Mots-clés cibles complètement absents du copy.**  
+Pas de: "développement logiciel sur mesure Québec", "logiciel manufacturier PME", "conformité Loi 25 logiciel", "GMAO intelligente", "intégration ERP Odoo SAP Québec".
+
+**Pas de schema markup visible.**  
+Pas de structured data pour l'entreprise locale, services, FAQ.
+
+**Zéro contenu long-form.**  
+Pas de blog, pas d'articles, pas de cas d'usage détaillés. Le SEO B2B se gagne avec du contenu éducatif.
+
+**La page `use-cases.html` existe mais son contenu n'est pas dans le scrape.**  
+Si elle est bien structurée, elle pourrait être un atout SEO — mais elle n'est pas liée depuis la nav principale de façon proéminente.
+
+---
+
+### 1.3 Design / UX
 
 #### ✅ Forces
-- **Structure H1/H2 présente:** Les sections sont bien titrées.
-- **Bilingue FR/EN:** Le site français-par-défaut est bon pour le SEO local québécois.
-- **Mots-clés pertinents présents:** "software manufacturier", "GMAO", "maintenance prédictive", "Loi 25", "hébergement canadien".
 
-#### ❌ Faiblesses — CRITIQUE
-- **Hébergé sur GitHub Pages (bennyboy6666.github.io):** C'est le problème SEO #1. C'est **FATAL**.
-  - Pas de domaine personnalisé pinnai.com visible
-  - URL "bennyboy6666" → zéro crédibilité professionnelle
-  - GitHub Pages = aucun contrôle sur les headers SEO avancés
-  - Pas de sitemap.xml généré
-  - Pas de robots.txt configuré
-- **Pas de balises meta visibles:** Aucune meta description, aucun Open Graph, aucun schema.org dans le scrape.
-- **Aucune page de blog/contenu:** Zéro articles. Zéro contenu indexable. Zéro long-tail keywords.
-- **Pas de pages par service:** Tout est sur une seule page (one-pager). Les compétiteurs ont des dizaines de pages dédiées par service, industrie, technologie.
-- **Aucun alt text visible sur les images** (potentiellement un problème d'accessibilité et SEO images).
-- **Pas de URL canoniques ni de hreflang** pour gérer le FR/EN proprement.
-- **Mots-clés manquants:** "développement logiciel sur mesure Québec", "consultant IA PME", "automatisation manufacturière", "ERP Québec", "logiciel usine".
+**Structure one-page épurée.**  
+Navigation claire: Services → Comment ça marche → À propos → Contact. Flux logique pour un visiteur découverte.
 
-### 1.3 Design & UX
+**Timeline visuelle phase par phase.**  
+La section processus (Découverte → Conception → Développement → Livraison) avec les avant/après de durée est visuellement efficace.
+
+**Section intégrations avec logos technos.**  
+Odoo, SAP, NetSuite, Azure, Zoho, Salesforce — ancre la crédibilité technique rapidement.
+
+**Section fondateurs avec photos et bios.**  
+C'est un différenciateur pour une petite firme. La transparence est un atout de confiance.
+
+#### ⚠️ Faiblesses
+
+**Aucune capture d'écran de produit / démo / prototype visible.**  
+Les images mentionnées (`uc-spreadsheet.webp`, `uc-assistant.webp`, `uc-erp-agent.webp`) sont des illustrations de cas d'usage. Il manque des mockups concrets de ce que PinnAI produit.
+
+**Pas de vidéo.**  
+Osedea, Chrono et même Mapletech misent sur la vidéo ou des animations pour démontrer. PinnAI n'a rien de visuel dynamique.
+
+**Mobile UX inconnue.**  
+Le scrape ne permet pas d'évaluer le responsive, mais sur GitHub Pages, il faut valider que les tableaux (intégrations) et la timeline restent lisibles sur mobile.
+
+**Aucune section "Comparaison" ou "Pourquoi PinnAI".**  
+Mapletech Labs a une grille comparative directe vs agences/freelances. Ça réduit la friction décisionnelle.
+
+**Le footer est minimal.**  
+Pas de liens vers ressources, blog, ou secteurs. Osedea a un footer riche qui booste aussi le SEO interne.
+
+---
+
+### 1.4 Trust Signals
 
 #### ✅ Forces
-- **Dark theme moderne:** Cohérent avec le positionnement tech/AI.
-- **Palette cyan/vert:** Se distingue des bleus corporatifs standards.
-- **Typographie Inter:** Propre, lisible, professionnelle.
-- **Images d'illustration pertinentes:** Les visuels de cas d'usage (spreadsheet → app, assistant IA, ERP agent) sont bien pensés.
-- **Timeline visuelle du processus:** Les étapes 1→2→3→4 avec les comparaisons de temps sont efficaces.
-- **Section fondateurs avec photos:** Humanise l'entreprise. Bon move.
 
-#### ❌ Faiblesses
-- **One-pager = UX limitée:** Pas de navigation profonde. Le prospect ne peut pas explorer par industrie, par service, par cas d'usage. C'est une brochure, pas un site.
-- **Pas de version mobile testée:** Impossible de vérifier le responsive, mais un one-pager dark theme avec beaucoup de texte peut être pénible sur mobile.
-- **Logos d'intégration sans liens:** Odoo, SAP, NetSuite, Azure, Zoho, Salesforce sont listés mais aucun détail sur les intégrations réelles. Ça donne l'impression de name-dropping.
-- **Aucune animation/interaction perceptible:** Le site semble statique comparé aux sites modernes avec micro-animations, parallax, etc.
-- **Footer minimal:** Pas de newsletter, pas de ressources, pas de liens sociaux visibles (juste LinkedIn mentionné).
+**Bios des fondateurs crédibles.**  
+Polytechnique, ÉTS, 16-17 ans d'expérience chacun, certifications Google Cloud — c'est du béton comme signal de compétence. La mention "pas des vendeurs, les vrais fondateurs prennent le call" est excellente.
 
-### 1.4 Contenu & Trust Signals
+**"50+ années d'expérience combinées"** et **"🇨🇦 Équipe et hébergement 100% canadien"** sont des stats mémorables et facilement scannable.
+
+**Loi 25 + serveurs canadiens.**  
+Signal de conformité unique dans le segment.
+
+#### ⚠️ Faiblesses critiques
+
+**Zéro témoignage client.**  
+C'est le manque le plus visible. Dans le B2B de services professionnels, les témoignages sont le signal de confiance #1.
+
+**Zéro logo client ou projet référencé.**  
+Même les compétiteurs moins établis (Chrono Innovation) affichent 4 témoignages nommés. Osedea montre 15+ logos de clients reconnus.
+
+**Zéro certification externe visible.**  
+Pas de SOC 2, pas de Clutch, pas d'ISO, pas de G2 reviews. Mapletech en a 9.
+
+**Politique de confidentialité et Conditions pointent vers `#` (liens morts).**  
+Pour un positionnement Loi 25, c'est une contradiction criante. Un audit de conformité basic révèlerait ce problème immédiatement.
+
+**Aucune mention de garantie, SLA, ou politique de support.**  
+"Votre software roule 24/7" (dans la bio de Sébastien) est une promesse mais pas une garantie formelle.
+
+---
+
+### 1.5 CTAs et Conversion Funnel
 
 #### ✅ Forces
-- **Fondateurs avec vrais backgrounds:** Polytechnique, ÉTS, SNC-Lavalin, Glencore, Google Cloud Architect — c'est crédible.
-- **50+ années d'expérience combinées:** Bon chiffre.
-- **"Avec Benoit, Jeremy et Sébastien — pas un vendeur":** Excellent positionnement anti-corporate.
-- **Loi 25 et hébergement canadien mentionnés:** Trust signal important pour les PME québécoises.
-- **Numéro de téléphone visible:** (514) 209-0384 — essentiel pour les PME.
 
-#### ❌ Faiblesses — SÉVÈRES
-- **ZÉRO témoignages clients:** C'est le trou le plus béant. Aucune citation, aucun logo client, aucune étude de cas. Les prospects n'ont AUCUNE preuve que PinnAI a déjà livré quoi que ce soit.
-- **ZÉRO études de cas (case studies):** Pas un seul projet documenté. Impossible de comprendre ce que PinnAI fait concrètement.
-- **ZÉRO logos de clients:** Osedea affiche Rio Tinto, Kruger, STM, Ubisoft, Desjardins. PinnAI n'affiche RIEN.
-- **Aucune certification visible:** Pas de SOC 2, pas d'ISO, pas de Google Partner, pas de AWS Partner.
-- **Aucune mention de méthodologie:** Agile? Scrum? RAD? Le prospect ne sait pas comment PinnAI travaille au-delà des 4 étapes macro.
-- **Pas de "Politique de confidentialité" réelle:** Les liens "Politique de confidentialité" et "Conditions" pointent vers "#" — c'est ILLÉGAL pour un site qui collecte des données (formulaire de contact) sous la Loi 25.
-- **Blog inexistant:** Aucun contenu de leadership d'opinion. Zéro articles sur l'IA, le manufacturing, la Loi 25.
+**CTA primaire clair et répété: "Réserver un appel".**  
+Il apparaît dans le header, le hero, la section contact. La friction est minimale.
 
-### 1.5 CTA (Calls to Action)
+**Le call est positionné comme "gratuit" et "avec les fondateurs".**  
+Deux leviers de conversion puissants — la gratuité réduit le risque perçu, et la promesse d'accès direct aux fondateurs (pas un vendeur) est très forte en B2B.
+
+**Formulaire de contact simple avec confirmation.**  
+Le message "✅ Message envoyé! On vous contacte dans les 24 heures." donne une attente claire.
+
+#### ⚠️ Faiblesses
+
+**Un seul CTA d'appel à l'action (le call).**  
+Pas d'étape intermédiaire pour les visiteurs pas encore prêts à parler. Options manquantes: télécharger un guide ("Guide Loi 25 pour PME"), voir une démo vidéo, s'inscrire à une newsletter. Le visiteur curious repart sans laisser de trace.
+
+**Pas de CTA de remarketing.**  
+Pas de pixel Meta/Google, pas de chat widget (Intercom, Tidio), pas de tracking pour recapturer les visiteurs.
+
+**"Explorer plus de possibilités →" et "Parlez-nous des options de financement →"** pointent vers le `#contact` — ces CTAs secondaires pourraient mener à des pages dédiées plus persuasives.
+
+**Aucune page de destination (landing page) pour des campagnes spécifiques.**  
+Ex: Une page "/loi-25" ciblant les PME en recherche de conformité, ou "/gmao" pour les manufacturiers.
+
+---
+
+### 1.6 Bilingue FR/EN : Qualité et Cohérence
 
 #### ✅ Forces
-- **"Réserver un appel découverte gratuit":** CTA clair et sans friction.
-- **"On vous répond en 24h":** Engagement de temps de réponse — bon.
-- **Multiple CTA répartis sur la page:** Header, hero, sections, footer — le formulaire est accessible.
 
-#### ❌ Faiblesses
-- **Un seul type de CTA:** Tout mène à "réserver un appel". Il n'y a aucune option pour un prospect pas encore prêt (télécharger un guide, s'inscrire à une newsletter, voir une démo vidéo, calculer un ROI).
-- **Pas de Calendly ou outil de booking intégré:** Le CTA dit "Réserver un appel" mais mène à un formulaire de contact. C'est une promesse brisée — "réserver" implique choisir un créneau.
-- **Pas de CTA secondaire:** Aucun "Téléchargez notre guide IA pour PME manufacturières" ou "Calculez vos économies". Le funnel est binaire: t'appelles ou t'es parti.
-- **Le formulaire de contact ne montre pas les champs:** Le scrape indique juste "Envoyer" — pas clair ce qui est demandé.
+**L'intention bilingue est présente.**  
+Toggle FR/EN dans le nav, et le contenu alterne les deux langues de façon consciente.
 
----
+**Certaines alternances créent de l'impact.**  
+Ex: "Custom software used to be for the big guys. Le software sur mesure, c'était pour les gros." — la répétition EN/FR donne un rythme et renforce le message.
 
-## 2. Analyse Compétiteurs — Ce qu'ils font de mieux
+#### ⚠️ Faiblesses importantes
 
-### 2.1 Osedea (osedea.com) — Montréal, AI + Custom Software
+**L'implémentation bilingue est incohérente et parfois confuse.**  
+De nombreux blocs sont affichés EN + FR simultanément sur la même page (pas derrière un switch), ce qui alourdit visuellement le contenu et crée une expérience de lecture brisée. Ex: la section subventions montre les deux versions en entier côte à côte.
 
-**Positionnement:** Firme d'innovation Canada. AI, custom software, robotique. Cible enterprise/mid-market (mining, manufacturing, health, finance, agri-food).
+**Le toggle FR/EN semble ne pas fonctionner comme une véritable traduction de page.**  
+Le comportement attendu (une page FR propre, une page EN propre) semble absent — les deux langues cohabitent dans le même DOM visible.
 
-#### 🏆 Ce qui marche bien
-- **Portfolio de clients MASSIF et crédible:** Rio Tinto, Kruger, STM, Ubisoft, Desjardins, Autodesk, CAE, McKesson, Université de Montréal. C'est un mur de confiance.
-- **Études de cas détaillées avec vraies photos:** Syensqo (mining digitization), Halo Dental (NLP + computer vision), Promark Electronics (AI manufacturing inspections), robot Spot dans le métro de Montréal.
-- **Témoignage client nommé:** "Partnering with Osedea on our Digital Mining journey has been very valuable" — Nicolas Renaud, Digital Business Transformation Director, Syensqo. Un VRAI nom, un VRAI titre, une VRAIE entreprise.
-- **Pages par industrie:** Manufacturing, Health, Mining, Finance, Agri-food — chaque vertical a sa propre landing page avec du contenu spécialisé.
-- **Blog actif (Insights):** Articles techniques crédibles ("10 game-changing AI insights for mastering agentic RAG", "How to select the perfect AI model"). Ça positionne Osedea comme thought leader.
-- **SOC 2 Type 2 certifié:** Mentionné clairement dans le footer. Trust signal majeur.
-- **Culture visible:** Page culture, programme "Elevate" pour le leadership, carrières. Ça montre une entreprise stable et sérieuse.
-- **Tags technologiques sur chaque projet:** Le prospect voit exactement quelles technos ont été utilisées (React, Python, GCP, etc.).
-- **Design clean, professionnel:** Light theme, images de qualité, navigation structurée.
-- **Bilingue FR/EN bien exécuté:** Chaque page a son équivalent français propre.
+**Le mix langue dans les bullets points est problématique.**  
+"• AI-powered development cuts costs by 3-4x vs traditional firms" suivi de "• Le développement propulsé par l'IA coûte 3-4x moins cher" dans la même section donne l'impression d'un brouillon non finalisé.
 
-#### 🎯 Éléments à voler/adapter
-1. **La grille de logos clients** avec descriptions courtes et tags technos.
-2. **Les pages par industrie** — PinnAI devrait avoir au minimum /manufacturing et /loi-25.
-3. **Le format d'études de cas:** Photo hero + problème + solution + technos + résultat.
-4. **Les témoignages avec noms et titres réels.**
-5. **Le blog technique** pour le SEO et le positionnement thought leader.
-6. **Le badge SOC 2** ou équivalent certification dans le footer.
+**Pour le marché québécois cible (PME manufacturières francophone),** une version française propre et prioritaire devrait être le défaut, avec l'anglais en option secondaire.
 
-#### ⚔️ Positionnement vs PinnAI
-Osedea est un **compétiteur direct mais plus gros et plus établi**. Ils visent l'enterprise/mid-market. PinnAI doit se différencier sur le créneau PME + pricing accessible. Osedea ne mentionne JAMAIS ses prix — c'est l'avantage de PinnAI.
+**"Software" non traduit.**  
+L'usage répété de "software" dans le texte français (même si courant au Québec) peut sembler inconsistant pour une audience PME traditionnelle.
 
 ---
 
-### 2.2 Chrono Innovation (chronoinnovation.com) — Montréal, AI + Software
+## §2 — Analyse Compétiteurs : Ce Qu'ils Font Mieux
 
-**Positionnement:** Plateforme tout-en-un. Builds IA par agents + crédits RS&DE automatisés + consulting. "One home for everything you build."
+### 2.1 Osedea (osedea.com) — Montréal, AI + Logiciel sur mesure
 
-#### 🏆 Ce qui marche bien
-- **Positionnement "plateforme" unique:** Chrono n'est pas juste une firme de services — ils ont des PRODUITS (Chrono R&D pour SR&ED automation, Launchpad pour builds IA).
-- **Pricing transparent et agressif:** "Ship Your AI MVP with Launchpad — 2 weeks. $9k. Production-ready." C'est un prix d'appel BRUTAL qui rend les $15K-$75K de PinnAI cher en comparaison.
-- **Navigation par catégorie Build/Scale/Operate:** Très bien structuré. Le prospect sait immédiatement où il se situe.
-- **"You pay for results, not hours":** Messaging anti-agence puissant.
-- **Témoignages avec noms réels:** Alex Gignac (Summer), Philippe Chartrand (Empego), Olivier Rivard (Ordigraphe), Maxime Theoret (QUOTUS). Quatre témoignages nommés.
-- **SOC 2 Type II + Trust Center:** Lien vers trust.chronoinnovation.com.
-- **Design moderne et clean:** Light theme, formes géométriques colorées, navigation claire.
-- **Angle SR&ED automation:** Leur produit "Chrono R&D" qui automatise la documentation RS&DE est un hook génial. Il résout un problème réel et coûteux.
-- **Account/Dashboard model:** "Create your Chrono account" → tout tes projets au même endroit. C'est un modèle sticky.
-- **Bilingue FR/EN:** Bien fait, pages séparées.
+#### Forces
 
-#### 🎯 Éléments à voler/adapter
-1. **L'offre "Sprint IA" avec prix fixe:** PinnAI mentionne les sprints IA mais sans prix concret. Mettre un prix d'appel.
-2. **L'automatisation RS&DE:** PinnAI mentionne les crédits R&D mais ne les automatise pas. Même juste un service de "on s'occupe de votre paperasse RS&DE" serait un hook.
-3. **Le format de témoignage:** Photo + nom + titre + entreprise + citation courte.
-4. **La structure Build/Scale/Operate:** Organiser les services par étape de maturité du client.
-5. **Le badge SOC 2 + Trust Center.**
-6. **"One relationship that compounds"** — le concept de relation qui s'enrichit avec le temps.
+**Portfolio de projets visuellement impeccable.**  
+Osedea expose 6+ projets détaillés avec photos pro (Kruger, STM, Halo Dental, Promark Electronics) incluant le nom du client, le challenge, et les technologies. Chaque projet est une landing page avec témoignage direct. C'est la machine à confiance la plus puissante du secteur.
 
-#### ⚔️ Positionnement vs PinnAI
-Chrono est le **compétiteur le plus dangereux**. Même marché (Montréal, AI, software), pricing similaire mais plus agressif ($9K), et ils ont des produits propres en plus des services. PinnAI doit se différencier sur la VERTICALE manufacturing et l'expertise terrain (16 ans en usine) que Chrono n'a pas.
+**Logos clients reconnus (15+) dont Desjardins, Rio Tinto, CAE, Ubisoft, Autodesk.**  
+Ces noms valident immédiatement la crédibilité auprès de tout client potentiel. Le signal "vous êtes en bonne compagnie" est explicite.
 
----
+**Certification SOC 2 Type 2 affichée dans le footer.**  
+C'est un signal de maturité opérationnelle pour les clients enterprise. Zéro concurrent local ne le mentionne aussi facilement.
 
-### 2.3 Mapletech Labs (mapletechlabs.ca) — Canada, Custom Software
+**Section Insights / Blog actif.**  
+Articles techniques signés par des membres de l'équipe (AI, robotique, design). Génère du trafic organique et établit l'expertise. Article récent dans La Presse = PR validé.
 
-**Positionnement:** Agence de développement full-service. "We Build Mobile Apps That Scale." 500+ projets, 150+ clients, global.
+**Pages Industries dédiées (Manufacturing, Health, Mining, Finance, Agri-food).**  
+Permet d'arriver sur osedea.com/industry/manufacturing et de voir du contenu parfaitement ciblé. SEO local puissant.
 
-#### 🏆 Ce qui marche bien
-- **Chiffres partout:** 500+ projets, 150+ clients, 99% satisfaction, 8 semaines MVP, 24/7 support. Même si certains sont probablement exagérés, l'effet volume est impressionnant.
-- **Fixed-price guarantee:** Gros trust signal. "No hourly billing, no scope creep charges — ever."
-- **Tableau comparatif "Why Choose Us":** Feature matrix Mapletech vs Traditional Agency vs Freelancer. Très efficace visuellement.
-- **9 certifications/awards affichés:** Clutch Top Generative AI 2026, SOC II, ISO, AWS Advanced Tier, Red Herring 100, Webby Honoree. Impressionnant même si certains sont douteux.
-- **SEO agressif:** Des dizaines de pages par service (iOS, Android, Flutter, Next.js, etc.), par industrie (FinTech, Healthcare, etc.), par localisation (Toronto, Vancouver, Calgary, Montréal...). C'est un bombardement SEO textbook.
-- **Code snippet dans le hero:** Le faux code TypeScript dans le header est un touch tech sympa qui parle aux décideurs techniques.
-- **Blog orienté SEO:** Articles comme "Top 10 SEO Companies in Canada (2026)", "Top 10 Unicorn Apps of 2026" — clairement du contenu SEO.
-- **5 étapes de processus:** Discovery → Design → Build → Launch → Scale. Bien détaillé avec timelines.
-- **Témoignages avec ratings:** 4.9/5 sur Clutch + citations nommées.
-- **NDA dès le jour 1:** Trust signal important.
+**Design premium.**  
+Site Webflow avec des animations, des photos de grande qualité et une identité visuelle forte. Première impression: firme établie, sérieuse.
 
-#### 🎯 Éléments à voler/adapter
-1. **Le tableau comparatif** PinnAI vs Firme traditionnelle vs Freelance vs Solution packagée (Excel/SaaS). Brillant pour positionner PinnAI.
-2. **La page "Comment on se compare"** — ça tue les objections avant qu'elles arrivent.
-3. **Les pages par localisation:** PinnAI devrait avoir une page "Développement logiciel Montréal" et "Consultant IA Rive-Sud" pour le SEO local.
-4. **La section FAQ structurée:** Questions réelles + réponses concises. Bon pour le SEO featured snippets.
-5. **Le processus en 5 étapes détaillé** avec durées précises à chaque étape.
-6. **Fixed-price guarantee** comme trust signal.
+**Bilingue natif FR/EN avec urls séparées.**  
+`osedea.com` (EN) et `osedea.com/fr` (FR) — deux expériences propres, pas de mix confus.
 
-#### ⚔️ Positionnement vs PinnAI
-Mapletech est une **agence généraliste à volume**. Ils font de tout (mobile, web, blockchain, gaming, AR/VR, marketing). C'est à l'opposé de PinnAI qui se spécialise. L'avantage de PinnAI: expertise sectorielle profonde vs un generalist qui fait "500+ projets". Mais Mapletech a un SEO infiniment supérieur et une machine à leads bien rodée.
+#### Faiblesses
+
+**Aucun pricing ou budget indicatif.**  
+Comme PinnAI, Osedea ne donne aucune indication de coût. La perception de "pour les grandes entreprises seulement" peut décourager les PME.
+
+**Pas de focus Loi 25.**  
+Malgré leur positionnement montréalais, pas de page dédiée à la conformité québécoise.
+
+**Zéro mention de subventions gouvernementales.**  
+L'angle RS&DE/PARI n'est pas exploité, contrairement à PinnAI.
+
+**Trop large géographiquement.**  
+Vise manufacturier, santé, mines, finance, agro-alimentaire. Le manque de focus peut rassurer les gros clients mais dilue pour les PME qui cherchent un spécialiste.
+
+#### 🎯 Ce que PinnAI devrait "voler"
+1. **Le format de portfolio projets** — même sans clients réels, démarrer avec 2-3 projets internes détaillés (démo GMAO, prototype dashboard OEE) présentés comme Osedea
+2. **La certification dans le footer** — obtenir SOC 2 ou à défaut afficher les certifications individuelles des fondateurs (Google Cloud Architect est déjà là)
+3. **Les pages Industries dédiées** — une page `/manufacturier` SEO-optimisée
+4. **Le style d'articles Insights** — un article de Benoit sur "Comment la Loi 25 impacte les PME manufacturières" pourrait ranker facilement
 
 ---
 
-### 2.4 Vellgus (vellgus.com) — ⚠️ EXCLU
+### 2.2 Chrono Innovation (chronoinnovation.com) — Montréal, AI
 
-**Verdict:** Vellgus est une entreprise de **luminothérapie (red light therapy)** qui vend des appareils physiques (sauna blankets, panneaux LED). Ce n'est **PAS** un compétiteur AI/software. Probablement une erreur d'identification.
+#### Forces
 
-**Ce qui est intéressant quand même à observer:**
-- **Excellent e-commerce UX:** Buy Now Pay Later, 30-day trial, FAQ exhaustive, comparaison de produits
-- **Trust signals e-commerce:** FDA registered, ETL certified, "Featured in Forbes, Good Morning America, People"
-- **Content marketing massif:** Blog avec des dizaines d'articles SEO health
-- **Le format de comparaison produits** est un template réutilisable
+**Modèle de service innovant et clairement articulé.**  
+La segmentation Build / Scale / Operate dans le menu est une architecture de service intelligente qui couvre tout le lifecycle d'un client. Le visiteur comprend immédiatement où il se situe dans son besoin.
 
----
+**"Launchpad": produit packagé à $9K en 2 semaines.**  
+C'est une proposition révolutionnaire pour la conversion: un point d'entrée à faible engagement, clairement prixy, avec une promesse forte. Le risque pour le client est minimal. Chrono crée ainsi un funnel à deux vitesses (produit d'appel → relation longue).
 
-## 3. Gaps Identifiés — Ce qui manque à PinnAI
+**Témoignages clients avec noms complets et titres.**  
+4 témoignages directs, nommés (Alex Gignac / Head of Engineering Summer, Philippe Chartrand / CEO Empego), avec attributions réelles. Petit mais très efficace.
 
-### 🔴 Gaps CRITIQUES (Impact immédiat sur la crédibilité et les leads)
+**Chrono R&D** — automatisation SR&ED (l'équivalent canadien de RS&DE).**  
+C'est un produit SaaS propriétaire qui génère de la valeur récurrente ET qui positionne Chrono comme expert en financement R&D. Stratégiquement brillant.
 
-| # | Gap | Sévérité | Compétiteur qui le fait |
-|---|-----|----------|------------------------|
-| 1 | **ZÉRO case studies / portfolios** | 🔴 CRITIQUE | Osedea (6+ détaillés), Mapletech (4+) |
-| 2 | **ZÉRO témoignages clients** | 🔴 CRITIQUE | Chrono (4 nommés), Osedea (1 nommé), Mapletech (3 nommés) |
-| 3 | **ZÉRO logos clients** | 🔴 CRITIQUE | Osedea (15+ logos enterprise) |
-| 4 | **Site sur GitHub Pages (bennyboy6666)** | 🔴 CRITIQUE | Tous ont un domaine pro |
-| 5 | **Liens "Politique de confidentialité" et "Conditions" cassés (#)** | 🔴 LÉGAL | Tous ont des pages légales réelles (surtout ironique pour une entreprise qui vend de la conformité Loi 25) |
-| 6 | **Mélange FR/EN dans le même texte** | 🔴 CRITIQUE | Osedea et Chrono ont des versions FR/EN séparées et propres |
+**Pricing public.**  
+Une page `/pricing` existe. Même si le contenu n'est pas dans le scrape, le simple fait d'avoir une page pricing réduit la friction et qualifie les prospects.
 
-### 🟠 Gaps IMPORTANTS (Limitent le growth et le SEO)
+**"You pay for results, not hours."**  
+Message de confiance très fort qui aligne les intérêts. PinnAI implique la même chose mais ne le dit pas aussi directement.
 
-| # | Gap | Impact | Compétiteur qui le fait |
-|---|-----|--------|------------------------|
-| 7 | **Aucun blog / contenu** | SEO mort | Osedea (articles techniques), Mapletech (blog SEO), Chrono (resources) |
-| 8 | **Aucune page par industrie** | Perte de leads ciblés | Osedea (5 industries), Mapletech (6 industries) |
-| 9 | **Aucune page par service** | Perte SEO massive | Mapletech (12+ catégories, 60+ sous-pages), Chrono (9 services détaillés) |
-| 10 | **Pas de certification visible** | Confiance réduite | Osedea (SOC 2 Type II), Chrono (SOC 2 Type II), Mapletech (SOC II + ISO + AWS) |
-| 11 | **Un seul type de CTA** (book a call) | Funnel trop narrow | Mapletech (contact + quote + call), Chrono (signup + contact + launchpad) |
-| 12 | **Pas de Calendly / booking intégré** | Friction au CTA | Standard de l'industrie |
+**Trust Center SOC 2 Type II.**  
+Lien vers `trust.chronoinnovation.com` — c'est une posture de transparence entreprise moderne.
 
-### 🟡 Gaps STRATÉGIQUES (Avantages compétitifs non exploités)
+#### Faiblesses
 
-| # | Gap | Opportunité manquée |
-|---|-----|---------------------|
-| 13 | **Pas de calculateur ROI / estimateur de prix** | Serait un lead magnet unique dans ce marché |
-| 14 | **Pas de vidéo / démo** | Aucun contenu vidéo pour expliquer l'offre |
-| 15 | **Pas de section FAQ** | Chrono et Mapletech ont des FAQs structurées — bon pour SEO |
-| 16 | **Pas de newsletter / lead magnet** | Aucun moyen de capturer un prospect "pas encore prêt" |
-| 17 | **Aucune présence sociale visible** (juste LinkedIn mentionné) | Pas de YouTube, pas de contenu social |
-| 18 | **Pas de page "Cas d'usage" détaillée** | Le lien "Explorer plus de possibilités" vers use-cases.html existe mais le contenu n'est pas dans le scrape |
-| 19 | **Aucune mention d'un processus qualité** | Agile? ISO? Test-driven? Rien |
-| 20 | **Pas de contenu spécifique Loi 25** | Mentionné comme badge mais pas expliqué — devrait être une landing page complète |
+**Moins de focus sur le marché québécois.**  
+Malgré être montréalais, Chrono vise clairement un marché anglophone (tout leur site est principalement EN, pas de focus Loi 25).
+
+**Pas de spécialisation sectorielle manufacturière.**  
+Chrono fait du logiciel généraliste, des agents IA, du recrutement. Pas de lexique manufacturier visible.
+
+**Le French est clairement secondaire.**  
+La page FR semble une traduction, pas une expérience native. Pour une PME québécoise, ça peut être rédhibitoire.
+
+**Aucune démo ou cas d'usage visuels concrets.**  
+Le site parle de ce qu'ils font mais ne montre pas de livrables réels.
+
+#### 🎯 Ce que PinnAI devrait "voler"
+1. **Un "sprint d'entrée" packagé** — PinnAI a déjà "Sprint IA — prototype fonctionnel en 2-4 semaines". Il faut en faire un PRODUIT avec nom, prix indicatif (ou fourchette), et page dédiée.
+2. **La formulation "you pay for results, not hours"** — adapter en français: "Vous payez pour le résultat, pas les heures."
+3. **La logique Build / Scale / Operate** — segmenter les services de PinnAI en phases du lifecycle client
+4. **L'alignement d'intérêts comme argument de vente** — "Nos intérêts pointent dans la même direction que les vôtres"
 
 ---
 
-## 4. Recommandations Prioritaires (TOP 10)
+### 2.3 Mapletech Labs (mapletechlabs.ca) — Canada, AI + Logiciel
 
-### #1 — 🔴 Déployer le site sur un vrai domaine avec hébergement pro
+#### Forces
 
-**Description:** Migrer de `bennyboy6666.github.io/pinnai-site` vers `pinnai.ca` (ou `pinnai.com`) sur un hébergement professionnel (Vercel, Netlify, ou hosting canadien pour la cohérence Loi 25).
+**Portfolio de chiffres impressionnants dès le hero.**  
+500+ projets, 150+ clients, 99% satisfaction, MVP en 8 semaines — ces métriques sont scannable en 2 secondes et créent une impression de volume et de fiabilité.
 
-**Pourquoi c'est important:** L'URL actuelle DÉTRUIT instantanément toute crédibilité. Un prospect qui voit "bennyboy6666" dans l'URL va fermer l'onglet. C'est aussi un désastre SEO — Google ne va jamais ranker un sous-domaine GitHub Pages pour "développement logiciel Québec".
+**Tableau comparatif direct vs concurrents.**  
+"Why Clients Choose Us Over the Alternatives" avec un tableau Feature / Mapletech Labs / Traditional Agency / Freelancer — c'est une technique de conversion puissante qui force la comparaison favorable. Simple mais dévastateur pour la concurrence.
 
-**Exemple compétiteur:** Tous (osedea.com, chronoinnovation.com, mapletechlabs.ca). C'est le minimum vital.
+**9 certifications / awards affichés.**  
+Clutch Top GenAI, AWS Advanced Tier, SOC II, ISO, Red Herring 100 — la légitimité institutionnelle est écrasante. Même si certaines sont contestables (Red Herring?), visuellement c'est très convaincant.
 
-**Effort estimé:** 🟢 2-4 heures. Acheter le domaine ($15/an) + configurer DNS + déployer. Si le site est déjà en HTML/CSS statique, c'est un déploiement trivial sur Vercel/Netlify.
+**Menu ultra-détaillé avec toutes les technologies.**  
+12 catégories de services avec 5 sous-pages chacune = ~60 pages de contenu potentiel. Machine SEO brutale.
 
----
+**Grille de témoignages avec noms, entreprises et métriques.**  
+"4.9 · 500+ reviews on Clutch" est un signal social externe crédible. Les témoignages incluent des résultats mesurables ("500K concurrent users", "10 weeks, zero bugs").
 
-### #2 — 🔴 Créer au minimum 2 études de cas
+**Fixed-Price Guarantee mise en avant comme différenciateur.**  
+Ils en font un pilier: "No hourly billing, no scope creep charges — ever." Répété dans le tableau comparatif, dans les badges, dans la FAQ.
 
-**Description:** Documenter 2-3 projets réels (même internes, même pro-bono, même fictionnalisés avec permission du client). Format: Problème → Solution → Résultat → Technos utilisées → Photo/screenshot.
+**FAQ détaillée** avec 6 questions/réponses qui anticipent les objections.
 
-**Pourquoi c'est important:** Sans preuve, les promesses du site sont du vent. Un prospect B2B manufacturier ne va JAMAIS signer un contrat de $15K-$75K sans voir ce que vous avez déjà livré. C'est le trust signal #1 dans les services B2B.
+#### Faiblesses
 
-**Exemple compétiteur:** Osedea documente Syensqo, Promark Electronics, Kruger avec détail. Chrono a des témoignages de Summer, Empego, QUOTUS.
+**Aucune connexion au marché québécois ou francophone.**  
+Mapletech vise clairement les marchés anglophones (Calgary, Toronto, London, Dubai). Zéro mention de Loi 25, zéro contenu FR.
 
-**Effort estimé:** 🟡 1-2 semaines. Contacter les clients existants, documenter les projets, prendre des screenshots, rédiger les études de cas.
+**Le "500+ projets" semble peu probable pour une firme de cette taille.**  
+Les logos technos affichés (Stripe, Shopify, Salesforce, Microsoft, Google Cloud) sont des partenaires technologiques, pas des clients — la mise en scène peut être trompeuse.
 
----
+**Trop généraliste.**  
+Mobile apps, web, AI, blockchain, AR/VR, jeux vidéo, WordPress... La crédibilité d'expertise est diluée.
 
-### #3 — 🔴 Corriger le mélange FR/EN et créer un vrai switch de langue
+**Pas de focus sectoriel manufacturier.**  
+Industries: FinTech, Healthcare, E-Commerce, Logistics, EdTech, Enterprise. Le manufacturier québécois n'est pas là.
 
-**Description:** Faire deux versions SÉPARÉES du site — une 100% française, une 100% anglaise — avec un toggle FR/EN propre et des URLs distinctes (pinnai.ca/fr et pinnai.ca/en).
+**UX très chargée.**  
+Le site est dense, avec beaucoup de sections, d'animations et de chiffres. Peut être perçu comme "trop gros" ou générique par une PME cherchant un partenaire de confiance de proximité.
 
-**Pourquoi c'est important:** Le mélange actuel de français et d'anglais dans le même paragraphe (ex: "Custom software used to be for the big guys.Le software sur mesure, c'était pour les gros.") est non professionnel et confus. Un prospect francophone voit de l'anglais et se demande si le site est fini. Un prospect anglophone voit du français et part.
-
-**Exemple compétiteur:** Osedea (osedea.com vs osedea.com/fr) et Chrono (chronoinnovation.com vs /fr) ont des versions séparées et propres.
-
-**Effort estimé:** 🟡 1-2 semaines. Ça implique de dupliquer tout le contenu et de traduire proprement chaque version.
-
----
-
-### #4 — 🔴 Créer les pages légales réelles (Politique de confidentialité + Conditions)
-
-**Description:** Rédiger et publier une vraie politique de confidentialité et des conditions d'utilisation. Les liens actuels pointent vers "#" — ce qui veut dire qu'ils n'existent pas.
-
-**Pourquoi c'est important:** C'est **illégal**. PinnAI se positionne comme expert en conformité Loi 25, mais son propre site n'a pas de politique de confidentialité fonctionnelle et collecte des données via un formulaire de contact. C'est l'équivalent d'un plombier avec des fuites chez lui. Si un prospect remarque ça, c'est un deal-breaker instantané.
-
-**Exemple compétiteur:** Osedea (page privacy complète + "We don't track your privacy in any way"), Chrono (Privacy Policy + Terms + Trust Center), Mapletech (Privacy + Terms + Cookies).
-
-**Effort estimé:** 🟢 2-4 heures. Utiliser un template légal canadien, l'adapter au contexte PinnAI, déployer.
-
----
-
-### #5 — 🟠 Ajouter des témoignages clients (même simples)
-
-**Description:** Obtenir au minimum 3-5 témoignages de clients, partenaires, ou contacts professionnels. Avec nom réel, titre, entreprise, et photo si possible.
-
-**Pourquoi c'est important:** Les témoignages sont le deuxième trust signal après les case studies. Ils répondent à la question "est-ce que quelqu'un d'autre fait confiance à ces gens?". Sans témoignage, PinnAI est un trio d'inconnus sur Internet.
-
-**Exemple compétiteur:** Chrono excelle ici avec 4 témoignages courts et percutants de vrais CEOs/CTOs.
-
-**Effort estimé:** 🟢 1-3 jours. Appeler les clients, demander 2 phrases et la permission d'utiliser leur nom.
+#### 🎯 Ce que PinnAI devrait "voler"
+1. **Le tableau comparatif "Pourquoi PinnAI vs alternatives"** — construire une grille: PinnAI vs Grande Firme / vs Consultant Indépendant / vs Solutions Cloud Génériques
+2. **Les métriques hero** — même sans 500 projets, afficher: "3 fondateurs, 50+ ans d'expérience, 10 semaines avg. de livraison"
+3. **La Fixed-Price Guarantee comme badge visible** — "Prix fixe garanti" avec explication
+4. **La FAQ** — PinnAI a besoin d'une FAQ robuste avec les vraies questions des PME manufacturières
 
 ---
 
-### #6 — 🟠 Passer du one-pager à un vrai site multi-pages
+### 2.4 Note sur Vellgus (vellgus.com)
 
-**Description:** Créer des pages séparées pour: Services (avec sous-pages), Industries (Manufacturing, etc.), Études de cas, À propos, Blog, Contact. Conserver la landing page comme portail.
+Vellgus est une compagnie de thérapie à lumière rouge (wellness B2C), **non un compétiteur logiciel**. Son inclusion dans les fichiers semble être une erreur. Son site ne présente aucun parallèle compétitif direct.
 
-**Pourquoi c'est important:** Un one-pager est acceptable pour un side project, pas pour une entreprise qui vend des contrats à $15K-$75K. Chaque page supplémentaire = une opportunité SEO, un meilleur parcours utilisateur, et une crédibilité accrue. Les compétiteurs ont entre 15 et 60+ pages.
-
-**Exemple compétiteur:** Mapletech a 60+ pages. Osedea a des pages par industrie, service, et projet. Chrono a des pages par solution.
-
-**Effort estimé:** 🔴 3-6 semaines. C'est un redesign significatif, mais c'est nécessaire.
+Observation marketing générale applicable: Vellgus excelle dans la **preuve par l'éducation** (FAQ dense, articles de blog très spécifiques, explications scientifiques) et dans les **partenariats affiliés** (clinic partners, gym partners). Ce modèle de contenu éducatif massif est directement transposable à PinnAI pour le SEO.
 
 ---
 
-### #7 — 🟠 Lancer un blog avec 5 articles stratégiques
+## §3 — Gaps Identifiés : Ce que PinnAI Rate vs la Compétition
 
-**Description:** Publier 5 articles fondamentaux ciblant les mots-clés et les préoccupations des PME manufacturières québécoises:
-1. "Comment la Loi 25 affecte votre usine (et comment s'y conformer)"
-2. "Combien coûte un logiciel sur mesure en 2026? Guide complet pour PME"
-3. "5 signes que votre usine a besoin d'un logiciel sur mesure (et pas un autre Excel)"
-4. "Crédits RS&DE et subventions IA: le guide PME manufacturières"
-5. "GMAO vs Excel: pourquoi votre maintenance mérite un vrai outil"
+### Gap #1 — Preuve sociale *(critique)*
+| Compétiteur | Preuve sociale |
+|-------------|----------------|
+| Osedea | 15+ logos clients reconnus, 6 case studies détaillés avec photos, témoignages dans les projets |
+| Chrono Innovation | 4 témoignages nommés avec titres |
+| Mapletech Labs | "500+ reviews Clutch 4.9", 3 témoignages avec métriques, grille de clients |
+| **PinnAI** | **0 témoignage, 0 logo client, 0 projet référencé** |
 
-**Pourquoi c'est important:** Le blog est le moteur SEO #1. Sans contenu, PinnAI n'existe pas sur Google. Les articles ciblent des mots-clés à haute intention d'achat et positionnent PinnAI comme expert sectoriel. Osedea et Mapletech génèrent du trafic organique grâce à leur contenu.
+**Impact:** Un prospect B2B qui engage $30K-$75K sans voir un seul client existant va qualifier PinnAI comme "risqué". C'est le gap le plus urgent à combler.
 
-**Exemple compétiteur:** Osedea a des articles techniques ("10 game-changing AI insights for mastering agentic RAG"), Mapletech a du contenu SEO agressif ("Top 10 SEO Companies in Canada").
+### Gap #2 — Contenu SEO / Blog
+| Compétiteur | Contenu |
+|-------------|---------|
+| Osedea | Blog actif, articles techniques signés, couverture médias (La Presse) |
+| Chrono Innovation | Section Resources, articles |
+| Mapletech Labs | Blog avec 3 articles visibles en homepage, case studies dédiés |
+| **PinnAI** | **0 article, 0 blog, 0 resource** |
 
-**Effort estimé:** 🟡 2-4 semaines pour les 5 articles. 1 article par semaine ensuite pour maintenir la cadence.
+**Impact:** PinnAI ne peut pas ranker organiquement sur ses mots-clés cibles sans contenu. Les PME manufacturières qui cherchent "logiciel GMAO PME Québec" ou "conformité Loi 25 PME" ne trouveront jamais PinnAI.
+
+### Gap #3 — Certifications et Signaux d'Autorité Institutionnelle
+| Compétiteur | Certifications |
+|-------------|----------------|
+| Osedea | SOC 2 Type 2 (footer), PR La Presse |
+| Chrono Innovation | SOC 2 Type II + Trust Center dédié |
+| Mapletech Labs | SOC II, ISO, AWS Advanced, Clutch x3, Red Herring |
+| **PinnAI** | **Google Cloud Architect (Sébastien, dans la bio seulement)** |
+
+**Impact:** Pour une PME qui confiait ses données opérationnelles, l'absence de certifications visible est un frein à la signature.
+
+### Gap #4 — Produit d'Entrée / Offre de Premier Engagement
+| Compétiteur | Point d'entrée |
+|-------------|----------------|
+| Chrono Innovation | Launchpad: $9K, 2 semaines, MVP production-ready |
+| Mapletech Labs | Programme MVP 8 semaines, Fixed-Price |
+| Osedea | Discovery call → scoping → engagement |
+| **PinnAI** | **Appel découverte (gratuit) → rien d'autre visible** |
+
+**Impact:** Le "Sprint IA" de PinnAI existe mais n'est pas packagé comme un produit avec une page, un prix indicatif, et une promesse claire. C'est un avantage latent non exploité.
+
+### Gap #5 — Pages Industries Dédiées
+| Compétiteur | Pages sectorielles |
+|-------------|-------------------|
+| Osedea | 5 pages industries avec content dédié (Manufacturing, Health, Mining...) |
+| Mapletech Labs | 6 pages industries avec case studies |
+| Chrono Innovation | Pas de pages industries mais services très structurés |
+| **PinnAI** | **0 page dédiée au secteur manufacturier, 0 page Loi 25** |
+
+**Impact:** Manque à gagner massif en SEO local. "Logiciel manufacturier PME Québec" est un mot-clé à très faible concurrence que PinnAI pourrait dominer avec une seule page bien écrite.
+
+### Gap #6 — Tableau Comparatif vs Alternatives
+Mapletech Labs et Chrono Innovation ont tous deux des éléments comparatifs. PinnAI n'explique jamais pourquoi choisir PinnAI plutôt que Odoo en self-service, ou un consultant indépendant, ou une grosse firme de conseil.
+
+### Gap #7 — Demo / Prototype Visible
+Tous les compétiteurs montrent des screenshots, des vidéos, ou des interfaces. PinnAI a des illustrations mais aucun aperçu de ce qu'une app livrée ressemble réellement. Pour une PME qui n'a jamais commandé de logiciel sur mesure, voir un exemple concret réduit l'anxiété d'achat.
+
+### Gap #8 — Liens Légaux Fonctionnels
+La politique de confidentialité et les conditions générales pointent vers `#` (liens morts). Pour une firme qui se positionne sur la **Loi 25 et la conformité**, c'est une contradiction directe et un risque de crédibilité immédiat.
+
+### Gap #9 — Canaux de Conversion Multiples
+PinnAI n'a qu'un seul CTA (appel découverte). Pas de:
+- Guide téléchargeable ("Les 5 erreurs à éviter avec la Loi 25")
+- Démo vidéo
+- Outil de diagnostic gratuit ("Êtes-vous conforme Loi 25?")
+- Newsletter / séquence email
+
+### Gap #10 — Présence Réseaux Sociaux
+LinkedIn est la seule présence sociale affichée. Les compétiteurs ont LinkedIn + YouTube (Osedea) ou LinkedIn + articles externes. Le référencement de la page LinkedIn de PinnAI est important mais non visible dans l'audit.
 
 ---
 
-### #8 — 🟠 Intégrer un outil de booking (Calendly/Cal.com)
+## §4 — Recommandations Prioritaires (TOP 10)
 
-**Description:** Remplacer le formulaire de contact par un vrai outil de prise de rendez-vous avec créneaux visibles. Le CTA dit "Réserver un appel" mais ne permet pas de réserver.
-
-**Pourquoi c'est important:** Chaque étape de friction entre "je suis intéressé" et "j'ai un rendez-vous" fait perdre des prospects. Un formulaire de contact ajoute 24-48h de délai. Un Calendly permet de booker sur-le-champ. C'est la norme dans le B2B tech en 2026.
-
-**Exemple compétiteur:** Standard de l'industrie. Mapletech dit "Book Free Call" et Chrono a un signup direct.
-
-**Effort estimé:** 🟢 1-2 heures. Créer un compte Cal.com (gratuit, open source), configurer les créneaux, intégrer le widget sur le site.
+### 🔴 Légende d'effort
+- **Effort faible** = moins d'une semaine, une personne
+- **Effort moyen** = 2-4 semaines, peut nécessiter un designer ou rédacteur
+- **Effort élevé** = 1-3 mois, implique développement, certifications, ou volume de contenu
 
 ---
 
-### #9 — 🟡 Créer une page dédiée Loi 25
+### #1 — Corriger les liens légaux + Lancer une vraie page Politique de Confidentialité
+**Impact: CRITIQUE | Effort: FAIBLE (quelques heures)**
 
-**Description:** Créer une landing page complète sur la conformité Loi 25: qu'est-ce que c'est, qui est concerné, quelles sont les obligations, comment PinnAI aide les PME à s'y conformer. Avec checklist téléchargeable.
+Les liens `Politique de confidentialité` et `Conditions` pointent vers `#`. Pour une firme qui se vend sur la conformité Loi 25, c'est une faute grave. Un prospect qui clique sur ces liens et voit un `#` perd immédiatement confiance — et potentiellement ne signe pas.
 
-**Pourquoi c'est important:** La Loi 25 est un des arguments de vente de PinnAI mais elle est à peine mentionnée (un badge "🇨🇦 Conforme Loi 25"). C'est une opportunité SEO massive — les PME québécoises cherchent activement "loi 25 obligations PME" et "conformité loi 25 logiciel". Si PinnAI rank pour ces requêtes, ça génère des leads qualifiés gratuitement.
-
-**Exemple compétiteur:** Aucun des compétiteurs n'exploite la Loi 25 à fond — c'est un avantage first-mover pour PinnAI.
-
-**Effort estimé:** 🟢 3-5 jours. Rédiger le contenu, créer la page, ajouter un lead magnet (checklist PDF).
-
----
-
-### #10 — 🟡 Ajouter un tableau comparatif et une section FAQ
-
-**Description:** Créer un tableau "PinnAI vs Firme traditionnelle vs Freelance vs SaaS générique" + une FAQ répondant aux 10 questions les plus fréquentes des prospects PME.
-
-**Pourquoi c'est important:** Le tableau comparatif de Mapletech est un des éléments les plus efficaces de leur site — il tue les alternatives avant que le prospect y pense. La FAQ est à la fois un outil de conversion (réponse aux objections) et un outil SEO (featured snippets Google).
-
-**Exemple compétiteur:** Mapletech (tableau comparatif + FAQ complète), Chrono (section "Why Chrono" comparative).
-
-**Effort estimé:** 🟢 2-3 jours. Identifier les questions, rédiger les réponses, designer le tableau.
+**Actions:**
+- Créer une vraie page `/politique-confidentialite` conforme Loi 25 (utiliser un générateur ou avocat)
+- Créer une page `/conditions-utilisation` de base
+- Bonus: Ajouter un bandeau "Notre site est conforme Loi 25" avec lien vers la politique
 
 ---
 
-## 5. Blueprint Amélioré
+### #2 — Construire 2-3 "Projets Internes" Présentés comme Portfolio
+**Impact: CRITIQUE | Effort: MOYEN (2-3 semaines)**
 
-### 5.1 Structure de site recommandée
+Sans clients, PinnAI peut montrer ce qu'elle est capable de livrer via des projets démo ou internes. Osedea le fait avec de vrais clients — PinnAI peut le faire avec des projets fictifs réalistes (ou des MVPs construits pour démontrer la capacité).
+
+**Actions:**
+- Construire un dashboard OEE fictif ("Démo — Manufacturier PME 150 employés") et le screenshot
+- Créer un prototype d'assistant IA sur données de maintenance
+- Présenter chaque démo avec: le problème, l'approche, les technologies, une capture d'écran, et le ROI estimé
+- Format: page `/projets` avec 2-3 cards détaillées, style Osedea
+
+**Message au visiteur:** "Pas encore de clients? Voici exactement ce qu'on livre."
+
+---
+
+### #3 — Créer une Page `/manufacturier` Optimisée SEO
+**Impact: ÉLEVÉ | Effort: MOYEN (1-2 semaines)**
+
+C'est l'opportunité SEO la plus accessible. Personne ne domine "logiciel manufacturier PME Québec" ou "GMAO intelligente PME Québec". Une page bien structurée sur ce thème peut ranker en 3-6 mois sur un nouveau domaine.
+
+**Actions:**
+- Titre H1: "Logiciel sur mesure pour les PME manufacturières du Québec"
+- Sous-sections: OEE, GMAO, Contrôle qualité, Intégration ERP
+- Inclure le lexique industriel: ISO, non-conformités, temps de cycle, SPC
+- Ajouter une FAQ "Questions des directeurs d'usine"
+- CTA: Appel découverte gratuit (30 min avec un ingénieur manufacturier)
+- Schema FAQ markup pour featured snippets Google
+
+---
+
+### #4 — Packager le Sprint IA comme Produit d'Entrée
+**Impact: ÉLEVÉ | Effort: FAIBLE (1 semaine)**
+
+PinnAI a déjà mentionné "Sprint IA — prototype fonctionnel en 2-4 semaines" mais c'est enterré dans une liste de services. Chrono Innovation a fait du Launchpad ($9K/2 semaines) un produit phare qui génère du volume de leads. PinnAI devrait faire pareil.
+
+**Actions:**
+- Créer une page `/sprint-ia` avec: promesse claire, ce qui est livré, durée, FAQ
+- Nommer le produit: "Sprint Découverte" ou "Proof of Concept en 3 semaines"
+- Décrire le livrable précis: un prototype fonctionnel + rapport ROI + plan d'implémentation
+- Ajouter un CTA distinct dans la nav: "Commencer avec un Sprint →"
+- Prix: ne pas mettre le montant, mais "Démarrer à partir de [fourchette]" ou juste "Obtenez un devis en 24h"
+
+---
+
+### #5 — Créer une Page `/loi-25` Dédiée
+**Impact: ÉLEVÉ | Effort: MOYEN (2 semaines)**
+
+C'est la carte maîtresse de PinnAI. Aucun compétiteur analysé ne l'exploite. La Loi 25 est une anxiété réelle pour les PME québécoises, et PinnAI a un positionnement naturel comme solution.
+
+**Actions:**
+- Titre: "Conformité Loi 25 pour les PME : ce que votre logiciel doit faire"
+- Contenu: Explication de la loi en langage simple, obligations des entreprises, comment le logiciel sur mesure aide
+- Section dédiée: "PinnAI et la Loi 25" — hébergement canadien, chiffrement des données, gestion des accès, journaux d'audit
+- Checklist téléchargeable: "10 questions à poser à votre fournisseur logiciel pour être conforme Loi 25"
+- Cette page peut aussi générer des leads via le formulaire
+
+---
+
+### #6 — Ajouter des Témoignages de Substitution (en attendant les vrais clients)
+**Impact: ÉLEVÉ | Effort: FAIBLE À MOYEN (1-2 semaines)**
+
+Sans clients, des alternatives crédibles existent:
+
+**Options:**
+- **Anciens collègues/employeurs:** Benoit (ex-VP DVolu), Jeremy (SNC-Lavalin, Glencore, ASC), Sébastien (Flinks, Deck) peuvent solliciter des recommandations de personnes avec qui ils ont travaillé — pas comme clients PinnAI mais comme validation de leur expertise et façon de travailler
+- **Preuves LinkedIn:** Screenshots ou citations de recommandations LinkedIn existantes
+- **Citations de l'industrie:** Si les fondateurs ont présenté à des événements, des citations de participants
+- **Partenaires technologiques:** Odoo, Google Cloud, etc. — "Partenaires certifiés" si applicable
+
+Format à éviter: témoignages inventés. Format recommandé: "Ce que disent les gens qui ont travaillé avec nos fondateurs"
+
+---
+
+### #7 — Réécrire le Hero avec un H1 Orienté Client Cible
+**Impact: MOYEN-ÉLEVÉ | Effort: FAIBLE (quelques heures)**
+
+Le titre actuel est inspirant mais généraliste. Un titre qui nomme la cible convertit mieux.
+
+**Proposition actuelle:** "Le logiciel que vous avez toujours eu besoin. Enfin à votre portée."
+
+**Propositions alternatives:**
+- "Logiciel sur mesure pour les PME manufacturières du Québec — livré en 10 semaines."
+- "Vos Excel, vos papiers, vos silences radio entre systèmes. On règle ça."
+- "De l'idée au logiciel en production : 10 semaines, pas 10 mois. Pour les PME du Québec."
+
+Le H1 peut rester poétique, mais le sous-titre (H2 ou paragraph sous le hero) doit immédiatement confirmer: PME manufacturières Québec + logiciel sur mesure + Loi 25.
+
+---
+
+### #8 — Ajouter un Tableau Comparatif "PinnAI vs Alternatives"
+**Impact: MOYEN | Effort: FAIBLE (quelques heures)**
+
+Mapletech Labs le fait, et c'est très efficace pour rassurer le prospect qui hésite.
+
+**Comparaison suggérée:**
+
+| Critère | PinnAI | Grande firme conseil | Consultant freelance | Solution cloud générique |
+|---------|--------|---------------------|---------------------|--------------------------|
+| Délai de livraison | ✅ 10 semaines | ❌ 10-18 mois | ⚠️ Variable | ✅ Immédiat |
+| Sur mesure | ✅ 100% | ✅ Oui | ✅ Oui | ❌ Non |
+| Prix accessible PME | ✅ Oui + subventions | ❌ Hors budget PME | ⚠️ Variable | ✅ Oui |
+| Conformité Loi 25 | ✅ Natif | ⚠️ À demander | ⚠️ Variable | ❌ Rarement |
+| Hébergement Canada | ✅ Garanti | ⚠️ Variable | ⚠️ Variable | ❌ Souvent US |
+| Connaissance manufacturière | ✅ Profonde | ⚠️ Généraliste | ⚠️ Variable | ❌ Aucune |
+| Support fondateurs direct | ✅ Oui | ❌ Account manager | ✅ Oui | ❌ Non |
+
+---
+
+### #9 — Lancer un Blog avec 3 Articles SEO Ciblés
+**Impact: ÉLEVÉ À LONG TERME | Effort: MOYEN (3-4 semaines)**
+
+Le SEO organique est un investissement à 6-12 mois. Commencer maintenant est critique.
+
+**3 articles prioritaires:**
+1. "Les 5 signes que votre PME manufacturière a besoin d'un logiciel sur mesure" — top funnel, large audience
+2. "Comment la Loi 25 impacte vos logiciels : guide pour les PME québécoises" — mid funnel, fort intent
+3. "Pourquoi l'IA rend le logiciel sur mesure accessible aux PME en 2026" — positionnement + SEO généraliste
+
+**Format:** 1200-1800 mots chacun, optimisé pour des requêtes locales + sémantiques. Signer avec la bio du fondateur pertinent.
+
+---
+
+### #10 — Activer la Certification Google Cloud Architect de Sébastien dans le Site
+**Impact: MOYEN | Effort: FAIBLE (quelques heures)**
+
+La certification Google Cloud Architect de Sébastien est enterrée dans sa bio. Elle devrait être:
+- Affichée comme badge visuel (Google fournit des badges officiels)
+- Mentionnée dans la section "Pourquoi PinnAI" ou dans la section cloud/intégrations
+- Accompagnée du logo Google Cloud Partner si PinnAI peut devenir partenaire (gratuit)
+
+Ajouter également: Si les fondateurs ont d'autres certifications (Polytechnique, ÉTS, certifications Odoo, Azure), les afficher visuellement.
+
+---
+
+## §5 — Blueprint Amélioré : Structure de Site Recommandée
+
+### Architecture de Navigation Recommandée
 
 ```
-pinnai.ca/
-├── / (Landing page — hero + value props + CTA)
+pinnai.com/
+├── (Homepage)
 ├── /services/
-│   ├── /logiciel-manufacturier (Détail: OEE, GMAO, qualité, planification)
-│   ├── /solutions-ia (Assistants IA, voix→données, maintenance prédictive)
-│   ├── /sprints-ia (Sprint 2-4 semaines, prix, processus)
-│   └── /integration-erp (Odoo, SAP, systèmes existants)
-├── /industries/
-│   ├── /manufacturier (Use cases spécifiques manufacturing)
-│   ├── /loi-25 (Conformité, checklist, services)
-│   └── /pme-quebec (Positionnement local)
-├── /realisations/ (Études de cas détaillées)
-│   ├── /cas-1-gmao-usine (Exemple réel ou fictionnalisé)
-│   ├── /cas-2-assistant-ia
-│   └── /cas-3-integration-erp
-├── /comment-ca-marche/ (Processus en 4 étapes détaillé)
-├── /prix/ (Transparence pricing — $15K-$75K + subventions)
-├── /subventions/ (Guide RS&DE, PARI, Scale AI)
-├── /blog/
-│   ├── Articles SEO (Loi 25, coût logiciel, GMAO, IA manufacturier)
-│   └── Guides pratiques
-├── /a-propos/ (Fondateurs, mission, valeurs, expertise)
-├── /contact/ (Formulaire + Calendly intégré)
-├── /politique-confidentialite/
-└── /conditions/
+│   ├── /manufacturier          ← Page SEO clé
+│   ├── /solutions-ia
+│   ├── /sprint-decouverte      ← Produit d'entrée packagé
+│   └── /integration-erp
+├── /loi-25/                    ← Page conformité dédiée
+├── /projets/                   ← Portfolio (démos internes)
+│   ├── /demo-oeematiere/
+│   ├── /demo-gmao-predictive/
+│   └── /demo-assistant-ia/
+├── /blog/                      ← SEO + thought leadership
+│   ├── /loi-25-pme-guide/
+│   ├── /logiciel-manufacturier-pme/
+│   └── /ia-accessible-pme-2026/
+├── /subventions/               ← Page RS&DE + PARI (unique vs compétiteurs)
+├── /a-propos/
+└── /contact/
 ```
-
-**Total: ~15-20 pages** (vs 1 actuellement, vs 60+ Mapletech, vs 15+ Osedea).
-
-### 5.2 Sections à ajouter sur la landing page
-
-1. **Bande de logos clients** — Même 3-4 logos suffisent. Avec mention "Ils nous font confiance".
-2. **Section témoignages** — Carrousel de 3-5 citations avec photo, nom, titre, entreprise.
-3. **Mini case study** — UN résumé de projet vedette avec photo, résultat chiffré, lien vers la page complète.
-4. **Tableau comparatif** — PinnAI vs alternatives (firme traditionnelle, freelance, SaaS).
-5. **Section FAQ** — 5-7 questions fréquentes (pricing, délais, sécurité, Loi 25).
-6. **Section "Vue dans"** — Si PinnAI a reçu de la couverture médiatique, mentionner les médias.
-7. **Badge certifications** — Google Cloud Partner, AWS Partner, ou toute certification pertinente.
-8. **Lead magnet secondaire** — "Téléchargez notre guide IA pour PME manufacturières" ou "Calculez vos économies".
-9. **Vidéo de présentation** — 60-90 secondes, les 3 fondateurs qui parlent au prospect. Ça humanise énormément.
-10. **Chiffres d'impact** — "X projets livrés", "X$ économisés pour nos clients", "Xh de réduction temps de cycle". Même des projections crédibles.
-
-### 5.3 Palette de couleurs — Suggestions
-
-La palette actuelle (dark theme + cyan/vert) est correcte mais pourrait être affinée:
-
-**Option A — Évolution du dark theme actuel (recommandé)**
-| Rôle | Couleur | Hex | Usage |
-|------|---------|-----|-------|
-| Background principal | Noir profond | `#0A0A0F` | Fond principal |
-| Background secondaire | Gris très sombre | `#13131A` | Cards, sections alternées |
-| Accent primaire | Cyan electric | `#00D4FF` | CTAs, liens, highlights |
-| Accent secondaire | Vert émeraude | `#10B981` | Badges succès, checkmarks |
-| Accent tertiaire | Ambre chaud | `#F59E0B` | Urgence, offres, prix |
-| Texte principal | Blanc cassé | `#F0F0F5` | Titres, body text |
-| Texte secondaire | Gris moyen | `#9CA3AF` | Descriptions, captions |
-
-**Note:** L'ambre ajouté comme accent tertiaire permet de créer de l'urgence et de la chaleur dans un dark theme qui peut sinon paraître froid et distant — important quand on vend à des PME manufacturières qui sont des gens pragmatiques, pas des tech bros.
-
-**Option B — Light theme professionnel (alternative)**
-Si PinnAI veut se rapprocher du look Osedea/Chrono (plus corporate, plus accessible):
-| Rôle | Couleur | Hex |
-|------|---------|-----|
-| Background | Blanc | `#FFFFFF` |
-| Accent | Bleu profond | `#1E40AF` |
-| Accent secondaire | Cyan | `#06B6D4` |
-| CTA | Orange vif | `#EA580C` |
-
-**Recommandation:** Rester sur le dark theme (Option A). Ça différencie PinnAI des compétiteurs (Osedea = light, Chrono = light, Mapletech = dark mais encombré). Le dark theme signale "tech, moderne, AI" — cohérent avec le positionnement.
-
-### 5.4 Messaging amélioré
-
-#### Hero — Version actuelle
-> "Le logiciel que vous avez toujours eu besoin. Enfin à votre portée."
-
-#### Hero — Version recommandée (Option 1 — Direct manufacturing)
-> **Votre usine mérite mieux qu'un fichier Excel.**
-> On bâtit le logiciel sur mesure qui remplace vos feuilles de calcul, automatise vos processus et rend votre production intelligente — en 10 semaines, pas en 10 mois.
-
-#### Hero — Version recommandée (Option 2 — Broader PME)
-> **Le software sur mesure n'est plus réservé aux grandes entreprises.**
-> L'IA a changé l'équation. On développe votre logiciel en semaines — pour une fraction du prix traditionnel.
-
-#### Tagline suggéré (sous le logo)
-- "Software intelligent pour PME manufacturières" (si focus manufacturing)
-- "Le logiciel sur mesure, enfin abordable" (si focus pricing)
-- "Ingénierie logicielle · Intelligence artificielle · PME" (descriptif)
-
-#### Sous-titres de section améliorés
-
-**Au lieu de:** "Ce qu'on bâtit"
-**Proposé:** "Des solutions qui remplacent vos outils brisés"
-
-**Au lieu de:** "De l'idée à l'impact en semaines, pas en mois"
-**Proposé:** "10 semaines: du premier appel au logiciel en production" (plus concret)
-
-**Au lieu de:** "Les fondateurs de PinnAI"
-**Proposé:** "Trois ingénieurs, 50 ans d'expérience combinée, zéro bullshit"
-
-**Au lieu de:** "Réservez un discovery call d'une heure — gratuit"
-**Proposé:** "30 minutes avec les fondateurs. Pas un vendeur. Pas de pitch. Vos questions, nos réponses." (réduire à 30min = moins intimidant, et clarifier l'anti-pitch)
 
 ---
 
-## Synthèse Exécutive
+### Blueprint Homepage Redessinée
 
-### PinnAI en un mot: **bon produit, site inachevé.**
-
-Le positionnement de PinnAI est **excellent sur papier**: niche PME manufacturière + IA + prix transparents + Loi 25 + subventions. C'est un créneau réel avec une demande réelle et peu de compétiteurs positionnés exactement pareil.
-
-**Le problème n'est pas le produit. Le problème est que le site ne vend pas ce produit.**
-
-Un prospect qui arrive sur le site actuel voit:
-- ❌ Un domaine "bennyboy6666.github.io" → pas sérieux
-- ❌ Du français mélangé avec de l'anglais → pas fini
-- ❌ Zéro preuve de réalisation → risqué
-- ❌ Zéro témoignage → pourquoi les croire?
-- ❌ Pas de politique de confidentialité → ironique pour une boîte Loi 25
-- ✅ Des fondateurs crédibles → ok, mais ça suffit pas
-- ✅ Un prix clair → bon, mais pour quoi exactement?
-
-### Classement de priorité absolue
+#### ZONE 1 — Hero (Above the fold)
+**Objectif:** Qualifier immédiatement le visiteur cible et communiquer la promesse unique
 
 ```
-SEMAINE 1:   Domaine + hébergement + pages légales (4-8h)
-SEMAINE 2-3: Fix FR/EN + Calendly + témoignages (1-2 semaines)
-SEMAINE 3-5: 2 études de cas + blog (3 premiers articles) (2-3 semaines)
-SEMAINE 5-8: Restructuration multi-pages + pages industries (3-4 semaines)
-MOIS 3+:     Blog continu + FAQ + calculateur ROI + optimisation SEO
+[Nav: PinnAI Logo | Manufacturier | Sprint IA | Loi 25 | Projets | Blog | Réserver →]
+
+H1: Logiciel sur mesure pour PME manufacturières — livré en 10 semaines.
+H2: Vos processus méritent mieux que des Excel et des solutions génériques.
+    PinnAI développe le logiciel que vous avez toujours eu besoin,
+    propulsé par l'IA, conforme Loi 25, hébergé au Canada.
+
+[CTA primaire: Réserver un appel gratuit →]  [CTA secondaire: Voir nos démos →]
+
+Badges de confiance: 🇨🇦 Serveurs Canada | ✅ Conforme Loi 25 | ⚡ Livraison en 10 semaines | 🤝 Fondateurs prennent le call
 ```
 
-### Le verdict brutal
+#### ZONE 2 — Logos / Preuves Sociales (Social Proof Bar)
+**Objectif:** Réduire l'anxiété immédiatement après le hero
 
-PinnAI a **l'expertise et le positionnement** pour dominer le marché PME manufacturière + IA au Québec. Mais le site actuel ressemble à un prototype de fin de semaine, pas à une entreprise qui demande $15K-$75K. Chaque jour sans les corrections critiques (#1 à #5) est un jour où des prospects qualifiés visitent le site, voient "bennyboy6666", et vont chez Chrono ou Osedea.
+```
+"Ce que disent les gens qui ont travaillé avec nos fondateurs"
+[Photo + Nom + Titre + Entreprise + Citation — ×3 minimum]
+--- ou si pas disponible ---
+"Technologies que nous intégrons: Odoo | SAP | Azure | Google Cloud | Salesforce..."
+"Certifications: 🏆 Google Cloud Architect | 🏆 [Autres certifs fondateurs]"
+```
 
-La bonne nouvelle: les correctifs les plus impactants sont aussi les plus rapides. Domaine + pages légales + Calendly = 1 journée de travail. Ça ne résout pas tout, mais ça arrête l'hémorragie.
+#### ZONE 3 — Problème / Solution
+**Objectif:** Résonner émotionnellement avec le visiteur cible
+
+```
+Trois vérités inconfortables pour les PME manufacturières:
+
+❌ "Vos processus ont été pliés pour rentrer dans des outils génériques."
+❌ "Vous perdez des données entre vos Excel, votre ERP et vos papiers."
+❌ "Votre logiciel actuel ne sait pas ce qui se passe sur votre plancher."
+
+✅ PinnAI construit le logiciel qui correspond à VOS processus — pas l'inverse.
+```
+
+#### ZONE 4 — Services / Ce qu'on bâtit
+**Objectif:** Montrer la profondeur du savoir-faire
+
+*(Conserver l'essentiel de la structure actuelle, mais ajouter des CTA vers les pages dédiées)*
+
+```
+[Manufacturier →] [Solutions IA →] [Sprint Découverte →]
+```
+
+#### ZONE 5 — Le Processus (conserver l'existant, c'est bon)
+**Objectif:** Démystifier le "comment ça marche"
+
+*(La section actuelle est efficace — juste ajouter des CTA clairs à la fin)*
+
+#### ZONE 6 — Subventions (conserver et améliorer)
+**Objectif:** L'argument d'accessibilité unique
+
+```
+RS&DE (30-64%) | PARI | Scale AI | Crédits Qc
+[Calculer mon aide potentielle →] ou [Parler des options →]
+```
+
+*Note: Les montants ($15K-$75K) sont intentionnellement absents — remplacer par "Voyez ce que les subventions peuvent faire pour votre projet"*
+
+#### ZONE 7 — Portfolio / Projets (NOUVEAU)
+**Objectif:** Montrer avant de vendre
+
+```
+"Ce qu'on est capable de livrer"
+[Card: Démo Dashboard OEE — PME 150 employés]
+[Card: Démo GMAO Intelligente — Maintenance prédictive]
+[Card: Démo Assistant IA — Documents techniques]
+[Voir tous les projets →]
+```
+
+#### ZONE 8 — Tableau Comparatif (NOUVEAU)
+**Objectif:** Éliminer les alternatives dans l'esprit du prospect
+
+```
+Pourquoi PinnAI plutôt que les alternatives ?
+[Tableau: PinnAI vs Grande firme vs Freelance vs Solution générique]
+```
+
+#### ZONE 9 — Les Fondateurs (conserver et enrichir)
+**Objectif:** Humaniser et établir la confiance ultime
+
+```
+[Photos + bios existantes — BIEN]
+Ajouter: Badges certifications visuels
+Ajouter: Bouton LinkedIn pour chaque fondateur
+Ajouter: "Votre call sera avec [Benoit ou Jeremy ou Sébastien], pas un vendeur."
+```
+
+#### ZONE 10 — FAQ (NOUVEAU)
+**Objectif:** Répondre aux objections avant le contact
+
+```
+Questions fréquentes:
+• Suis-je trop petit pour un logiciel sur mesure?
+• Combien de temps ça prend vraiment?
+• Est-ce compatible avec mon ERP actuel?
+• Comment la Loi 25 affecte-t-elle mon logiciel?
+• Comment fonctionnent les subventions?
+• Que se passe-t-il si je ne suis pas satisfait?
+```
+
+#### ZONE 11 — Contact (améliorer l'existant)
+**Objectif:** Maximiser la conversion finale
+
+```
+"Réservez votre appel découverte gratuit — 45 minutes avec Benoit, Jeremy ou Sébastien"
+
+[Formulaire existant — OK]
+
+Ajouter: Intégration Calendly pour booking direct
+Ajouter: Option "Pas encore prêt? Téléchargez notre guide Loi 25 →"
+```
 
 ---
 
-*Rapport produit le 28 mars 2026 — Audit d'intelligence compétitive PinnAI v1.0*
+### Messaging Recommandé par Page
+
+#### Homepage — Tagline principale
+> "Vos procédés, votre logiciel. Conforme Loi 25. Livré en 10 semaines."
+
+#### Page Manufacturier
+> "Vous connaissez votre plancher d'usine. Nous connaissons le logiciel qui peut le transformer."
+
+#### Page Sprint Découverte
+> "Un prototype fonctionnel en 3 semaines — pour voir avant de vous engager."
+
+#### Page Loi 25
+> "La Loi 25, ça concerne vos logiciels. Voici ce que vous devez savoir — et ce que PinnAI fait pour vous."
+
+#### Page Projets / Portfolio
+> "Voici ce qu'on livre. Pas des promesses — des démos."
+
+#### Page Subventions
+> "Le logiciel sur mesure que vous voulez est probablement moins cher que vous pensez."
+
+---
+
+### Recommandations Techniques Complémentaires
+
+1. **Migrer vers un vrai domaine (pinnai.com ou pinnai.ca)** — dès que possible pour l'autorité SEO
+2. **Implémenter les balises meta** — title, description, OG tags pour chaque page
+3. **Ajouter Google Analytics / Search Console** — tracking dès le lancement
+4. **Implémenter le schema markup** — LocalBusiness, Service, FAQ schemas
+5. **Vitesse de chargement** — tester sur PageSpeed, viser 90+ sur mobile
+6. **Chat widget** — Tidio (gratuit) ou Crisp pour capturer les visiteurs curieux sans call
+7. **LinkedIn Company Page active** — publier 1-2 posts/semaine sur les thèmes manufacturier + IA + Loi 25
+8. **Politique de cookies conforme** — banner RGPD/Loi 25 avec consentement réel
+
+---
+
+### Synthèse Exécutive
+
+**Ce que PinnAI fait bien et doit conserver:**
+- La promesse de livraison rapide (10 semaines vs 10 mois) — c'est du béton
+- Le positionnement subventions RS&DE + PARI — unique dans le marché
+- La transparence sur les fondateurs avec les vrais noms, photos, parcours
+- Le focus Loi 25 + hébergement canadien
+- Le lexique manufacturier spécifique (OEE, GMAO, SPC)
+
+**Ce que PinnAI doit construire en priorité:**
+1. Preuve sociale (démos internes comme portfolio, recommandations sur parcours)
+2. Contenu SEO (page manufacturier, page Loi 25, blog 3 articles)
+3. Sprint Découverte packagé comme produit
+4. Liens légaux fonctionnels (contradiction Loi 25 flagrante)
+5. FAQ et tableau comparatif
+
+**Position compétitive réelle:**
+PinnAI a des différenciateurs authentiques qu'aucun compétiteur n'a simultanément: **profondeur manufacturière québécoise + conformité Loi 25 native + subventions + fondateurs accessibles directement + vitesse de livraison IA**. C'est une niche défendable. Le site actuel ne la communique pas encore avec toute sa force — mais les ingrédients sont là.
+
+---
+
+*Rapport produit le 28 mars 2026 — Pour usage interne PinnAI uniquement*
