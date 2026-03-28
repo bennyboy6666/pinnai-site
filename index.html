@@ -187,34 +187,6 @@
         .approach-icon img { mix-blend-mode: lighten; }
         .approach-card h4 { color: var(--accent-cyan); margin-bottom: 0.75rem; font-size: 1.1rem; }
         .approach-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
-        /* === SPRINT IA SECTION === */
-        .sprint-section { background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
-        .sprint-card { background: var(--bg-card); border: 2px solid var(--accent-cyan); border-radius: 20px; padding: 3rem; max-width: 860px; margin: 0 auto; box-shadow: 0 0 50px rgba(34,211,238,0.08); }
-        .sprint-badge { display: inline-block; background: rgba(34,211,238,0.12); color: var(--accent-cyan); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; border: 1px solid rgba(34,211,238,0.3); margin-bottom: 1.25rem; }
-        .sprint-card h3 { font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .sprint-card .sprint-tagline { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem; }
-        .sprint-deliverables { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
-        .sprint-deliverable { background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem 1.5rem; }
-        .sprint-deliverable .sprint-del-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .sprint-deliverable h5 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
-        .sprint-deliverable p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-        .sprint-timeline { display: flex; align-items: center; gap: 0.5rem; color: var(--accent-cyan); font-weight: 600; font-size: 1rem; margin-bottom: 2rem; }
-        .sprint-cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-        .sprint-cta a.btn-sprint { background: var(--accent-cyan); color: var(--bg-primary); font-weight: 700; font-size: 1rem; padding: 0.85rem 2rem; border-radius: 10px; text-decoration: none; transition: all 0.2s; display: inline-block; box-shadow: 0 0 25px rgba(34,211,238,0.25); }
-        .sprint-cta a.btn-sprint:hover { box-shadow: 0 0 40px rgba(34,211,238,0.45); transform: translateY(-2px); }
-        .sprint-cta .sprint-note { color: var(--text-muted); font-size: 0.9rem; }
-
-        /* === NOS PROJETS SECTION === */
-        .projects-section { background: var(--bg-primary); }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .project-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 2rem; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; display: flex; flex-direction: column; }
-        .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); border-color: var(--border-glow); }
-        .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
-        .project-emoji { font-size: 2.25rem; line-height: 1; }
-        .project-internal-badge { display: inline-block; background: rgba(74,222,128,0.12); color: var(--accent-green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 20px; border: 1px solid rgba(74,222,128,0.3); white-space: nowrap; }
-        .project-card h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); }
-        .project-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; flex-grow: 1; }
-
         /* === SCROLL-DRIVEN FRAME ANIMATIONS === */
         #hero-scroll-wrapper, #chaos-scroll-wrapper {
             background: #0a0b0f;
@@ -240,9 +212,7 @@
             .nav-links { display: none; } .mobile-nav { display: flex; gap: 1rem; align-items: center; }
             .container { padding: 0 1rem; } .hero { padding: 6rem 0 4rem; } .hero h1 { font-size: 2.1rem; }
             .hero-ctas { flex-direction: column; align-items: center; }
-            .stats-grid, .services-grid, .ai-features, .grants-grid, .process-steps, .trust-cards, .projects-grid { grid-template-columns: 1fr; }
-            .sprint-deliverables { grid-template-columns: 1fr; }
-            .sprint-cta { flex-direction: column; align-items: flex-start; }
+            .stats-grid, .services-grid, .ai-features, .grants-grid, .process-steps, .trust-cards { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .cta-contact { flex-direction: column; }
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
@@ -396,55 +366,6 @@
 
 
 
-<!-- 4. SPRINT IA — Produit packagé -->
-<section id="sprint-ia" class="sprint-section section">
-    <div class="container">
-        <div class="section-header">
-            <h2 data-en="Not sure where to start with AI?" data-fr="Pas sûr par où commencer avec l'IA?">Pas sûr par où commencer avec l'IA?</h2>
-            <p class="subtitle" data-en="Start with a Sprint. Validate fast, invest smart." data-fr="Commencez avec un Sprint. Validez vite, investissez intelligemment.">Commencez avec un Sprint. Validez vite, investissez intelligemment.</p>
-        </div>
-        <div class="sprint-card">
-            <div class="sprint-badge"><span class="lang-fr">Produit d'entrée</span><span class="lang-en">Entry product</span></div>
-            <h3><span class="lang-fr">Sprint IA</span><span class="lang-en">AI Sprint</span></h3>
-            <p class="sprint-tagline">
-                <span class="lang-fr">Un prototype fonctionnel de votre idée IA — en 2 à 4 semaines. Pas un PowerPoint. Un vrai logiciel.</span>
-                <span class="lang-en">A working prototype of your AI idea — in 2 to 4 weeks. Not a deck. Real software.</span>
-            </p>
-
-            <div class="sprint-timeline">
-                <span>⚡</span>
-                <span><span class="lang-fr">Durée : 2 à 4 semaines</span><span class="lang-en">Duration: 2 to 4 weeks</span></span>
-            </div>
-
-            <div class="sprint-deliverables">
-                <div class="sprint-deliverable">
-                    <div class="sprint-del-icon">🚀</div>
-                    <h5 data-en="Live prototype" data-fr="Prototype live">Prototype live</h5>
-                    <p data-en="A real, deployable proof-of-concept you can show your team." data-fr="Un vrai prototype déployé que vous pouvez montrer à votre équipe.">Un vrai prototype déployé que vous pouvez montrer à votre équipe.</p>
-                </div>
-                <div class="sprint-deliverable">
-                    <div class="sprint-del-icon">📋</div>
-                    <h5 data-en="Technical report" data-fr="Rapport technique">Rapport technique</h5>
-                    <p data-en="Architecture decisions, limitations, and integration notes documented." data-fr="Décisions d'architecture, limites et notes d'intégration documentées.">Décisions d'architecture, limites et notes d'intégration documentées.</p>
-                </div>
-                <div class="sprint-deliverable">
-                    <div class="sprint-del-icon">🗺️</div>
-                    <h5 data-en="Next steps roadmap" data-fr="Roadmap des prochaines étapes">Roadmap des prochaines étapes</h5>
-                    <p data-en="A clear plan to scale from prototype to production, with priorities." data-fr="Un plan clair pour passer du prototype à la production, avec les priorités.">Un plan clair pour passer du prototype à la production, avec les priorités.</p>
-                </div>
-            </div>
-
-            <div class="sprint-cta">
-                <a href="#contact" class="btn-sprint" data-en="Start a Sprint →" data-fr="Lancer un Sprint →">Lancer un Sprint →</a>
-                <span class="sprint-note">
-                    <span class="lang-fr">Appel découverte gratuit · Aucun engagement</span>
-                    <span class="lang-en">Free discovery call · No commitment</span>
-                </span>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- 5. GRANTS / SUBVENTIONS -->
 <section id="grants" class="section">
     <div class="container">
@@ -474,73 +395,6 @@
         <!-- pricing removed -->
         <div class="grants-cta">
             <a href="#contact" data-en="Ask us about funding options &#8594;" data-fr="Parlez-nous des options de financement →">Parlez-nous des options de financement →</a>
-        </div>
-    </div>
-</section>
-
-<!-- 5b. NOS PROJETS — Portfolio interne -->
-<section id="projects" class="projects-section section">
-    <div class="container">
-        <div class="section-header">
-            <h2 data-en="What we're building" data-fr="Ce qu'on construit">Ce qu'on construit</h2>
-            <p class="subtitle" data-en="Our own products and internal demos — a preview of what's possible." data-fr="Nos propres produits et démos internes — un aperçu de ce qui est possible.">Nos propres produits et démos internes — un aperçu de ce qui est possible.</p>
-        </div>
-        <div class="projects-grid">
-
-            <!-- Contexo -->
-            <div class="project-card">
-                <div class="project-card-top">
-                    <div class="project-emoji">🧠</div>
-                    <span class="project-internal-badge">
-                        <span class="lang-fr">Projet interne</span>
-                        <span class="lang-en">Internal project</span>
-                    </span>
-                </div>
-                <h4>Contexo</h4>
-                <p>
-                    <span class="lang-fr">Capture de contexte sans friction pour les agents IA. Contexo permet aux agents de comprendre votre environnement de travail réel — sans configuration manuelle ni intégrations complexes.</span>
-                    <span class="lang-en">Frictionless context capture for AI agents. Contexo lets agents understand your real work environment — without manual setup or complex integrations.</span>
-                </p>
-            </div>
-
-            <!-- Tableau de bord OEE intelligent -->
-            <div class="project-card">
-                <div class="project-card-top">
-                    <div class="project-emoji">📊</div>
-                    <span class="project-internal-badge">
-                        <span class="lang-fr">Projet interne</span>
-                        <span class="lang-en">Internal project</span>
-                    </span>
-                </div>
-                <h4>
-                    <span class="lang-fr">Tableau de bord OEE intelligent</span>
-                    <span class="lang-en">Smart OEE Dashboard</span>
-                </h4>
-                <p>
-                    <span class="lang-fr">Dashboard temps réel pour le suivi de l'efficacité manufacturière (OEE). Détecte les anomalies, prédit les arrêts et suggère des actions correctives — directement depuis le plancher.</span>
-                    <span class="lang-en">Real-time dashboard for manufacturing efficiency tracking (OEE). Detects anomalies, predicts downtime and suggests corrective actions — straight from the shop floor.</span>
-                </p>
-            </div>
-
-            <!-- Assistant conformité Loi 25 -->
-            <div class="project-card">
-                <div class="project-card-top">
-                    <div class="project-emoji">🔒</div>
-                    <span class="project-internal-badge">
-                        <span class="lang-fr">Projet interne</span>
-                        <span class="lang-en">Internal project</span>
-                    </span>
-                </div>
-                <h4>
-                    <span class="lang-fr">Assistant conformité Loi 25</span>
-                    <span class="lang-en">Loi 25 Compliance Assistant</span>
-                </h4>
-                <p>
-                    <span class="lang-fr">Outil d'auto-évaluation et de suivi de conformité à la Loi 25. Génère un rapport de lacunes, priorise les actions et documente votre progression — pour les PME québécoises.</span>
-                    <span class="lang-en">Self-assessment and compliance tracking tool for Loi 25 (Quebec privacy law). Generates a gap report, prioritizes actions and documents your progress — for Quebec SMBs.</span>
-                </p>
-            </div>
-
         </div>
     </div>
 </section>
@@ -650,9 +504,9 @@
 <section class="section" style="padding:2rem 0;">
     <div class="container" style="text-align:center;">
         <div style="display:inline-block;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:12px;padding:1rem 2rem;">
-            <span style="font-size:1.3rem;margin-right:0.5rem;">🔒</span>
-            <span style="color:var(--accent-cyan);font-weight:600;font-size:0.95rem;" class="lang-en">Loi 25 compliant · We help you get compliant too</span>
-            <span style="color:var(--accent-cyan);font-weight:600;font-size:0.95rem;" class="lang-fr">Conforme Loi 25 · On vous aide à le devenir aussi</span>
+            <span style="font-size:1.3rem;margin-right:0.5rem;">🇨🇦</span>
+            <span style="color:var(--accent-cyan);font-weight:600;font-size:0.95rem;" class="lang-en">Loi 25 compliant · Canadian servers</span>
+            <span style="color:var(--accent-cyan);font-weight:600;font-size:0.95rem;" class="lang-fr">Conforme Loi 25 · Serveurs canadiens</span>
         </div>
     </div>
 </section>
