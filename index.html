@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PinnAI - Custom software, powered by AI.</title>
+    <title>PinnAI — Logiciel sur mesure, propulsé par l'IA</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="PinnAI conçoit des logiciels sur mesure pour les PME manufacturières grâce à l'IA. 3-5x plus rapide, conforme Loi 25, hébergement 100% canadien.">
+    <meta name="keywords" content="logiciel sur mesure, IA manufacturier, développement logiciel IA, PME Québec, Loi 25, GMAO, OEE, maintenance prédictive, ERP intégration">
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PinnAI — Logiciel sur mesure, propulsé par l'IA">
+    <meta property="og:description" content="Des logiciels sur mesure pour les PME manufacturières. 3-5x plus rapide que le dev traditionnel. Conforme Loi 25, hébergement canadien.">
+    <meta property="og:url" content="https://bennyboy6666.github.io/pinnai-site/">
+    <meta property="og:image" content="https://bennyboy6666.github.io/pinnai-site/images/og-preview.jpg">
+    <meta property="og:locale" content="fr_CA">
+    <meta property="og:locale:alternate" content="en_CA">
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PinnAI — Logiciel sur mesure, propulsé par l'IA">
+    <meta name="twitter:description" content="Des logiciels sur mesure pour les PME manufacturières. 3-5x plus rapide. 100% canadien.">
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "PinnAI",
+      "url": "https://bennyboy6666.github.io/pinnai-site/",
+      "description": "Logiciels sur mesure propulsés par l'IA pour les PME manufacturières",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Beloeil",
+        "addressRegion": "QC",
+        "addressCountry": "CA"
+      },
+      "email": "info@pinnai.com",
+      "telephone": "+15142090384",
+      "numberOfEmployees": "3",
+      "founder": [
+        { "@type": "Person", "name": "Benoit Gagné" },
+        { "@type": "Person", "name": "Jeremy Marsolais" },
+        { "@type": "Person", "name": "Sébastien Gauthier" }
+      ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -130,6 +168,24 @@
         .lang-btn { padding: 0.35rem 0.75rem; background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
         .lang-btn.active { background: var(--accent-cyan); color: var(--bg-primary); }
         .lang-en { display: none; }
+        /* === FAQ SECTION === */
+        .faq-grid { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; transition: border-color 0.2s; }
+        .faq-item:hover { border-color: var(--border-glow); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 600; font-size: 1.05rem; color: var(--text-primary); }
+        .faq-question:hover { color: var(--accent-cyan); }
+        .faq-chevron { font-size: 1.2rem; transition: transform 0.3s; color: var(--accent-cyan); }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .faq-answer-inner { padding: 0 1.5rem 1.25rem; color: var(--text-secondary); line-height: 1.75; }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        /* === APPROACH SECTION === */
+        .approach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .approach-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+        .approach-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .approach-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .approach-card h4 { color: var(--accent-cyan); margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .approach-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
         /* === SCROLL-DRIVEN FRAME ANIMATIONS === */
         #hero-scroll-wrapper, #chaos-scroll-wrapper {
             background: #0a0b0f;
@@ -381,6 +437,38 @@
     </div>
 </section>
 
+<!-- 6b. NOTRE APPROCHE — Pourquoi 3-5x plus rapide -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Why we're 3-5x faster" data-fr="Pourquoi on est 3-5x plus rapide">Pourquoi on est 3-5x plus rapide</h2>
+            <p class="subtitle" data-en="AI doesn't just help us code. It transforms every step of the process." data-fr="L'IA ne fait pas juste nous aider à coder. Elle transforme chaque étape du processus.">L'IA ne fait pas juste nous aider à coder. Elle transforme chaque étape du processus.</p>
+        </div>
+        <div class="approach-grid">
+            <div class="approach-card">
+                <div class="approach-icon">🤖</div>
+                <h4 data-en="AI-assisted coding" data-fr="Développement assisté par IA">Développement assisté par IA</h4>
+                <p data-en="Our engineers work alongside AI agents that generate, review and test code in real time. Less boilerplate, more business logic." data-fr="Nos ingénieurs travaillent avec des agents IA qui génèrent, révisent et testent le code en temps réel. Moins de boilerplate, plus de logique métier.">Nos ingénieurs travaillent avec des agents IA qui génèrent, révisent et testent le code en temps réel. Moins de boilerplate, plus de logique métier.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon">⚡</div>
+                <h4 data-en="Automated testing" data-fr="Tests automatisés dès le jour 1">Tests automatisés dès le jour 1</h4>
+                <p data-en="Every feature is automatically tested before delivery. Fewer bugs, faster iterations, reliable software from day one." data-fr="Chaque fonctionnalité est testée automatiquement avant livraison. Moins de bugs, des itérations rapides, un logiciel fiable dès le premier jour.">Chaque fonctionnalité est testée automatiquement avant livraison. Moins de bugs, des itérations rapides, un logiciel fiable dès le premier jour.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon">🎯</div>
+                <h4 data-en="Lean discovery" data-fr="Découverte allégée">Découverte allégée</h4>
+                <p data-en="No more 3-month requirements gathering. We prototype fast, iterate with your team, and build what actually matters." data-fr="Fini le cahier des charges de 3 mois. On prototype vite, on itère avec votre équipe, et on bâtit ce qui compte vraiment.">Fini le cahier des charges de 3 mois. On prototype vite, on itère avec votre équipe, et on bâtit ce qui compte vraiment.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon">🔒</div>
+                <h4 data-en="Security first" data-fr="Sécurité d'abord">Sécurité d'abord</h4>
+                <p data-en="Authentication, encryption, Loi 25 compliance — baked in from day one, not bolted on at the end." data-fr="Authentification, chiffrement, conformité Loi 25 — intégrés dès le jour 1, pas ajoutés à la fin.">Authentification, chiffrement, conformité Loi 25 — intégrés dès le jour 1, pas ajoutés à la fin.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- 7. CONNECT EVERYTHING -->
 <section class="section">
     <div class="container">
@@ -482,6 +570,83 @@
 
 <!-- Context Engine teaser removed -->
 
+<!-- 10b. FAQ -->
+<section id="faq" class="section" style="background: var(--bg-surface); border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-en="Frequently asked questions" data-fr="Questions fréquentes">Questions fréquentes</h2>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Combien coûte un projet sur mesure?</span>
+                    <span class="lang-en">How much does a custom project cost?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Chaque projet est unique. On commence toujours par un appel découverte gratuit pour comprendre vos besoins et vous donner une estimation réaliste. Grâce à l'IA, nos coûts sont 3-5x inférieurs aux firmes traditionnelles — et les subventions (RS&DE, PARI) peuvent couvrir une partie significative.</span>
+                    <span class="lang-en">Every project is unique. We always start with a free discovery call to understand your needs and give you a realistic estimate. Thanks to AI, our costs are 3-5x lower than traditional firms — and grants (SR&ED, IRAP) can cover a significant portion.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">C'est quoi la différence avec une firme de développement traditionnelle?</span>
+                    <span class="lang-en">What's the difference vs a traditional development firm?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Les firmes traditionnelles facturent à l'heure avec des équipes de 5-10 personnes. Nous, on est une équipe de 3 ingénieurs séniors augmentés par l'IA. Résultat : des livraisons en semaines au lieu de mois, avec la même qualité — et des fondateurs impliqués à chaque étape.</span>
+                    <span class="lang-en">Traditional firms bill hourly with teams of 5-10 people. We're a team of 3 senior engineers augmented by AI. Result: deliveries in weeks instead of months, same quality — with founders involved at every step.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Est-ce que mes données restent au Canada?</span>
+                    <span class="lang-en">Does my data stay in Canada?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Oui. On utilise exclusivement des serveurs canadiens. Vos données ne sortent jamais du pays. On est conformes à la Loi 25 du Québec et on vous accompagne dans votre propre conformité.</span>
+                    <span class="lang-en">Yes. We exclusively use Canadian servers. Your data never leaves the country. We're compliant with Quebec's Loi 25 and we help you with your own compliance.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Est-ce que ça marche juste pour le manufacturier?</span>
+                    <span class="lang-en">Does this only work for manufacturing?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Non! Le manufacturier est notre expertise principale, mais notre approche fonctionne pour toute PME qui a besoin de logiciels sur mesure — construction, logistique, services professionnels, et plus.</span>
+                    <span class="lang-en">No! Manufacturing is our main expertise, but our approach works for any SMB that needs custom software — construction, logistics, professional services, and more.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Je suis pas techno. C'est pour moi quand même?</span>
+                    <span class="lang-en">I'm not tech-savvy. Is this still for me?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Absolument. On traduit vos besoins d'affaires en solutions techniques. Vous nous parlez de vos problèmes, on s'occupe du reste. Les démos aux 2 semaines vous permettent de voir et valider à chaque étape.</span>
+                    <span class="lang-en">Absolutely. We translate your business needs into technical solutions. You tell us about your problems, we handle the rest. Bi-weekly demos let you see and validate at every step.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Qu'est-ce qui arrive après la livraison?</span>
+                    <span class="lang-en">What happens after delivery?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">On offre du support continu et de la maintenance. Votre logiciel évolue avec vos besoins. Vous n'êtes jamais « locked-in » — le code vous appartient.</span>
+                    <span class="lang-en">We offer ongoing support and maintenance. Your software evolves with your needs. You're never locked in — the code is yours.</span>
+                </div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- 11. FINAL CTA -->
 <section id="contact" class="final-cta">
     <div class="container">
@@ -528,6 +693,10 @@
                 <p style="margin-top:0.5rem;">
                     <a href="https://linkedin.com/company/pinnai" target="_blank" rel="noopener" style="color:var(--accent-cyan);text-decoration:none;font-size:0.9rem;">LinkedIn ↗</a>
                 </p>
+                <p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.8rem;">
+                    <span class="lang-fr">Fondée en 2026 · Beloeil, Québec</span>
+                    <span class="lang-en">Founded 2026 · Beloeil, Quebec</span>
+                </p>
             </div>
             <div class="footer-links" style="align-items:flex-start;flex-direction:column;gap:0.75rem;">
                 <a href="#services" data-en="Services" data-fr="Services">Services</a>
@@ -540,8 +709,8 @@
         <div class="footer-bottom">
             <p>&copy; 2026 PinnAI. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Politique de confidentialité</a>
-                <a href="#" data-en="Terms" data-fr="Conditions">Conditions</a>
+                <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Politique de confidentialité</a>
+                <a href="terms.html" data-en="Terms" data-fr="Conditions">Conditions</a>
             </div>
         </div>
     </div>
