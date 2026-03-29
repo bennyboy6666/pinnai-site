@@ -279,11 +279,7 @@
             <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Réservez un appel découverte gratuit</a>
             <a href="#services" class="btn btn-outline" data-en="See what we build" data-fr="Voir ce qu'on bâtit">Voir ce qu'on bâtit</a>
         </div>
-        <!-- HERO SCROLL ANIMATION -->
-        <div id="hero-scroll-wrapper" class="scroll-canvas-wrapper" style="position:relative;margin-top:1rem;margin-bottom:0.5rem;overflow:hidden;border:none;outline:none;background:transparent;">
-            <canvas id="heroCanvas" style="width:100%;height:35vh;display:block;"></canvas>
-            <noscript><img src="images/hero-frames/frame_0061.jpg" alt="PinnAI hero animation" style="width:100%;max-width:800px;margin:0 auto;display:block;"></noscript>
-        </div>
+        <!-- HERO SCROLL ANIMATION (disabled) -->
 
         <div class="stats-grid">
             <!-- 1. 40+ ANS — expand = fondateurs -->
@@ -809,16 +805,14 @@
             drawFrame(0);
         }
 
-        // Hero animation
-        // triggerAt:0.4 = starts when wrapper top reaches 40% from top of viewport
-        // scrollPx:300 = completes over 300px of scrolling
-        setupScrollAnimation({
-            canvasId: 'heroCanvas',
-            wrapperId: 'hero-scroll-wrapper',
-            basePath: 'images/hero-frames/',
-            useScrollY: true,
-            scrollPx: 300
-        });
+        // Hero animation (disabled)
+        // setupScrollAnimation({
+        //     canvasId: 'heroCanvas',
+        //     wrapperId: 'hero-scroll-wrapper',
+        //     basePath: 'images/hero-frames/',
+        //     useScrollY: true,
+        //     scrollPx: 300
+        // });
 
         // Chaos animation
         // triggerAt:0.8 = starts earlier (when wrapper enters bottom 20%)
