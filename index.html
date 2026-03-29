@@ -747,13 +747,16 @@
                     var wrapper = document.getElementById(config.wrapperId);
                     var wrapperRect = wrapper.getBoundingClientRect();
                     
-                    // triggerAt: fraction of viewport where animation starts
-                    //   1.0 = wrapper top at bottom of viewport (early)
-                    //   0.5 = wrapper top at middle of viewport
                     // scrollPx: total pixels of scrolling to complete animation
-                    var triggerAt = config.triggerAt !== undefined ? config.triggerAt : 0.5;
                     var scrollPx = config.scrollPx || (viewH * 0.6);
-                    var scrolled = viewH * triggerAt - wrapperRect.top;
+                    // For hero (top of page): use raw scrollY so frame 0 at top
+                    var scrolled;
+                    if (config.useScrollY) {
+                        scrolled = window.scrollY;
+                    } else {
+                        var triggerAt = config.triggerAt !== undefined ? config.triggerAt : 0.5;
+                        scrolled = viewH * triggerAt - wrapperRect.top;
+                    }
                     var progress = Math.max(0, Math.min(1, scrolled / scrollPx));
                     var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
 
@@ -781,7 +784,7 @@
             canvasId: 'heroCanvas',
             wrapperId: 'hero-scroll-wrapper',
             basePath: 'images/hero-frames/',
-            triggerAt: 0.4,
+            useScrollY: true,
             scrollPx: 300
         });
 
