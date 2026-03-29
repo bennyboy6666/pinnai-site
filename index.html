@@ -753,16 +753,13 @@
                     var rect = canvas.getBoundingClientRect();
                     var viewH = window.innerHeight;
 
-                    // Progress: 0 when canvas top reaches bottom of viewport
-                    // Progress: 1 when canvas bottom reaches top of viewport
-                    // This means animation plays across ~2x viewport heights as you scroll past
-                    var totalTravel = viewH + rect.height;
-                    var scrolled = viewH - rect.top;
+                    // Use wrapper position for stable scroll tracking
+                    var wrapper = document.getElementById(wrapperId);
+                    var wrapperTop = wrapper.getBoundingClientRect().top + window.scrollY;
                     
-                    // Animation starts at 30% of travel (canvas well visible) and completes at 70%
-                    var rawProgress = scrolled / totalTravel;
-                    var adjusted = (rawProgress - 0.2) / 0.4; // starts at 20%, ends at 60%
-                    var progress = Math.max(0, Math.min(1, adjusted));
+                    // Animation spans from page top (scrollY=0) to 3x viewport heights of scrolling
+                    var scrollRange = viewH * 3;
+                    var progress = Math.max(0, Math.min(1, window.scrollY / scrollRange));
                     var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
 
                     if (frameIdx !== currentFrameIndex) {
