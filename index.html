@@ -760,7 +760,7 @@
                     // Progress: 0 when wrapper top hits middle of viewport
                     // Progress: 1 when wrapper bottom leaves top of viewport
                     // Animation completes while the canvas is still visible
-                    var scrollRange = wrapperRect.height + viewH * 0.5;
+                    var scrollRange = wrapperRect.height + viewH * 0.2;
                     var scrolled = viewH * 0.5 - wrapperRect.top;
                     var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
                     var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
