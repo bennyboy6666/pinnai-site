@@ -314,12 +314,13 @@
                     </div>
                 </div>
             </div>
-            <!-- 2. 3-5X — expand = pourquoi (visual tiles) -->
+            <!-- 2. 3-5X + TIMELINE — merged into one tile -->
             <div class="stat-card" onclick="this.classList.toggle('expanded')">
                 <div class="stat-number" data-en="3-5x faster than traditional dev" data-fr="3-5x plus rapide que le dev traditionnel">3-5x plus rapide que le dev traditionnel</div>
-                <div class="stat-label" data-en="AI-assisted development, real results" data-fr="Développement assisté par IA, résultats réels">Développement assisté par IA, résultats réels</div>
+                <div class="stat-label" data-en="Deployed in weeks, not months" data-fr="Déployé en semaines, pas en mois">Déployé en semaines, pas en mois</div>
                 <div class="stat-expand-hint"><span class="lang-en">How?</span><span class="lang-fr">Comment?</span> <span class="stat-expand-arrow">▼</span></div>
                 <div class="stat-detail">
+                    <!-- Traditionnel vs PinnAI -->
                     <div class="mini-steps">
                         <div class="mini-step" style="opacity:0.6;">
                             <img src="images/icon-traditional.webp" alt="" style="width:56px;height:56px;border-radius:50%;margin:0 auto 0.5rem;display:block;border:2px solid var(--border-subtle);">
@@ -335,43 +336,38 @@
                             <p style="font-size:0.7rem;color:var(--text-secondary);" data-en="3 seniors + AI agents that code, test &amp; review 24/7" data-fr="3 séniors + agents IA qui codent, testent et révisent 24/7">3 séniors + agents IA qui codent, testent et révisent 24/7</p>
                         </div>
                     </div>
-                    <p style="text-align:center;margin-top:0.75rem;font-size:0.85rem;">
+                    <p style="text-align:center;margin-top:0.75rem;margin-bottom:1rem;font-size:0.85rem;">
                         <span style="color:var(--accent-cyan);font-weight:600;" data-en="Same quality. Fraction of the cost and time." data-fr="Même qualité. Fraction du coût et du temps.">Même qualité. Fraction du coût et du temps.</span>
                     </p>
-                </div>
-            </div>
-            <!-- 3. SEMAINES — expand = étapes -->
-            <div class="stat-card" onclick="this.classList.toggle('expanded')">
-                <div class="stat-number" data-en="Deployed in weeks, not months" data-fr="Déployé en semaines, pas en mois">Déployé en semaines, pas en mois</div>
-                <div class="stat-label" data-en="From first call to live software" data-fr="Du premier appel au logiciel en production">Du premier appel au logiciel en production</div>
-                <div class="stat-expand-hint"><span class="lang-en">See the timeline</span><span class="lang-fr">Voir les étapes</span> <span class="stat-expand-arrow">▼</span></div>
-                <div class="stat-detail">
-                    <div class="mini-steps">
-                        <div class="mini-step">
-                            <img src="images/icon-step-discover.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
-                            <h5 data-en="Discover" data-fr="Découverte">Découverte</h5>
-                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">1 mo</span><span class="lang-fr">1 mois</span></span> → <span class="lang-en">1 wk</span><span class="lang-fr">1 sem</span></p>
+                    <!-- Timeline: 10 mois → 10 semaines -->
+                    <div style="border-top:1px solid var(--border-subtle);padding-top:1rem;">
+                        <div class="mini-steps">
+                            <div class="mini-step">
+                                <img src="images/icon-step-discover.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
+                                <h5 data-en="Discover" data-fr="Découverte">Découverte</h5>
+                                <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">1 mo</span><span class="lang-fr">1 mois</span></span> → <span class="lang-en">1 wk</span><span class="lang-fr">1 sem</span></p>
+                            </div>
+                            <div class="mini-step">
+                                <img src="images/icon-step-design.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
+                                <h5 data-en="Design" data-fr="Conception">Conception</h5>
+                                <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">2 mo</span><span class="lang-fr">2 mois</span></span> → <span class="lang-en">2 wks</span><span class="lang-fr">2 sem</span></p>
+                            </div>
+                            <div class="mini-step">
+                                <img src="images/icon-step-build.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
+                                <h5 data-en="Build" data-fr="Développement">Dev</h5>
+                                <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">6 mo</span><span class="lang-fr">6 mois</span></span> → <span class="lang-en">6 wks</span><span class="lang-fr">6 sem</span></p>
+                            </div>
+                            <div class="mini-step">
+                                <img src="images/icon-step-launch.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
+                                <h5 data-en="Launch" data-fr="Livraison">Livraison</h5>
+                                <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">1 mo</span><span class="lang-fr">1 mois</span></span> → <span class="lang-en">1 wk</span><span class="lang-fr">1 sem</span></p>
+                            </div>
                         </div>
-                        <div class="mini-step">
-                            <img src="images/icon-step-design.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
-                            <h5 data-en="Design" data-fr="Conception">Conception</h5>
-                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">2 mo</span><span class="lang-fr">2 mois</span></span> → <span class="lang-en">2 wks</span><span class="lang-fr">2 sem</span></p>
-                        </div>
-                        <div class="mini-step">
-                            <img src="images/icon-step-build.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
-                            <h5 data-en="Build" data-fr="Développement">Dev</h5>
-                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">6 mo</span><span class="lang-fr">6 mois</span></span> → <span class="lang-en">6 wks</span><span class="lang-fr">6 sem</span></p>
-                        </div>
-                        <div class="mini-step">
-                            <img src="images/icon-step-launch.webp" alt="" style="width:48px;height:48px;border-radius:50%;margin:0 auto 0.4rem;display:block;border:2px solid var(--accent-cyan);">
-                            <h5 data-en="Launch" data-fr="Livraison">Livraison</h5>
-                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">1 mo</span><span class="lang-fr">1 mois</span></span> → <span class="lang-en">1 wk</span><span class="lang-fr">1 sem</span></p>
-                        </div>
+                        <p style="text-align:center;margin-top:0.75rem;font-size:0.85rem;color:var(--text-secondary);">
+                            <span class="lang-en">Total: <span style="text-decoration:line-through;color:var(--text-muted);">~10 months</span> → <strong style="color:var(--accent-cyan);">~10 weeks</strong></span>
+                            <span class="lang-fr">Total : <span style="text-decoration:line-through;color:var(--text-muted);">~10 mois</span> → <strong style="color:var(--accent-cyan);">~10 semaines</strong></span>
+                        </p>
                     </div>
-                    <p style="text-align:center;margin-top:0.75rem;font-size:0.85rem;color:var(--text-secondary);">
-                        <span class="lang-en">Total: <span style="text-decoration:line-through;color:var(--text-muted);">~10 months</span> → <strong style="color:var(--accent-cyan);">~10 weeks</strong></span>
-                        <span class="lang-fr">Total : <span style="text-decoration:line-through;color:var(--text-muted);">~10 mois</span> → <strong style="color:var(--accent-cyan);">~10 semaines</strong></span>
-                    </p>
                 </div>
             </div>
             <!-- 4. COMPLIANCE — expand = détails (visual tiles) -->
