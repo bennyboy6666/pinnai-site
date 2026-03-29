@@ -79,10 +79,29 @@
         .hero-punchy p { font-size: 1.15rem; color: var(--text-secondary); }
         .hero-ctas { display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 4rem; }
-        .stat-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: transform 0.2s, box-shadow 0.2s; }
+        .stat-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
         .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
         .stat-number { font-size: 1.25rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.5rem; }
         .stat-label { color: var(--text-secondary); font-size: 0.95rem; }
+        .stat-expand-hint { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--text-muted); font-size: 0.8rem; margin-top: 0.75rem; transition: color 0.2s; }
+        .stat-card:hover .stat-expand-hint { color: var(--accent-cyan); }
+        .stat-expand-arrow { font-size: 0.65rem; transition: transform 0.3s; }
+        .stat-card.expanded .stat-expand-arrow { transform: rotate(180deg); }
+        .stat-detail { display: none; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); animation: slideDown 0.3s ease; }
+        .stat-card.expanded .stat-detail { display: block; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .stat-detail .mini-team { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .stat-detail .mini-founder { text-align: center; flex: 1; min-width: 120px; }
+        .stat-detail .mini-founder img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent-cyan); margin-bottom: 0.5rem; }
+        .stat-detail .mini-founder h5 { font-size: 0.9rem; color: var(--accent-cyan); margin-bottom: 0.2rem; }
+        .stat-detail .mini-founder p { font-size: 0.75rem; color: var(--text-secondary); }
+        .stat-detail .mini-steps { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+        .stat-detail .mini-step { text-align: center; flex: 1; min-width: 100px; background: rgba(138,235,255,0.04); border-radius: 8px; padding: 0.75rem 0.5rem; }
+        .stat-detail .mini-step .step-num { background: var(--accent-cyan); color: var(--bg-primary); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; margin: 0 auto 0.4rem; }
+        .stat-detail .mini-step h5 { font-size: 0.8rem; margin-bottom: 0.2rem; }
+        .stat-detail .mini-step p { font-size: 0.7rem; color: var(--accent-cyan); }
+        .stat-detail .detail-text { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .stat-detail .detail-text strong { color: var(--text-primary); }
         .section-header { text-align: center; margin-bottom: 4rem; }
         .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
         .section-header .subtitle { font-size: 1.2rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto; }
@@ -269,22 +288,88 @@
         </div>
 
         <div class="stats-grid">
-            <div class="stat-card">
+            <!-- 1. 50+ ANS — expand = fondateurs -->
+            <div class="stat-card" onclick="this.classList.toggle('expanded')">
                 <div class="stat-number" data-en="50+ years experience · Founders first" data-fr="50+ ans d'expérience · Fondateurs d'abord">50+ ans d'expérience · Fondateurs d'abord</div>
-                <div class="stat-label" data-en="50+ combined years in manufacturing &amp; cloud infrastructure" data-fr="50+ ans combinés en projets manufacturiers et infrastructure cloud">50+ ans combinés en projets manufacturiers et infrastructure cloud</div>
-                <div class="stat-label" style="margin-top:0.25rem;" data-en="You talk to founders, not salespeople" data-fr="Vous parlez aux fondateurs, pas à des vendeurs">Vous parlez aux fondateurs, pas à des vendeurs</div>
+                <div class="stat-label" data-en="You talk to founders, not salespeople" data-fr="Vous parlez aux fondateurs, pas à des vendeurs">Vous parlez aux fondateurs, pas à des vendeurs</div>
+                <div class="stat-expand-hint"><span class="lang-en">See the team</span><span class="lang-fr">Voir l'équipe</span> <span class="stat-expand-arrow">▼</span></div>
+                <div class="stat-detail">
+                    <div class="mini-team">
+                        <div class="mini-founder">
+                            <img src="images/avatar-benoit.webp" alt="Benoit Gagné">
+                            <h5>Benoit Gagné</h5>
+                            <p data-en="Dev &amp; AI · 16 yrs manufacturing" data-fr="Dev et IA · 16 ans manufacturier">Dev et IA · 16 ans manufacturier</p>
+                        </div>
+                        <div class="mini-founder">
+                            <img src="images/avatar-jeremy.webp" alt="Jeremy Marsolais">
+                            <h5>Jeremy Marsolais</h5>
+                            <p data-en="Projects · M.Sc. · CSA, SNC-Lavalin" data-fr="Projets · M.Sc. · ASC, SNC-Lavalin">Projets · M.Sc. · ASC, SNC-Lavalin</p>
+                        </div>
+                        <div class="mini-founder">
+                            <img src="images/avatar-sebastien.webp" alt="Sébastien Gauthier">
+                            <h5>Sébastien Gauthier</h5>
+                            <p data-en="Cloud · 17 yrs · Google certified" data-fr="Cloud · 17 ans · Certifié Google">Cloud · 17 ans · Certifié Google</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
+            <!-- 2. 3-5X — expand = pourquoi -->
+            <div class="stat-card" onclick="this.classList.toggle('expanded')">
                 <div class="stat-number" data-en="3-5x faster than traditional dev" data-fr="3-5x plus rapide que le dev traditionnel">3-5x plus rapide que le dev traditionnel</div>
                 <div class="stat-label" data-en="AI-assisted development, real results" data-fr="Développement assisté par IA, résultats réels">Développement assisté par IA, résultats réels</div>
+                <div class="stat-expand-hint"><span class="lang-en">How?</span><span class="lang-fr">Comment?</span> <span class="stat-expand-arrow">▼</span></div>
+                <div class="stat-detail">
+                    <div class="detail-text">
+                        <p data-en="Traditional firms bill hourly with teams of 5-10 people. We're 3 seniors augmented by AI agents that code, test, and review 24/7." data-fr="Les firmes traditionnelles facturent à l'heure avec des équipes de 5 à 10 personnes. Nous sommes 3 séniors augmentés par des agents IA qui codent, testent et révisent 24/7.">Les firmes traditionnelles facturent à l'heure avec des équipes de 5 à 10 personnes. Nous sommes 3 séniors augmentés par des agents IA qui codent, testent et révisent 24/7.</p>
+                        <p style="margin-top:0.75rem;" data-en="Result: same quality, fraction of the cost and time." data-fr="Résultat : même qualité, fraction du coût et du temps.">Résultat : même qualité, fraction du coût et du temps.</p>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
+            <!-- 3. SEMAINES — expand = étapes -->
+            <div class="stat-card" onclick="this.classList.toggle('expanded')">
                 <div class="stat-number" data-en="Deployed in weeks, not months" data-fr="Déployé en semaines, pas en mois">Déployé en semaines, pas en mois</div>
                 <div class="stat-label" data-en="From first call to live software" data-fr="Du premier appel au logiciel en production">Du premier appel au logiciel en production</div>
+                <div class="stat-expand-hint"><span class="lang-en">See the timeline</span><span class="lang-fr">Voir les étapes</span> <span class="stat-expand-arrow">▼</span></div>
+                <div class="stat-detail">
+                    <div class="mini-steps">
+                        <div class="mini-step">
+                            <div class="step-num">1</div>
+                            <h5 data-en="Discover" data-fr="Découverte">Découverte</h5>
+                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">1 mo</span><span class="lang-fr">1 mois</span></span> → <span class="lang-en">1 wk</span><span class="lang-fr">1 sem</span></p>
+                        </div>
+                        <div class="mini-step">
+                            <div class="step-num">2</div>
+                            <h5 data-en="Design" data-fr="Conception">Conception</h5>
+                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">2 mo</span><span class="lang-fr">2 mois</span></span> → <span class="lang-en">2 wks</span><span class="lang-fr">2 sem</span></p>
+                        </div>
+                        <div class="mini-step">
+                            <div class="step-num">3</div>
+                            <h5 data-en="Build" data-fr="Développement">Dev</h5>
+                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">6 mo</span><span class="lang-fr">6 mois</span></span> → <span class="lang-en">6 wks</span><span class="lang-fr">6 sem</span></p>
+                        </div>
+                        <div class="mini-step">
+                            <div class="step-num">4</div>
+                            <h5 data-en="Launch" data-fr="Livraison">Livraison</h5>
+                            <p><span style="text-decoration:line-through;color:var(--text-muted);font-size:0.65rem;"><span class="lang-en">1 mo</span><span class="lang-fr">1 mois</span></span> → <span class="lang-en">1 wk</span><span class="lang-fr">1 sem</span></p>
+                        </div>
+                    </div>
+                    <p style="text-align:center;margin-top:0.75rem;font-size:0.85rem;color:var(--text-secondary);">
+                        <span class="lang-en">Total: <span style="text-decoration:line-through;color:var(--text-muted);">~10 months</span> → <strong style="color:var(--accent-cyan);">~10 weeks</strong></span>
+                        <span class="lang-fr">Total : <span style="text-decoration:line-through;color:var(--text-muted);">~10 mois</span> → <strong style="color:var(--accent-cyan);">~10 semaines</strong></span>
+                    </p>
+                </div>
             </div>
-            <div class="stat-card">
+            <!-- 4. COMPLIANCE — expand = détails -->
+            <div class="stat-card" onclick="this.classList.toggle('expanded')">
                 <div class="stat-number" data-en="Compliance-ready when you need it" data-fr="Conformité prête quand vous en avez besoin">Conformité prête quand vous en avez besoin</div>
                 <div class="stat-label" data-en="Loi 25 &amp; Canadian hosting &#183; Canada" data-fr="Loi 25 et hébergement canadien &#183; Canada">Loi 25 et hébergement canadien · Canada</div>
+                <div class="stat-expand-hint"><span class="lang-en">Learn more</span><span class="lang-fr">En savoir plus</span> <span class="stat-expand-arrow">▼</span></div>
+                <div class="stat-detail">
+                    <div class="detail-text">
+                        <p data-en="Your data stays in Canada — always. We deploy on Canadian cloud infrastructure (Google Cloud Montréal, AWS Canada)." data-fr="Vos données restent au Canada — toujours. On déploie sur infrastructure cloud canadienne (Google Cloud Montréal, AWS Canada).">Vos données restent au Canada — toujours. On déploie sur infrastructure cloud canadienne (Google Cloud Montréal, AWS Canada).</p>
+                        <p style="margin-top:0.75rem;" data-en="We know Loi 25, PIPEDA, and industry regulations. Compliance is built in from day one — not patched on later." data-fr="On connaît la Loi 25, LPRPDE et les réglementations de votre industrie. La conformité est intégrée dès le jour 1 — pas ajoutée après coup.">On connaît la Loi 25, LPRPDE et les réglementations de votre industrie. La conformité est intégrée dès le jour 1 — pas ajoutée après coup.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
