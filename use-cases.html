@@ -49,22 +49,17 @@
         .uc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .uc-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; }
         .uc-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
-        .uc-card-images { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
-        .uc-card-images::after { content: '→'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--accent-primary); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2; }
-        .uc-img-half { position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--bg-surface); }
-        .uc-img-half img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
-        .uc-card:hover .uc-img-half img { transform: scale(1.03); }
-        .uc-img-label { position: absolute; top: 8px; left: 8px; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; z-index: 1; }
-        .uc-img-label.before { background: #fecaca; color: #991b1b; }
-        .uc-img-label.after { background: #bbf7d0; color: #166534; }
-        .uc-card-image { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: var(--bg-surface); }
+        .uc-card-image { width: 100%; aspect-ratio: 16/10; overflow: hidden; background: var(--bg-surface); }
         .uc-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
         .uc-card:hover .uc-card-image img { transform: scale(1.03); }
         .uc-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
         .uc-card-header { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.6rem; }
         .uc-emoji { font-size: 1.4rem; line-height: 1; flex-shrink: 0; margin-top: 0.1rem; }
         .uc-card-title { font-size: 0.95rem; font-weight: 600; color: var(--accent-primary); line-height: 1.35; }
-        .uc-card-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+        .uc-card-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.75rem; }
+        .uc-card-features { list-style: none; padding: 0; margin: 0; flex: 1; }
+        .uc-card-features li { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; padding: 0.2rem 0 0.2rem 1.2rem; position: relative; }
+        .uc-card-features li::before { content: '✓'; position: absolute; left: 0; color: #16a34a; font-weight: 700; font-size: 0.75rem; }
         .cta-section { padding: 5rem 0; background: var(--bg-primary); text-align: center; border-top: 1px solid var(--border-subtle); }
         .cta-section h2 { font-size: 2.2rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 1rem; }
         .cta-section p { font-size: 1.1rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto 2rem; }
@@ -124,123 +119,153 @@
     <div class="container">
         <div class="uc-grid">
 
-            <!-- 1. Configurateur de vente — Meubles -->
+            <!-- 1. Configurateur de vente -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-01.jpg" alt="Avant: soumissions manuelles" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-01.jpg" alt="Après: configurateur sur tablette" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-01.jpg" alt="Configurateur de vente sur tablette" loading="lazy"></div>
                 <div class="uc-card-body">
-                    <div class="uc-card-header"><span class="uc-emoji">🪑</span><div class="uc-card-title"><span class="lang-fr">Configurateur de vente — Meubles</span><span class="lang-en">Sales Configurator — Furniture</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Votre vendeur est chez le client. Il choisit les dimensions, les matériaux, les finitions — et le prix se calcule en direct. Fini les 2 jours d'attente pour une soumission. Le client signe sur place.</span><span class="lang-en">Your rep is at the client's. They pick dimensions, materials, finishes — and the price calculates live. No more 2-day wait for a quote. The client signs on the spot.</span></p>
+                    <div class="uc-card-header"><span class="uc-emoji">🪑</span><div class="uc-card-title"><span class="lang-fr">Configurateur de vente</span><span class="lang-en">Sales Configurator</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Votre vendeur configure le produit chez le client. Le prix se calcule en direct — le client signe sur place.</span><span class="lang-en">Your rep configures the product at the client's. Price calculates live — the client signs on the spot.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Dimensions, matériaux, finitions en quelques clics</span><span class="lang-en">Dimensions, materials, finishes in a few clicks</span></li>
+                        <li><span class="lang-fr">Prix final instantané avec marges protégées</span><span class="lang-en">Instant final price with protected margins</span></li>
+                        <li><span class="lang-fr">Soumission PDF générée et envoyée sur place</span><span class="lang-en">PDF quote generated and sent on the spot</span></li>
+                        <li><span class="lang-fr">Fonctionne sur tablette, même hors-ligne</span><span class="lang-en">Works on tablet, even offline</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 2. Création de projets automatisée -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-02.jpg" alt="Avant: saisie manuelle de projets" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-02.jpg" alt="Après: projet créé automatiquement" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-02.jpg" alt="Création de projet automatisée" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">🤖</span><div class="uc-card-title"><span class="lang-fr">Création de projets automatisée</span><span class="lang-en">Automated Project Setup</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Vous uploadez une soumission signée. Le système pose 2-3 questions (deadline, priorité), puis crée le projet complet : tâches, étapes, heures estimées, responsables. Ce qui prenait une heure se fait en 2 minutes.</span><span class="lang-en">Upload a signed proposal. The system asks 2-3 questions (deadline, priority), then creates the full project: tasks, milestones, estimated hours, assignments. What took an hour now takes 2 minutes.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">Uploadez une soumission signée — le système crée le projet complet en 2 minutes au lieu d'une heure.</span><span class="lang-en">Upload a signed proposal — the system creates the full project in 2 minutes instead of an hour.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Extraction automatique des données du document</span><span class="lang-en">Automatic data extraction from the document</span></li>
+                        <li><span class="lang-fr">Tâches, étapes et heures estimées pré-remplies</span><span class="lang-en">Tasks, milestones and estimated hours pre-filled</span></li>
+                        <li><span class="lang-fr">Assignation des responsables selon les disponibilités</span><span class="lang-en">Team assignment based on availability</span></li>
+                        <li><span class="lang-fr">Connecté à vos outils existants</span><span class="lang-en">Connected to your existing tools</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 3. Facturation intelligente -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-03.jpg" alt="Avant: facturation manuelle" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-03.jpg" alt="Après: factures auto-générées" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-03.jpg" alt="Facturation intelligente" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">💰</span><div class="uc-card-title"><span class="lang-fr">Facturation intelligente</span><span class="lang-en">Smart Invoicing</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Le système connaît vos clients, vos prix, vos conditions. Il prépare les brouillons de factures automatiquement, connecté à vos outils existants (QuickBooks, Zoho, etc.). Vous validez et envoyez — c'est tout.</span><span class="lang-en">The system knows your clients, prices, and terms. It drafts invoices automatically, connected to your existing tools (QuickBooks, Zoho, etc.). You review and send — that's it.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">Le système prépare vos factures automatiquement. Vous validez et envoyez — c'est tout.</span><span class="lang-en">The system drafts your invoices automatically. You review and send — that's it.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Brouillons auto-générés à partir des bons de livraison</span><span class="lang-en">Auto-generated drafts from delivery slips</span></li>
+                        <li><span class="lang-fr">Clients, prix et conditions mémorisés</span><span class="lang-en">Clients, prices and terms remembered</span></li>
+                        <li><span class="lang-fr">Connecté à QuickBooks, Zoho, Sage et plus</span><span class="lang-en">Connected to QuickBooks, Zoho, Sage and more</span></li>
+                        <li><span class="lang-fr">Suivi des paiements et rappels automatiques</span><span class="lang-en">Payment tracking and automatic reminders</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 4. Tableau de bord en temps réel -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-04.jpg" alt="Avant: données éparpillées" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-04.jpg" alt="Après: tableau de bord unifié" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-04.jpg" alt="Tableau de bord en temps réel" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">📊</span><div class="uc-card-title"><span class="lang-fr">Tableau de bord en temps réel</span><span class="lang-en">Real-Time Dashboard</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Où en sont mes commandes? Qui est en retard? Quel projet est rentable? Un seul écran connecté à tous vos systèmes. Fini de chercher dans 3 fichiers Excel pour avoir une réponse.</span><span class="lang-en">Where are my orders? Who's behind? Which project is profitable? One screen connected to all your systems. No more digging through 3 spreadsheets for one answer.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">Un seul écran pour tout savoir. Fini de chercher dans 3 fichiers Excel pour une réponse.</span><span class="lang-en">One screen to know everything. No more digging through 3 spreadsheets for one answer.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Statut des commandes et livraisons en direct</span><span class="lang-en">Live order and delivery status</span></li>
+                        <li><span class="lang-fr">Rentabilité par projet, client ou produit</span><span class="lang-en">Profitability by project, client or product</span></li>
+                        <li><span class="lang-fr">Alertes automatiques sur les retards</span><span class="lang-en">Automatic alerts on delays</span></li>
+                        <li><span class="lang-fr">Connecté à tous vos systèmes en une vue</span><span class="lang-en">Connected to all your systems in one view</span></li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- 5. Guide de procédures -->
+            <!-- 5. Guide de procédures interactif -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-05.jpg" alt="Avant: cartable de procédures" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-05.jpg" alt="Après: guide interactif sur tablette" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-05.jpg" alt="Guide de procédures interactif" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">📝</span><div class="uc-card-title"><span class="lang-fr">Guide de procédures interactif</span><span class="lang-en">Interactive Procedure Guide</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Vos méthodes de travail dans une app au lieu d'un cartable. Chaque étape est guidée, documentée et vérifiée. Le nouvel employé suit le guide, prend les photos requises, et tout est tracé automatiquement.</span><span class="lang-en">Your work methods in an app instead of a binder. Every step is guided, documented and verified. New employees follow the guide, take required photos, and everything is tracked automatically.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">Vos méthodes de travail dans une app au lieu d'un cartable. Le nouvel employé est autonome dès le jour 1.</span><span class="lang-en">Your work methods in an app instead of a binder. New employees are autonomous from day 1.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Étapes guidées avec photos et vidéos</span><span class="lang-en">Guided steps with photos and videos</span></li>
+                        <li><span class="lang-fr">Capture photo obligatoire pour la traçabilité</span><span class="lang-en">Mandatory photo capture for traceability</span></li>
+                        <li><span class="lang-fr">Historique complet : qui a fait quoi, quand</span><span class="lang-en">Full history: who did what, when</span></li>
+                        <li><span class="lang-fr">Conforme ISO, CNESST, Loi 25</span><span class="lang-en">ISO, OHS, privacy law compliant</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 6. Interface de production sur mesure -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-06.jpg" alt="Avant: logiciel complexe" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-06.jpg" alt="Après: interface simple sur mesure" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-06.jpg" alt="Interface de production sur mesure" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">🏭</span><div class="uc-card-title"><span class="lang-fr">Interface de production sur mesure</span><span class="lang-en">Custom Production Interface</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Votre logiciel actuel vous force à vous adapter à lui. On fait l'inverse : une interface taillée pour VOTRE façon de travailler. Les bons boutons, les bons champs, au bon endroit. Simple comme un téléphone.</span><span class="lang-en">Your current software forces you to adapt to it. We do the opposite: an interface built for YOUR way of working. The right buttons, the right fields, in the right place. Simple as a phone.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">On ne vous force pas à vous adapter au logiciel. On bâtit l'interface exacte dont vous avez besoin.</span><span class="lang-en">We don't force you to adapt to the software. We build the exact interface you need.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Les bons boutons, au bon endroit, sans le superflu</span><span class="lang-en">The right buttons, in the right place, no clutter</span></li>
+                        <li><span class="lang-fr">Tactile pour le plancher — simple comme un téléphone</span><span class="lang-en">Touch-friendly for the floor — simple as a phone</span></li>
+                        <li><span class="lang-fr">Connecté à votre ERP existant en arrière-plan</span><span class="lang-en">Connected to your existing ERP behind the scenes</span></li>
+                        <li><span class="lang-fr">Formation en 30 minutes, pas 3 semaines</span><span class="lang-en">Training in 30 minutes, not 3 weeks</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 7. Tout au même endroit -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-07.jpg" alt="Avant: systèmes déconnectés" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-07.jpg" alt="Après: plateforme unifiée" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-07.jpg" alt="Plateforme unifiée" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">🔗</span><div class="uc-card-title"><span class="lang-fr">Tout au même endroit</span><span class="lang-en">Everything in One Place</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Excel ici, un logiciel là, des post-it sur le mur. On connecte tout en une seule interface : ventes, production, achats, facturation. Plus besoin de ressaisir les mêmes données 3 fois.</span><span class="lang-en">Excel here, software there, sticky notes on the wall. We connect everything into one interface: sales, production, purchasing, invoicing. No more entering the same data 3 times.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">Excel, email, un logiciel, des post-it. On connecte tout en une seule interface. Plus de double saisie.</span><span class="lang-en">Excel, email, software, sticky notes. We connect everything into one interface. No more double entry.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Ventes → Production → Livraison → Facturation en un flux</span><span class="lang-en">Sales → Production → Delivery → Invoicing in one flow</span></li>
+                        <li><span class="lang-fr">Une donnée saisie une fois, visible partout</span><span class="lang-en">Data entered once, visible everywhere</span></li>
+                        <li><span class="lang-fr">Intégration avec vos outils existants (pas de remplacement forcé)</span><span class="lang-en">Integration with your existing tools (no forced replacement)</span></li>
+                        <li><span class="lang-fr">Migration progressive — à votre rythme</span><span class="lang-en">Progressive migration — at your pace</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 8. Coût de revient réel -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-08.jpg" alt="Avant: calculs manuels de coûts" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-08.jpg" alt="Après: coûts en temps réel" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-08.jpg" alt="Analyse des coûts de revient" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">💵</span><div class="uc-card-title"><span class="lang-fr">Coût de revient réel</span><span class="lang-en">True Cost Analysis</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Savez-vous vraiment combien vous coûte chaque produit? Matières premières, temps machine, main-d'œuvre, overhead. On calcule votre vraie marge — pas celle que vous pensez avoir.</span><span class="lang-en">Do you really know how much each product costs you? Raw materials, machine time, labor, overhead. We calculate your true margin — not the one you think you have.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">Savez-vous vraiment combien vous coûte chaque produit? On calcule votre vraie marge — pas celle que vous pensez avoir.</span><span class="lang-en">Do you really know what each product costs? We calculate your true margin — not the one you think you have.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Matières premières, temps machine, main-d'œuvre, overhead</span><span class="lang-en">Raw materials, machine time, labor, overhead</span></li>
+                        <li><span class="lang-fr">Marge réelle par produit, par client, par commande</span><span class="lang-en">Real margin by product, client, or order</span></li>
+                        <li><span class="lang-fr">Comparaison estimé vs réel automatique</span><span class="lang-en">Automatic estimate vs actual comparison</span></li>
+                        <li><span class="lang-fr">Identifiez vos produits les plus (et moins) rentables</span><span class="lang-en">Identify your most (and least) profitable products</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 9. Coordination atelier–chantier -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-09.jpg" alt="Avant: appels manqués, confusion" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-09.jpg" alt="Après: notifications automatiques" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-09.jpg" alt="Coordination atelier-chantier" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">🚛</span><div class="uc-card-title"><span class="lang-fr">Coordination atelier–chantier</span><span class="lang-en">Shop-to-Site Coordination</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">L'atelier finit la commande → l'équipe terrain reçoit la notification avec la liste de pièces et les instructions. Plus de téléphones perdus, de malentendus ou de déplacements pour rien.</span><span class="lang-en">The shop finishes the order → the field crew gets notified with the parts list and instructions. No more missed calls, miscommunication, or wasted trips.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">L'atelier finit la commande → l'équipe terrain est notifiée automatiquement. Plus de malentendus.</span><span class="lang-en">The shop finishes the order → the field crew gets notified automatically. No more miscommunication.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Notification automatique avec liste de pièces et instructions</span><span class="lang-en">Automatic notification with parts list and instructions</span></li>
+                        <li><span class="lang-fr">Confirmation de réception par l'équipe terrain</span><span class="lang-en">Delivery confirmation by field crew</span></li>
+                        <li><span class="lang-fr">Photos de progression envoyées au bureau</span><span class="lang-en">Progress photos sent back to the office</span></li>
+                        <li><span class="lang-fr">Historique complet par chantier et par commande</span><span class="lang-en">Full history by site and by order</span></li>
+                    </ul>
                 </div>
             </div>
 
             <!-- 10. Planificateur de production -->
             <div class="uc-card">
-                <div class="uc-card-images">
-                    <div class="uc-img-half"><span class="uc-img-label before"><span class="lang-fr">Avant</span><span class="lang-en">Before</span></span><img src="images/use-cases/before-10.jpg" alt="Avant: planification sur tableau blanc" loading="lazy"></div>
-                    <div class="uc-img-half"><span class="uc-img-label after"><span class="lang-fr">Après</span><span class="lang-en">After</span></span><img src="images/use-cases/after-10.jpg" alt="Après: planification visuelle en temps réel" loading="lazy"></div>
-                </div>
+                <div class="uc-card-image"><img src="images/use-cases/after-10.jpg" alt="Planificateur de production" loading="lazy"></div>
                 <div class="uc-card-body">
                     <div class="uc-card-header"><span class="uc-emoji">📅</span><div class="uc-card-title"><span class="lang-fr">Planificateur de production</span><span class="lang-en">Production Planner</span></div></div>
-                    <p class="uc-card-desc"><span class="lang-fr">Fini le tableau blanc avec des aimants et les Gantt imprimés qu'on rature. Un planificateur visuel en temps réel : glissez les jobs sur vos machines, voyez la capacité, identifiez les goulots d'étranglement avant qu'ils arrivent.</span><span class="lang-en">No more whiteboards with magnets and printed Gantt charts with crossed-out dates. A real-time visual planner: drag jobs onto your machines, see capacity, spot bottlenecks before they happen.</span></p>
+                    <p class="uc-card-desc"><span class="lang-fr">Fini le tableau blanc avec des aimants. Un planificateur visuel où vous voyez tout en temps réel.</span><span class="lang-en">No more whiteboards with magnets. A visual planner where you see everything in real time.</span></p>
+                    <ul class="uc-card-features">
+                        <li><span class="lang-fr">Glissez les jobs sur vos machines — vue timeline</span><span class="lang-en">Drag jobs onto your machines — timeline view</span></li>
+                        <li><span class="lang-fr">Capacité et taux d'utilisation en direct</span><span class="lang-en">Live capacity and utilization rates</span></li>
+                        <li><span class="lang-fr">Alertes sur les goulots d'étranglement avant qu'ils arrivent</span><span class="lang-en">Bottleneck alerts before they happen</span></li>
+                        <li><span class="lang-fr">Dates de livraison réalistes, mises à jour automatiquement</span><span class="lang-en">Realistic delivery dates, updated automatically</span></li>
+                    </ul>
                 </div>
             </div>
 
