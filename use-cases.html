@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PinnAI — All Use Cases</title>
+    <title>PinnAI — Cas d'usage / Use Cases</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,642 +11,299 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #0a0b0f;
-            --bg-surface: #12141c;
-            --bg-card: #1a1d28;
-            --accent-cyan: #22d3ee;
-            --accent-green: #4ade80;
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.7);
-            --text-muted: rgba(255,255,255,0.5);
-            --border-subtle: rgba(255,255,255,0.06);
-            --border-glow: rgba(34,211,238,0.2);
+            --bg-primary: #ffffff;
+            --bg-surface: #f8f9fa;
+            --bg-card: #ffffff;
+            --accent-primary: #1e3a5f;
+            --accent-secondary: #2563eb;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-subtle: #e2e8f0;
         }
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
-
-        /* NAV */
-        .nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
-        .nav.scrolled { background: rgba(18,20,28,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0; background: #ffffff; border-bottom: 1px solid var(--border-subtle); }
+        .nav.scrolled { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--text-primary); }
-        .logo .ai { color: var(--accent-cyan); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-primary); text-decoration: none; }
+        .logo .ai { color: var(--accent-secondary); }
+        .nav-phone { color: var(--accent-primary); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+        .nav-phone:hover { color: var(--accent-secondary); }
         .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover { color: var(--accent-primary); }
         .btn { padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; display: inline-block; }
-        .btn-primary { background: var(--accent-cyan); color: var(--bg-primary); }
-        .btn-primary:hover { box-shadow: 0 0 20px rgba(34,211,238,0.3); }
-        .btn-outline { border: 1px solid var(--border-subtle); color: var(--text-primary); }
-        .btn-outline:hover { border-color: var(--accent-cyan); background: rgba(34,211,238,0.1); }
-        .mobile-nav { display: none; }
-
-        /* LAYOUT */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .section { padding: 5rem 0; }
-
-        /* PAGE HEADER */
-        .page-header { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(18,20,28,0.8) 100%); }
-        .page-header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
-        .page-header .subtitle { font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
-        .back-link { color: var(--accent-cyan); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-        .back-link:hover { text-decoration: underline; }
-
-        /* SECTION HEADERS */
-        .section-header { margin-bottom: 3rem; }
-        .section-header h2 img { border-radius: 8px; }
-        .section-header h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .section-header .subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 620px; }
-
-        /* SECTION DIVIDER */
-        .section-divider { border: none; border-top: 1px solid var(--border-subtle); margin: 0; }
-
-        /* CARDS */
-        .feature-card { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
-        .feature-card img, .ai-card img { mix-blend-mode: lighten; }
-        .feature-card:hover { border-color: var(--border-glow); box-shadow: 0 0 20px rgba(34,211,238,0.1); }
-        .feature-card h4 { margin-bottom: 0.75rem; color: var(--accent-cyan); font-size: 1.1rem; }
-
-        .manufacturing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-        .ai-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-        .ai-card { background: var(--bg-card); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-subtle); transition: all 0.2s; }
-        .ai-card:hover { transform: translateY(-2px); border-color: var(--border-glow); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
-        .ai-card h4 { color: var(--accent-cyan); margin-bottom: 1rem; font-size: 1.1rem; }
-
-        /* PRODUCT TEASER */
-        .product-teaser { background: linear-gradient(135deg, var(--accent-cyan) 0%, #0891b2 100%); color: var(--bg-primary); padding: 3rem; border-radius: 16px; text-align: center; margin-top: 3rem; }
-        .product-teaser h3 { margin-bottom: 1rem; }
-        .product-teaser .btn { margin-top: 1.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; }
-        .product-teaser .btn:hover { background: rgba(255,255,255,0.2); }
-
-        /* CALLOUT */
-        .callout-box { background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%); padding: 3rem; border-radius: 16px; border: 1px solid var(--accent-cyan); box-shadow: 0 0 30px rgba(34,211,238,0.1); }
-        .callout-box h4 { color: var(--accent-cyan); margin-bottom: 1rem; }
-
-        /* INTEGRATION */
-        .integration-logos { display: flex; justify-content: center; align-items: center; gap: 3rem; margin: 3rem 0; flex-wrap: wrap; }
-        .logo-item { color: var(--text-secondary); font-weight: 500; font-size: 1.1rem; transition: color 0.2s; }
-        .logo-item:hover { color: var(--accent-cyan); }
-
-        /* ACCORDIONS */
-        details.accordion-section { border: 1px solid var(--border-subtle); border-radius: 16px; overflow: hidden; margin-bottom: 2rem; background: var(--bg-surface); }
-        details.accordion-section > summary { cursor: pointer; padding: 1.5rem 2rem; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; transition: background 0.2s; }
-        details.accordion-section > summary::-webkit-details-marker { display: none; }
-        details.accordion-section > summary::marker { display: none; content: ''; }
-        details.accordion-section > summary:hover { background: rgba(34,211,238,0.05); }
-        details.accordion-section > summary h2 { font-size: 1.8rem; font-weight: 700; margin: 0; }
-        details.accordion-section > summary h2 img { width: 40px; height: 40px; vertical-align: middle; margin-right: 0.5rem; border-radius: 8px; }
-        details.accordion-section > summary .accordion-arrow { font-size: 1.5rem; color: var(--accent-cyan); transition: transform 0.3s ease; flex-shrink: 0; margin-left: 1rem; }
-        details.accordion-section[open] > summary .accordion-arrow { transform: rotate(180deg); }
-        details.accordion-section > summary + .accordion-body { padding: 0 2rem 2rem; }
-        .accordion-body { padding: 0 2rem 2rem; }
-        details.accordion-section[open] { border-color: var(--border-glow); box-shadow: 0 0 20px rgba(34,211,238,0.05); }
-
-        /* SECTION ANCHORS */
-        .section-anchor { display: block; height: 80px; margin-top: -80px; visibility: hidden; }
-
-        /* FINAL CTA */
-        .final-cta { background: linear-gradient(135deg, var(--bg-surface) 0%, #1e293b 100%); text-align: center; padding: 5rem 0; }
-        .final-cta h2 { font-size: 2.5rem; margin-bottom: 0.75rem; }
-        .final-cta .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
-        .cta-founders { font-size: 1.05rem; color: var(--accent-cyan); margin-bottom: 2.5rem; }
-        .cta-contact { display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap; }
-        .contact-email { color: var(--accent-cyan); text-decoration: none; font-weight: 500; }
-        .contact-phone { color: var(--text-secondary); font-weight: 500; }
-
-        /* FOOTER */
-        .footer { background: var(--bg-surface); padding: 4rem 0 2rem; border-top: 1px solid var(--border-subtle); }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
-        .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--accent-cyan); }
-        .footer-bottom { border-top: 1px solid var(--border-subtle); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.9rem; }
-
-        /* LANG */
-        .lang-toggle { display: flex; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+        .btn-primary { background: var(--accent-primary); color: #ffffff; }
+        .btn-primary:hover { background: var(--accent-secondary); box-shadow: 0 2px 8px rgba(37,99,235,0.25); }
+        .lang-toggle { display: flex; background: rgba(0,0,0,0.06); border-radius: 6px; overflow: hidden; }
         .lang-btn { padding: 0.35rem 0.75rem; background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
-        .lang-btn.active { background: var(--accent-cyan); color: var(--bg-primary); }
+        .lang-btn.active { background: var(--accent-primary); color: #ffffff; }
+        .mobile-nav { display: none; }
+        .hero { padding: 8rem 0 4rem; background: var(--bg-primary); text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .hero h1 { font-size: 2.8rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 1rem; line-height: 1.2; }
+        .hero .subtitle { font-size: 1.15rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 0.75rem; }
+        .hero .tagline { font-size: 0.95rem; color: var(--text-muted); }
+        .use-cases-section { padding: 3rem 0 6rem; background: var(--bg-surface); }
+        .uc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .uc-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; }
+        .uc-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
+        .uc-card-image { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: var(--bg-surface); }
+        .uc-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+        .uc-card:hover .uc-card-image img { transform: scale(1.03); }
+        .uc-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+        .uc-card-header { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.6rem; }
+        .uc-emoji { font-size: 1.4rem; line-height: 1; flex-shrink: 0; margin-top: 0.1rem; }
+        .uc-card-title { font-size: 0.95rem; font-weight: 600; color: var(--accent-primary); line-height: 1.35; }
+        .uc-card-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+        .cta-section { padding: 5rem 0; background: var(--bg-primary); text-align: center; border-top: 1px solid var(--border-subtle); }
+        .cta-section h2 { font-size: 2.2rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 1rem; }
+        .cta-section p { font-size: 1.1rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto 2rem; }
+        .btn-lg { padding: 0.9rem 2.5rem; font-size: 1.05rem; border-radius: 8px; }
+        .footer { background: var(--accent-primary); color: rgba(255,255,255,0.85); padding: 2.5rem 0; }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+        .footer .logo { color: #ffffff; }
+        .footer .logo .ai { color: #93c5fd; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: #ffffff; }
+        .footer-copy { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 1.5rem; text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
         .lang-en { display: none; }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .page-header h1 { font-size: 2.5rem; }
-            .section-header h2 img { border-radius: 8px; }
-        .section-header h2 { font-size: 1.9rem; }
-        }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) { .uc-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) {
             .nav-links { display: none; }
-            .mobile-nav { display: flex; gap: 1rem; align-items: center; }
-            .container { padding: 0 1rem; }
-            .page-header { padding: 6rem 0 3rem; }
-            .page-header h1 { font-size: 2rem; }
-            .manufacturing-cards, .ai-features { grid-template-columns: 1fr; }
-            .cta-contact { flex-direction: column; }
-            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-            .integration-logos { gap: 1.5rem; }
+            .mobile-nav { display: flex; align-items: center; gap: 0.75rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .uc-grid { grid-template-columns: 1fr; }
+            .cta-section h2 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
 <nav class="nav" id="nav">
     <div class="nav-container">
         <a href="index.html" class="logo">pinn<span class="ai">AI</span></a>
         <ul class="nav-links">
-            <li><a href="index.html#services" data-en="Services" data-fr="Services">Services</a></li>
-            <li><a href="#manufacturing" data-en="Manufacturing" data-fr="Manufacturier">Manufacturing</a></li>
-            <li><a href="#ai" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</a></li>
-            <li><a href="#industries" data-en="Industries" data-fr="Industries">Industries</a></li>
-            <li><a href="#integration" data-en="Integration" data-fr="Intégration">Integration</a></li>
+            <li><a href="index.html"><span class="lang-fr">&larr; Retour</span><span class="lang-en">&larr; Back</span></a></li>
+            <li><a href="tel:+15142090384" class="nav-phone">&#128222; (514)&nbsp;209-0384</a></li>
             <li class="lang-toggle">
                 <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
                 <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
             </li>
-            <li><a href="index.html#contact" class="btn btn-primary" data-en="Book a call →" data-fr="Réserver un appel →">Book a call →</a></li>
+            <li><a href="index.html#contact" class="btn btn-primary"><span class="lang-fr">Réserver un appel &rarr;</span><span class="lang-en">Book a call &rarr;</span></a></li>
         </ul>
         <div class="mobile-nav">
+            <a href="tel:+15142090384" class="nav-phone" style="font-size:0.85rem;">&#128222; (514) 209-0384</a>
             <div class="lang-toggle">
                 <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
                 <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
             </div>
-            <a href="index.html#contact" class="btn btn-primary" data-en="Book a call" data-fr="Réserver un appel">Book a call</a>
         </div>
     </div>
 </nav>
 
-<!-- ═══ PAGE HEADER ═══ -->
-<section class="page-header">
+<section class="hero">
     <div class="container">
-        <a href="index.html" class="back-link" data-en="← Back to home" data-fr="← Retour à l'accueil">← Back to home</a>
-        <h1 style="margin-top:1.5rem;" data-en="Explore more possibilities" data-fr="Explorer plus de possibilités">Explore more possibilities</h1>
-        <p class="subtitle lang-en">Here are some examples.</p>
-        <p class="subtitle lang-fr">Voici quelques exemples.</p>
-
+        <h1><span class="lang-fr">Explorez nos possibilités</span><span class="lang-en">Explore possibilities</span></h1>
+        <p class="subtitle"><span class="lang-fr">18 solutions conçues pour les PME manufacturières. Chacune adaptée à votre réalité.</span><span class="lang-en">18 solutions built for manufacturing SMBs. Each one tailored to your reality.</span></p>
+        <p class="tagline"><span class="lang-fr">Vous ne voyez pas votre cas? On construit sur mesure. Parlons-en.</span><span class="lang-en">Don't see your use case? We build custom. Let's talk.</span></p>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     MANUFACTURING SOFTWARE — 7 FEATURE CARDS
-═══════════════════════════════════════════════ -->
-<span class="section-anchor" id="manufacturing"></span>
-<section class="section">
+<section class="use-cases-section">
     <div class="container">
-        <details class="accordion-section" open>
-            <summary>
-                <h2 data-en="Manufacturing Software" data-fr="Logiciel manufacturier"><img src="images/icon-manufacturing.webp">Manufacturing Software</h2>
-                <span class="accordion-arrow">▼</span>
-            </summary>
-            <div class="accordion-body">
-            <p class="subtitle" style="margin-bottom:2rem;" data-en="93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing." data-fr="93% des 14 000+ manufacturiers du Québec sont des PME. On bâtit les outils qui leur manquent.">93% of Quebec's 14,000+ manufacturers are SMEs. We build the tools they've been missing.</p>
-        <div class="manufacturing-cards">
+        <div class="uc-grid">
 
-            <div class="feature-card" style="border: 1px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(34,211,238,0.1);">
-                <img src="images/uc-spreadsheet.webp" alt="Replace your spreadsheets" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Replace your spreadsheets with a real application" data-fr="Remplacez vos Excel par une vraie application">Replace your spreadsheets with a real application</h4>
-                
-                
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>One centralized app</strong> with a modern dashboard</li>
-                    <li style="padding:0.2rem 0;">• <strong>Real-time data</strong>, always synced and accessible</li>
-                    <li style="padding:0.2rem 0;">• <strong>No more version conflicts</strong> or copy-paste errors</li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Une seule application centralisée</strong> avec un tableau de bord moderne</li>
-                    <li style="padding:0.2rem 0;">• <strong>Données en temps réel</strong>, accessibles de partout par tous</li>
-                    <li style="padding:0.2rem 0;">• Fini les conflits de versions, les erreurs de copier-coller et le "c'est quel Excel le dernier?"</li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-01-furniture-configurator.jpg" alt="Configurateur meubles" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🪑</span><div class="uc-card-title"><span class="lang-fr">Configurateur de vente — Meubles</span><span class="lang-en">Sales Configurator — Furniture</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Vos vendeurs configurent les meubles sur mesure (dimensions, matériaux, finitions) directement chez le client. Prix final instantané.</span><span class="lang-en">Your sales reps configure custom furniture (dimensions, materials, finishes) directly at the client's. Instant final price.</span></p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <img src="images/uc-production.webp" alt="Real-time production monitoring" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Real-time production monitoring" data-fr="Suivi de production en temps réel">Real-time production monitoring</h4>
-                
-                
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Live OEE & cycle times</strong> across every line</li>
-                    <li style="padding:0.2rem 0;">• <strong>Accessible anywhere</strong>, even on your phone</li>
-                    <li style="padding:0.2rem 0;">• <strong>Smart alerts</strong> before breakdowns happen</li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>OEE, temps de cycle et arrêts en direct</strong> sur chaque ligne</li>
-                    <li style="padding:0.2rem 0;">• Sur un écran, sur votre cell, <strong>partout</strong></li>
-                    <li style="padding:0.2rem 0;">• <strong>Les alertes arrivent avant</strong> que le problème vous coûte de l'argent</li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-02-fertilizer-configurator.jpg" alt="Configurateur engrais" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🌿</span><div class="uc-card-title"><span class="lang-fr">Configurateur de vente — Engrais</span><span class="lang-en">Sales Configurator — Fertilizer</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Configuration de la bonne formulation d'engrais pour chaque client. De la vente jusqu'à la production, en un flux.</span><span class="lang-en">Configure the right fertilizer blend for each client. From sale to production, in one flow.</span></p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <img src="images/uc-maintenance.webp" alt="Smart maintenance" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Smart maintenance (CMMS + AI)" data-fr="Maintenance intelligente (GMAO + IA)">Smart maintenance (CMMS + AI)</h4>
-                
-                
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Preventive maintenance schedules itself</strong> — work orders auto-routed</li>
-                    <li style="padding:0.2rem 0;">• <strong>Parts inventory tracks itself</strong> automatically</li>
-                    <li style="padding:0.2rem 0;">• AI <strong>predicts failures weeks before</strong> they happen</li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>La maintenance préventive se planifie toute seule</strong> — bons de travail auto-routés</li>
-                    <li style="padding:0.2rem 0;">• <strong>L'inventaire de pièces se gère lui-même</strong></li>
-                    <li style="padding:0.2rem 0;">• L'IA <strong>prédit les pannes des semaines à l'avance</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-03-project-creator.jpg" alt="Agent créateur de projets" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🤖</span><div class="uc-card-title"><span class="lang-fr">Agent créateur de projets</span><span class="lang-en">AI Project Creator</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Uploadez une soumission, l'IA pose quelques questions, puis crée automatiquement le projet, les tâches et les heures dans votre système.</span><span class="lang-en">Upload a proposal, AI asks a few questions, then auto-creates the project, tasks and hours in your system.</span></p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <img src="images/uc-quality.webp" alt="Automated quality control" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Automated quality control" data-fr="Contrôle qualité automatisé">Automated quality control</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Digital inspection</strong> with photo capture right on the floor</li>
-                    <li style="padding:0.2rem 0;">• <strong>SPC charts</strong> update in real time — non-conformances auto-trigger workflows</li>
-                    <li style="padding:0.2rem 0;">• <strong>Client quality reports generate themselves</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Inspection numérique</strong> avec capture photo sur le plancher</li>
-                    <li style="padding:0.2rem 0;">• <strong>Cartes SPC</strong> en temps réel — non-conformités déclenchent les processus automatiquement</li>
-                    <li style="padding:0.2rem 0;">• <strong>Rapports qualité clients se génèrent tout seuls</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-04-invoicing-agent.jpg" alt="Agent de facturation" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">💰</span><div class="uc-card-title"><span class="lang-fr">Agent de facturation</span><span class="lang-en">Invoicing Agent</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Un agent qui se souvient de tous vos détails de facturation. Brouillons automatiques, connecté à Zoho, SAP et plus.</span><span class="lang-en">An agent that remembers all your billing details. Automatic drafts, connected to Zoho, SAP and more.</span></p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <img src="images/uc-inventory.webp" alt="Intelligent inventory" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Intelligent inventory" data-fr="Inventaire intelligent">Intelligent inventory</h4>
-                
-                
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Know <strong>exactly what you have, where it is, when to reorder</strong></li>
-                    <li style="padding:0.2rem 0;">• AI analyzes real consumption patterns and <strong>optimizes reorder points automatically</strong></li>
-                    <li style="padding:0.2rem 0;">• No more <strong>gut-feel purchasing</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Sachez <strong>exactement ce que vous avez, où c'est, quand recommander</strong></li>
-                    <li style="padding:0.2rem 0;">• L'IA analyse les vraies tendances et <strong>optimise les points de commande automatiquement</strong></li>
-                    <li style="padding:0.2rem 0;">• Fini les <strong>achats au feeling</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-05-sap-dashboard.jpg" alt="Dashboard exécutif" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">📊</span><div class="uc-card-title"><span class="lang-fr">Dashboard exécutif</span><span class="lang-en">Executive Dashboard</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Tableau de bord en temps réel connecté à vos systèmes. Santé des projets, utilisation des ressources, attribution.</span><span class="lang-en">Real-time dashboard connected to your systems. Project health, resource utilization, allocation.</span></p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <img src="images/uc-planning.webp" alt="Production planning" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Production planning (MES)" data-fr="Planification de production (MES)">Production planning (MES)</h4>
-                
-                
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Visual scheduling</strong> anyone can read</li>
-                    <li style="padding:0.2rem 0;">• <strong>Capacity planning</strong> that accounts for reality</li>
-                    <li style="padding:0.2rem 0;">• <strong>Delivery dates you'll actually trust</strong> — from raw material to shipping</li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Cédule visuelle</strong> que tout le monde peut lire</li>
-                    <li style="padding:0.2rem 0;">• <strong>Planification de capacité</strong> qui tient compte de la réalité</li>
-                    <li style="padding:0.2rem 0;">• <strong>Dates de livraison que vous pouvez vraiment utiliser</strong> — du matériel brut à l'expédition</li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-06-procedure-guide.jpg" alt="Guide de procédures" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">📝</span><div class="uc-card-title"><span class="lang-fr">Guide de procédures</span><span class="lang-en">Procedure Guide</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Transformez vos procédures en guides interactifs avec automatisation. Chaque étape est contrôlée et documentée.</span><span class="lang-en">Transform your procedures into interactive guides with automation. Every step is controlled and documented.</span></p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <img src="images/uc-traceability.webp" alt="Traceability and compliance" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Traceability &amp; compliance" data-fr="Traçabilité et conformité">Traceability &amp; compliance</h4>
-                
-                
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Full lot-by-lot traceability</strong> from supplier to customer</li>
-                    <li style="padding:0.2rem 0;">• <strong>HACCP, ISO, industry compliance</strong> — handled automatically</li>
-                    <li style="padding:0.2rem 0;">• Audits go from <strong>stressful to routine</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Traçabilité lot par lot</strong> du fournisseur au client</li>
-                    <li style="padding:0.2rem 0;">• <strong>HACCP, ISO, conformité</strong> — géré automatiquement</li>
-                    <li style="padding:0.2rem 0;">• Les audits passent de <strong>stressants à routiniers</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-07-custom-production.jpg" alt="Interface de production" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🏭</span><div class="uc-card-title"><span class="lang-fr">Interface de production sur mesure</span><span class="lang-en">Custom Production Interface</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Au lieu de vous adapter à SAP, on crée l'interface exacte dont vous avez besoin. Les bons paramètres, au bon endroit.</span><span class="lang-en">Instead of adapting to SAP, we build the exact interface you need. The right parameters, in the right place.</span></p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <img src="images/uc-configurator.webp" alt="Product Configurator" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Product Configurator &amp; E-commerce" data-fr="Configurateur de produits et e-commerce">Product Configurator &amp; E-commerce</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Customers <strong>configure their product directly on your website</strong> — price updates in real time</li>
-                    <li style="padding:0.2rem 0;">• <strong>Order goes straight to production</strong> — no back-and-forth</li>
-                    <li style="padding:0.2rem 0;">• Works for: <strong>furniture, cabinetry, industrial equipment, custom packaging</strong>, and more</li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Vos clients <strong>configurent leur produit directement sur votre site</strong> — le prix se met à jour en temps réel</li>
-                    <li style="padding:0.2rem 0;">• <strong>La commande part directement en production</strong> — pas d'allers-retours</li>
-                    <li style="padding:0.2rem 0;">• Pour : <strong>meubles, ébénisterie, équipements industriels, emballage sur mesure</strong>, et plus</li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-08-unified-platform.jpg" alt="Plateforme intégrée" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🔗</span><div class="uc-card-title"><span class="lang-fr">Plateforme intégrée</span><span class="lang-en">Unified Platform</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Excel partout, SAP à moitié, un autre logiciel dans l'usine. On unifie tout en une seule interface avec IA intégrée.</span><span class="lang-en">Excel everywhere, SAP half-working, another system in the plant. We unify everything into one interface with built-in AI.</span></p>
+                </div>
             </div>
 
-        </div>
-        <div class="callout-box">
-            <h4 data-en="The PinnAI advantage:" data-fr="L'avantage PinnAI :">The Pinn<span style="color:var(--accent-cyan);">AI</span> advantage:</h4>
-            <p class="lang-en">Unlike traditional firms, we integrate AI from day one. Predictive maintenance, automatic optimization, real-time insights — at no extra cost.</p>
-            <p class="lang-fr">Contrairement aux firmes traditionnelles, on intègre l'IA dès le départ. Maintenance prédictive, optimisation automatique, analyses en temps réel — sans surcoût.</p>
-        </div>
-            </div><!-- /.accordion-body -->
-        </details>
-    </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ═══════════════════════════════════════════════
-     AI SOLUTIONS — 6 CARDS
-═══════════════════════════════════════════════ -->
-<span class="section-anchor" id="ai"></span>
-<section class="section" style="background: var(--bg-surface);">
-    <div class="container">
-        <details class="accordion-section">
-            <summary>
-                <h2 data-en="AI Solutions" data-fr="Solutions IA"><img src="images/icon-ai.webp">AI Solutions</h2>
-                <span class="accordion-arrow">▼</span>
-            </summary>
-            <div class="accordion-body">
-            <p class="subtitle" style="margin-bottom:2rem;" data-en="Artificial intelligence isn't just for tech giants. We make it work for your reality." data-fr="L'intelligence artificielle n'est plus réservée aux géants tech. On la rend accessible à votre réalité.">Artificial intelligence isn't just for tech giants. We make it work for your reality.</p>
-        <div class="ai-features">
-
-            <div class="ai-card">
-                <img src="images/uc-assistant.webp" alt="AI Assistants" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="AI Assistants" data-fr="Assistants IA">AI Assistants</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Chatbot trained on <strong>YOUR data</strong> — catalog, maintenance history, technical docs</li>
-                    <li style="padding:0.2rem 0;">• Team asks in <strong>plain language</strong>, gets the answer <strong>instantly</strong></li>
-                    <li style="padding:0.2rem 0;">• Accurate. Available <strong>24/7</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Assistant entraîné sur <strong>VOS données</strong> — catalogue, historique, docs techniques</li>
-                    <li style="padding:0.2rem 0;">• Votre équipe pose en <strong>langage naturel</strong>, obtient la réponse <strong>instantanément</strong></li>
-                    <li style="padding:0.2rem 0;">• Précis. Disponible <strong>24/7</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-09-hybrid-procedures.jpg" alt="Automatisation hybride" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">⚡</span><div class="uc-card-title"><span class="lang-fr">Automatisation hybride</span><span class="lang-en">Hybrid Automation</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Mix intelligent: les étapes faciles sont automatisées, les complexes sont guidées pas à pas. L'humain reste maître.</span><span class="lang-en">Smart mix: easy steps are automated, complex ones are guided step by step. Humans stay in control.</span></p>
+                </div>
             </div>
 
-            <div class="ai-card">
-                <img src="images/uc-automation.webp" alt="Process Automation" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Process Automation" data-fr="Automatisation de processus">Process Automation</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• AI reads invoices, <strong>matches POs, routes approvals</strong>, enters everything automatically</li>
-                    <li style="padding:0.2rem 0;">• That <strong>2-hour grind takes 10 minutes</strong></li>
-                    <li style="padding:0.2rem 0;">• Works for: <strong>onboarding, expense reports, compliance checks</strong> — any repetitive process</li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• L'IA lit les factures, <strong>associe les BdC, achemine les approbations</strong>, entre tout automatiquement</li>
-                    <li style="padding:0.2rem 0;">• Cette <strong>corvée de 2 heures prend 10 minutes</strong></li>
-                    <li style="padding:0.2rem 0;">• Pour : <strong>intégration d'employés, notes de frais, vérifications de conformité</strong> — tout processus répétitif</li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-10-nonconformity.jpg" alt="Non-conformités" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🔴</span><div class="uc-card-title"><span class="lang-fr">Suivi des non-conformités</span><span class="lang-en">Non-Conformity Tracking</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Photo, description vocale, fiche auto-générée. L'IA suggère les correctifs basés sur l'historique. Plus jamais la même erreur.</span><span class="lang-en">Photo, voice description, auto-generated report. AI suggests fixes based on history. Never the same mistake twice.</span></p>
+                </div>
             </div>
 
-            <div class="ai-card">
-                <img src="images/uc-docai.webp" alt="Document Intelligence" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Document Intelligence" data-fr="Intelligence documentaire">Document Intelligence</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• AI extracts and organizes data from <strong>every document</strong> — drawings, specs, contracts</li>
-                    <li style="padding:0.2rem 0;">• Find anything in <strong>3 seconds</strong></li>
-                    <li style="padding:0.2rem 0;">• That filing cabinet just became your <strong>most valuable database</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• L'IA extrait et organise les données de <strong>chaque document</strong> — dessins, devis, contrats</li>
-                    <li style="padding:0.2rem 0;">• Trouvez n'importe quoi en <strong>3 secondes</strong></li>
-                    <li style="padding:0.2rem 0;">• Ce classeur est devenu votre <strong>base de données la plus précieuse</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-11-maintenance.jpg" alt="Maintenance préventive" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🔧</span><div class="uc-card-title"><span class="lang-fr">Maintenance préventive</span><span class="lang-en">Preventive Maintenance</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Suivi des heures machine, alertes automatiques, bons de travail générés. Fini les bris imprévus.</span><span class="lang-en">Machine hour tracking, automatic alerts, generated work orders. No more unexpected breakdowns.</span></p>
+                </div>
             </div>
 
-            <div class="ai-card">
-                <img src="images/uc-voice.webp" alt="Voice-to-Data" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Voice-to-Data" data-fr="Voix vers données">Voice-to-Data</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Tech talks into their phone for <strong>5 minutes</strong> — AI does the rest</li>
-                    <li style="padding:0.2rem 0;">• Transcribes, fills the form, attaches photos, flags issues, <strong>sends the report</strong></li>
-                    <li style="padding:0.2rem 0;">• <strong>Field work stays in the field. Paperwork does itself.</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Le tech parle dans son cell <strong>5 minutes</strong> — l'IA fait le reste</li>
-                    <li style="padding:0.2rem 0;">• Transcrit, remplit le formulaire, attache les photos, signale, <strong>envoie le rapport</strong></li>
-                    <li style="padding:0.2rem 0;">• <strong>Le travail terrain reste sur le terrain. La paperasse se fait toute seule.</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-12-certifications.jpg" alt="Certifications" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">📋</span><div class="uc-card-title"><span class="lang-fr">Gestion des certifications</span><span class="lang-en">Certification Management</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Qui est certifié pour quoi? Rappels avant expiration, rapport d'audit CNESST en 30 secondes.</span><span class="lang-en">Who's certified for what? Reminders before expiry, CNESST audit report in 30 seconds.</span></p>
+                </div>
             </div>
 
-            <div class="ai-card">
-                <img src="images/uc-predictive.webp" alt="Predictive Maintenance" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Predictive Maintenance" data-fr="Maintenance prédictive">Predictive Maintenance</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• AI predicts which machine needs attention <strong>BEFORE it breaks</strong></li>
-                    <li style="padding:0.2rem 0;">• Difference between a <strong>planned repair</strong> and a <strong>$15,000 emergency</strong></li>
-                    <li style="padding:0.2rem 0;">• Reduce unplanned downtime by <strong>30–50%</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• L'IA prédit quelle machine a besoin d'attention <strong>AVANT qu'elle brise</strong></li>
-                    <li style="padding:0.2rem 0;">• Différence entre une <strong>réparation planifiée</strong> et une <strong>urgence de 15 000$</strong></li>
-                    <li style="padding:0.2rem 0;">• Réduisez les arrêts non planifiés de <strong>30–50%</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-13-cost-analysis.jpg" alt="Coût de revient" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">💵</span><div class="uc-card-title"><span class="lang-fr">Coût de revient</span><span class="lang-en">Cost Analysis</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Calculez le coût réel de chaque produit. Matières, temps machine, main-d'œuvre. Découvrez votre vraie marge.</span><span class="lang-en">Calculate the real cost of each product. Materials, machine time, labor. Discover your true margin.</span></p>
+                </div>
             </div>
 
-            <div class="ai-card">
-                <img src="images/uc-agents.webp" alt="AI Agents" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="AI Agents" data-fr="Agents IA">AI Agents</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• AI agents working <strong>24/7</strong>: monitoring, spotting anomalies, generating reports</li>
-                    <li style="padding:0.2rem 0;">• <strong>Alerts sent automatically</strong> when something needs attention</li>
-                    <li style="padding:0.2rem 0;">• Tireless digital teammates — <strong>never miss a detail, never forget to follow up</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Agents IA qui travaillent <strong>24/7</strong> : surveillance, détection d'anomalies, rapports quotidiens</li>
-                    <li style="padding:0.2rem 0;">• <strong>Alertes automatiques</strong> quand quelque chose demande attention</li>
-                    <li style="padding:0.2rem 0;">• Des coéquipiers numériques infatigables — <strong>jamais un détail manqué, jamais un suivi oublié</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-14-purchasing.jpg" alt="Gestion des achats" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🛒</span><div class="uc-card-title"><span class="lang-fr">Gestion des achats</span><span class="lang-en">Purchasing Management</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Centralisez vos fournisseurs, comparez prix et délais, bons de commande pré-remplis selon le stock.</span><span class="lang-en">Centralize your suppliers, compare prices and lead times, pre-filled purchase orders based on stock.</span></p>
+                </div>
             </div>
 
-        </div>
-
-        <!-- Context Engine section removed -->
-            </div><!-- /.accordion-body -->
-        </details>
-    </div>
-</section>
-
-<!-- Industries section removed -->
-
-<hr class="section-divider">
-
-<!-- ═══════════════════════════════════════════════
-     ERP & INTEGRATION — DETAIL
-═══════════════════════════════════════════════ -->
-<span class="section-anchor" id="integration"></span>
-<section class="section" style="background: var(--bg-surface);">
-    <div class="container">
-        <details class="accordion-section">
-            <summary>
-                <h2 data-en="ERP &amp; Integration" data-fr="ERP et Intégration"><img src="images/icon-integration.webp">ERP &amp; Integration</h2>
-                <span class="accordion-arrow">▼</span>
-            </summary>
-            <div class="accordion-body">
-            <p class="subtitle" style="margin-bottom:2rem;" data-en="We integrate with your existing systems — ERP, CRM, databases, APIs." data-fr="On s'intègre à vos systèmes existants — ERP, CRM, bases de données, APIs.">We integrate with your existing systems — ERP, CRM, databases, APIs.</p>
-        <div class="integration-logos">
-            <div class="logo-item">Odoo</div>
-            <div class="logo-item">SAP</div>
-            <div class="logo-item">NetSuite</div>
-            <div class="logo-item">Azure</div>
-            <div class="logo-item">Salesforce</div>
-            <div class="logo-item">Custom APIs</div>
-        </div>
-        <div class="ai-features">
-
-            <div class="ai-card" style="border: 1px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(34,211,238,0.1);">
-                <img src="images/uc-erp-agent.webp" alt="AI agents on top of your ERP" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="AI agents on top of your ERP" data-fr="Agents IA par-dessus votre ERP">AI agents on top of your ERP</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• AI agent layer on top of your <strong>existing ERP</strong> — Odoo, SAP, NetSuite, whatever you use</li>
-                    <li style="padding:0.2rem 0;">• Team speaks in <strong>plain language</strong> — agent handles the complex workflows</li>
-                    <li style="padding:0.2rem 0;">• <strong>No retraining. No migration.</strong> Just your ERP, finally usable by everyone</li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• Couche d'agents IA par-dessus votre <strong>ERP existant</strong> — Odoo, SAP, NetSuite, peu importe</li>
-                    <li style="padding:0.2rem 0;">• Votre équipe parle en <strong>langage naturel</strong> — l'agent gère les processus complexes</li>
-                    <li style="padding:0.2rem 0;">• <strong>Pas de réentraînement. Pas de migration.</strong> Juste votre ERP, enfin utilisable par tout le monde</li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-15-time-tracking.jpg" alt="Suivi des temps" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">⏱️</span><div class="uc-card-title"><span class="lang-fr">Suivi des temps par job</span><span class="lang-en">Job Time Tracking</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">L'opérateur scanne en 5 secondes. Les heures s'accumulent en temps réel et alimentent la facturation.</span><span class="lang-en">Operator scans in 5 seconds. Hours accumulate in real-time and feed directly into invoicing.</span></p>
+                </div>
             </div>
 
-            <div class="ai-card">
-                <img src="images/uc-erp.webp" alt="ERP implementation" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="ERP implementation (Odoo specialist)" data-fr="Implémentation ERP (spécialiste Odoo)">ERP implementation (Odoo specialist)</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>Enterprise-grade ERP at SME prices</strong> — Odoo</li>
-                    <li style="padding:0.2rem 0;">• We deploy, customize to your workflows, and <strong>migrate your data</strong></li>
-                    <li style="padding:0.2rem 0;">• Not a generic install — <strong>your ERP, your way</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• <strong>ERP de calibre entreprise au prix PME</strong> — Odoo</li>
-                    <li style="padding:0.2rem 0;">• On déploie, personnalise à vos processus et <strong>migre vos données</strong></li>
-                    <li style="padding:0.2rem 0;">• Pas une installation générique — <strong>votre ERP, à votre façon</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-16-client-portal.jpg" alt="Portail client" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🌐</span><div class="uc-card-title"><span class="lang-fr">Portail client</span><span class="lang-en">Client Portal</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Vos clients voient l'avancement de leur commande, approuvent les plans et signent les changements. Sans vous appeler.</span><span class="lang-en">Your clients see order progress, approve plans and sign changes. Without calling you.</span></p>
+                </div>
             </div>
 
-            <!-- Cloud migration card removed -->
-
-            <div class="ai-card">
-                <img src="images/uc-api.webp" alt="API development" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="API development &amp; integration" data-fr="Développement et intégration d'APIs">API development &amp; integration</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• We build the bridges — <strong>clean APIs that make your systems talk automatically</strong></li>
-                    <li style="padding:0.2rem 0;">• <strong>One source of truth</strong> instead of four</li>
-                    <li style="padding:0.2rem 0;">• No more copy-paste between systems — <strong>data flows on its own</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• On bâtit les ponts — <strong>des APIs propres qui font communiquer vos systèmes automatiquement</strong></li>
-                    <li style="padding:0.2rem 0;">• <strong>Une source de vérité</strong> au lieu de quatre</li>
-                    <li style="padding:0.2rem 0;">• Fini le copier-coller — <strong>les données circulent toutes seules</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-17-recipe-management.jpg" alt="Gestion des recettes" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🍕</span><div class="uc-card-title"><span class="lang-fr">Gestion des recettes</span><span class="lang-en">Recipe Management</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Centralisez vos formulations. Ajustement automatique par lot, traçabilité des ingrédients. La recette ne part plus avec le chef.</span><span class="lang-en">Centralize your formulations. Auto-adjust by batch, ingredient traceability. The recipe doesn't leave with the chef.</span></p>
+                </div>
             </div>
 
-            <div class="ai-card">
-                <img src="images/uc-datapipeline.webp" alt="Data pipelines" style="width:100%;max-width:400px;height:auto;margin-bottom:1rem;border-radius:8px;display:block;">
-                <h4 data-en="Data pipelines &amp; engineering" data-fr="Pipelines de données et ingénierie">Data pipelines &amp; engineering</h4>
-                <ul class="lang-en" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• We build the plumbing that <strong>collects, cleans, and organizes your data</strong></li>
-                    <li style="padding:0.2rem 0;">• From <strong>scattered spreadsheets to executive dashboards</strong></li>
-                    <li style="padding:0.2rem 0;">• The <strong>foundation everything else is built on</strong></li>
-                </ul>
-                <ul class="lang-fr" style="list-style:none;padding:0;margin:0.5rem 0 0;color:var(--accent-cyan);">
-                    <li style="padding:0.2rem 0;">• On bâtit la plomberie qui <strong>collecte, nettoie et organise vos données</strong></li>
-                    <li style="padding:0.2rem 0;">• Des <strong>feuilles de calcul éparpillées aux tableaux de bord exécutifs</strong></li>
-                    <li style="padding:0.2rem 0;">• La <strong>fondation sur laquelle tout le reste est bâti</strong></li>
-                </ul>
+            <div class="uc-card">
+                <div class="uc-card-image"><img src="images/use-cases/uc-18-site-coordination.jpg" alt="Coordination chantier" loading="lazy"></div>
+                <div class="uc-card-body">
+                    <div class="uc-card-header"><span class="uc-emoji">🚛</span><div class="uc-card-title"><span class="lang-fr">Coordination chantier</span><span class="lang-en">Site Coordination</span></div></div>
+                    <p class="uc-card-desc"><span class="lang-fr">Synchronisez l'atelier et le terrain. Quand c'est prêt, l'équipe est notifiée avec la liste de pièces et les instructions.</span><span class="lang-en">Sync the shop and the field. When it's ready, the crew gets notified with parts list and instructions.</span></p>
+                </div>
             </div>
 
-        </div>
-            </div><!-- /.accordion-body -->
-        </details>
-    </div>
-</section>
-
-<!-- ═══ FINAL CTA ═══ -->
-<section id="contact" class="final-cta">
-    <div class="container">
-        <h2 data-en="Book a free 1-hour discovery call" data-fr="Réservez un appel découverte d'une heure — gratuit">Book a free 1-hour discovery call</h2>
-        <p class="subtitle lang-en">Tell us your challenge. We'll show you how to solve it.</p>
-        <p class="subtitle lang-fr">Parlez-nous de votre défi. On vous montre comment le résoudre.</p>
-        <p class="cta-founders lang-en">With Benoit and Jérémy — not a salesperson.</p>
-        <p class="cta-founders lang-fr">Avec Benoit et Jérémy — pas un vendeur.</p>
-        <p style="color:var(--text-secondary);margin-bottom:2.5rem;font-size:0.95rem;" class="lang-en">No commitment. No slides. Just a real conversation about your operation.</p>
-        <p style="color:var(--text-secondary);margin-bottom:2.5rem;font-size:0.95rem;" class="lang-fr">Pas d'engagement. Pas de présentation. Juste une vraie conversation sur votre opération.</p>
-        <div class="cta-contact">
-            <a href="index.html#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Book a free discovery call</a>
-            <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
-            <a href="tel:+15142090384" style="color:var(--text-secondary);text-decoration:none;">(514) 209-0384</a>
         </div>
     </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<section class="cta-section">
+    <div class="container">
+        <h2><span class="lang-fr">Discutons de votre projet</span><span class="lang-en">Let's talk about your project</span></h2>
+        <p><span class="lang-fr">Chaque entreprise est unique. Dites-nous votre défi — on trouvera la solution.</span><span class="lang-en">Every business is unique. Tell us your challenge — we'll find the solution.</span></p>
+        <a href="index.html#contact" class="btn btn-primary btn-lg"><span class="lang-fr">Réserver un appel gratuit &rarr;</span><span class="lang-en">Book a free call &rarr;</span></a>
+    </div>
+</section>
+
 <footer class="footer">
     <div class="container">
-        <div class="footer-content">
-            <div>
-                <a href="index.html" class="logo">pinn<span class="ai">AI</span></a>
-                <p style="margin-top:0.75rem;color:var(--text-secondary);font-size:0.9rem;">Beloeil, QC, Canada</p>
-                <p style="margin-top:0.5rem;color:var(--text-secondary);font-size:0.9rem;">
-                    <a href="mailto:info@pinnai.com" style="color:var(--accent-cyan);text-decoration:none;">info@pinnai.com</a>
-                </p>
-                <p style="margin-top:0.25rem;color:var(--text-secondary);font-size:0.9rem;">
-                    <a href="tel:+15142090384" style="color:var(--text-secondary);text-decoration:none;">(514) 209-0384</a>
-                </p>
-                <p style="margin-top:0.5rem;">
-                    <a href="https://linkedin.com/company/pinnai" target="_blank" rel="noopener" style="color:var(--accent-cyan);text-decoration:none;font-size:0.9rem;">LinkedIn ↗</a>
-                </p>
-            </div>
-            <div class="footer-links" style="align-items:flex-start;flex-direction:column;gap:0.75rem;">
-                <a href="index.html" data-en="Home" data-fr="Accueil">Home</a>
-                <a href="index.html#services" data-en="Services" data-fr="Services">Services</a>
-                <a href="#manufacturing" data-en="Manufacturing" data-fr="Manufacturier">Manufacturing</a>
-                <a href="#ai" data-en="AI Solutions" data-fr="Solutions IA">AI Solutions</a>
-                <a href="#integration" data-en="Integration" data-fr="Intégration">Integration</a>
-                <a href="index.html#contact" data-en="Contact" data-fr="Contact">Contact</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 PinnAI. All rights reserved.</p>
+        <div class="footer-inner">
+            <a href="index.html" class="logo">pinn<span class="ai">AI</span></a>
             <div class="footer-links">
-                <a href="#" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
-                <a href="#" data-en="Terms" data-fr="Conditions">Terms</a>
+                <a href="index.html"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a>
+                <a href="index.html#contact"><span class="lang-fr">Contact</span><span class="lang-en">Contact</span></a>
+                <a href="tel:+15142090384">📞 (514) 209-0384</a>
             </div>
         </div>
+        <p class="footer-copy">&copy; 2026 PinnAI. <span class="lang-fr">Beloeil, Québec.</span><span class="lang-en">Beloeil, Quebec.</span></p>
     </div>
 </footer>
 
 <script>
-    let currentLang = localStorage.getItem('pinnai-lang') || 'fr';
-
-    function setLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('pinnai-lang', lang);
-        document.documentElement.lang = lang;
-        document.querySelectorAll('[data-en]').forEach(el => {
-            const text = el.getAttribute('data-' + lang);
-            if (text) {
-                    if (text.indexOf('<') !== -1) {
-                        el.innerHTML = text;
-                    } else {
-                        var imgs = el.querySelectorAll('img');
-                        el.textContent = text;
-                        imgs.forEach(function(img) { el.prepend(img); });
-                    }
-                }
-        });
-        document.querySelectorAll('.lang-en').forEach(el => { var d = el.tagName === 'SPAN' ? 'inline' : 'block'; el.style.display = lang === 'en' ? d : 'none'; });
-        document.querySelectorAll('.lang-fr').forEach(el => { var d = el.tagName === 'SPAN' ? 'inline' : 'block'; el.style.display = lang === 'fr' ? d : 'none'; });
-        document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.toggle('active', btn.dataset.lang === lang); });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => { setLang(currentLang); });
-
-    window.addEventListener('scroll', function() {
-        const nav = document.getElementById('nav');
-        if (window.scrollY > 100) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
+function setLang(lang) {
+    document.querySelectorAll('.lang-fr').forEach(el => el.style.display = lang === 'fr' ? '' : 'none');
+    document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    document.documentElement.lang = lang;
+    localStorage.setItem('pinnai-lang', lang);
+}
+// Init lang
+(function() {
+    var saved = localStorage.getItem('pinnai-lang') || 'fr';
+    setLang(saved);
+})();
+// Nav scroll
+window.addEventListener('scroll', function() {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
 </script>
+
 </body>
 </html>
