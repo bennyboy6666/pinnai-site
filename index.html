@@ -227,24 +227,7 @@
         .approach-icon img { mix-blend-mode: normal; }
         .approach-card h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.1rem; }
         .approach-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
-        /* === SCROLL-DRIVEN FRAME ANIMATIONS === */
-        #hero-scroll-wrapper, #chaos-scroll-wrapper {
-            background: var(--bg-surface);
-            overflow: hidden;
-        }
-        #heroCanvas {
-            background: transparent;
-        }
-        #chaosCanvas {
-            background: var(--bg-surface);
-            max-width: 800px;
-            margin: 0 auto;
-            display: block;
-        }
-        .scroll-canvas-wrapper {
-            position: relative;
-        }
-        /* === END SCROLL-DRIVEN FRAME ANIMATIONS === */
+        /* Hero image removed canvas animations */
         /* Alternating sections */
         section:nth-child(even) { background: var(--bg-surface); }
         #faq { background: var(--bg-surface) !important; }
@@ -475,10 +458,9 @@
             <span class="lang-en"><strong>The question is why you couldn't get it &#8212; until now.</strong></span>
             <span class="lang-fr"><strong>La question c'est pourquoi vous avez jamais pu l'avoir &#8212; jusqu'à maintenant.</strong></span>
         </p>
-        <!-- CHAOS SCROLL ANIMATION -->
-        <div id="chaos-scroll-wrapper" class="scroll-canvas-wrapper" style="position:relative;margin-top:1rem;margin-bottom:0.5rem;background:var(--bg-primary);overflow:hidden;border:none;outline:none;">
-            <canvas id="chaosCanvas" style="width:100%;height:35vh;display:block;"></canvas>
-            <noscript><img src="images/chaos-frames/frame_0061.jpg" alt="PinnAI chaos animation" style="width:100%;max-width:800px;margin:0 auto;display:block;"></noscript>
+        <!-- HERO IMAGE -->
+        <div style="margin-top:2rem;margin-bottom:0.5rem;">
+            <img src="images/hero-pinnai.jpg" alt="PinnAI — logiciel manufacturier propulsé par l'IA" style="width:100%;max-width:900px;margin:0 auto;display:block;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
         </div>
     </div>
 </section>
@@ -493,7 +475,7 @@
         <div class="services-grid">
             <div class="service-pillar" >
                 <h3 class="service-title" data-en="Manufacturing Software" data-fr="Logiciel manufacturier">Logiciel manufacturier</h3>
-                <img src="images/uc-spreadsheet.webp" alt="Manufacturing Software" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <img src="images/pillar-manufacturing.jpg" alt="Manufacturing Software" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
                 <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
                     <span class="expand-label lang-en">Learn more</span>
                     <span class="expand-label lang-fr">En savoir plus</span>
@@ -508,7 +490,7 @@
             </div>
             <div class="service-pillar" >
                 <h3 class="service-title" data-en="AI Solutions" data-fr="Solutions IA">Solutions IA</h3>
-                <img src="images/uc-assistant.webp" alt="AI Solutions" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <img src="images/pillar-ai-solutions.jpg" alt="AI Solutions" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
                 <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
                     <span class="expand-label lang-en">Learn more</span>
                     <span class="expand-label lang-fr">En savoir plus</span>
@@ -523,7 +505,7 @@
             </div>
             <div class="service-pillar" >
                 <h3 class="service-title" data-en="ERP &amp; Integration" data-fr="ERP et intégration">ERP et intégration</h3>
-                <img src="images/uc-erp-agent.webp" alt="ERP & Integration" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <img src="images/pillar-sprints.jpg" alt="ERP & Integration" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
                 <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
                     <span class="expand-label lang-en">Learn more</span>
                     <span class="expand-label lang-fr">En savoir plus</span>
@@ -833,16 +815,7 @@
         //     scrollPx: 300
         // });
 
-        // Chaos animation
-        // triggerAt:0.8 = starts earlier (when wrapper enters bottom 20%)
-        // scrollPx:400 = completes over 400px of scrolling
-        setupScrollAnimation({
-            canvasId: 'chaosCanvas',
-            wrapperId: 'chaos-scroll-wrapper',
-            basePath: 'images/chaos-frames/',
-            triggerAt: 0.65,
-            scrollPx: 350
-        });
+        // Chaos animation removed — replaced with static hero image
     })();
     /* === END SCROLL-DRIVEN FRAME ANIMATIONS === */
 </script>
