@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PinnAI — Logiciel sur mesure, propulsé par l'IA</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="PinnAI conçoit des logiciels sur mesure pour les PME manufacturières grâce à l'IA. 3-5x plus rapide, conforme Loi 25, hébergement 100% canadien.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PinnAI — Logiciel sur mesure, propulsé par l'IA">
+<meta property="og:url" content="https://bennyboy6666.github.io/pinnai-site/">
+<meta property="og:image" content="https://bennyboy6666.github.io/pinnai-site/images/og-preview.jpg">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"PinnAI","url":"https://bennyboy6666.github.io/pinnai-site/","description":"Logiciels sur mesure propulsés par l'IA pour les PME manufacturières","address":{"@type":"PostalAddress","addressLocality":"Beloeil","addressRegion":"QC","addressCountry":"CA"},"email":"info@pinnai.com","telephone":"+15142090384","numberOfEmployees":"3","founder":[{"@type":"Person","name":"Benoit Gagné"},{"@type":"Person","name":"Jeremy Marsolais"},{"@type":"Person","name":"Sébastien Gauthier"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+    --surface:#121317;--surface-low:#1a1b20;--surface-card:#1f1f24;
+    --surface-high:#292a2e;--surface-highest:#343439;--surface-lowest:#0d0e12;
+    --primary:#8aebff;--primary-ctn:#22d3ee;--on-primary:#00363e;--on-primary-ctn:#005763;
+    --text-1:#e3e2e8;--text-2:#bbc9cd;--text-3:rgba(255,255,255,0.38);
+    --border-ghost:rgba(255,255,255,0.05);--border-glow:rgba(138,235,255,0.30);
+    --border-glow-xs:rgba(138,235,255,0.12);--accent-green:#4ade80;--pad:7rem;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--surface);color:var(--text-1);line-height:1.6;overflow-x:hidden;}
+::selection{background:rgba(138,235,255,0.25);color:var(--primary);}
+img{display:block;}
+a{text-decoration:none;color:inherit;}
+.nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(18,19,23,0.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border-ghost);transition:background .3s,box-shadow .3s;}
+.nav.scrolled{background:rgba(18,19,23,0.88);box-shadow:0 4px 40px rgba(0,0,0,.45),0 1px 0 rgba(138,235,255,.06);}
+.nav-container{max-width:1440px;margin:0 auto;padding:0 2rem;height:5rem;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:900;letter-spacing:-0.03em;color:#fff;text-transform:uppercase;}
+.logo .ai{color:var(--primary-ctn);}
+.nav-links{display:flex;list-style:none;gap:2.5rem;align-items:center;}
+.nav-links a{color:var(--text-2);font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:.12em;transition:color .2s;}
+.nav-links a:hover{color:#fff;}
+.mobile-nav{display:none;}
+.lang-toggle{display:flex;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden;}
+.lang-btn{padding:.35rem .75rem;background:none;border:none;color:var(--text-3);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .2s;}
+.lang-btn.active{background:var(--primary-ctn);color:var(--on-primary-ctn);}
+.lang-en{display:none;}
+.btn{display:inline-block;padding:.75rem 1.75rem;border-radius:.75rem;font-family:'Inter',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;border:none;transition:all .3s;text-decoration:none;}
+.btn-primary{background:var(--primary-ctn);color:var(--on-primary-ctn);border:1px solid var(--border-glow);box-shadow:0 0 20px rgba(34,211,238,.22);}
+.btn-primary:hover{transform:scale(.97);box-shadow:0 0 40px rgba(34,211,238,.45);}
+.btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.12);}
+.btn-outline:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.25);}
+.container{max-width:1440px;margin:0 auto;padding:0 2rem;}
+.section{padding:var(--pad) 0;}
+.section-alt{background:var(--surface-low);}
+.section-header{margin-bottom:4rem;}
+.section-header.centered{text-align:center;}
+.section-header.centered .subtitle{margin:0 auto;}
+.section-label{display:block;margin-bottom:1rem;font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--primary);}
+.section-header h2{font-family:'Inter',sans-serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:900;letter-spacing:-.025em;color:#fff;line-height:1.1;margin-bottom:1rem;}
+.subtitle{font-size:1.05rem;color:var(--text-2);max-width:640px;line-height:1.75;}
+.hero{padding:calc(var(--pad) + 5rem) 0 var(--pad);background:var(--surface);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-15%;right:-8%;width:700px;height:700px;pointer-events:none;background:radial-gradient(ellipse,rgba(34,211,238,.055) 0%,transparent 70%);}
+.hero-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.hero-content{position:relative;z-index:1;}
+.hero-eyebrow{display:block;margin-bottom:1.5rem;font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--primary);}
+.hero h1{font-family:'Inter',sans-serif;font-size:clamp(2.4rem,4.5vw,3.75rem);font-weight:900;letter-spacing:-.035em;line-height:1.08;color:#fff;margin-bottom:1.5rem;}
+.hero h1 .highlight{color:var(--primary-ctn);}
+.hero-desc{font-size:1.1rem;color:var(--text-2);line-height:1.8;max-width:480px;margin-bottom:2.5rem;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+.hero-visual{position:relative;height:480px;border-radius:2rem;overflow:hidden;border:1px solid var(--border-ghost);background:var(--surface-card);}
+#heroCanvas{width:100%;height:100%;display:block;background:transparent;}
+.pillars-section{background:var(--surface-low);padding:5rem 0;}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.pillar-card{padding:2.5rem 2rem;border-left:1px solid rgba(138,235,255,.22);background:rgba(31,31,36,.5);backdrop-filter:blur(8px);border-radius:0 1.25rem 1.25rem 0;transition:border-color .3s,background .3s;}
+.pillar-card:hover{border-color:var(--primary);background:rgba(31,31,36,.9);}
+.pillar-icon{font-size:2.25rem;margin-bottom:1.25rem;display:block;}
+.pillar-title{font-family:'Inter',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.75rem;}
+.pillar-desc{font-size:.9rem;color:var(--text-2);line-height:1.7;}
+.problem-section{background:var(--surface);border-top:1px solid var(--border-ghost);}
+.problem-section h2{font-family:'Inter',sans-serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;letter-spacing:-.025em;color:#fff;margin-bottom:3rem;max-width:720px;}
+.problem-bullets{list-style:none;max-width:760px;}
+.problem-bullets li{padding:1.5rem 2rem;border-left:2px solid rgba(138,235,255,.3);background:var(--surface-card);border-radius:0 1rem 1rem 0;margin-bottom:1rem;color:var(--text-2);transition:border-color .3s,background .3s;}
+.problem-bullets li:hover{border-color:var(--primary);background:var(--surface-high);}
+.problem-bullets li strong{color:#fff;display:block;margin-bottom:.3rem;font-size:1.05rem;font-weight:700;}
+.problem-conclusion{margin-top:2rem;font-size:1.1rem;color:var(--text-2);max-width:640px;}
+.problem-conclusion strong{color:var(--primary-ctn);}
+#chaos-scroll-wrapper{background:var(--surface-low);border-radius:1.25rem;overflow:hidden;margin-top:3rem;}
+#chaosCanvas{width:100%;height:40vh;max-width:900px;margin:0 auto;display:block;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.service-card{background:var(--surface-card);padding:2.75rem 2.5rem;border-radius:2rem;border:1px solid var(--border-ghost);transition:background .4s,transform .3s,box-shadow .3s;display:flex;flex-direction:column;}
+.service-card:hover{background:var(--surface-high);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 30px rgba(138,235,255,.06);}
+.service-card-icon{width:4rem;height:4rem;border-radius:1rem;background:rgba(138,235,255,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.75rem;transition:transform .4s;}
+.service-card:hover .service-card-icon{transform:scale(1.1);}
+.service-card-icon img{width:2.5rem;height:2.5rem;object-fit:contain;border-radius:.5rem;}
+.service-title{font-family:'Inter',sans-serif;font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:1rem;}
+.service-features{list-style:none;display:flex;flex-direction:column;gap:.6rem;flex:1;}
+.service-features li{display:flex;align-items:flex-start;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-size:.875rem;color:rgba(187,201,205,.85);line-height:1.5;}
+.service-features li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--primary-ctn);margin-top:.45rem;flex-shrink:0;}
+.service-image{width:100%;max-width:260px;margin:1.75rem auto 0;border-radius:.75rem;opacity:.85;}
+.services-cta-row{text-align:center;margin-top:1rem;}
+.services-cta-row a{display:inline-block;background:var(--primary-ctn);color:var(--on-primary-ctn);font-family:'Inter',sans-serif;font-weight:800;font-size:1.05rem;padding:1rem 2.75rem;border-radius:1rem;border:1px solid var(--border-glow);box-shadow:0 0 30px rgba(34,211,238,.25);transition:all .3s;}
+.services-cta-row a:hover{box-shadow:0 0 50px rgba(34,211,238,.45);transform:scale(.97);}
+.grants-callout{background:rgba(31,31,36,.7);border:1px solid rgba(138,235,255,.22);border-radius:1.25rem;padding:2.5rem 3rem;box-shadow:0 0 40px rgba(138,235,255,.06);backdrop-filter:blur(8px);}
+.grants-callout p{color:var(--text-2);line-height:1.65;font-size:.95rem;}
+.grants-callout strong{color:#fff;}
+.grants-list{list-style:none;padding:0;margin:.75rem 0 1.25rem;color:var(--text-2);line-height:1.7;display:flex;flex-direction:column;gap:.5rem;}
+.grants-list li{display:flex;align-items:flex-start;gap:.5rem;}
+.grants-list li::before{content:'\B7';color:var(--primary-ctn);font-size:1.2rem;}
+.grants-highlight{text-align:center;font-weight:700;color:var(--primary-ctn);font-size:1.05rem;margin:.5rem 0 0;}
+.grants-cta{text-align:center;margin-top:2.5rem;}
+.grants-cta a{display:inline-block;color:var(--primary-ctn);border:1px solid var(--border-glow);padding:.85rem 2.25rem;border-radius:.75rem;transition:all .25s;font-weight:600;}
+.grants-cta a:hover{background:rgba(34,211,238,.08);border-color:var(--primary-ctn);}
+.process-wrapper{position:relative;}
+.process-bar{position:absolute;top:1.5rem;left:8%;right:8%;height:1px;background:rgba(255,255,255,.08);}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;position:relative;z-index:1;}
+.process-step{text-align:center;}
+.step-bubble{width:3rem;height:3rem;border-radius:50%;background:var(--surface);border:3px solid var(--surface-card);margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:800;font-size:1rem;color:#fff;transition:border-color .3s;}
+.process-step:hover .step-bubble{border-color:var(--primary-ctn);}
+.step-title{font-family:'Inter',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;}
+.step-duration{font-family:'Space Grotesk',sans-serif;font-size:.8rem;color:var(--primary-ctn);font-weight:600;margin-bottom:.6rem;}
+.step-desc{font-size:.9rem;color:var(--text-2);line-height:1.65;padding:0 .5rem;}
+.approach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.approach-card{background:var(--surface-card);padding:2rem;border-radius:1.25rem;border:1px solid var(--border-ghost);text-align:center;transition:transform .3s,box-shadow .3s,background .3s;}
+.approach-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.3);background:var(--surface-high);}
+.approach-icon{margin-bottom:1.25rem;}
+.approach-icon img{width:80px;height:80px;border-radius:1rem;object-fit:cover;margin:0 auto;mix-blend-mode:lighten;}
+.approach-card h4{font-family:'Inter',sans-serif;font-size:.95rem;font-weight:700;color:var(--primary-ctn);margin-bottom:.75rem;}
+.approach-card p{font-size:.875rem;color:var(--text-2);line-height:1.7;}
+.integration-logos{display:flex;justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap;margin:3rem 0;}
+.logo-badge{padding:.6rem 1.4rem;border-radius:.5rem;border:1px solid var(--border-glow-xs);background:var(--surface-card);font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:700;color:var(--text-2);letter-spacing:.02em;transition:color .2s,border-color .2s;}
+.logo-badge:hover{color:var(--primary-ctn);border-color:var(--border-glow);}
+.callout-box{background:rgba(31,31,36,.6);border:1px solid var(--border-glow-xs);border-radius:1.25rem;padding:2rem 2.5rem;backdrop-filter:blur(8px);}
+.callout-box h4{color:var(--primary-ctn);font-family:'Inter',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:1rem;}
+.callout-box ul{list-style:none;padding:0;}
+.callout-box ul li{padding:.25rem 0;color:var(--text-2);font-size:.95rem;}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.team-card{background:var(--surface-card);padding:2.5rem 2rem;border-radius:2rem;border:1px solid var(--border-ghost);text-align:center;transition:transform .3s,box-shadow .3s;}
+.team-card:hover{transform:scale(1.03);box-shadow:0 16px 60px rgba(0,0,0,.4);}
+.team-avatar-wrap{width:8rem;height:8rem;border-radius:50%;overflow:hidden;margin:0 auto 1.5rem;filter:grayscale(1);transition:filter .5s;}
+.team-card:hover .team-avatar-wrap{filter:grayscale(0);}
+.team-avatar-wrap img{width:100%;height:100%;object-fit:cover;}
+.team-card h4{font-family:'Inter',sans-serif;font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:.35rem;}
+.team-role{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--primary-ctn);margin-bottom:1.25rem;}
+.team-bio{color:var(--text-2);font-size:.9rem;line-height:1.75;margin-bottom:.5rem;}
+.team-tagline{text-align:center;margin-top:3rem;color:var(--text-2);font-style:italic;font-size:1.05rem;}
+.team-tagline strong{color:#fff;}
+.cred-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2.5rem;padding:1.5rem;background:rgba(138,235,255,.03);border:1px solid var(--border-ghost);border-radius:1.25rem;}
+.cred-item{text-align:center;}
+.cred-number{font-size:1.8rem;font-weight:700;color:var(--primary-ctn);}
+.cred-label{font-size:.75rem;color:var(--text-3);}
+.badge-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-top:1.5rem;}
+.badge{display:inline-flex;align-items:center;gap:.3rem;background:var(--surface-card);border:1px solid var(--border-ghost);border-radius:20px;padding:.35rem .8rem;font-size:.75rem;color:var(--text-3);}
+.team-breadth{text-align:center;margin-top:1.5rem;font-size:.95rem;color:var(--text-3);font-style:italic;}
+.team-breadth strong{color:var(--primary-ctn);}
+.faq-grid{max-width:800px;margin:0 auto;}
+.faq-item{background:var(--surface-card);border:1px solid var(--border-ghost);border-radius:1.25rem;margin-bottom:1rem;overflow:hidden;transition:border-color .2s;}
+.faq-item:hover{border-color:var(--border-glow-xs);}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;cursor:pointer;font-weight:600;font-size:1rem;color:#fff;transition:color .2s;}
+.faq-question:hover{color:var(--primary-ctn);}
+.faq-chevron{font-size:1.1rem;transition:transform .3s;color:var(--primary-ctn);}
+.faq-item.open .faq-chevron{transform:rotate(180deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-answer-inner{padding:0 1.5rem 1.25rem;color:var(--text-2);line-height:1.75;}
+.faq-item.open .faq-answer{max-height:300px;}
+.final-cta{padding:var(--pad) 0;position:relative;overflow:hidden;background:var(--surface);}
+.final-cta::before{content:'';position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:rgba(138,235,255,.04);border-radius:50%;filter:blur(100px);pointer-events:none;}
+.cta-inner{background:var(--surface-high);border:1px solid rgba(138,235,255,.1);border-radius:3rem;padding:4rem 3rem;text-align:center;position:relative;z-index:1;box-shadow:0 30px 80px rgba(0,0,0,.4);}
+.cta-inner h2{font-family:'Inter',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;letter-spacing:-.035em;color:#fff;line-height:1.1;margin-bottom:1rem;}
+.cta-inner h2 .highlight{color:var(--primary-ctn);}
+.cta-subtitle{font-size:1.15rem;color:var(--text-2);margin-bottom:.5rem;}
+.cta-founders{font-size:1rem;color:var(--primary-ctn);margin-bottom:2.5rem;}
+.cta-contact-info{display:flex;gap:2rem;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:1.25rem;}
+.contact-email{color:var(--primary-ctn);font-weight:500;}
+.contact-phone{color:var(--text-2);font-weight:500;}
+#contactForm{display:flex;flex-direction:column;gap:.75rem;max-width:420px;margin:1.5rem auto;text-align:left;}
+#contactForm input,#contactForm textarea{padding:.75rem 1rem;border-radius:.75rem;border:1px solid var(--border-ghost);background:rgba(31,31,36,.8);color:#fff;font-family:'Inter',sans-serif;font-size:.95rem;transition:border-color .2s;}
+#contactForm input:focus,#contactForm textarea:focus{outline:none;border-color:var(--border-glow);}
+#formSuccess{display:none;padding:1.5rem;background:rgba(34,211,238,.08);border:1px solid var(--primary-ctn);border-radius:1rem;margin:1rem auto;max-width:420px;}
+.footer{background:var(--surface-low);padding:5rem 0 2rem;border-top:1px solid var(--border-ghost);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand p{margin-top:.75rem;color:var(--text-2);font-size:.9rem;line-height:1.6;}
+.footer-col h5{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:#fff;margin-bottom:1rem;}
+.footer-col nav{display:flex;flex-direction:column;gap:.6rem;}
+.footer-col nav a{color:var(--text-3);font-size:.875rem;transition:color .2s;}
+.footer-col nav a:hover{color:var(--primary-ctn);}
+.footer-bottom{border-top:1px solid var(--border-ghost);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;color:var(--text-3);font-size:.85rem;}
+.footer-bottom-links{display:flex;gap:1.5rem;}
+.footer-bottom-links a{color:var(--text-3);transition:color .2s;}
+.footer-bottom-links a:hover{color:var(--primary-ctn);}
+@media(max-width:1200px){
+    .approach-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:900px){
+    :root{--pad:5rem;}
+    .hero-layout{grid-template-columns:1fr;}
+    .hero-visual{height:280px;}
+    .pillars-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .approach-grid{grid-template-columns:1fr 1fr;}
+    .process-grid{grid-template-columns:repeat(2,1fr);}
+    .process-bar{display:none!important;}
+    .team-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .footer-bottom{flex-direction:column;gap:1rem;text-align:center;}
+}
+@media(max-width:640px){
+    :root{--pad:4rem;}
+    .nav-links{display:none;}
+    .mobile-nav{display:flex;gap:1rem;align-items:center;}
+    .hero h1{font-size:2rem;}
+    .hero-ctas{flex-direction:column;align-items:flex-start;}
+    .hero-visual{height:220px;}
+    .approach-grid{grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:1fr;}
+    .cta-inner{padding:2.5rem 1.5rem;border-radius:1.5rem;}
+    .grants-callout{padding:1.75rem 1.5rem;}
+    .cta-contact-info{flex-direction:column;}
+}
+
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-container">
+        <div class="logo">pinn<span class="ai">AI</span></div>
+        <ul class="nav-links">
+            <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
+            <li><a href="#process" data-en="How it works" data-fr="Comment ça marche">Comment ça marche</a></li>
+            <li><a href="#about" data-en="About" data-fr="À propos">À propos</a></li>
+            <li class="lang-toggle">
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </li>
+            <li><a href="#contact" class="btn btn-primary" data-en="Book a call →" data-fr="Réserver un appel →">Réserver un appel →</a></li>
+        </ul>
+        <div class="mobile-nav">
+            <div class="lang-toggle">
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+            </div>
+            <a href="#contact" class="btn btn-primary" data-en="Book a call" data-fr="Réserver un appel">Réserver un appel</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 1. HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-layout">
+            <div class="hero-content">
+                <span class="hero-eyebrow">The Obsidian Nexus · PinnAI</span>
+                <h1>
+                    <span class="lang-fr">Le logiciel que vous avez toujours eu besoin. <span class="highlight">Enfin à votre portée.</span></span>
+                    <span class="lang-en">The software you've always needed. <span class="highlight">Finally within reach.</span></span>
+                </h1>
+                <p class="hero-desc lang-fr">Du premier appel au logiciel en production. Des solutions IA sur mesure déployées en semaines, pas en mois.</p>
+                <p class="hero-desc lang-en">From first call to live software. Custom AI solutions deployed in weeks, not months.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary" data-en="Book a free discovery call" data-fr="Réservez un appel découverte gratuit">Réservez un appel découverte gratuit</a>
+                    <a href="#services" class="btn btn-outline" data-en="See what we build" data-fr="Voir ce qu'on bâtit">Voir ce qu'on bâtit</a>
+                </div>
+            </div>
+            <div class="hero-visual" id="hero-scroll-wrapper">
+                <canvas id="heroCanvas"></canvas>
+                <noscript><img src="images/hero-frames/frame_0061.jpg" alt="PinnAI" style="width:100%;height:100%;object-fit:cover;"></noscript>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PILLARS / STATS -->
+<div class="pillars-section">
+    <div class="container">
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <span class="pillar-icon">⚡</span>
+                <div class="pillar-title" data-en="Deployed in weeks, not months" data-fr="Déployé en semaines, pas en mois">Déployé en semaines, pas en mois</div>
+                <p class="pillar-desc" data-en="From first call to live software in production." data-fr="Du premier appel au logiciel en production.">Du premier appel au logiciel en production.</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">🚀</span>
+                <div class="pillar-title" data-en="3-5x faster than traditional dev" data-fr="3-5x plus rapide que le dev traditionnel">3-5x plus rapide que le dev traditionnel</div>
+                <p class="pillar-desc" data-en="AI-assisted development, real results." data-fr="Développement assisté par IA, résultats réels.">Développement assisté par IA, résultats réels.</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">🛡️</span>
+                <div class="pillar-title" data-en="Compliance-ready when you need it" data-fr="Conformité prête quand vous en avez besoin">Conformité prête quand vous en avez besoin</div>
+                <p class="pillar-desc" data-en="Loi 25 &amp; Canadian hosting · Canada." data-fr="Loi 25 et hébergement canadien · Canada.">Loi 25 et hébergement canadien · Canada.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2. LE PROBLEME -->
+<section class="problem-section section">
+    <div class="container">
+        <h2>
+            <span class="lang-fr">Le logiciel dont vous avez besoin n'a jamais existé — jusqu'à maintenant.</span>
+            <span class="lang-en">The software you need has never existed — until now.</span>
+        </h2>
+        <ul class="problem-bullets">
+            <li>
+                <strong><span class="lang-fr">Le logiciel sur mesure, c'était pour les gros.</span><span class="lang-en">Custom software used to be for the big guys.</span></strong>
+                <span class="lang-fr">L'IA a changé l'équation — complètement.</span>
+                <span class="lang-en">AI changed the math — completely.</span>
+            </li>
+            <li>
+                <strong><span class="lang-fr">Les outils génériques ne conviennent pas à votre réalité.</span><span class="lang-en">Off-the-shelf tools don't fit your reality.</span></strong>
+                <span class="lang-fr">Vous avez tordu vos processus pour rentrer dans leurs boîtes.</span>
+                <span class="lang-en">You've bent your processes to fit their boxes.</span>
+            </li>
+            <li>
+                <strong><span class="lang-fr">Le logiciel n'a jamais été intelligent — maintenant il peut l'être.</span><span class="lang-en">Software was never smart — now it can be.</span></strong>
+                <span class="lang-fr">Comprend le contexte, prédit les problèmes, prend des décisions.</span>
+                <span class="lang-en">Understands context, predicts problems, makes decisions.</span>
+            </li>
+        </ul>
+        <p class="problem-conclusion">
+            <span class="lang-fr"><strong>La question c'est pourquoi vous avez jamais pu l'avoir — jusqu'à maintenant.</strong></span>
+            <span class="lang-en"><strong>The question is why you couldn't get it — until now.</strong></span>
+        </p>
+        <div id="chaos-scroll-wrapper">
+            <canvas id="chaosCanvas"></canvas>
+            <noscript><img src="images/chaos-frames/frame_0061.jpg" alt="PinnAI" style="width:100%;max-width:800px;margin:0 auto;display:block;"></noscript>
+        </div>
+    </div>
+</section>
+
+<!-- 3. SERVICES -->
+<section id="services" class="section">
+    <div class="container">
+        <div class="section-header centered">
+            <span class="section-label">Ce qu'on bâtit · What we build</span>
+            <h2 data-en="What we build" data-fr="Ce qu'on bâtit">Ce qu'on bâtit</h2>
+            <p class="subtitle" data-en="Three pillars. One mission: the software you needed but couldn't afford." data-fr="Trois piliers. Une mission : le logiciel dont vous aviez besoin mais pas les moyens.">Trois piliers. Une mission : le logiciel dont vous aviez besoin mais pas les moyens.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-card-icon"><img src="images/uc-spreadsheet.webp" alt="Manufacturing"></div>
+                <h3 class="service-title" data-en="Manufacturing Software" data-fr="Logiciel manufacturier">Logiciel manufacturier</h3>
+                <ul class="service-features">
+                    <li data-en="Replace spreadsheets with one dashboard" data-fr="Remplacez vos Excel — une application, un tableau de bord, données en temps réel">Remplacez vos Excel — une application, un tableau de bord, données en temps réel</li>
+                    <li data-en="Real-time production tracking (OEE, downtime)" data-fr="Suivi de production — OEE, arrêts et temps de cycle en temps réel">Suivi de production — OEE, arrêts et temps de cycle en temps réel</li>
+                    <li data-en="Smart maintenance (CMMS + AI)" data-fr="GMAO intelligente — maintenance préventive et prédictive">GMAO intelligente — maintenance préventive et prédictive</li>
+                    <li data-en="Digital quality control" data-fr="Contrôle qualité numérique — inspections, SPC, non-conformités">Contrôle qualité numérique — inspections, SPC, non-conformités</li>
+                    <li data-en="Visual production planning" data-fr="Planification de production — cédule visuelle, capacité, dates de livraison fiables">Planification de production — cédule visuelle, capacité, dates de livraison fiables</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-card-icon"><img src="images/uc-assistant.webp" alt="AI Solutions"></div>
+                <h3 class="service-title" data-en="AI Solutions" data-fr="Solutions IA">Solutions IA</h3>
+                <ul class="service-features">
+                    <li data-en="AI assistants trained on YOUR data" data-fr="Assistants IA entraînés sur VOS données — manuels, dessins, historique">Assistants IA entraînés sur VOS données — manuels, dessins, historique</li>
+                    <li data-en="Voice-to-data — forms fill themselves" data-fr="Voix vers données — le technicien parle, le formulaire se remplit">Voix vers données — le technicien parle, le formulaire se remplit</li>
+                    <li data-en="Predictive maintenance — know before it breaks" data-fr="Maintenance prédictive — savoir avant que ça brise">Maintenance prédictive — savoir avant que ça brise</li>
+                    <li data-en="Document intelligence — 10 years of docs, searchable" data-fr="Intelligence documentaire — 10 ans de docs enfin cherchables">Intelligence documentaire — 10 ans de docs enfin cherchables</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-card-icon"><img src="images/uc-erp-agent.webp" alt="AI Sprints"></div>
+                <h3 class="service-title" data-en="AI Sprints &amp; Integration" data-fr="Sprints IA et intégration">Sprints IA et intégration</h3>
+                <ul class="service-features">
+                    <li data-en="AI Readiness Audit — find your best ROI" data-fr="Audit IA — trouvez votre meilleure opportunité ROI">Audit IA — trouvez votre meilleure opportunité ROI</li>
+                    <li data-en="AI Sprint — working prototype in 2-4 weeks" data-fr="Sprint IA — prototype fonctionnel en 2-4 semaines">Sprint IA — prototype fonctionnel en 2-4 semaines</li>
+                    <li data-en="ERP integration — Odoo, SAP, any system" data-fr="Intégration ERP — Odoo, SAP, tous vos systèmes">Intégration ERP — Odoo, SAP, tous vos systèmes</li>
+                    <li data-en="Cloud Canada — your data stays in Canada" data-fr="Infonuagique Canada — vos données restent au Canada">Infonuagique Canada — vos données restent au Canada</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align:center;color:var(--text-3);margin-top:2.5rem;margin-bottom:1rem;font-size:.9rem;">
+            <span class="lang-fr">C'est juste un aperçu. On fait beaucoup plus.</span>
+            <span class="lang-en">These are just the highlights. We do a lot more.</span>
+        </p>
+        <div class="services-cta-row">
+            <a href="use-cases.html" data-en="Explore more possibilities →" data-fr="Explorer plus de possibilités →">Explorer plus de possibilités →</a>
+        </div>
+    </div>
+</section>
+
+<!-- 5. GRANTS -->
+<section id="grants" class="section section-alt">
+    <div class="container">
+        <div class="section-header centered">
+            <span class="section-label">Financement · Funding</span>
+            <h2 data-en="AI development + grants = more accessible than ever" data-fr="Développement IA + subventions = plus accessible que jamais">Développement IA + subventions = plus accessible que jamais</h2>
+        </div>
+        <div class="grants-callout">
+            <p class="lang-fr" style="margin-bottom:.5rem;"><strong>Comment l'IA + les subventions changent l'équation :</strong></p>
+            <ul class="grants-list lang-fr">
+                <li>Le développement propulsé par l'IA coûte <strong>3-4x moins cher</strong> que les firmes traditionnelles</li>
+                <li>Les crédits R&amp;D (RS&amp;DE) peuvent rembourser <strong>30-64%</strong> des dépenses admissibles</li>
+                <li>Les subventions gouvernementales (PARI, Scale AI) couvrent encore plus</li>
+                <li>On peut vous aider avec la paperasse — vous focussez sur votre business</li>
+            </ul>
+            <p style="text-align:center;font-weight:700;color:var(--primary-ctn);font-size:1.05rem;" class="lang-fr"><strong>Résultat : des projets hors de portée deviennent abordables</strong></p>
+            <p class="lang-en" style="margin-bottom:.5rem;"><strong>How AI + grants change the math:</strong></p>
+            <ul class="grants-list lang-en">
+                <li>AI-powered development cuts costs by <strong>3-4x</strong> vs traditional firms</li>
+                <li>R&amp;D tax credits (SR&amp;ED) can reimburse <strong>30-64%</strong> of eligible expenses</li>
+                <li>Government grants (IRAP, Scale AI) can cover even more</li>
+                <li>We can help with the paperwork — so you focus on your business</li>
+            </ul>
+            <p style="text-align:center;font-weight:700;color:var(--primary-ctn);font-size:1.05rem;" class="lang-en"><strong>Result: projects that were out of reach become affordable</strong></p>
+        </div>
+        <div class="grants-cta">
+            <a href="#contact" data-en="Ask us about funding options →" data-fr="Parlez-nous des options de financement →">Parlez-nous des options de financement →</a>
+        </div>
+    </div>
+</section>
+
+<!-- 6. HOW IT WORKS -->
+<section id="process" class="section" style="background:var(--surface-lowest);">
+    <div class="container">
+        <div class="section-header centered">
+            <span class="section-label">Efficiency Redefined</span>
+            <h2 data-en="From idea to impact in weeks, not months." data-fr="De l'idée à l'impact en semaines, pas en mois.">De l'idée à l'impact en semaines, pas en mois.</h2>
+            <p class="subtitle" data-en="Total turnaround: ~10 weeks from discovery to deployment." data-fr="Durée totale : ~10 semaines de la découverte au déploiement.">Durée totale : ~10 semaines de la découverte au déploiement.</p>
+        </div>
+        <div class="process-wrapper">
+            <div class="process-bar"></div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-bubble">1</div>
+                    <div class="step-title" data-en="Discover" data-fr="Découverte">Découverte</div>
+                    <div class="step-duration">
+                        <span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-3);">1 mois</span> → 1 semaine</span>
+                        <span class="lang-en"><span style="text-decoration:line-through;color:var(--text-3);">1 month</span> → 1 week</span>
+                    </div>
+                    <p class="step-desc" data-en="Identify core friction points and AI opportunities." data-fr="Rencontres, analyse, opportunités.">Rencontres, analyse, opportunités.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-bubble">2</div>
+                    <div class="step-title" data-en="Design" data-fr="Conception">Conception</div>
+                    <div class="step-duration">
+                        <span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-3);">2 mois</span> → 2 semaines</span>
+                        <span class="lang-en"><span style="text-decoration:line-through;color:var(--text-3);">2 months</span> → 2 weeks</span>
+                    </div>
+                    <p class="step-desc" data-en="Architecture blueprint and UI prototype creation." data-fr="Architecture, prototypes, plan clair.">Architecture, prototypes, plan clair.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-bubble">3</div>
+                    <div class="step-title" data-en="Build" data-fr="Développement">Développement</div>
+                    <div class="step-duration">
+                        <span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-3);">6 mois</span> → 6 semaines</span>
+                        <span class="lang-en"><span style="text-decoration:line-through;color:var(--text-3);">6 months</span> → 6 weeks</span>
+                    </div>
+                    <p class="step-desc" data-en="Rapid development with bi-weekly feedback cycles." data-fr="Sprints agiles, démos aux 2 semaines.">Sprints agiles, démos aux 2 semaines.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-bubble">4</div>
+                    <div class="step-title" data-en="Launch" data-fr="Livraison">Livraison</div>
+                    <div class="step-duration">
+                        <span class="lang-fr"><span style="text-decoration:line-through;color:var(--text-3);">1 mois</span> → 1 semaine</span>
+                        <span class="lang-en"><span style="text-decoration:line-through;color:var(--text-3);">1 month</span> → 1 week</span>
+                    </div>
+                    <p class="step-desc" data-en="Deploy, train, support." data-fr="Déploiement, formation, support.">Déploiement, formation, support.</p>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:3rem;font-size:1.1rem;color:var(--text-2);">
+            <span class="lang-fr">Total : <span style="text-decoration:line-through;color:var(--text-3);">~10 mois</span> → <strong style="color:var(--primary-ctn);font-size:1.3em;">~10 semaines</strong></span>
+            <span class="lang-en">Total: <span style="text-decoration:line-through;color:var(--text-3);">~10 months</span> → <strong style="color:var(--primary-ctn);font-size:1.3em;">~10 weeks</strong></span>
+        </p>
+    </div>
+</section>
+
+<!-- 6b. POURQUOI 3-5x PLUS RAPIDE -->
+<section class="section">
+    <div class="container">
+        <div class="section-header centered">
+            <h2 data-en="Why we're 3-5x faster" data-fr="Pourquoi on est 3-5x plus rapide">Pourquoi on est 3-5x plus rapide</h2>
+            <p class="subtitle" data-en="AI doesn't just help us code. It transforms every step of the process." data-fr="L'IA ne fait pas juste nous aider à coder. Elle transforme chaque étape du processus.">L'IA ne fait pas juste nous aider à coder. Elle transforme chaque étape du processus.</p>
+        </div>
+        <div class="approach-grid">
+            <div class="approach-card">
+                <div class="approach-icon"><img src="images/approach-ai-coding.jpg" alt="AI coding"></div>
+                <h4 data-en="AI-assisted coding" data-fr="Développement assisté par IA">Développement assisté par IA</h4>
+                <p data-en="Our team works alongside AI agents that generate, review and test code in real time. Less repetitive code, more business logic." data-fr="Nos experts travaillent avec des agents IA qui génèrent, révisent et testent le code en temps réel. Moins de code répétitif, plus de logique métier.">Nos experts travaillent avec des agents IA qui génèrent, révisent et testent le code en temps réel. Moins de code répétitif, plus de logique métier.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon"><img src="images/approach-testing.jpg" alt="Automated testing"></div>
+                <h4 data-en="Automated testing" data-fr="Tests automatisés dès le jour 1">Tests automatisés dès le jour 1</h4>
+                <p data-en="Every feature is automatically tested before delivery. Fewer bugs, faster iterations, reliable software from day one." data-fr="Chaque fonctionnalité est testée automatiquement avant livraison. Moins de bogues, des itérations rapides, un logiciel fiable dès le premier jour.">Chaque fonctionnalité est testée automatiquement avant livraison. Moins de bogues, des itérations rapides, un logiciel fiable dès le premier jour.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon"><img src="images/approach-lean.jpg" alt="Lean discovery"></div>
+                <h4 data-en="Lean discovery" data-fr="Découverte allégée">Découverte allégée</h4>
+                <p data-en="No more 3-month requirements gathering. We prototype fast, iterate with your team, and build what actually matters." data-fr="Fini le cahier des charges de 3 mois. On prototype vite, on itère avec votre équipe, et on bâtit ce qui compte vraiment.">Fini le cahier des charges de 3 mois. On prototype vite, on itère avec votre équipe, et on bâtit ce qui compte vraiment.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon"><img src="images/approach-security.jpg" alt="Security first"></div>
+                <h4 data-en="Security first" data-fr="Sécurité d'abord">Sécurité d'abord</h4>
+                <p data-en="Authentication, encryption, Loi 25 compliance — baked in from day one, not bolted on at the end." data-fr="Authentification, chiffrement, conformité Loi 25 — intégrés dès le jour 1, pas ajoutés à la fin.">Authentification, chiffrement, conformité Loi 25 — intégrés dès le jour 1, pas ajoutés à la fin.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. INTEGRATIONS -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header centered">
+            <h2 data-en="Connect everything" data-fr="Connecter tout">Connecter tout</h2>
+            <p class="subtitle" data-en="We integrate with your existing systems — ERP, CRM, databases, APIs." data-fr="On s'intègre à vos systèmes existants — ERP, CRM, bases de données, APIs.">On s'intègre à vos systèmes existants — ERP, CRM, bases de données, APIs.</p>
+        </div>
+        <div class="integration-logos">
+            <div class="logo-badge">Odoo</div>
+            <div class="logo-badge">SAP</div>
+            <div class="logo-badge">NetSuite</div>
+            <div class="logo-badge">Azure</div>
+            <div class="logo-badge">Zoho</div>
+            <div class="logo-badge">Salesforce</div>
+            <div class="logo-badge">Custom APIs</div>
+        </div>
+        <div class="callout-box">
+            <h4 data-en="One source of truth." data-fr="Une seule source de vérité.">Une seule source de vérité.</h4>
+            <ul class="lang-en">
+                <li>• Data flows automatically between your systems</li>
+                <li>• <strong>No more copy-paste</strong> between tools</li>
+            </ul>
+            <ul class="lang-fr">
+                <li>• Les données circulent automatiquement entre vos systèmes</li>
+                <li>• <strong>Plus de copier-coller</strong> entre les outils</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 9. TEAM -->
+<section id="about" class="section">
+    <div class="container">
+        <div class="section-header centered">
+            <span class="section-label">L'équipe · The Team</span>
+            <h2>
+                <span class="lang-fr">Les fondateurs de Pinn<span style="color:var(--primary-ctn);">AI</span></span>
+                <span class="lang-en">The founders of Pinn<span style="color:var(--primary-ctn);">AI</span></span>
+            </h2>
+            <p class="subtitle" data-en="Three seniors. Real experience. No gaps." data-fr="Trois séniors. Expérience réelle. Zéro lacune.">Trois séniors. Expérience réelle. Zéro lacune.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar-wrap">
+                    <img src="images/avatar-benoit.webp" alt="Benoit Gagné">
+                </div>
+                <h4>Benoit Gagné</h4>
+                <p class="team-role" data-en="Co-founder · Development &amp; AI" data-fr="Co-fondateur · Développement et IA">Co-fondateur · Développement et IA</p>
+                <p class="team-bio lang-en">16 years in manufacturing. Polytechnique Montréal. Ex-VP Development, DVolu.</p>
+                <p class="team-bio lang-fr">16 ans dans le manufacturier. Polytechnique Montréal. Ex-VP Développement, DVolu.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar-wrap">
+                    <img src="images/avatar-jeremy.webp" alt="Jeremy Marsolais">
+                </div>
+                <h4>Jeremy Marsolais</h4>
+                <p class="team-role" data-en="Co-founder · Projects &amp; Robotics" data-fr="Co-fondateur · Projets et robotique">Co-fondateur · Projets et robotique</p>
+                <p class="team-bio lang-en">Mechatronics (ÉTS), M.Sc. Project Mgmt. CSA, SNC-Lavalin, Glencore. Ships on time.</p>
+                <p class="team-bio lang-fr">Mécatronique (ÉTS), M.Sc. gestion de projet. ASC, SNC-Lavalin, Glencore. Livre à temps.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar-wrap">
+                    <img src="images/avatar-sebastien.webp" alt="Sébastien Gauthier">
+                </div>
+                <h4>Sébastien Gauthier</h4>
+                <p class="team-role" data-en="Co-founder · Cloud &amp; Infrastructure" data-fr="Co-fondateur · Infonuagique et infrastructure">Co-fondateur · Infonuagique et infrastructure</p>
+                <p class="team-bio lang-en">17 years in cloud. Flinks, Badal, Deck. Google Cloud Architect certified. Your software runs 24/7.</p>
+                <p class="team-bio lang-fr">17 ans en infonuagique. Flinks, Badal, Deck. Certifié Google Cloud Architect. Votre logiciel roule 24/7.</p>
+            </div>
+        </div>
+
+        <p class="team-tagline">
+            <span class="lang-en"><strong>From the factory floor to the cloud — development, software, infrastructure. No gaps.</strong></span>
+            <span class="lang-fr"><strong>Du plancher d'usine jusqu'au nuage — développement, logiciel, infrastructure. Zéro trou.</strong></span>
+        </p>
+
+        <div class="cred-bar">
+            <div class="cred-item">
+                <div class="cred-number">50+</div>
+                <div class="cred-label" data-en="years combined experience" data-fr="années d'expérience combinées">années d'expérience combinées</div>
+            </div>
+            <div class="cred-item">
+                <div class="cred-number">🇨🇦</div>
+                <div class="cred-label" data-en="100% Canadian team &amp; hosting" data-fr="Équipe et hébergement 100% canadien">Équipe et hébergement 100% canadien</div>
+            </div>
+            <div class="cred-item">
+                <div class="cred-number">3</div>
+                <div class="cred-label" data-en="founders, not salespeople" data-fr="fondateurs, pas des vendeurs">fondateurs, pas des vendeurs</div>
+            </div>
+        </div>
+
+        <div class="badge-row">
+            <span class="badge">☁️ <span data-en="Google Cloud Certified" data-fr="Certifié Google Cloud Architect">Certifié Google Cloud Architect</span></span>
+            <span class="badge">🎓 Polytechnique Montréal</span>
+            <span class="badge">🎓 ÉTS Montréal</span>
+            <span class="badge">🔒 <span data-en="Loi 25 Compliant" data-fr="Conforme Loi 25">Conforme Loi 25</span></span>
+            <span class="badge">🤖 <span data-en="AI-Augmented Dev" data-fr="Développement augmenté par IA">Développement augmenté par IA</span></span>
+        </div>
+
+        <p class="team-breadth">
+            <span class="lang-en"><strong>Deep roots in manufacturing, but we build for any industry.</strong></span>
+            <span class="lang-fr"><strong>Des racines profondes dans le manufacturier, mais on bâtit pour toute industrie.</strong></span>
+        </p>
+    </div>
+</section>
+
+<!-- 10b. FAQ -->
+<section id="faq" class="section section-alt" style="border-top:1px solid var(--border-ghost);">
+    <div class="container">
+        <div class="section-header centered">
+            <h2 data-en="Frequently asked questions" data-fr="Questions fréquentes">Questions fréquentes</h2>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Combien coûte un projet sur mesure?</span>
+                    <span class="lang-en">How much does a custom project cost?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Chaque projet est unique. On commence toujours par un appel découverte gratuit pour comprendre vos besoins et vous donner une estimation réaliste. Grâce à l'IA, nos coûts sont 3-5x inférieurs aux firmes traditionnelles — et les subventions (RS&DE, PARI) peuvent couvrir une partie significative. Les projets de logiciels sur mesure sont donc plus accessibles que jamais.</span>
+                    <span class="lang-en">Every project is unique. We always start with a free discovery call to understand your needs and give you a realistic estimate. Thanks to AI, our costs are 3-5x lower than traditional firms — and grants (SR&ED, IRAP) can cover a significant portion. Custom software projects are more accessible than ever.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">C'est quoi la différence avec une firme de développement traditionnelle?</span>
+                    <span class="lang-en">What's the difference vs a traditional development firm?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Les firmes traditionnelles facturent à l'heure avec des équipes de 5-10 personnes. Nous, on est une équipe de 3 séniors augmentés par l'IA. Résultat : des livraisons en semaines au lieu de mois, avec la même qualité — et des fondateurs impliqués à chaque étape.</span>
+                    <span class="lang-en">Traditional firms bill hourly with teams of 5-10 people. We're a team of 3 seniors augmented by AI. Result: deliveries in weeks instead of months, same quality — with founders involved at every step.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Est-ce que mes données restent au Canada?</span>
+                    <span class="lang-en">Does my data stay in Canada?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Oui. On utilise exclusivement des serveurs canadiens. Vos données ne sortent jamais du pays. On est conformes à la Loi 25 du Québec et on vous accompagne dans votre propre conformité.</span>
+                    <span class="lang-en">Yes. We exclusively use Canadian servers. Your data never leaves the country. We're compliant with Quebec's Loi 25 and we help you with your own compliance.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Est-ce que ça marche juste pour le manufacturier?</span>
+                    <span class="lang-en">Does this only work for manufacturing?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Non! Le manufacturier est notre expertise principale, mais notre approche fonctionne pour toute PME qui a besoin de logiciels sur mesure — construction, logistique, services professionnels, et plus.</span>
+                    <span class="lang-en">No! Manufacturing is our main expertise, but our approach works for any SMB that needs custom software — construction, logistics, professional services, and more.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Je suis pas techno. C'est pour moi quand même?</span>
+                    <span class="lang-en">I'm not tech-savvy. Is this still for me?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">Absolument. On traduit vos besoins d'affaires en solutions techniques. Vous nous parlez de vos problèmes, on s'occupe du reste. Les démos aux 2 semaines vous permettent de voir et valider à chaque étape.</span>
+                    <span class="lang-en">Absolutely. We translate your business needs into technical solutions. You tell us about your problems, we handle the rest. Bi-weekly demos let you see and validate at every step.</span>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="lang-fr">Qu'est-ce qui arrive après la livraison?</span>
+                    <span class="lang-en">What happens after delivery?</span>
+                    <span class="faq-chevron">▼</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <span class="lang-fr">On offre du support continu et de la maintenance. Votre logiciel évolue avec vos besoins. Vous n'êtes jamais pris en otage — le code vous appartient.</span>
+                    <span class="lang-en">We offer ongoing support and maintenance. Your software evolves with your needs. You're never locked in — the code is yours.</span>
+                </div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 11. FINAL CTA -->
+<section id="contact" class="final-cta">
+    <div class="container">
+        <div class="cta-inner">
+            <h2>
+                <span class="lang-fr">Réservez un appel découverte d'une heure — <span class="highlight">gratuit</span></span>
+                <span class="lang-en">Book a free 1-hour <span class="highlight">discovery call</span></span>
+            </h2>
+            <p class="cta-subtitle lang-fr">Parlez-nous de votre défi. On vous montre comment le résoudre.</p>
+            <p class="cta-subtitle lang-en">Tell us your challenge. We'll show you how to solve it.</p>
+            <p class="cta-founders lang-fr">Avec Benoit, Jeremy et Sébastien — pas un vendeur.</p>
+            <p class="cta-founders lang-en">With Benoit, Jeremy and Sébastien — not a salesperson.</p>
+
+            <form id="contactForm" onsubmit="return submitForm(event)">
+                <input type="text" name="name" required placeholder="Votre nom / Your name">
+                <input type="email" name="email" required placeholder="Votre courriel / Your email">
+                <textarea name="message" rows="3" placeholder="Décrivez votre défi / Describe your challenge"></textarea>
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:.85rem;font-size:1rem;" data-en="Send — We'll get back within 24h" data-fr="Envoyer — On vous répond en 24h">Envoyer — On vous répond en 24h</button>
+            </form>
+            <div id="formSuccess">
+                <p style="color:var(--primary-ctn);font-weight:600;">✅ <span data-en="Message sent! We'll contact you within 24 hours." data-fr="Message envoyé! On vous contacte dans les 24 heures.">Message envoyé! On vous contacte dans les 24 heures.</span></p>
+            </div>
+            <div class="cta-contact-info">
+                <a href="mailto:info@pinnai.com" class="contact-email">info@pinnai.com</a>
+                <span style="color:var(--text-3);">·</span>
+                <a href="tel:+15142090384" class="contact-phone">(514) 209-0384</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">pinn<span class="ai">AI</span></div>
+                <p>Beloeil, QC, Canada</p>
+                <p style="margin-top:.5rem;"><a href="mailto:info@pinnai.com" style="color:var(--primary-ctn);">info@pinnai.com</a></p>
+                <p style="margin-top:.25rem;"><a href="tel:+15142090384" style="color:var(--text-2);">(514) 209-0384</a></p>
+                <p style="margin-top:.5rem;"><a href="https://linkedin.com/company/pinnai" target="_blank" rel="noopener" style="color:var(--primary-ctn);font-size:.9rem;">LinkedIn ↗</a></p>
+                <p style="margin-top:.75rem;color:var(--text-3);font-size:.8rem;">
+                    <span class="lang-fr">Fondée en 2026 · Beloeil, Québec</span>
+                    <span class="lang-en">Founded 2026 · Beloeil, Quebec</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5 data-en="Resources" data-fr="Ressources">Ressources</h5>
+                <nav>
+                    <a href="#services" data-en="Services" data-fr="Services">Services</a>
+                    <a href="use-cases.html" data-en="Use Cases" data-fr="Cas d'usage">Cas d'usage</a>
+                    <a href="#process" data-en="How it works" data-fr="Comment ça marche">Comment ça marche</a>
+                    <a href="#about" data-en="About" data-fr="À propos">À propos</a>
+                </nav>
+            </div>
+            <div class="footer-col">
+                <h5 data-en="Legal" data-fr="Légal">Légal</h5>
+                <nav>
+                    <a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Politique de confidentialité</a>
+                    <a href="terms.html" data-en="Terms" data-fr="Conditions">Conditions</a>
+                    <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PinnAI. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="privacy.html" data-en="Privacy" data-fr="Confidentialité">Confidentialité</a>
+                <a href="terms.html" data-en="Terms" data-fr="Conditions">Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* === SCROLL-DRIVEN FRAME ANIMATIONS === */
+(function() {
+    var FRAME_COUNT = 121;
+    function zeroPad(n) { return String(n).padStart(4, '0'); }
+    function setupScrollAnimation(config) {
+        var canvas = document.getElementById(config.canvasId);
+        var wrapper = document.getElementById(config.wrapperId);
+        if (!canvas || !wrapper) return;
+        var ctx = canvas.getContext('2d');
+        var frames = new Array(FRAME_COUNT);
+        var loadedCount = 0;
+        var currentFrameIndex = 0;
+        var rafPending = false;
+        for (var i = 0; i < FRAME_COUNT; i++) {
+            (function(idx) {
+                var img = new Image();
+                img.src = config.basePath + 'frame_' + zeroPad(idx + 1) + '.jpg';
+                img.onload = function() { frames[idx] = img; loadedCount++; if (idx === 0) drawFrame(0); };
+                frames[idx] = img;
+            })(i);
+        }
+        function drawFrame(idx) {
+            var img = frames[idx];
+            if (!img || !img.complete || !img.naturalWidth) return;
+            var w = canvas.clientWidth, h = canvas.clientHeight;
+            if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var imgRatio = img.naturalWidth / img.naturalHeight;
+            var canvasRatio = canvas.width / canvas.height;
+            var drawW, drawH, drawX, drawY;
+            if (imgRatio > canvasRatio) { drawW = canvas.width; drawH = canvas.width / imgRatio; }
+            else { drawH = canvas.height; drawW = canvas.height * imgRatio; }
+            drawX = (canvas.width - drawW) / 2; drawY = (canvas.height - drawH) / 2;
+            ctx.drawImage(img, drawX, drawY, drawW, drawH);
+        }
+        function onScroll() {
+            if (rafPending) return;
+            rafPending = true;
+            requestAnimationFrame(function() {
+                rafPending = false;
+                var rect = canvas.getBoundingClientRect();
+                var viewH = window.innerHeight;
+                var totalTravel = viewH + rect.height;
+                var scrolled = viewH - rect.top;
+                var rawProgress = scrolled / totalTravel;
+                var adjusted = (rawProgress - 0.2) / 0.4;
+                var progress = Math.max(0, Math.min(1, adjusted));
+                var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
+                if (frameIdx !== currentFrameIndex) { currentFrameIndex = frameIdx; drawFrame(frameIdx); }
+            });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function() { canvas.width = 0; drawFrame(currentFrameIndex); });
+        drawFrame(0);
+    }
+    setupScrollAnimation({ canvasId: 'heroCanvas', wrapperId: 'hero-scroll-wrapper', basePath: 'images/hero-frames/' });
+    setupScrollAnimation({ canvasId: 'chaosCanvas', wrapperId: 'chaos-scroll-wrapper', basePath: 'images/chaos-frames/' });
+})();
+/* === END SCROLL-DRIVEN FRAME ANIMATIONS === */
+</script>
+
+<script>
+let currentLang = localStorage.getItem('pinnai-lang') || 'en';
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('pinnai-lang', lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en]').forEach(function(el) {
+        var text = el.getAttribute('data-' + lang);
+        if (text) { if (text.indexOf('<') !== -1) { el.innerHTML = text; } else { el.textContent = text; } }
+    });
+    document.querySelectorAll('.lang-en').forEach(function(el) {
+        var d = el.tagName === 'SPAN' ? 'inline' : 'block';
+        el.style.display = lang === 'en' ? d : 'none';
+    });
+    document.querySelectorAll('.lang-fr').forEach(function(el) {
+        var d = el.tagName === 'SPAN' ? 'inline' : 'block';
+        el.style.display = lang === 'fr' ? d : 'none';
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+}
+document.addEventListener('DOMContentLoaded', function() { setLang(currentLang); });
+window.addEventListener('scroll', function() {
+    var nav = document.getElementById('nav');
+    if (window.scrollY > 100) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+});
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+function submitForm(e) {
+    e.preventDefault();
+    var form = document.getElementById('contactForm');
+    var data = new FormData(form);
+    var name = data.get('name'), email = data.get('email'), message = data.get('message') || '';
+    var subject = encodeURIComponent('PinnAI — New inquiry from ' + name);
+    var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+    window.location.href = 'mailto:info@pinnai.com?subject=' + subject + '&body=' + body;
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    return false;
+}
+</script>
+
+</body>
+</html>
