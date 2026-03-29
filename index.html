@@ -98,7 +98,13 @@
         .service-pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
         .service-icon { font-size: 2rem; margin-bottom: 1rem; }
         .service-icon img, .grant-card-icon img { width: 64px; height: 64px; object-fit: contain; border-radius: 12px; }
-        .service-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+        .service-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .service-details { display: none; margin-top: 0.5rem; }
+        .service-pillar.expanded .service-details { display: block; }
+        .service-pillar.expanded .expand-arrow { transform: rotate(180deg); }
+        .service-expand-btn { background: none; border: 1px solid var(--border-subtle); color: var(--accent-cyan); cursor: pointer; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 20px; margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.2s; }
+        .service-expand-btn:hover { border-color: var(--accent-cyan); background: rgba(138,235,255,0.05); }
+        .expand-arrow { font-size: 0.7rem; transition: transform 0.2s; }
         .service-description { color: var(--text-secondary); margin-bottom: 2rem; }
         .service-features { list-style: none; gap: 0.5rem; display: grid; }
         .service-features li { color: var(--text-secondary); position: relative; padding-left: 1rem; }
@@ -324,40 +330,62 @@
         <div class="services-grid">
             <div class="service-pillar" >
                 <h3 class="service-title" data-en="Manufacturing Software" data-fr="Logiciel manufacturier">Logiciel manufacturier</h3>
-                
-                
-                <ul class="service-features">
-                    <li data-en="Replace spreadsheets with one dashboard" data-fr="Remplacez vos Excel — une application, un tableau de bord, données en temps réel">Remplacez vos Excel — une application, un tableau de bord, données en temps réel</li>
-                    <li data-en="Real-time production tracking (OEE, downtime)" data-fr="Suivi de production — OEE, arrêts et temps de cycle en temps réel">Suivi de production — OEE, arrêts et temps de cycle en temps réel</li>
-                    <li data-en="Smart maintenance (CMMS + AI)" data-fr="GMAO intelligente — maintenance préventive et prédictive">GMAO intelligente — maintenance préventive et prédictive</li>
-                    <li data-en="Digital quality control" data-fr="Contrôle qualité numérique — inspections, SPC, non-conformités">Contrôle qualité numérique — inspections, SPC, non-conformités</li>
-                    <li data-en="Visual production planning" data-fr="Planification de production — cédule visuelle, capacité, dates de livraison fiables">Planification de production — cédule visuelle, capacité, dates de livraison fiables</li>
+                <img src="images/uc-spreadsheet.webp" alt="Manufacturing" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <ul class="service-features service-summary">
+                    <li data-en="Replace spreadsheets with one dashboard" data-fr="Remplacez vos Excel par un tableau de bord">Remplacez vos Excel par un tableau de bord</li>
+                    <li data-en="Real-time production tracking" data-fr="Suivi de production en temps réel">Suivi de production en temps réel</li>
+                    <li data-en="Smart maintenance &amp; quality control" data-fr="Maintenance intelligente et contrôle qualité">Maintenance intelligente et contrôle qualité</li>
                 </ul>
-                <img src="images/uc-spreadsheet.webp" alt="Manufacturing" style="width:100%;max-width:280px;margin:1.5rem auto 0;display:block;border-radius:8px;">
+                <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
+                    <span class="expand-label lang-en">More details</span>
+                    <span class="expand-label lang-fr">Plus de détails</span>
+                    <span class="expand-arrow">▼</span>
+                </button>
+                <ul class="service-features service-details">
+                    <li data-en="OEE, downtime, cycle time — all in real time" data-fr="OEE, arrêts et temps de cycle en temps réel">OEE, arrêts et temps de cycle en temps réel</li>
+                    <li data-en="CMMS + AI — preventive &amp; predictive" data-fr="GMAO intelligente — maintenance préventive et prédictive">GMAO intelligente — maintenance préventive et prédictive</li>
+                    <li data-en="Digital quality — inspections, SPC, NCRs" data-fr="Contrôle qualité numérique — inspections, SPC, non-conformités">Contrôle qualité numérique — inspections, SPC, non-conformités</li>
+                    <li data-en="Visual planning — schedule, capacity, reliable dates" data-fr="Planification visuelle — cédule, capacité, dates fiables">Planification visuelle — cédule, capacité, dates fiables</li>
+                </ul>
             </div>
             <div class="service-pillar" >
                 <h3 class="service-title" data-en="AI Solutions" data-fr="Solutions IA">Solutions IA</h3>
-                
-                
-                <ul class="service-features">
-                    <li data-en="AI assistants trained on YOUR data" data-fr="Assistants IA entraînés sur VOS données — manuels, dessins, historique">Assistants IA entraînés sur VOS données — manuels, dessins, historique</li>
-                    <li data-en="Voice-to-data &#8212; forms fill themselves" data-fr="Voix vers données — le technicien parle, le formulaire se remplit">Voix vers données — le technicien parle, le formulaire se remplit</li>
-                    <li data-en="Predictive maintenance &#8212; know before it breaks" data-fr="Maintenance prédictive — savoir avant que ça brise">Maintenance prédictive — savoir avant que ça brise</li>
-                    <li data-en="Document intelligence &#8212; 10 years of docs, searchable" data-fr="Intelligence documentaire — 10 ans de docs enfin cherchables">Intelligence documentaire — 10 ans de docs enfin cherchables</li>
+                <img src="images/uc-assistant.webp" alt="AI Solutions" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <ul class="service-features service-summary">
+                    <li data-en="AI assistants trained on YOUR data" data-fr="Assistants IA entraînés sur VOS données">Assistants IA entraînés sur VOS données</li>
+                    <li data-en="Voice-to-data — forms fill themselves" data-fr="Voix vers données — formulaires automatiques">Voix vers données — formulaires automatiques</li>
+                    <li data-en="Predictive maintenance &amp; document intelligence" data-fr="Maintenance prédictive et intelligence documentaire">Maintenance prédictive et intelligence documentaire</li>
                 </ul>
-                <img src="images/uc-assistant.webp" alt="AI Solutions" style="width:100%;max-width:280px;margin:1.5rem auto 0;display:block;border-radius:8px;">
+                <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
+                    <span class="expand-label lang-en">More details</span>
+                    <span class="expand-label lang-fr">Plus de détails</span>
+                    <span class="expand-arrow">▼</span>
+                </button>
+                <ul class="service-features service-details">
+                    <li data-en="Trained on manuals, drawings, history" data-fr="Entraînés sur manuels, dessins, historique">Entraînés sur manuels, dessins, historique</li>
+                    <li data-en="Technician speaks, form fills itself" data-fr="Le technicien parle, le formulaire se remplit">Le technicien parle, le formulaire se remplit</li>
+                    <li data-en="Know before it breaks" data-fr="Savoir avant que ça brise">Savoir avant que ça brise</li>
+                    <li data-en="10 years of docs, finally searchable" data-fr="10 ans de docs enfin cherchables">10 ans de docs enfin cherchables</li>
+                </ul>
             </div>
             <div class="service-pillar" >
                 <h3 class="service-title" data-en="AI Sprints &amp; Integration" data-fr="Sprints IA et intégration">Sprints IA et intégration</h3>
-                
-                
-                <ul class="service-features">
-                    <li data-en="AI Readiness Audit &#8212; find your best ROI" data-fr="Audit IA — trouvez votre meilleure opportunité ROI">Audit IA — trouvez votre meilleure opportunité ROI</li>
-                    <li data-en="AI Sprint &#8212; working prototype in 2-4 weeks" data-fr="Sprint IA — prototype fonctionnel en 2-4 semaines">Sprint IA — prototype fonctionnel en 2-4 semaines</li>
-                    <li data-en="ERP integration &#8212; Odoo, SAP, any system" data-fr="Intégration ERP — Odoo, SAP, tous vos systèmes">Intégration ERP — Odoo, SAP, tous vos systèmes</li>
-                    <li data-en="Cloud Canada &#8212; your stays in Canada" data-fr="Infonuagique Canada — vos données restent au Canada">Infonuagique Canada — vos données restent au Canada</li>
+                <img src="images/uc-erp-agent.webp" alt="AI Sprints" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <ul class="service-features service-summary">
+                    <li data-en="AI Readiness Audit — find your best ROI" data-fr="Audit IA — trouvez votre meilleure opportunité">Audit IA — trouvez votre meilleure opportunité</li>
+                    <li data-en="Working prototype in 2-4 weeks" data-fr="Prototype fonctionnel en 2-4 semaines">Prototype fonctionnel en 2-4 semaines</li>
+                    <li data-en="ERP integration &amp; Canadian cloud" data-fr="Intégration ERP et infonuagique Canada">Intégration ERP et infonuagique Canada</li>
                 </ul>
-                <img src="images/uc-erp-agent.webp" alt="AI Sprints" style="width:100%;max-width:280px;margin:1.5rem auto 0;display:block;border-radius:8px;">
+                <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
+                    <span class="expand-label lang-en">More details</span>
+                    <span class="expand-label lang-fr">Plus de détails</span>
+                    <span class="expand-arrow">▼</span>
+                </button>
+                <ul class="service-features service-details">
+                    <li data-en="Sprint IA — prototype in 2-4 weeks" data-fr="Sprint IA — prototype fonctionnel en 2-4 semaines">Sprint IA — prototype fonctionnel en 2-4 semaines</li>
+                    <li data-en="ERP integration — Odoo, SAP, any system" data-fr="Intégration ERP — Odoo, SAP, tous vos systèmes">Intégration ERP — Odoo, SAP, tous vos systèmes</li>
+                    <li data-en="Cloud Canada — your data stays in Canada" data-fr="Infonuagique Canada — vos données restent au Canada">Infonuagique Canada — vos données restent au Canada</li>
+                </ul>
             </div>
         </div>
         <p style="text-align:center;color:var(--text-muted);margin-top:2.5rem;margin-bottom:1rem;font-size:0.95rem;">
