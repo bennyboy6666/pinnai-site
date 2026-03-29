@@ -754,12 +754,14 @@
                     var viewH = window.innerHeight;
 
                     // Use wrapper position for stable scroll tracking
-                    var wrapper = document.getElementById(wrapperId);
-                    var wrapperTop = wrapper.getBoundingClientRect().top + window.scrollY;
+                    var wrapper = document.getElementById(config.wrapperId);
+                    var wrapperRect = wrapper.getBoundingClientRect();
                     
-                    // Animation spans from page top (scrollY=0) to 3x viewport heights of scrolling
-                    var scrollRange = viewH * 3;
-                    var progress = Math.max(0, Math.min(1, window.scrollY / scrollRange));
+                    // Progress: 0 when wrapper top enters viewport bottom
+                    // Progress: 1 after scrolling 2x viewport past that point
+                    var scrollRange = viewH * 2;
+                    var scrolled = viewH - wrapperRect.top;
+                    var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
                     var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
 
                     if (frameIdx !== currentFrameIndex) {
