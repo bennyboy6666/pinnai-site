@@ -758,10 +758,12 @@
                     var wrapperRect = wrapper.getBoundingClientRect();
                     
                     // Per-animation speed tuning
-                    var speedFactor = config.speedFactor || 0.2;
-                    var startOffset = config.startOffset || 0.5;
-                    var scrollRange = wrapperRect.height + viewH * speedFactor;
-                    var scrolled = viewH * startOffset - wrapperRect.top;
+                    // scrollRange = how many px of scrolling to complete the full animation
+                    var scrollRange = wrapperRect.height * (config.rangeMultiplier || 1.0);
+                    // scrolled = how far we've scrolled past the trigger point
+                    // trigger = when wrapper top reaches (triggerAt * viewH) from top of viewport
+                    var triggerAt = config.triggerAt !== undefined ? config.triggerAt : 0.5;
+                    var scrolled = -(wrapperRect.top - viewH * triggerAt);
                     var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
                     var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
 
@@ -782,22 +784,24 @@
             drawFrame(0);
         }
 
-        // Hero animation — faster (speedFactor smaller = faster)
+        // Hero animation — triggerAt:1.0 = starts as soon as you scroll (wrapper at top)
+        // rangeMultiplier:0.6 = completes in 60% of wrapper height
         setupScrollAnimation({
             canvasId: 'heroCanvas',
             wrapperId: 'hero-scroll-wrapper',
             basePath: 'images/hero-frames/',
-            speedFactor: -0.15,
-            startOffset: 0.8
+            triggerAt: 1.0,
+            rangeMultiplier: 0.6
         });
 
-        // Chaos animation — starts earlier (higher startOffset = triggers sooner)
+        // Chaos animation — triggerAt:0.9 = starts when wrapper is 90% from top (early trigger)
+        // rangeMultiplier:0.8 = completes in 80% of wrapper height  
         setupScrollAnimation({
             canvasId: 'chaosCanvas',
             wrapperId: 'chaos-scroll-wrapper',
             basePath: 'images/chaos-frames/',
-            speedFactor: 0.2,
-            startOffset: 1.2
+            triggerAt: 0.9,
+            rangeMultiplier: 0.8
         });
     })();
     /* === END SCROLL-DRIVEN FRAME ANIMATIONS === */
