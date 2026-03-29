@@ -93,7 +93,7 @@
         .problem-bullets li strong { color: var(--text-primary); display: block; margin-bottom: 0.25rem; font-size: 1.05rem; }
         .problem-conclusion { text-align: center; font-size: 1.15rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
         .problem-conclusion strong { color: var(--accent-cyan); }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; max-width: 800px; margin: 0 auto; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
         .service-pillar { background: var(--bg-card); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle); transition: transform 0.2s, box-shadow 0.2s; }
         .service-pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
         .service-icon { font-size: 2rem; margin-bottom: 1rem; }
@@ -325,29 +325,26 @@
     <div class="container">
         <div class="section-header">
             <h2 data-en="What we build" data-fr="Ce qu'on bâtit">Ce qu'on bâtit</h2>
-            <p class="subtitle" data-en="Custom software for SMBs — powered by AI." data-fr="Du logiciel sur mesure pour PME — propulsé par l'IA.">Du logiciel sur mesure pour PME — propulsé par l'IA.</p>
+            <p class="subtitle" data-en="Three pillars. One mission: the software you needed but couldn't afford." data-fr="Trois piliers. Une mission : le logiciel dont vous aviez besoin mais pas les moyens.">Trois piliers. Une mission : le logiciel dont vous aviez besoin mais pas les moyens.</p>
         </div>
         <div class="services-grid">
             <div class="service-pillar" >
-                <h3 class="service-title" data-en="Custom Software for SMBs" data-fr="Logiciel sur mesure pour PME">Logiciel sur mesure pour PME</h3>
-                <img src="images/uc-spreadsheet.webp" alt="Custom Software" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <h3 class="service-title" data-en="Manufacturing Software" data-fr="Logiciel manufacturier">Logiciel manufacturier</h3>
+                <img src="images/uc-spreadsheet.webp" alt="Manufacturing Software" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
                 <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
                     <span class="expand-label lang-en">Learn more</span>
                     <span class="expand-label lang-fr">En savoir plus</span>
                     <span class="expand-arrow">▼</span>
                 </button>
                 <ul class="service-features service-details">
-                    <li data-en="Replace spreadsheets with one dashboard" data-fr="Remplacez vos Excel par un tableau de bord unique">Remplacez vos Excel par un tableau de bord unique</li>
-                    <li data-en="Real-time production tracking (OEE, downtime, cycle time)" data-fr="Suivi de production en temps réel — OEE, arrêts, temps de cycle">Suivi de production en temps réel — OEE, arrêts, temps de cycle</li>
-                    <li data-en="Smart maintenance (CMMS + AI)" data-fr="GMAO intelligente — maintenance préventive et prédictive">GMAO intelligente — maintenance préventive et prédictive</li>
+                    <li data-en="Replace spreadsheets with one real-time dashboard" data-fr="Remplacez vos Excel par un tableau de bord en temps réel">Remplacez vos Excel par un tableau de bord en temps réel</li>
+                    <li data-en="Production tracking — OEE, downtime, cycle time" data-fr="Suivi de production — OEE, arrêts, temps de cycle">Suivi de production — OEE, arrêts, temps de cycle</li>
                     <li data-en="Digital quality control — inspections, SPC, NCRs" data-fr="Contrôle qualité numérique — inspections, SPC, non-conformités">Contrôle qualité numérique — inspections, SPC, non-conformités</li>
-                    <li data-en="Visual planning — schedule, capacity, reliable dates" data-fr="Planification visuelle — cédule, capacité, dates fiables">Planification visuelle — cédule, capacité, dates fiables</li>
-                    <li data-en="ERP integration — Odoo, SAP, any system" data-fr="Intégration ERP — Odoo, SAP, tous vos systèmes">Intégration ERP — Odoo, SAP, tous vos systèmes</li>
-                    <li data-en="Cloud Canada — your data stays in Canada" data-fr="Infonuagique Canada — vos données restent au Canada">Infonuagique Canada — vos données restent au Canada</li>
+                    <li data-en="Visual planning — reliable delivery dates" data-fr="Planification visuelle — des dates de livraison fiables">Planification visuelle — des dates de livraison fiables</li>
                 </ul>
             </div>
             <div class="service-pillar" >
-                <h3 class="service-title" data-en="AI-Powered Solutions" data-fr="Solutions propulsées par l'IA">Solutions propulsées par l'IA</h3>
+                <h3 class="service-title" data-en="AI Solutions" data-fr="Solutions IA">Solutions IA</h3>
                 <img src="images/uc-assistant.webp" alt="AI Solutions" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
                 <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
                     <span class="expand-label lang-en">Learn more</span>
@@ -355,11 +352,25 @@
                     <span class="expand-arrow">▼</span>
                 </button>
                 <ul class="service-features service-details">
-                    <li data-en="AI assistants trained on YOUR data — manuals, drawings, history" data-fr="Assistants IA entraînés sur VOS données — manuels, dessins, historique">Assistants IA entraînés sur VOS données — manuels, dessins, historique</li>
+                    <li data-en="AI assistants trained on YOUR data" data-fr="Assistants IA entraînés sur VOS données">Assistants IA entraînés sur VOS données</li>
                     <li data-en="Voice-to-data — technician speaks, form fills itself" data-fr="Voix vers données — le technicien parle, le formulaire se remplit">Voix vers données — le technicien parle, le formulaire se remplit</li>
                     <li data-en="Document intelligence — 10 years of docs, finally searchable" data-fr="Intelligence documentaire — 10 ans de docs enfin cherchables">Intelligence documentaire — 10 ans de docs enfin cherchables</li>
-                    <li data-en="Automated workflows — eliminate repetitive tasks" data-fr="Automatisation des processus — éliminez les tâches répétitives">Automatisation des processus — éliminez les tâches répétitives</li>
-                    <li data-en="AI Readiness Audit — find your best ROI opportunity" data-fr="Audit IA — trouvez votre meilleure opportunité ROI">Audit IA — trouvez votre meilleure opportunité ROI</li>
+                    <li data-en="Automated workflows — eliminate repetitive tasks" data-fr="Automatisation — éliminez les tâches répétitives">Automatisation — éliminez les tâches répétitives</li>
+                </ul>
+            </div>
+            <div class="service-pillar" >
+                <h3 class="service-title" data-en="ERP &amp; Integration" data-fr="ERP et intégration">ERP et intégration</h3>
+                <img src="images/uc-erp-agent.webp" alt="ERP & Integration" style="width:100%;max-width:280px;margin:0.5rem auto;display:block;border-radius:8px;">
+                <button class="service-expand-btn" onclick="this.parentElement.classList.toggle('expanded')">
+                    <span class="expand-label lang-en">Learn more</span>
+                    <span class="expand-label lang-fr">En savoir plus</span>
+                    <span class="expand-arrow">▼</span>
+                </button>
+                <ul class="service-features service-details">
+                    <li data-en="AI agent layer on top of your existing ERP" data-fr="Agents IA par-dessus votre ERP existant">Agents IA par-dessus votre ERP existant</li>
+                    <li data-en="Odoo, SAP, NetSuite — we connect anything" data-fr="Odoo, SAP, NetSuite — on connecte tout">Odoo, SAP, NetSuite — on connecte tout</li>
+                    <li data-en="Enterprise-grade ERP at SMB prices" data-fr="ERP de calibre entreprise au prix PME">ERP de calibre entreprise au prix PME</li>
+                    <li data-en="Cloud Canada — your data stays in Canada" data-fr="Infonuagique Canada — vos données restent au Canada">Infonuagique Canada — vos données restent au Canada</li>
                 </ul>
             </div>
         </div>
