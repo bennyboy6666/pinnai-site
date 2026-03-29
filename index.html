@@ -218,6 +218,7 @@
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
             .grants-callout { padding: 2rem 1.5rem; }
             .integration-logos { gap: 1.5rem; }
+            .trust-tiles { grid-template-columns: 1fr !important; max-width: 400px !important; gap: 1rem !important; }
         }
     </style>
 </head>
@@ -270,8 +271,24 @@
                 <div class="stat-label" data-en="Loi 25 &amp; Canadian hosting &#183; Canada" data-fr="Loi 25 et hébergement canadien &#183; Canada">Loi 25 et hébergement canadien · Canada</div>
             </div>
         </div>
+        <!-- HERO TRUST TILES (inspired by Stitch) -->
+        <div class="trust-tiles" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;max-width:800px;margin-left:auto;margin-right:auto;">
+            <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:16px;padding:2rem 1.5rem;text-align:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                <div style="font-size:2.5rem;font-weight:800;color:var(--accent-cyan);line-height:1;">50+</div>
+                <div style="font-size:0.9rem;color:var(--text-secondary);margin-top:0.5rem;" data-en="years combined experience" data-fr="années d'expérience combinées">années d'expérience combinées</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:16px;padding:2rem 1.5rem;text-align:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                <div style="font-size:2.5rem;line-height:1;">🇨🇦</div>
+                <div style="font-size:0.9rem;color:var(--text-secondary);margin-top:0.5rem;" data-en="100% Canadian team & hosting" data-fr="Équipe et hébergement 100% canadien">Équipe et hébergement 100% canadien</div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:16px;padding:2rem 1.5rem;text-align:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 30px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                <div style="font-size:2.5rem;font-weight:800;color:var(--accent-cyan);line-height:1;">3</div>
+                <div style="font-size:0.9rem;color:var(--text-secondary);margin-top:0.5rem;" data-en="founders, not salespeople" data-fr="fondateurs, pas des vendeurs">fondateurs, pas des vendeurs</div>
+            </div>
+        </div>
+
         <!-- HERO SCROLL ANIMATION -->
-        <div id="hero-scroll-wrapper" class="scroll-canvas-wrapper" style="position:relative;margin-top:1rem;margin-bottom:0.5rem;overflow:hidden;border:none;outline:none;background:transparent;">
+        <div id="hero-scroll-wrapper" class="scroll-canvas-wrapper" style="position:relative;margin-top:2rem;margin-bottom:0.5rem;overflow:hidden;border:none;outline:none;background:transparent;">
             <canvas id="heroCanvas" style="width:100%;height:35vh;display:block;"></canvas>
             <noscript><img src="images/hero-frames/frame_0061.jpg" alt="PinnAI hero animation" style="width:100%;max-width:800px;margin:0 auto;display:block;"></noscript>
         </div>
@@ -536,21 +553,7 @@
             <span class="lang-fr"><strong>Du plancher d'usine jusqu'au nuage — développement, logiciel, infrastructure. Zéro trou.</strong></span>
         </p>
 
-        <!-- Social proof / credibility -->
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2.5rem;padding:1.5rem;background:rgba(34,211,238,0.03);border:1px solid var(--border-subtle);border-radius:12px;">
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--accent-cyan);">50+</div>
-                <div style="font-size:0.8rem;color:var(--text-muted);" data-en="years combined experience" data-fr="années d'expérience combinées">années d'expérience combinées</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--accent-cyan);">🇨🇦</div>
-                <div style="font-size:0.8rem;color:var(--text-muted);" data-en="100% Canadian team & hosting" data-fr="Équipe et hébergement 100% canadien">Équipe et hébergement 100% canadien</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="font-size:1.8rem;font-weight:700;color:var(--accent-cyan);">3</div>
-                <div style="font-size:0.8rem;color:var(--text-muted);" data-en="founders, not salespeople" data-fr="fondateurs, pas des vendeurs">fondateurs, pas des vendeurs</div>
-            </div>
-        </div>
+        <!-- Social proof moved to hero trust tiles -->
 
         <!-- Certifications & tech stack badges -->
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:1.5rem;">
