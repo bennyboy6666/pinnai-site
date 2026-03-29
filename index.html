@@ -757,14 +757,14 @@
                     var wrapper = document.getElementById(config.wrapperId);
                     var wrapperRect = wrapper.getBoundingClientRect();
                     
-                    // Per-animation speed tuning
-                    // scrollRange = how many px of scrolling to complete the full animation
-                    var scrollRange = wrapperRect.height * (config.rangeMultiplier || 1.0);
-                    // scrolled = how far we've scrolled past the trigger point
-                    // trigger = when wrapper top reaches (triggerAt * viewH) from top of viewport
+                    // triggerAt: fraction of viewport where animation starts
+                    //   1.0 = wrapper top at bottom of viewport (early)
+                    //   0.5 = wrapper top at middle of viewport
+                    // scrollPx: total pixels of scrolling to complete animation
                     var triggerAt = config.triggerAt !== undefined ? config.triggerAt : 0.5;
-                    var scrolled = -(wrapperRect.top - viewH * triggerAt);
-                    var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+                    var scrollPx = config.scrollPx || (viewH * 0.6);
+                    var scrolled = viewH * triggerAt - wrapperRect.top;
+                    var progress = Math.max(0, Math.min(1, scrolled / scrollPx));
                     var frameIdx = Math.round(progress * (FRAME_COUNT - 1));
 
                     if (frameIdx !== currentFrameIndex) {
@@ -784,24 +784,26 @@
             drawFrame(0);
         }
 
-        // Hero animation — triggerAt:1.0 = starts as soon as you scroll (wrapper at top)
-        // rangeMultiplier:0.6 = completes in 60% of wrapper height
+        // Hero animation
+        // triggerAt:0.4 = starts when wrapper top reaches 40% from top of viewport
+        // scrollPx:300 = completes over 300px of scrolling
         setupScrollAnimation({
             canvasId: 'heroCanvas',
             wrapperId: 'hero-scroll-wrapper',
             basePath: 'images/hero-frames/',
-            triggerAt: 1.0,
-            rangeMultiplier: 0.6
+            triggerAt: 0.4,
+            scrollPx: 300
         });
 
-        // Chaos animation — triggerAt:0.9 = starts when wrapper is 90% from top (early trigger)
-        // rangeMultiplier:0.8 = completes in 80% of wrapper height  
+        // Chaos animation
+        // triggerAt:0.8 = starts earlier (when wrapper enters bottom 20%)
+        // scrollPx:400 = completes over 400px of scrolling
         setupScrollAnimation({
             canvasId: 'chaosCanvas',
             wrapperId: 'chaos-scroll-wrapper',
             basePath: 'images/chaos-frames/',
-            triggerAt: 0.9,
-            rangeMultiplier: 0.8
+            triggerAt: 0.8,
+            scrollPx: 400
         });
     })();
     /* === END SCROLL-DRIVEN FRAME ANIMATIONS === */
