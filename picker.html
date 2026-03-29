@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PinnAI — Sélecteur de Use Cases</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0e1a; color: #e0e0e0; min-height: 100vh; padding: 2rem; }
+  h1 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #8aebff; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 2rem; font-size: 0.95rem; }
+  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+  .pillar { background: #141824; border: 1px solid #2a2f42; border-radius: 12px; padding: 1.5rem; }
+  .pillar h2 { font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #2a2f42; }
+  .pillar h2 .icon { margin-right: 0.5rem; }
+  .manufacturing h2 { color: #8aebff; }
+  .ai h2 { color: #c78aff; }
+  .erp h2 { color: #8affa0; }
+  label { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.7rem 0.5rem; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+  label:hover { background: rgba(138,235,255,0.05); }
+  input[type="checkbox"] { width: 20px; height: 20px; accent-color: #8aebff; margin-top: 2px; flex-shrink: 0; }
+  .uc-info { flex: 1; }
+  .uc-name { font-weight: 600; font-size: 0.95rem; }
+  .uc-name-en { color: #999; font-size: 0.8rem; font-weight: 400; }
+  .current-badge { display: inline-block; background: rgba(138,235,255,0.15); color: #8aebff; font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 10px; margin-left: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .actions { text-align: center; margin-top: 2.5rem; }
+  .btn { background: linear-gradient(135deg, #8aebff 0%, #5bb8ff 100%); color: #0a0e1a; border: none; padding: 0.9rem 2.5rem; border-radius: 25px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(138,235,255,0.3); }
+  .btn:active { transform: translateY(0); }
+  .counter { text-align: center; margin-top: 1rem; color: #888; font-size: 0.85rem; }
+  .result { max-width: 800px; margin: 2rem auto; background: #141824; border: 1px solid #2a2f42; border-radius: 12px; padding: 1.5rem; display: none; }
+  .result h3 { color: #8aebff; margin-bottom: 1rem; }
+  .result pre { background: #0a0e1a; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; color: #c0c0c0; white-space: pre-wrap; }
+  .result .copy-btn { margin-top: 1rem; background: #2a2f42; color: #e0e0e0; border: 1px solid #444; padding: 0.5rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
+  .result .copy-btn:hover { background: #3a3f52; }
+  .tip { text-align: center; color: #666; font-size: 0.8rem; margin-top: 0.75rem; }
+</style>
+</head>
+<body>
+
+<h1>🎯 Sélecteur de Use Cases — Page principale</h1>
+<p class="subtitle">Coche les use cases que tu veux voir sur la page d'accueil. Clique "Générer" et envoie-moi le résultat.</p>
+
+<div class="pillars">
+  <!-- MANUFACTURING -->
+  <div class="pillar manufacturing">
+    <h2><span class="icon">🏭</span> Logiciel manufacturier</h2>
+
+    <label>
+      <input type="checkbox" value="mfg-spreadsheet" data-pillar="manufacturing" data-fr="Remplacez vos Excel par un tableau de bord en temps réel" data-en="Replace spreadsheets with one real-time dashboard" checked>
+      <div class="uc-info">
+        <div class="uc-name">Remplacez vos Excel par une vraie application <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Replace your spreadsheets with a real application</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="mfg-monitoring" data-pillar="manufacturing" data-fr="Suivi de production — OEE, arrêts, temps de cycle" data-en="Production tracking — OEE, downtime, cycle time" checked>
+      <div class="uc-info">
+        <div class="uc-name">Suivi de production en temps réel <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Real-time production monitoring</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="mfg-maintenance" data-pillar="manufacturing" data-fr="GMAO intelligente — maintenance préventive et prédictive" data-en="Smart maintenance (CMMS + AI)">
+      <div class="uc-info">
+        <div class="uc-name">Maintenance intelligente (GMAO + IA)</div>
+        <div class="uc-name-en">Smart maintenance (CMMS + AI)</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="mfg-quality" data-pillar="manufacturing" data-fr="Contrôle qualité numérique — inspections, SPC, non-conformités" data-en="Digital quality control — inspections, SPC, NCRs" checked>
+      <div class="uc-info">
+        <div class="uc-name">Contrôle qualité automatisé <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Automated quality control</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="mfg-inventory" data-pillar="manufacturing" data-fr="Inventaire intelligent — niveaux optimaux, réapprovisionnement automatique" data-en="Intelligent inventory — optimal levels, automatic reordering">
+      <div class="uc-info">
+        <div class="uc-name">Inventaire intelligent</div>
+        <div class="uc-name-en">Intelligent inventory</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="mfg-planning" data-pillar="manufacturing" data-fr="Planification visuelle — des dates de livraison fiables" data-en="Visual planning — reliable delivery dates" checked>
+      <div class="uc-info">
+        <div class="uc-name">Planification de production (MES) <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Production planning (MES)</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="mfg-traceability" data-pillar="manufacturing" data-fr="Traçabilité complète — du lot au produit fini" data-en="Full traceability — from batch to finished product">
+      <div class="uc-info">
+        <div class="uc-name">Traçabilité et conformité</div>
+        <div class="uc-name-en">Traceability &amp; compliance</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="mfg-configurator" data-pillar="manufacturing" data-fr="Configurateur de produits et boutique en ligne" data-en="Product configurator &amp; e-commerce">
+      <div class="uc-info">
+        <div class="uc-name">Configurateur de produits et e-commerce</div>
+        <div class="uc-name-en">Product Configurator &amp; E-commerce</div>
+      </div>
+    </label>
+  </div>
+
+  <!-- AI SOLUTIONS -->
+  <div class="pillar ai">
+    <h2><span class="icon">🤖</span> Solutions IA</h2>
+
+    <label>
+      <input type="checkbox" value="ai-assistants" data-pillar="ai" data-fr="Assistants IA entraînés sur VOS données" data-en="AI assistants trained on YOUR data" checked>
+      <div class="uc-info">
+        <div class="uc-name">Assistants IA <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">AI Assistants</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="ai-automation" data-pillar="ai" data-fr="Automatisation — éliminez les tâches répétitives" data-en="Automated workflows — eliminate repetitive tasks" checked>
+      <div class="uc-info">
+        <div class="uc-name">Automatisation de processus <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Process Automation</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="ai-documents" data-pillar="ai" data-fr="Intelligence documentaire — 10 ans de docs enfin cherchables" data-en="Document intelligence — 10 years of docs, finally searchable" checked>
+      <div class="uc-info">
+        <div class="uc-name">Intelligence documentaire <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Document Intelligence</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="ai-voice" data-pillar="ai" data-fr="Voix vers données — le technicien parle, le formulaire se remplit" data-en="Voice-to-data — technician speaks, form fills itself" checked>
+      <div class="uc-info">
+        <div class="uc-name">Voix vers données <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Voice-to-Data</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="ai-predictive" data-pillar="manufacturing" data-fr="Maintenance prédictive — savoir avant que ça brise" data-en="Predictive maintenance — know before it breaks">
+      <div class="uc-info">
+        <div class="uc-name">Maintenance prédictive</div>
+        <div class="uc-name-en">Predictive Maintenance</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="ai-agents" data-pillar="ai" data-fr="Agents IA autonomes pour vos processus" data-en="Autonomous AI agents for your processes">
+      <div class="uc-info">
+        <div class="uc-name">Agents IA</div>
+        <div class="uc-name-en">AI Agents</div>
+      </div>
+    </label>
+  </div>
+
+  <!-- ERP & INTEGRATION -->
+  <div class="pillar erp">
+    <h2><span class="icon">🔗</span> ERP et intégration</h2>
+
+    <label>
+      <input type="checkbox" value="erp-ai-layer" data-pillar="erp" data-fr="Agents IA par-dessus votre ERP existant" data-en="AI agent layer on top of your existing ERP" checked>
+      <div class="uc-info">
+        <div class="uc-name">Agents IA par-dessus votre ERP <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">AI agents on top of your ERP</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="erp-odoo" data-pillar="erp" data-fr="Odoo, SAP, NetSuite — on connecte tout" data-en="Odoo, SAP, NetSuite — we connect anything" checked>
+      <div class="uc-info">
+        <div class="uc-name">Implémentation ERP (spécialiste Odoo) <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">ERP implementation (Odoo specialist)</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="erp-api" data-pillar="erp" data-fr="Développement et intégration d'APIs sur mesure" data-en="Custom API development &amp; integration">
+      <div class="uc-info">
+        <div class="uc-name">Développement et intégration d'APIs</div>
+        <div class="uc-name-en">API development &amp; integration</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="erp-data" data-pillar="erp" data-fr="Pipelines de données — collecte, transformation, analyse" data-en="Data pipelines — collection, transformation, analysis">
+      <div class="uc-info">
+        <div class="uc-name">Pipelines de données et ingénierie</div>
+        <div class="uc-name-en">Data pipelines &amp; engineering</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="erp-price" data-pillar="erp" data-fr="ERP de calibre entreprise au prix PME" data-en="Enterprise-grade ERP at SMB prices" checked>
+      <div class="uc-info">
+        <div class="uc-name">ERP calibre entreprise, prix PME <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Enterprise-grade ERP at SMB prices</div>
+      </div>
+    </label>
+
+    <label>
+      <input type="checkbox" value="erp-cloud" data-pillar="erp" data-fr="Infonuagique Canada — vos données restent au Canada" data-en="Cloud Canada — your data stays in Canada" checked>
+      <div class="uc-info">
+        <div class="uc-name">Infonuagique Canada <span class="current-badge">actuel</span></div>
+        <div class="uc-name-en">Cloud Canada — your data stays in Canada</div>
+      </div>
+    </label>
+  </div>
+</div>
+
+<p class="counter"><span id="count">0</span> use cases sélectionnés</p>
+<p class="tip">Les items marqués <span style="color:#8aebff;">actuel</span> sont ceux présentement sur la page d'accueil.</p>
+
+<div class="actions">
+  <button class="btn" onclick="generate()">✨ Générer la sélection</button>
+</div>
+
+<div class="result" id="result">
+  <h3>📋 Ta sélection — copie-colle ça à Botby</h3>
+  <pre id="output"></pre>
+  <button class="copy-btn" onclick="copyResult()">📋 Copier</button>
+</div>
+
+<script>
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const countEl = document.getElementById('count');
+
+function updateCount() {
+  countEl.textContent = [...checkboxes].filter(c => c.checked).length;
+}
+checkboxes.forEach(c => c.addEventListener('change', updateCount));
+updateCount();
+
+function generate() {
+  const selected = { manufacturing: [], ai: [], erp: [] };
+  checkboxes.forEach(c => {
+    if (!c.checked) return;
+    const pillar = c.dataset.pillar;
+    if (selected[pillar]) {
+      selected[pillar].push({ fr: c.dataset.fr, en: c.dataset.en });
+    }
+  });
+
+  let text = '🎯 SÉLECTION USE CASES — PAGE PRINCIPALE\n\n';
+
+  text += '🏭 LOGICIEL MANUFACTURIER:\n';
+  selected.manufacturing.forEach(u => text += `  ✅ ${u.fr}\n     EN: ${u.en}\n`);
+  if (!selected.manufacturing.length) text += '  (aucun)\n';
+
+  text += '\n🤖 SOLUTIONS IA:\n';
+  selected.ai.forEach(u => text += `  ✅ ${u.fr}\n     EN: ${u.en}\n`);
+  if (!selected.ai.length) text += '  (aucun)\n';
+
+  text += '\n🔗 ERP ET INTÉGRATION:\n';
+  selected.erp.forEach(u => text += `  ✅ ${u.fr}\n     EN: ${u.en}\n`);
+  if (!selected.erp.length) text += '  (aucun)\n';
+
+  text += '\n---\nMets ces use cases sur la page principale index.html, dans les 3 piliers.';
+
+  document.getElementById('output').textContent = text;
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyResult() {
+  navigator.clipboard.writeText(document.getElementById('output').textContent);
+  const btn = document.querySelector('.copy-btn');
+  btn.textContent = '✅ Copié!';
+  setTimeout(() => btn.textContent = '📋 Copier', 2000);
+}
+</script>
+</body>
+</html>
