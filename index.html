@@ -99,8 +99,8 @@
         .service-icon { font-size: 2rem; margin-bottom: 1rem; }
         .service-icon img, .grant-card-icon img { width: 64px; height: 64px; object-fit: contain; border-radius: 12px; }
         .service-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .service-details { display: none; margin-top: 0.5rem; }
-        .service-pillar.expanded .service-details { display: block; }
+        .service-details { display: none !important; margin-top: 0.5rem; }
+        .service-pillar.expanded .service-details { display: grid !important; }
         .service-pillar.expanded .expand-arrow { transform: rotate(180deg); }
         .service-expand-btn { background: none; border: 1px solid var(--border-subtle); color: var(--accent-cyan); cursor: pointer; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 20px; margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.2s; }
         .service-expand-btn:hover { border-color: var(--accent-cyan); background: rgba(138,235,255,0.05); }
