@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinnAI — Sélection Use Cases</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; padding: 1rem; }
+        h1 { text-align: center; color: #1e3a5f; margin: 1rem 0 0.5rem; font-size: 1.5rem; }
+        .subtitle { text-align: center; color: #718096; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; max-width: 1200px; margin: 0 auto; }
+        .card {
+            background: #fff; border: 2px solid #e2e8f0; border-radius: 12px;
+            padding: 1rem; cursor: pointer; transition: all 0.2s;
+            display: flex; gap: 0.75rem; align-items: flex-start;
+        }
+        .card:hover { border-color: #2563eb; box-shadow: 0 2px 8px rgba(37,99,235,0.15); }
+        .card.selected { border-color: #16a34a; background: #f0fdf4; }
+        .card.selected .check { background: #16a34a; color: #fff; }
+        .check {
+            width: 28px; height: 28px; min-width: 28px; border-radius: 6px;
+            border: 2px solid #cbd5e1; display: flex; align-items: center;
+            justify-content: center; font-size: 1rem; margin-top: 0.2rem;
+            transition: all 0.2s;
+        }
+        .card-content { flex: 1; }
+        .card-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.3rem; color: #1e3a5f; }
+        .card-emoji { font-size: 1.2rem; }
+        .card-desc { font-size: 0.85rem; color: #4a5568; line-height: 1.4; }
+        .card-review { font-size: 0.8rem; color: #718096; margin-top: 0.4rem; font-style: italic; }
+        .card-review span { font-weight: 600; }
+        .bottom-bar {
+            position: sticky; bottom: 0; background: #1e3a5f; color: #fff;
+            padding: 1rem; border-radius: 12px; margin: 1.5rem auto 1rem;
+            max-width: 1200px; display: flex; align-items: center;
+            justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+        }
+        .count { font-size: 1.1rem; font-weight: 600; }
+        .btn-copy {
+            background: #2563eb; color: #fff; border: none; padding: 0.75rem 1.5rem;
+            border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-copy:hover { background: #1d4ed8; }
+        .btn-copy:active { background: #1e40af; }
+        .copied { background: #16a34a !important; }
+        .rec-badge {
+            display: inline-block; background: #fef3c7; color: #92400e;
+            font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem;
+            border-radius: 4px; margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎯 Sélection Use Cases — PinnAI</h1>
+<p class="subtitle">Coche les cas que tu veux garder. Les notes de Marie-Ève & Réjean sont en dessous de chaque carte.</p>
+
+<div class="grid" id="grid"></div>
+
+<div class="bottom-bar">
+    <div class="count"><span id="count">0</span> / 18 sélectionnés</div>
+    <button class="btn-copy" id="copyBtn" onclick="copySelection()">📋 Copier la sélection</button>
+</div>
+
+<script>
+const cases = [
+    { id: 1, emoji: "🪑", title: "Configurateur de vente — Meubles", desc: "Vos vendeurs configurent les meubles sur mesure directement chez le client. Prix final instantané.", review: "<span>Réjean ❤️:</span> \"MON vendeur chez LE CLIENT avec les prix on-the-spot? C'est exactement mon problème #1.\"", rec: true },
+    { id: 2, emoji: "🌿", title: "Configurateur de vente — Engrais", desc: "Configuration de la bonne formulation d'engrais pour chaque client. De la vente jusqu'à la production.", review: "<span>Réjean 🔴:</span> \"Je fabrique des armoires. Pourquoi tu me montres de l'engrais?\" <span>Marie-Ève 🔴:</span> \"Ça mélange le message.\"", rec: false },
+    { id: 3, emoji: "🤖", title: "Agent créateur de projets", desc: "Uploadez une soumission, l'IA crée automatiquement le projet, les tâches et les heures.", review: "<span>Réjean 🔴:</span> \"C'est quoi un agent? Un vendeur? Un robot?\" Le mot 'agent' fait peur.", rec: false },
+    { id: 4, emoji: "💰", title: "Agent de facturation", desc: "Un agent qui se souvient de tous vos détails de facturation. Brouillons automatiques, connecté à Zoho, SAP.", review: "<span>Réjean 🔴:</span> \"SAP c'est pour Bombardier. Moi j'ai QuickBooks.\"", rec: false },
+    { id: 5, emoji: "📊", title: "Dashboard exécutif", desc: "Tableau de bord en temps réel. Santé des projets, utilisation des ressources, attribution.", review: "<span>Réjean 🔴:</span> \"Moi j'ai besoin de savoir si la commande Tremblay est en retard, c'est ça mon dashboard.\"", rec: false },
+    { id: 6, emoji: "📝", title: "Guide de procédures", desc: "Transformez vos procédures en guides interactifs avec automatisation. Chaque étape est contrôlée.", review: "<span>Marie-Ève 🟡:</span> Correct mais vague. Pas de preuve concrète.", rec: false },
+    { id: 7, emoji: "🏭", title: "Interface de production sur mesure", desc: "Au lieu de vous adapter à SAP, on crée l'interface exacte dont vous avez besoin.", review: "<span>Marie-Ève ✅:</span> Concret. Parle d'un vrai problème. <span>Réjean 🟡:</span> Encore SAP...", rec: true },
+    { id: 8, emoji: "🔗", title: "Plateforme intégrée", desc: "Excel partout, SAP à moitié, un autre logiciel dans l'usine. On unifie tout en une seule interface.", review: "<span>Réjean 🟡:</span> L'idée est bonne mais c'est trop conceptuel.", rec: false },
+    { id: 9, emoji: "⚡", title: "Automatisation hybride", desc: "Mix intelligent: les étapes faciles sont automatisées, les complexes sont guidées. L'humain reste maître.", review: "<span>Marie-Ève ✅:</span> \"L'humain reste maître\" — bonne phrase. <span>Réjean 🔴:</span> \"C'est encore du concept flou.\"", rec: false },
+    { id: 10, emoji: "🔴", title: "Suivi des non-conformités", desc: "Photo, description vocale, fiche auto-générée. L'IA suggère les correctifs basés sur l'historique.", review: "<span>Marie-Ève ✅:</span> Très concret — photo + vocal + auto. <span>Réjean ✅:</span> Ça c'est du terrain.", rec: true },
+    { id: 11, emoji: "🔧", title: "Maintenance préventive", desc: "Suivi des heures machine, alertes automatiques, bons de travail générés. Fini les bris imprévus.", review: "<span>Réjean ✅:</span> Tout le monde comprend ça. Pas de jargon.", rec: true },
+    { id: 12, emoji: "📋", title: "Gestion des certifications", desc: "Qui est certifié pour quoi? Rappels avant expiration, rapport d'audit CNESST en 30 secondes.", review: "<span>Réjean ✅:</span> CNESST = super concret, tout patron connaît. <span>Marie-Ève ✅:</span> Spécifique et vérifiable.", rec: true },
+    { id: 13, emoji: "💵", title: "Coût de revient", desc: "Calculez le coût réel de chaque produit. Matières, temps machine, main-d'œuvre. Découvrez votre vraie marge.", review: "<span>Réjean ❤️:</span> Ça parle à TOUS les patrons. La marge c'est la vie.", rec: true },
+    { id: 14, emoji: "🛒", title: "Gestion des achats", desc: "Centralisez vos fournisseurs, comparez prix et délais, bons de commande pré-remplis selon le stock.", review: "<span>Réjean 🟡:</span> Utile mais générique. Ya des outils pour ça déjà.", rec: false },
+    { id: 15, emoji: "⏱️", title: "Suivi des temps par job", desc: "L'opérateur scanne en 5 secondes. Les heures s'accumulent en temps réel et alimentent la facturation.", review: "<span>Réjean ✅:</span> \"Scanner en 5 secondes\" — ça c'est du concret. <span>Marie-Ève ✅:</span> Chiffre précis = crédible.", rec: true },
+    { id: 16, emoji: "🌐", title: "Portail client", desc: "Vos clients voient l'avancement, approuvent les plans et signent les changements. Sans vous appeler.", review: "<span>Réjean 🟡:</span> Nice-to-have mais pas prioritaire. <span>Marie-Ève 🟡:</span> Correct sans plus.", rec: false },
+    { id: 17, emoji: "🍕", title: "Gestion des recettes", desc: "Centralisez vos formulations. Ajustement par lot, traçabilité des ingrédients.", review: "<span>Réjean 🔴:</span> \"Recettes de cuisine? Moi je fais des armoires!\" Mélange le message.", rec: false },
+    { id: 18, emoji: "🚛", title: "Coordination chantier", desc: "Synchronisez l'atelier et le terrain. Quand c'est prêt, l'équipe est notifiée.", review: "<span>Réjean ❤️:</span> \"J'ai perdu 2 projets l'an passé à cause de ça.\" Super pertinent.", rec: true }
+];
+
+const grid = document.getElementById('grid');
+const selected = new Set();
+
+cases.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.id = c.id;
+    card.innerHTML = `
+        <div class="check">✓</div>
+        <div class="card-content">
+            <div class="card-title"><span class="card-emoji">${c.emoji}</span> ${c.title}${c.rec ? '<span class="rec-badge">RECOMMANDÉ</span>' : ''}</div>
+            <div class="card-desc">${c.desc}</div>
+            <div class="card-review">${c.review}</div>
+        </div>
+    `;
+    card.addEventListener('click', () => {
+        if (selected.has(c.id)) {
+            selected.delete(c.id);
+            card.classList.remove('selected');
+        } else {
+            selected.add(c.id);
+            card.classList.add('selected');
+        }
+        document.getElementById('count').textContent = selected.size;
+    });
+    grid.appendChild(card);
+});
+
+function copySelection() {
+    const picks = cases.filter(c => selected.has(c.id));
+    if (picks.length === 0) { alert("Coche au moins un cas!"); return; }
+    const text = "USE CASES SÉLECTIONNÉS:\n" + picks.map(c => `✅ ${c.emoji} ${c.title}`).join('\n') + "\n\n(" + picks.length + " sélectionnés sur 18)";
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = "✅ Copié!";
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = "📋 Copier la sélection"; btn.classList.remove('copied'); }, 2000);
+    });
+}
+</script>
+</body>
+</html>
